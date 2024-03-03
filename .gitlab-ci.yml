@@ -1,0 +1,92 @@
+####### README #######
+### Необходимо в gitlab-ci.yml подставить нижеследующие variables ###
+### Так как docker NotSSL уже Deprecated ############################
+###  variables:
+###    DOCKER_HOST: tcp://docker:2376
+###    CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA 
+###    DOCKER_TLS_CERTDIR: "/certs"
+###    DOCKER_TLS_VERIFY: 1
+###    DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
+
+stages:
+  - build
+
+before_script:
+  - export VAULT_ROLE_ID=${VAULT_ROLE_ID}
+  - export VAULT_SECRET_ID=${VAULT_SECRET_ID}
+
+
+stages:
+  - deploy
+
+
+deploy_sandbox:
+  stage: deploy
+  cache:
+    key: npm-cache
+    paths:
+    - .npm/
+  variables:
+    DOCKER_HOST: tcp://docker:2376
+    CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA 
+    DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_TLS_VERIFY: 1
+    DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
+    VUE_APP_BACKEND: "https://dev-promo23.click.uz"
+  image:
+    name: git.click.uz:8443/click_promo/aksiya/node:latest
+    pull_policy: if-not-present
+  before_script:
+    - ls -lah ./
+    - yarn install --frozen-lockfile
+    - yarn build
+    - ls -lah ./
+  script:
+    # - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\t StrictHostKeyChecking no \n\n" > ~/.ssh/config' 
+    - ssh-keyscan 172.16.17.3 >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - rsync -rav --delete dist/ deployer@172.16.17.3:/var/www/aksiya/
+  environment:
+    name: sandbox
+    url: https://dev-promo23.click.uz
+  only:
+    - main
+deploy_prod:
+  stage: deploy
+  cache:
+    key: npm-cache
+    paths:
+    - .npm/
+  variables:
+    DOCKER_HOST: tcp://docker:2376
+    CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA 
+    DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_TLS_VERIFY: 1
+    DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
+    VUE_APP_BACKEND: "https://promo23.click.uz"
+  image:
+    name: git.click.uz:8443/click_promo/aksiya/node:latest
+    pull_policy: if-not-present
+  before_script:
+    - ls -lah ./
+    - npm ci --cache .npm --prefer-offline
+    - npm run build --no-clean
+    - ls -lah ./
+  script:
+    # - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\t StrictHostKeyChecking no \n\n" > ~/.ssh/config' 
+    - ssh-keyscan 172.16.13.32 >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - rsync -rav --delete dist/ deployer@172.16.13.32:/var/www/aksiya/
+  environment:
+    name: prod
+    url: https://promo-p2p.click.uz
+  only:
+    - release
