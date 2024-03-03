@@ -49,7 +49,7 @@ deploy_sandbox:
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\t StrictHostKeyChecking no \n\n" > ~/.ssh/config' 
     - ssh-keyscan 172.16.17.3 >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
-    - rsync -rav --delete dist/ deployer@172.16.17.3:/var/www/help_front/
+    - rsync -rav --delete ./ deployer@172.16.17.3:/var/www/help_front/
   environment:
     name: sandbox
     url: https://dev-promo23.click.uz
