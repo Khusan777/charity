@@ -41,6 +41,7 @@
 <script setup>
 const router = useRouter()
 const acceptCheck = ref(false)
+const heightDevice = inject('devicePlatform')
 
 const goToMainPage = () => {
   router.push('/main')
@@ -49,8 +50,8 @@ const goToMainPage = () => {
 
 <style lang="scss" scoped>
 .start-container {
-  height: 100vh;
-  max-height: 100vh;
+  height: v-bind(heightDevice);
+  max-height: v-bind(heightDevice);
   padding-bottom: 15px;
   display: flex;
   justify-content: space-around;
