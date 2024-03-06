@@ -11,6 +11,7 @@
       <NuxtImg class="image-user" src="/images/user.png" alt="user"></NuxtImg>
       <div>
         <UiBadge
+          with-image
           img-ref="/images/badge/urgentHelp.svg"
           status-text="Нужна срочная помощь"
           background-color="rgb(255, 243, 224)"
@@ -49,7 +50,10 @@
       </div>
     </div>
     <div v-ripple.500="'rgba(255, 255, 255, 0.35)'" class="help-btn">
-      <UiButton :with-disabled="false"></UiButton>
+      <UiButton
+        :with-disabled="false"
+        @click="$router.push('/main/1')"
+      ></UiButton>
     </div>
   </div>
   <div class="chart-card">
@@ -64,6 +68,7 @@
       <NuxtImg class="image-user" src="/images/user.png" alt="user"></NuxtImg>
       <div>
         <UiBadge
+          with-image
           img-ref="/images/badge/treatment.svg"
           status-text="На лечении"
           background-color="#EDF8E9"

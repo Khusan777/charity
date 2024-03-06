@@ -1,7 +1,12 @@
 <template>
   <div class="badge">
     <div class="status">{{ statusText }}</div>
-    <NuxtImg class="image" :src="imgRef" alt="urgent"></NuxtImg>
+    <NuxtImg
+      v-if="withImage"
+      class="image"
+      :src="imgRef"
+      alt="urgent"
+    ></NuxtImg>
   </div>
 </template>
 
@@ -21,7 +26,11 @@ defineProps({
   },
   imgRef: {
     type: String,
-    required: true,
+    default: '',
+    required: false,
+  },
+  withImage: {
+    type: Boolean,
   },
 })
 </script>

@@ -1,17 +1,17 @@
 <template>
   <div class="aheader">
-    <div v-if="left" class="header-left">
+    <div v-if="left || leftRoute" class="header-left">
       <nuxt-link v-if="leftRoute" :to="leftRoute">
         <svg
-          width="9"
-          height="16"
-          viewBox="0 0 9 16"
+          width="20"
+          height="24"
+          viewBox="0 0 20 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M8.00004 14.6668L1.33337 8.00016L8.00004 1.3335"
-            stroke="white"
+            d="M13.6667 17.6615L7 10.9948L13.6667 4.32812"
+            stroke="#616380"
             stroke-width="2"
             stroke-miterlimit="10"
             stroke-linecap="round"
@@ -19,7 +19,15 @@
           />
         </svg>
       </nuxt-link>
-      <div class="left-container">
+      <div v-if="center" class="header-center">
+        <div
+          class="header-center-text"
+          :style="color === 'black' ? 'color: #000;' : ''"
+        >
+          {{ centerText }}
+        </div>
+      </div>
+      <div v-if="left" class="left-container">
         <div class="logo-data">
           <NuxtImg class="logo-img" src="/images/logo.svg" alt="logo"></NuxtImg>
         </div>
@@ -42,23 +50,16 @@
           <UiAnimatedSkeleton height="8px" width="100px" />
         </div>
       </div>
-    </div>
-    <div v-if="center" class="header-center">
-      <div
-        class="header-center-text"
-        :style="color === 'black' ? 'color: #000;' : ''"
-      >
-        {{ centerText }}
+      <div v-if="right" class="header-right">
+        <div class="header-right-text">
+          <NuxtImg
+            style="width: 14px; height: 14px"
+            src="/images/x-icon.svg"
+            alt="logo"
+          ></NuxtImg>
+        </div>
       </div>
-    </div>
-    <div v-if="right" class="header-right">
-      <div class="header-right-text">
-        <NuxtImg
-          style="width: 14px; height: 14px"
-          src="/images/x-icon.svg"
-          alt="logo"
-        ></NuxtImg>
-      </div>
+      <div v-else></div>
     </div>
   </div>
 </template>
@@ -91,23 +92,9 @@ defineProps({
 .aheader {
   padding: 25px 20px 24px;
   .header-left {
-    a {
-      display: flex;
-      align-items: center;
-      width: 20px;
-      height: 20px;
-      justify-content: center;
-      svg {
-        path {
-          stroke: #ffffff;
-        }
-      }
-      svg.black {
-        path {
-          stroke: #ffffff;
-        }
-      }
-    }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     & .left-container {
       display: flex;
       align-items: center;
@@ -163,12 +150,11 @@ defineProps({
   }
   .header-center {
     .header-center-text {
-      color: #fff;
-      text-align: center;
-      font-family: GolosText, sans-serif !important;
-      font-size: 16px;
-      font-style: normal;
       font-weight: 700;
+      font-size: 16px;
+      text-align: center;
+      color: #363845;
+      font-style: normal;
       line-height: normal;
     }
   }

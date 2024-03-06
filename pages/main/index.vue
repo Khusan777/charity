@@ -4,6 +4,8 @@
       <HeaderSkeleton></HeaderSkeleton>
       <MainSkeleton></MainSkeleton>
       <MainSkeleton></MainSkeleton>
+      <MainSkeleton></MainSkeleton>
+      <BannerSkeleton></BannerSkeleton>
     </template>
     <template v-else>
       <div class="search-container">
@@ -35,6 +37,7 @@ import { storeToRefs } from 'pinia'
 import HeaderSkeleton from '~/components/skeleton/MainHeaderSkeleton.vue'
 import MainSkeleton from '~/components/skeleton/MainSkeleton.vue'
 import { useAppStore } from '~/stores/AppStore'
+import BannerSkeleton from '~/components/skeleton/BannerSkeleton.vue'
 
 definePageMeta({
   layout: 'main',
@@ -72,7 +75,7 @@ sendRequest()
     border: 1px solid rgb(183, 184, 198);
     border-radius: 10px;
     height: 40px;
-    background: url('../assets/img/search.svg') no-repeat rgb(255, 255, 255);
+    background: url('../../assets/img/search.svg') no-repeat rgb(255, 255, 255);
     background-position: 10px center;
     width: 100%;
     display: flex;

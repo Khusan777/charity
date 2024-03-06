@@ -1,4 +1,5 @@
 export default defineNuxtConfig({
+  components: true,
   server: {
     mockServiceWorker: false,
   },

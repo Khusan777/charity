@@ -42,6 +42,18 @@ body,
 a {
   text-decoration: none !important;
 }
+
+.swiper-pagination-bullet {
+  opacity: 1 !important;
+  background: var(
+    --swiper-pagination-bullet-inactive-color,
+    #ffffff
+  ) !important;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: #007aff !important;
+}
+
 .page-enter-active,
 .page-leave-active,
 .page-enter-active,

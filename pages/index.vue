@@ -68,7 +68,6 @@ const goToMainPage = () => {
   & .start-image {
     margin-top: 20px;
     width: 100%;
-    height: 250px;
     background-size: cover;
   }
   & .title {
@@ -85,6 +84,14 @@ const goToMainPage = () => {
     font-size: 12px;
     line-height: 133%;
     color: #2c2d35;
+  }
+}
+
+@media (max-width: 360px) {
+  .start-container {
+    & .start-image {
+      height: 250px;
+    }
   }
 }
 </style>
