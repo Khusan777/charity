@@ -39,7 +39,7 @@ deploy_sandbox:
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\t StrictHostKeyChecking no \n\n" > ~/.ssh/config' 
     - ssh-keyscan 172.16.17.3 >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
-    - ~/.composer/vendor/bin/envoy run deploy --commit="$CI_COMMIT_SHA"  --env=sandbox --branch=master
+    - ~/.composer/vendor/bin/envoy run deploy --commit="$CI_COMMIT_SHA"  --env=sandbox --branch=dev
   environment:
     name: sandbox
     url: https://dev-promo23.click.uz
