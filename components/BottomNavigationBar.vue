@@ -107,6 +107,7 @@
 
 <style scoped lang="scss">
 .footer-navigation {
+  z-index: 1000;
   border-top: 1px solid rgb(216, 219, 240);
   display: flex;
   align-items: center;

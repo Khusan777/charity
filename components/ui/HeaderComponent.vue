@@ -1,6 +1,6 @@
 <template>
   <div class="aheader">
-    <div v-if="left || leftRoute" class="header-left">
+    <div v-if="left || leftRoute" class="header-content">
       <nuxt-link v-if="leftRoute" :to="leftRoute">
         <svg
           width="20"
@@ -91,7 +91,7 @@ defineProps({
 <style lang="scss" scoped>
 .aheader {
   padding: 25px 20px 24px;
-  .header-left {
+  .header-content {
     display: flex;
     align-items: center;
     justify-content: space-between;

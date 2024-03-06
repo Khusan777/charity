@@ -87,7 +87,7 @@ const goToMainPage = () => {
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 320px) {
   .start-container {
     & .start-image {
       height: 250px;

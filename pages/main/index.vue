@@ -4,7 +4,6 @@
       <HeaderSkeleton></HeaderSkeleton>
       <MainSkeleton></MainSkeleton>
       <MainSkeleton></MainSkeleton>
-      <MainSkeleton></MainSkeleton>
       <BannerSkeleton></BannerSkeleton>
     </template>
     <template v-else>
@@ -51,7 +50,7 @@ const sendRequest = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve('resolved')
-    }, 4000)
+    }, 1500)
   }).then(() => {
     loading.value = false
   })
