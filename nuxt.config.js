@@ -16,6 +16,7 @@ export default defineNuxtConfig({
   //   '/swr': { swr: true },
   // },
   app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       script: [
         {
@@ -55,13 +56,5 @@ export default defineNuxtConfig({
       persistence: 'localStorage',
     },
   },
-  // css: [
-  //   '~/assets/style/main.scss',
-  //   { src: '~/assets/css/bootstrap.min.css', lang: 'css' },
-  // ],
-  devtools: {
-    timeline: {
-      enabled: true,
-    },
-  },
+  css: [{ src: '~/assets/css/bootstrap.min.css', lang: 'css' }],
 })
