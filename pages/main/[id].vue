@@ -2,11 +2,20 @@
   <div>
     <UiHeaderComponent
       center
-      center-text="Сенбаев Арслан"
+      center-text="Личная карточка"
       left-route="/main"
     ></UiHeaderComponent>
     <div class="detail-container">
-      <div class="badge-ui">
+      <div v-if="isCompleted === 'false'" class="badge-ui">
+        <UiBadge
+          with-image
+          img-ref="/images/badge/urgentHelp.svg"
+          status-text="Нужна срочная помощь"
+          background-color="rgb(255, 243, 224)"
+          color="rgb(251, 140, 0)"
+        ></UiBadge>
+      </div>
+      <div v-else class="badge-ui">
         <UiBadge
           status-text="ID 4654654"
           background-color="#f6f6f6"

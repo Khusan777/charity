@@ -59,7 +59,7 @@
           ></NuxtImg>
         </div>
       </div>
-      <div v-else></div>
+      <div v-else style="width: 20px; height: 24px"></div>
     </div>
   </div>
 </template>

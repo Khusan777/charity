@@ -1,5 +1,7 @@
 <template>
-  <div>Уведомления</div>
+  <div>
+    <div>Уведомления</div>
+  </div>
 </template>
 
 <script setup lang="ts">

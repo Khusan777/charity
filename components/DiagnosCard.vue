@@ -1,6 +1,16 @@
 <template>
   <div class="help-data">
     <UiBadge
+      v-if="isCompleted === 'false'"
+      style="margin-bottom: 10px"
+      with-image
+      img-ref="/images/badge/urgentHelp.svg"
+      status-text="Нужна срочная помощь"
+      background-color="rgb(255, 243, 224)"
+      color="rgb(251, 140, 0)"
+    ></UiBadge>
+    <UiBadge
+      v-else
       style="margin-bottom: 10px"
       with-image
       img-ref="/images/badge/treatment.svg"
@@ -9,7 +19,7 @@
       color="#66ca28"
     ></UiBadge>
     <UiCompletedProgress v-if="isCompleted === 'true'"></UiCompletedProgress>
-    <UiCollectionProgress v-else is-completed="false"></UiCollectionProgress>
+    <UiCollectionProgress v-else is-completed="true"></UiCollectionProgress>
     <div class="published">
       <div class="content">
         <div class="data">

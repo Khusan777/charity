@@ -1,19 +1,10 @@
 <template>
   <div class="index-container">
-    <p
-      v-if="cookieData"
-      style="
-        user-select: all;
-        color: #171717;
-        margin: 0 20px;
-        width: 100%;
-        max-width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-      "
-    >
-      {{ cookieData }}
-    </p>
+    <div v-if="cookieData" style="margin: 0 20px">
+      <div style="user-select: all; white-space: pre-line; color: #171717">
+        {{ cookieData }}
+      </div>
+    </div>
     <template v-if="loading">
       <HeaderSkeleton></HeaderSkeleton>
       <MainSkeleton></MainSkeleton>
@@ -59,7 +50,24 @@ const heightDevice = inject('devicePlatform')
 const appStore = useAppStore()
 const { loading } = storeToRefs(appStore)
 
-const cookieData = computed(() => document?.cookie)
+// const { data } = await useFetch('https://credits.click.uz/api/api/login', {
+//   headers: {
+//     'Content-Type': 'application/json',
+//     Accept: 'application/json',
+//   },
+//   body: {
+//     web_session: 'a00fe98b-edfd-41aa-a0db-536cdb84d36a',
+//   },
+//   mode: 'no-cors',
+//   method: 'POST',
+// })
+// console.log(data)
+
+const cookieData = computed(() =>
+  getCookie('click-web-session')
+    ? getCookie('click-web-session')
+    : getCookie('web-session'),
+)
 const sendRequest = () => {
   loading.value = true
   return new Promise((resolve) => {

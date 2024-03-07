@@ -1,9 +1,15 @@
 <template>
-  <div>Завершенные</div>
+  <div>
+    <UiHeaderComponent
+      center
+      center-text="Личная карточка"
+      left-route="/main"
+    ></UiHeaderComponent>
+  </div>
 </template>
 
 <script setup lang="ts">
 definePageMeta({
-  layout: 'main',
+  layout: 'completed',
 })
 </script>
