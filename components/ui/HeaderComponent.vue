@@ -32,7 +32,7 @@
           <NuxtImg class="logo-img" src="/images/logo.svg" alt="logo"></NuxtImg>
         </div>
         <div v-if="!loading" class="help-now">
-          <div class="counter">
+          <div class="counters">
             <div class="circle"></div>
             <div class="text">158</div>
             <NuxtImg
@@ -111,7 +111,7 @@ defineProps({
       & .help-now {
         display: flex;
         flex-direction: column;
-        & .counter {
+        & .counters {
           display: flex;
           align-items: center;
           gap: 5px;

@@ -23,40 +23,12 @@
         <div class="disease">Дефект предсердно-желудочковой перегородки</div>
       </div>
     </div>
-    <div class="collection-progress">
-      <div class="goal">
-        <div class="title">Необходимо собрать:</div>
-        <div class="price">10 582 000 сумов</div>
-      </div>
-      <div style="height: 6px" class="progress">
-        <div
-          style="width: 50%"
-          class="progress-bar"
-          role="progressbar"
-          aria-valuenow="50"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        ></div>
-      </div>
-      <div class="current-money">
-        <div>
-          <div class="text">Собрано</div>
-          <div class="price">10 582 000 сумов</div>
-        </div>
-        <div>
-          <div class="text">Осталось</div>
-          <div class="price">11 000 000 сумов</div>
-        </div>
-      </div>
-    </div>
-    <div v-ripple.500="'rgba(255, 255, 255, 0.35)'" class="help-btn">
-      <UiButton
-        :with-disabled="false"
-        @click="$router.push('/main/1')"
-      ></UiButton>
-    </div>
+    <UiCollectionProgress is-completed="false"></UiCollectionProgress>
   </div>
-  <div class="chart-card">
+  <div
+    class="chart-card"
+    @click="$router.push({ path: '/main/1', query: { completed: true } })"
+  >
     <div class="fond-container">
       <div class="data">
         <NuxtImg class="fond-img" src="/images/fond.svg" alt="fond"></NuxtImg>
@@ -80,42 +52,7 @@
         <div class="disease">Дефект предсердно-желудочковой перегородки</div>
       </div>
     </div>
-    <div class="collection-progress">
-      <div v-if="false" class="goal">
-        <div class="title">Необходимо собрать:</div>
-        <div class="price">10 582 000 сумов</div>
-      </div>
-      <div class="completed">
-        <NuxtImg class="icon" src="/images/check.svg"></NuxtImg>
-        <div class="text">Сбор завершён</div>
-      </div>
-      <div style="height: 6px" class="progress">
-        <div
-          style="width: 100%"
-          class="progress-bar"
-          role="progressbar"
-          aria-valuenow="100"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        ></div>
-      </div>
-      <div v-if="false" class="current-money">
-        <div>
-          <div class="text">Собрано</div>
-          <div class="price">10 582 000 сумов</div>
-        </div>
-        <div>
-          <div class="text">Осталось</div>
-          <div class="price">11 000 000 сумов</div>
-        </div>
-      </div>
-      <div class="completed-summa">
-        <div class="summa">Сумма собрана: <span>25 000 000 сумов</span></div>
-      </div>
-    </div>
-    <div v-if="false" class="help-btn">
-      <UiButton></UiButton>
-    </div>
+    <UiCompletedProgress></UiCompletedProgress>
   </div>
 </template>
 
@@ -197,90 +134,6 @@
       font-size: 10px;
       color: #6a6a6a;
     }
-  }
-  & .collection-progress {
-    padding-bottom: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    & .completed {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      & .icon {
-        width: 18px;
-        height: 18px;
-      }
-      & .text {
-        font-weight: 400;
-        font-size: 10px;
-        color: #363845;
-      }
-    }
-    & .goal {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 4px;
-      & .title {
-        color: rgb(106, 106, 106);
-        font-size: 10px;
-        font-weight: 400;
-        line-height: 12px;
-        letter-spacing: 0;
-        text-align: left;
-      }
-      & .price {
-        color: rgb(54, 56, 69);
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 17px;
-        letter-spacing: 0;
-        text-align: left;
-      }
-    }
-    & .current-money {
-      margin-bottom: 8px;
-      display: flex;
-      justify-content: space-between;
-      flex: 1 1 0;
-      & .text {
-        color: rgb(106, 106, 106);
-        font-size: 10px;
-        font-weight: 400;
-        line-height: 12px;
-        letter-spacing: 0;
-        text-align: left;
-      }
-      & .price {
-        color: rgb(54, 56, 69);
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 14px;
-        letter-spacing: 0;
-        text-align: left;
-      }
-    }
-  }
-  & .completed-summa {
-    display: flex;
-    align-items: center;
-    padding-bottom: 5px;
-    & .summa {
-      font-weight: 400;
-      line-height: 12px;
-      font-size: 10px;
-      color: #6a6a6a;
-    }
-    & span {
-      font-weight: 700;
-      font-size: 14px;
-      color: #363845;
-    }
-  }
-  & .help-btn {
-    padding-bottom: 10px;
   }
 }
 </style>

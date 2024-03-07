@@ -1,5 +1,5 @@
 <template>
-  <div class="skeleton-wrapper">&nbsp;</div>
+  <div class="skeleton-wrapper"></div>
 </template>
 
 <script setup>

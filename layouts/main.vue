@@ -1,7 +1,7 @@
 <template>
   <UiHeaderComponent left></UiHeaderComponent>
   <slot></slot>
-  <BottomNavigationBar></BottomNavigationBar>
+  <UiBottomNavigationBar></UiBottomNavigationBar>
 </template>
 
 <script setup lang="ts"></script>

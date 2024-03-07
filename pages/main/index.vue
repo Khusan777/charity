@@ -1,5 +1,19 @@
 <template>
   <div class="index-container">
+    <p
+      v-if="cookieData"
+      style="
+        user-select: all;
+        color: #171717;
+        margin: 0 20px;
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+      "
+    >
+      {{ cookieData }}
+    </p>
     <template v-if="loading">
       <HeaderSkeleton></HeaderSkeleton>
       <MainSkeleton></MainSkeleton>
@@ -45,6 +59,7 @@ const heightDevice = inject('devicePlatform')
 const appStore = useAppStore()
 const { loading } = storeToRefs(appStore)
 
+const cookieData = computed(() => document?.cookie)
 const sendRequest = () => {
   loading.value = true
   return new Promise((resolve) => {

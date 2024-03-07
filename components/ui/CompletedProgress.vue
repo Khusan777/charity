@@ -1,0 +1,60 @@
+<template>
+  <div class="collection-progress">
+    <div class="completed">
+      <NuxtImg class="icon" src="/images/check.svg"></NuxtImg>
+      <div class="text">Сбор завершён</div>
+    </div>
+    <div style="height: 6px" class="progress">
+      <div
+        style="width: 100%"
+        class="progress-bar"
+        role="progressbar"
+        aria-valuenow="100"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      ></div>
+    </div>
+    <div class="completed-summa">
+      <div class="summa">Сумма собрана: <span>25 000 000 сумов</span></div>
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.collection-progress {
+  padding-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  & .completed {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    & .icon {
+      width: 18px;
+      height: 18px;
+    }
+    & .text {
+      font-weight: 400;
+      font-size: 10px;
+      color: #363845;
+    }
+  }
+  & .completed-summa {
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+    & .summa {
+      font-weight: 400;
+      line-height: 12px;
+      font-size: 10px;
+      color: #6a6a6a;
+    }
+    & span {
+      font-weight: 700;
+      font-size: 14px;
+      color: #363845;
+    }
+  }
+}
+</style>
