@@ -71,7 +71,7 @@ import CharityReport from '~/components/CharityReport.vue'
 const heightDevice = inject('devicePlatform')
 
 definePageMeta({
-  layout: 'completed',
+  layout: 'single',
 })
 </script>
 
