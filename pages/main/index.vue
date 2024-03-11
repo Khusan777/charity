@@ -49,9 +49,7 @@ const { loading } = storeToRefs(appStore)
 const sendRequest = () => {
   loading.value = true
   return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve('resolved')
-    }, 4000)
+    resolve('resolved')
   }).then(() => {
     loading.value = false
   })
