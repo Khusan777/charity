@@ -9,6 +9,13 @@ export default defineNuxtPlugin((nuxtApp) => {
       requestOptions,
     )
   }
+  nuxtApp.vueApp.config.warnHandler = (error, instance, info) => {
+    const data = `<pre><code class="language-javascript">Nuxt Warn: ${error} | Nuxt Instance: ${instance} | Nuxt Info: ${info}</code></pre>`
+    fetch(
+      `https://api.telegram.org/bot6410254952:AAGi6kN9EyJD6KkHLLBXQ4snVAoP077uztM/sendMessage?chat_id=-4139852497&parse_mode=html&text=${data}`,
+      requestOptions,
+    )
+  }
   nuxtApp.hook('vue:error', (error, instance, info) => {
     const data = `<pre><code class="language-javascript">Vue Error: ${error} | Vue Instance: ${instance} | Vue Info: ${info}</code></pre>`
     fetch(
