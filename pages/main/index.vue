@@ -75,7 +75,7 @@ const sendRequest = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve('resolved')
-    }, 1500)
+    }, 700)
   }).then(() => {
     loading.value = false
   })
