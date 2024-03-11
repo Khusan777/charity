@@ -1,0 +1,63 @@
+<template>
+  <div class="charity-reports">
+    <div class="data">
+      <NuxtImg class="image" src="/images/img.png" alt="user"></NuxtImg>
+      <div class="title">Благодаря вам у маленького Юры все хорошо!</div>
+      <div class="description">
+        Карниопластика была единственным шансом для...
+      </div>
+      <div class="detail">Читать историю</div>
+    </div>
+    <div class="data">
+      <NuxtImg class="image" src="/images/img.png" alt="user"></NuxtImg>
+      <div class="title">Благодаря вам у маленького Юры все хорошо!</div>
+      <div class="description">
+        Карниопластика была<br />
+        единственным шансом для...
+      </div>
+      <div class="detail">Читать историю</div>
+    </div>
+  </div>
+</template>
+
+<style scoped lang="scss">
+.charity-reports {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+  padding: 0 20px;
+  & .data {
+    border-radius: 12px;
+    background: #fff;
+    & .image {
+      width: 100%;
+    }
+    & .title {
+      font-family: var(--font-family);
+      font-weight: 700;
+      font-size: 12px;
+      color: #0d0d0d;
+      line-height: normal;
+      padding: 10px 10px 5.5px;
+    }
+    & .description {
+      font-weight: 400;
+      font-size: 10px;
+      color: #6a6a6a;
+      padding: 0 10px 5px;
+    }
+    & .detail {
+      padding: 0 10px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 10px;
+      text-decoration: underline;
+      text-decoration-skip-ink: none;
+      color: #0073ff;
+    }
+  }
+}
+</style>

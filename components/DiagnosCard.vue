@@ -6,7 +6,7 @@
       with-image
       img-ref="/images/badge/urgentHelp.svg"
       status-text="Нужна срочная помощь"
-      background-color="rgb(255, 243, 224)"
+      back-color="rgb(255, 243, 224)"
       color="rgb(251, 140, 0)"
     ></UiBadge>
     <UiBadge
@@ -15,7 +15,7 @@
       with-image
       img-ref="/images/badge/treatment.svg"
       status-text="На лечении"
-      background-color="#EDF8E9"
+      back-color="#EDF8E9"
       color="#66ca28"
     ></UiBadge>
     <UiCompletedProgress v-if="isCompleted === 'true'"></UiCompletedProgress>

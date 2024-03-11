@@ -11,21 +11,21 @@
           with-image
           img-ref="/images/badge/urgentHelp.svg"
           status-text="Нужна срочная помощь"
-          background-color="rgb(255, 243, 224)"
+          back-color="rgb(255, 243, 224)"
           color="rgb(251, 140, 0)"
         ></UiBadge>
       </div>
       <div v-else class="badge-ui">
         <UiBadge
           status-text="ID 4654654"
-          background-color="#f6f6f6"
+          back-color="#f6f6f6"
           color="#6a6a6a"
         ></UiBadge>
       </div>
       <CharityPatient with-city></CharityPatient>
       <DiagnosCard :is-completed="isCompleted"></DiagnosCard>
       <HistoryInfo></HistoryInfo>
-      <Report></Report>
+      <ReportTransactions></ReportTransactions>
       <div v-if="isCompleted === 'false'" class="btn-help">
         <UiButton :with-disabled="false"></UiButton>
       </div>

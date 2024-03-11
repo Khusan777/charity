@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   //   '/swr': { swr: true },
   // },
   app: {
-    pageTransition: { name: 'page', mode: 'out-in' },
+    pageTransition: { name: 'page', mode: 'out-in', appear: true },
     head: {
       script: [
         {

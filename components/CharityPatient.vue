@@ -3,12 +3,12 @@
   <div v-if="withCity" class="city">Город Фергана</div>
   <div class="charity-swiper">
     <Swiper
+      :space-between="10"
       :centered-slides="true"
       :slides-per-view="'auto'"
       :pagination="{
         clickable: true,
       }"
-      :slide-to-clicked-slide="true"
       :modules="[Pagination]"
     >
       <SwiperSlide class="main-help-slide">
@@ -61,7 +61,6 @@ defineProps({
   max-width: 100%;
   padding: 0 0 20px;
   & .main-help-slide {
-    padding-right: 10px;
     max-width: 90%;
     width: 90%;
   }
@@ -69,7 +68,6 @@ defineProps({
     background-size: cover;
     border-radius: 16px;
     width: 100%;
-    height: 216px;
   }
 }
 </style>

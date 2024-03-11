@@ -16,7 +16,7 @@ defineProps({
     type: String,
     required: true,
   },
-  backgroundColor: {
+  backColor: {
     type: String,
     required: true,
   },
@@ -45,7 +45,7 @@ defineProps({
   border-radius: 50px;
   padding: 2px 8px;
   height: 20px;
-  background: v-bind(backgroundColor);
+  background-color: v-bind(backColor);
   & .status {
     font-weight: 600;
     font-size: 10px;

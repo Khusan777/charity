@@ -61,7 +61,7 @@ defineEmits(['update:checked'])
 }
 .checkbox.style-c .checkbox__checkmark {
   position: absolute;
-  top: 14.5px;
+  top: 13px;
   left: 0;
   height: 20px;
   width: 20px;

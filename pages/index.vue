@@ -1,6 +1,7 @@
 <template>
   <div class="start-container">
     <NuxtImg
+      format="webp"
       style="padding: 0"
       class="start-image"
       src="/images/background.png"
@@ -57,6 +58,7 @@ const goToMainPage = () => {
   overflow: hidden;
   & .start-image {
     width: 100%;
+    max-height: 500px;
     background-size: cover;
   }
   & .title {

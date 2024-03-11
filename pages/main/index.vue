@@ -22,7 +22,8 @@
           ваша помощь.
         </div>
       </div>
-      <ChartCard></ChartCard>
+      <ChartCardNotCollected></ChartCardNotCollected>
+      <ChartCardCollected></ChartCardCollected>
       <div class="charity-banner">
         <div class="text">
           Наша миссия — протянуть руку тем, кто действительно в этом нуждается.
@@ -42,6 +43,8 @@ import HeaderSkeleton from '~/components/skeleton/MainHeaderSkeleton.vue'
 import MainSkeleton from '~/components/skeleton/MainSkeleton.vue'
 import { useAppStore } from '~/stores/AppStore'
 import BannerSkeleton from '~/components/skeleton/BannerSkeleton.vue'
+import ChartCardNotCollected from '~/components/ChartCardNotCollected.vue'
+import ChartCardCollected from '~/components/ChartCardCollected.vue'
 
 definePageMeta({
   layout: 'main',
@@ -58,7 +61,6 @@ const { loading } = storeToRefs(appStore)
 //   body: {
 //     web_session: 'a00fe98b-edfd-41aa-a0db-536cdb84d36a',
 //   },
-//   mode: 'no-cors',
 //   method: 'POST',
 // })
 // console.log(data)

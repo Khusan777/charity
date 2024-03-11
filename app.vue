@@ -43,6 +43,86 @@ a {
   text-decoration: none !important;
 }
 
+.chart-card {
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 12px;
+  margin: 10px 20px 8px;
+  padding: 10px 10px 0 10px;
+  & .fond-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    & .data {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      & .fond-img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+    & .refferal {
+      align-self: center;
+      width: 20px;
+      height: 20px;
+    }
+  }
+  & .user-disease {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    padding-bottom: 8px;
+    & .image-user {
+      width: 91px;
+      height: 91px;
+      border-radius: 6px;
+    }
+    & .badge {
+      width: max-content;
+      display: flex;
+      gap: 5px;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 50px;
+      padding: 2px 8px;
+      height: 20px;
+      background: #fff3e0;
+      & .status {
+        font-weight: 600;
+        font-size: 10px;
+        color: #fb8c00;
+      }
+      & .image {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    & .name {
+      font-weight: 600;
+      font-size: 14px;
+      color: #363845;
+      align-self: center;
+      padding-bottom: 2px;
+      & span {
+        font-size: 12px;
+        color: #2c2d35;
+      }
+    }
+    & .city {
+      font-weight: 400;
+      font-size: 10px;
+      color: #6a6a6a;
+    }
+    & .disease {
+      font-weight: 400;
+      font-size: 10px;
+      color: #6a6a6a;
+    }
+  }
+}
+
 .swiper-pagination-bullet {
   opacity: 1 !important;
   background: var(
