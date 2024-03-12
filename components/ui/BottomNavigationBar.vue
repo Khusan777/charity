@@ -69,7 +69,7 @@
       </NuxtLink>
     </div>
     <div class="profile-nav">
-      <NuxtLink class="my-link" no-prefetch to="/userprofile">
+      <NuxtLink class="my-link" no-prefetch to="/profile">
         <svg
           width="29"
           height="28"
