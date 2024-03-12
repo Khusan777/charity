@@ -1,10 +1,6 @@
 <template>
   <div class="completed-pages">
-    <UiHeaderComponent
-      center
-      center-text="Личная карточка"
-      left-route="/main"
-    ></UiHeaderComponent>
+    <UiHeaderComponent center center-text="Личная карточка"></UiHeaderComponent>
     <div class="content-data">
       <div class="container">
         <ul id="myTab" class="nav nav-tabs complete-tabs" role="tablist">

@@ -16,7 +16,7 @@
       img-ref="/images/badge/treatment.svg"
       status-text="На лечении"
       back-color="#EDF8E9"
-      color="#66ca28"
+      colour="#66ca28"
     ></UiBadge>
     <UiCompletedProgress v-if="isCompleted === 'true'"></UiCompletedProgress>
     <UiCollectionProgress v-else is-completed="true"></UiCollectionProgress>

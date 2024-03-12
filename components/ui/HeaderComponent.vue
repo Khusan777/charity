@@ -1,6 +1,6 @@
 <template>
   <div class="aheader">
-    <div v-if="left || leftRoute" class="header-content">
+    <div class="header-content">
       <nuxt-link v-if="leftRoute" :to="leftRoute">
         <svg
           width="20"
@@ -19,6 +19,7 @@
           />
         </svg>
       </nuxt-link>
+      <div v-if="!left && !leftRoute"></div>
       <div v-if="center" class="header-center">
         <div
           class="header-center-text"

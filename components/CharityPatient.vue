@@ -12,16 +12,16 @@
       :modules="[Pagination]"
     >
       <SwiperSlide class="main-help-slide">
-        <NuxtImg src="/images/user.png" class="help-images"></NuxtImg>
+        <NuxtImg v-viewer src="/images/user.png" class="help-images"></NuxtImg>
       </SwiperSlide>
       <SwiperSlide class="main-help-slide">
-        <NuxtImg src="/images/user.png" class="help-images"></NuxtImg>
+        <NuxtImg v-viewer src="/images/user.png" class="help-images"></NuxtImg>
       </SwiperSlide>
       <SwiperSlide class="main-help-slide">
-        <NuxtImg src="/images/user.png" class="help-images"></NuxtImg>
+        <NuxtImg v-viewer src="/images/user.png" class="help-images"></NuxtImg>
       </SwiperSlide>
       <SwiperSlide class="main-help-slide">
-        <NuxtImg src="/images/user.png" class="help-images"></NuxtImg>
+        <NuxtImg v-viewer src="/images/user.png" class="help-images"></NuxtImg>
       </SwiperSlide>
     </Swiper>
   </div>

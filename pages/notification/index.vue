@@ -1,10 +1,6 @@
 <template>
   <div class="notification">
-    <UiHeaderComponent
-      center
-      center-text="Уведомления"
-      left-route="/main"
-    ></UiHeaderComponent>
+    <UiHeaderComponent center center-text="Уведомления"></UiHeaderComponent>
     <div class="notification-list">
       <router-link to="/notification/1" class="notification-item">
         <div class="notification-icon">
