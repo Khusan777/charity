@@ -20,7 +20,7 @@ defineProps({
     type: String,
     required: true,
   },
-  color: {
+  colour: {
     type: String,
     required: true,
   },
@@ -45,11 +45,11 @@ defineProps({
   border-radius: 50px;
   padding: 2px 8px;
   height: 20px;
-  background-color: v-bind(backColor);
+  background: v-bind(backColor);
   & .status {
     font-weight: 600;
     font-size: 10px;
-    color: v-bind(color);
+    color: v-bind(colour);
   }
   & .image {
     width: 16px;

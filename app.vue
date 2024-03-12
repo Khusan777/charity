@@ -62,6 +62,13 @@ a {
         width: 24px;
         height: 24px;
       }
+      & div {
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 12px;
+        text-align: left;
+        color: #6a6a6a;
+      }
     }
     & .refferal {
       align-self: center;
@@ -78,26 +85,6 @@ a {
       width: 91px;
       height: 91px;
       border-radius: 6px;
-    }
-    & .badge {
-      width: max-content;
-      display: flex;
-      gap: 5px;
-      justify-content: space-between;
-      align-items: center;
-      border-radius: 50px;
-      padding: 2px 8px;
-      height: 20px;
-      background: #fff3e0;
-      & .status {
-        font-weight: 600;
-        font-size: 10px;
-        color: #fb8c00;
-      }
-      & .image {
-        width: 16px;
-        height: 16px;
-      }
     }
     & .name {
       font-weight: 600;

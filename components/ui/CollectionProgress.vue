@@ -20,7 +20,7 @@
         <div class="price">10 582 000 сумов</div>
       </div>
       <div>
-        <div class="text">Осталось</div>
+        <div class="text">Осталось собрать</div>
         <div class="price">11 000 000 сумов</div>
       </div>
     </div>

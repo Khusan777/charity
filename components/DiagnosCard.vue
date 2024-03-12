@@ -7,7 +7,7 @@
       img-ref="/images/badge/urgentHelp.svg"
       status-text="Нужна срочная помощь"
       back-color="rgb(255, 243, 224)"
-      color="rgb(251, 140, 0)"
+      colour="rgb(251, 140, 0)"
     ></UiBadge>
     <UiBadge
       v-else

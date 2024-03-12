@@ -12,14 +12,14 @@
           img-ref="/images/badge/urgentHelp.svg"
           status-text="Нужна срочная помощь"
           back-color="rgb(255, 243, 224)"
-          color="rgb(251, 140, 0)"
+          colour="rgb(251, 140, 0)"
         ></UiBadge>
       </div>
       <div v-else class="badge-ui">
         <UiBadge
           status-text="ID 4654654"
           back-color="#f6f6f6"
-          color="#6a6a6a"
+          colour="#6a6a6a"
         ></UiBadge>
       </div>
       <CharityPatient with-city></CharityPatient>

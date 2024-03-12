@@ -17,8 +17,8 @@
           with-image
           img-ref="/images/badge/treatment.svg"
           status-text="На лечении"
-          back-color="#f1f8e9"
-          color="#66ca28"
+          back-color="#F1F8E9"
+          colour="#66ca28"
         ></UiBadge>
         <div class="name">Сенбаев Арслан <span>(4 года)</span></div>
         <div class="city">Город Фергана</div>

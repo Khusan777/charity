@@ -14,7 +14,7 @@
           ></NuxtImg>
         </div>
         <div class="notification-text">
-          <div class="notification-date">03 февр. 16.05</div>
+          <div class="notification-date">03 февр. 16:05</div>
           <div class="notification-box">
             <div class="notification-title">
               Поможем вместе пострадавшим от взрыва на Сергели!
@@ -40,7 +40,7 @@
           ></NuxtImg>
         </div>
         <div class="notification-text">
-          <div class="notification-date">03 февр. 16.05</div>
+          <div class="notification-date">03 февр. 16:05</div>
           <div class="notification-box">
             <div class="notification-title">
               Поможем вместе пострадавшим от взрыва на Сергели!

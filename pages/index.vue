@@ -58,7 +58,7 @@ const goToMainPage = () => {
   overflow: hidden;
   & .start-image {
     width: 100%;
-    max-height: 500px;
+    max-height: 365px;
     background-size: cover;
   }
   & .title {

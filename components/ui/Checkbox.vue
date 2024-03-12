@@ -7,8 +7,8 @@
         @input="(event) => $emit('update:checked', event.target.checked)"
       />
       <div class="checkbox__checkmark"></div>
-      <div class="checkbox__body" v-html="label"></div>
     </label>
+    <div class="checkbox__body" v-html="label"></div>
   </div>
 </template>
 
@@ -48,7 +48,8 @@ defineEmits(['update:checked'])
   width: 0;
 }
 .checkbox.style-c input:checked ~ .checkbox__checkmark {
-  background-color: #f7cb15;
+  border: 1px solid #0073ff;
+  background-color: #ffffff;
 }
 .checkbox.style-c input:checked ~ .checkbox__checkmark:after {
   opacity: 1;
@@ -57,11 +58,12 @@ defineEmits(['update:checked'])
   background-color: #eee;
 }
 .checkbox.style-c:hover input:checked ~ .checkbox__checkmark {
-  background-color: #f7cb15;
+  border: 1px solid #0073ff;
+  background-color: #ffffff;
 }
 .checkbox.style-c .checkbox__checkmark {
   position: absolute;
-  top: 13px;
+  top: 19px;
   left: 0;
   height: 20px;
   width: 20px;
@@ -83,7 +85,7 @@ defineEmits(['update:checked'])
   opacity: 0;
   transition: opacity 0.25s ease;
 }
-.checkbox.style-c .checkbox__body {
+.checkbox__body {
   padding-left: 30px;
   margin-top: 10px;
   line-height: 14px;
