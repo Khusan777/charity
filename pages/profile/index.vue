@@ -52,7 +52,7 @@
         </router-link>
       </div>
       <div class="profile-menu">
-        <router-link class="profile-menu-item" to="/main">
+        <router-link class="profile-menu-item" to="/profile/faq">
           <div class="profile-menu-left">
             <NuxtImg src="/images/faq.svg"></NuxtImg>
             <span>Вопросы и ответы</span>
@@ -61,7 +61,7 @@
             <NuxtImg src="/images/arrow.svg"></NuxtImg>
           </div>
         </router-link>
-        <router-link class="profile-menu-item" to="/main">
+        <router-link class="profile-menu-item" to="/profile/about">
           <div class="profile-menu-left">
             <NuxtImg src="/images/like2.svg"></NuxtImg>
             <span>О проекте</span>
