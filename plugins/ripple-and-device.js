@@ -1,11 +1,9 @@
 import Ripple from 'vue3-whr-ripple-directive/src/ripple'
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const device = useDevice()
+  const { isIos, isSafari, isMacOS, isApple } = useDevice()
   const deviceIsIOS = computed(() => {
-    return device.isIos || device.isSafari || device.isMacOS || device.isApple
-      ? '100dvh'
-      : '100vh'
+    return isIos || isSafari || isMacOS || isApple ? '100vh' : '100dvh'
   })
   nuxtApp.vueApp.provide('devicePlatform', deviceIsIOS.value)
   nuxtApp.vueApp.directive('ripple', Ripple)

@@ -1,5 +1,6 @@
 <template>
   <div class="start-container">
+    {{ heightDevice }}
     <NuxtImg
       format="webp"
       style="padding: 0"

@@ -19,7 +19,7 @@
           />
         </svg>
       </nuxt-link>
-      <div v-if="!left && !leftRoute"></div>
+      <div v-if="!left && !leftRoute" style="width: 20px; height: 24px"></div>
       <div v-if="center" class="header-center">
         <div
           class="header-center-text"
