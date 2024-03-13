@@ -4,10 +4,6 @@
   </NuxtLayout>
 </template>
 
-<script setup>
-const devicePlatform = inject('devicePlatform')
-</script>
-
 <style lang="scss">
 @font-face {
   font-family: 'GolosTextWebMedium';
@@ -33,8 +29,6 @@ const devicePlatform = inject('devicePlatform')
 html,
 body,
 #__nuxt {
-  max-height: v-bind(devicePlatform);
-  height: v-bind(devicePlatform);
   font-family: GolosTextWebMedium, sans-serif !important;
   overflow: hidden;
   background: rgb(226, 228, 240);
