@@ -20,7 +20,7 @@
         <div class="price">10 582 000 сумов</div>
       </div>
       <div>
-        <div class="text">Осталось собрать</div>
+        <div style="text-align: right" class="text">Осталось собрать</div>
         <div class="price">11 000 000 сумов</div>
       </div>
     </div>
@@ -85,7 +85,6 @@ defineProps({
       font-weight: 400;
       line-height: 12px;
       letter-spacing: 0;
-      text-align: left;
     }
     & .price {
       color: rgb(54, 56, 69);

@@ -40,7 +40,7 @@
             alt="calendar"
           ></NuxtImg>
           <div>
-            <div class="text">Помогли</div>
+            <div class="text">Уже помогают</div>
             <div class="date">45 558</div>
           </div>
         </div>
@@ -121,9 +121,10 @@ defineProps({
         color: #6a6a6a;
       }
       & .date {
+        font-size: 12px;
         font-weight: 500;
-        font-size: 10px;
-        line-height: normal;
+        line-height: 14px;
+        text-align: left;
         color: #2c2d35;
       }
     }

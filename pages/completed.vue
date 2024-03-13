@@ -1,6 +1,6 @@
 <template>
   <div class="completed-pages">
-    <UiHeaderComponent center center-text="Личная карточка"></UiHeaderComponent>
+    <UiHeaderComponent center center-text="Завершенные"></UiHeaderComponent>
     <div class="content-data">
       <div class="container">
         <ul id="myTab" class="nav nav-tabs complete-tabs" role="tablist">
@@ -126,5 +126,15 @@ definePageMeta({
       }
     }
   }
+}
+[class*='nav-tabs'] {
+  width: 95%;
+  height: 35px;
+  position: fixed;
+  z-index: 9;
+  padding: 0 20px;
+}
+[class*='tab-content'] {
+  margin-top: 55px;
 }
 </style>

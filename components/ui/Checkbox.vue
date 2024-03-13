@@ -79,7 +79,7 @@ defineEmits(['update:checked'])
   top: 3px;
   width: 5px;
   height: 10px;
-  border: solid #333;
+  border: solid #0073ff;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
   opacity: 0;

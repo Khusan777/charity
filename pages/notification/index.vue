@@ -5,6 +5,8 @@
       <router-link to="/notification/1" class="notification-item">
         <div class="notification-icon">
           <NuxtImg
+            width="24"
+            height="24"
             src="/images/push.svg"
             class="notification-icon__img"
           ></NuxtImg>

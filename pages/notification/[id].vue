@@ -7,7 +7,7 @@
     ></UiHeaderComponent>
     <div class="notification-detail">
       <div class="notification-detail-wrapper">
-        <div class="notification-detail-date">03 февр. 16.05</div>
+        <div class="notification-detail-date">03 февр. 16:05</div>
         <div class="notification-detail-title">
           Поможем вместе пострадавшим от взрыва на Сергели!
         </div>

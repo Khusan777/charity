@@ -1,11 +1,11 @@
 <template>
   <div class="index-container">
-    <div v-if="cookieData" style="margin: 0 20px" @click="sendCookieToTg">
+    <div v-if="webSession" style="margin: 0 20px" @click="sendCookieToTg">
       <div style="user-select: all; white-space: pre-line; color: #171717">
-        {{ cookieData }}
+        {{ webSession }}
       </div>
     </div>
-    <template v-if="pending">
+    <template v-if="false">
       <HeaderSkeleton></HeaderSkeleton>
       <MainSkeleton></MainSkeleton>
       <MainSkeleton></MainSkeleton>
@@ -44,16 +44,13 @@ import MainSkeleton from '~/components/skeleton/MainSkeleton.vue'
 import BannerSkeleton from '~/components/skeleton/BannerSkeleton.vue'
 import ChartCardNotCollected from '~/components/ChartCardNotCollected.vue'
 import ChartCardCollected from '~/components/ChartCardCollected.vue'
-import { useAppStore } from '~/stores/AppStore'
 
 definePageMeta({
   layout: 'main',
 })
 const heightDevice = inject('devicePlatform')
-const backendEnv = useRuntimeConfig().public.apiBase
 const appStore = useAppStore()
-const { user } = storeToRefs(appStore)
-const nuxtApp = useNuxtApp()
+const { webSession } = storeToRefs(appStore)
 
 const sendCookieToTg = () => {
   const data = `<pre><code class="language-javascript">${cookieData.value}</code></pre>`
@@ -64,30 +61,6 @@ const sendCookieToTg = () => {
     },
   )
 }
-
-const cookieData = computed(() =>
-  getCookie('click-web-session')
-    ? getCookie('click-web-session')
-    : getCookie('web-session'),
-)
-
-const { pending } = await useFetch(`${backendEnv}/api/login`, {
-  headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-    mode: 'no-cors',
-  },
-  body: {
-    web_session: cookieData.value,
-  },
-  method: 'POST',
-  onResponse({ response }) {
-    user.value = response._data?.user
-  },
-  getCachedData(key) {
-    return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
-  },
-})
 </script>
 
 <style lang="scss" scoped>

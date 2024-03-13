@@ -137,4 +137,14 @@ a {
   opacity: 0;
   transform: translate(50px, 0);
 }
+
+.v-toast__item {
+  min-height: 2em !important;
+}
+.v-toast__item--success {
+  min-height: 2em !important;
+}
+.v-toast__item .v-toast__text {
+  padding: 0.8em !important;
+}
 </style>
