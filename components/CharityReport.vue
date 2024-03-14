@@ -1,5 +1,5 @@
 <template>
-  <div class="charity-reports">
+  <div class="charity-reports" @click="$router.push('/completed/1')">
     <div class="data">
       <NuxtImg class="image" src="/images/img.png" alt="user"></NuxtImg>
       <div class="title">Благодаря вам у маленького Юры все хорошо!</div>
@@ -24,9 +24,9 @@
 .charity-reports {
   display: flex;
   gap: 10px;
-  flex: 1;
   padding: 0 20px;
   & .data {
+    width: 50%;
     border-radius: 12px;
     background: #fff;
     & .image {
