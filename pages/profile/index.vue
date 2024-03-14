@@ -6,15 +6,19 @@
         <div class="profile-user-img">
           <NuxtImg src="/images/profile.png" alt="profile"></NuxtImg>
         </div>
-        <div class="profile-user-name">Ulugbek</div>
-        <div class="profile-user-phone">998 97 754 32 10</div>
-        <div class="profile-user-ident">
+        <div class="profile-user-name">{{ appStore?.user?.name }} {{ appStore?.user?.surname }}</div>
+        <div class="profile-user-phone">{{ appStore?.user?.phone_number }}</div>
+        <div class="profile-user-ident" v-if="appStore?.user?.is_identified">
           <NuxtImg src="/images/ident.svg" alt="ident"></NuxtImg>
           <span>Вы идентифицированы</span>
         </div>
+        <div class="profile-user-ident" v-else>
+          <NuxtImg src="/images/not-ident.svg" alt="ident"></NuxtImg>
+          <span>Вы не идентифицированы</span>
+        </div>
       </div>
       <div class="profile-menu">
-        <router-link class="profile-menu-item" to="/main">
+        <router-link class="profile-menu-item" to="/profile/form">
           <div class="profile-menu-left">
             <NuxtImg src="/images/edit.svg"></NuxtImg>
             <span>Мне нужна помощь</span>
@@ -76,10 +80,12 @@
 </template>
 
 <script setup>
+import { useAppStore } from "@/stores/AppStore";
 definePageMeta({
   layout: 'single',
 })
 const heightDevice = inject('devicePlatform')
+const appStore = useAppStore()
 </script>
 
 <style scoped lang="scss">
@@ -101,11 +107,16 @@ const heightDevice = inject('devicePlatform')
     margin-bottom: 30px;
     &-img {
       margin-bottom: 10px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
       img {
-        width: 90px;
-        height: 90px;
-        border-radius: 50%;
-        border: 2px solid #fff;
+        width: 57px;
       }
     }
     &-name {
