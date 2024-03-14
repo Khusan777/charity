@@ -68,7 +68,7 @@
     padding: 0 20px;
   }
   & .subtitle {
-    padding: 0 20px;
+    padding: 0 20px 15px;
     font-weight: 400;
     font-size: 12px;
     color: #363845;

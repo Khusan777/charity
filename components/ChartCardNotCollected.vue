@@ -1,5 +1,8 @@
 <template>
-  <div class="chart-card">
+  <div
+    class="chart-card"
+    @click="$router.push({ path: '/main/1', query: { completed: false } })"
+  >
     <div class="fond-container">
       <div class="data">
         <NuxtImg class="fond-img" src="/images/fond.svg" alt="fond"></NuxtImg>
@@ -26,3 +29,5 @@
     <UiCollectionProgress is-completed="false"></UiCollectionProgress>
   </div>
 </template>
+
+<script setup lang="ts"></script>

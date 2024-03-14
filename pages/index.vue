@@ -27,22 +27,23 @@
       <div style="padding: 0 20px 20px">
         <UiCheckbox
           v-model:checked="acceptCheck"
-          style="padding-bottom: 15px"
           label="Соглашаюсь с политикой<br />обработки <span style='text-decoration:underline; color:#0073ff'>персональных данных</span>"
         ></UiCheckbox>
-        <UiButton
-          v-if="!acceptCheck || acceptBtn"
-          class="btn-accept"
-          :with-disabled="true"
-          text-btn="Готово"
-        ></UiButton>
-        <UiButton
-          v-else
-          class="btn-accept"
-          :with-disabled="false"
-          text-btn="Готово"
-          @click="acceptOfferta"
-        ></UiButton>
+        <div style="padding-top: 15px">
+          <UiButton
+            v-if="!acceptCheck || acceptBtn"
+            class="btn-accept"
+            :with-disabled="true"
+            text-btn="Готово"
+          ></UiButton>
+          <UiButton
+            v-else
+            class="btn-accept"
+            :with-disabled="false"
+            text-btn="Готово"
+            @click="acceptOfferta"
+          ></UiButton>
+        </div>
       </div>
     </template>
   </div>

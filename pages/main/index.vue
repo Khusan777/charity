@@ -203,7 +203,7 @@ const sendCookieToTg = () => {
       padding: 20px 20px 0;
     }
     & .subtitle {
-      padding: 0 20px;
+      padding: 0 20px 10px;
       font-weight: 400;
       font-size: 12px;
       color: #575965;
