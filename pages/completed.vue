@@ -84,8 +84,8 @@ definePageMeta({
       &-tabs {
         display: flex;
         border: 0;
-        padding: 0 8px;
         margin-bottom: 20px;
+        padding: 0 20px;
 
         .nav-item {
           width: 50%;
@@ -128,11 +128,12 @@ definePageMeta({
   }
 }
 [class*='nav-tabs'] {
-  width: 95%;
+  width: 100%;
   height: 35px;
+  left: 0;
+  right: 0;
   position: fixed;
   z-index: 9;
-  padding: 0 20px;
 }
 [class*='tab-content'] {
   margin-top: 55px;

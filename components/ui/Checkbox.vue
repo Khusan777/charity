@@ -1,15 +1,15 @@
 <template>
-  <div class="checkboxes__item">
-    <label class="checkbox style-c">
-      <input
-        type="checkbox"
-        :checked="checked"
-        @input="(event) => $emit('update:checked', event.target.checked)"
-      />
-      <div class="checkbox__checkmark"></div>
-    </label>
-    <div class="checkbox__body" v-html="label"></div>
-  </div>
+  <label class="checkbox style-c">
+    <input
+      type="checkbox"
+      :checked="checked"
+      @input="(event) => $emit('update:checked', event.target.checked)"
+    />
+    <div class="checkbox__checkmark"></div>
+    <div v-if="labelClicked" class="checkbox__body" v-html="label"></div>
+  </label>
+  <div v-if="!labelClicked" class="checkbox__body" v-html="label"></div>
+  <UiBorderLine v-if="withBorderLine" style="margin-top: 10px"></UiBorderLine>
 </template>
 
 <script setup>
@@ -19,8 +19,14 @@ defineProps({
     required: true,
   },
   checked: {
-    type: Boolean,
+    type: [Boolean, String],
     required: true,
+  },
+  withBorderLine: {
+    type: Boolean,
+  },
+  labelClicked: {
+    type: Boolean,
   },
 })
 
@@ -28,9 +34,6 @@ defineEmits(['update:checked'])
 </script>
 
 <style scoped lang="scss">
-.checkboxes__item {
-  padding-bottom: 15px;
-}
 .checkbox.style-c {
   display: inline-block;
   position: relative;
@@ -47,15 +50,17 @@ defineEmits(['update:checked'])
   height: 0;
   width: 0;
 }
+.checkbox.style-c {
+  display: flex;
+  padding: 4px 0 0;
+  align-items: center;
+}
 .checkbox.style-c input:checked ~ .checkbox__checkmark {
   border: 1px solid #0073ff;
   background-color: #ffffff;
 }
 .checkbox.style-c input:checked ~ .checkbox__checkmark:after {
   opacity: 1;
-}
-.checkbox.style-c:hover input ~ .checkbox__checkmark {
-  background-color: #eee;
 }
 .checkbox.style-c:hover input:checked ~ .checkbox__checkmark {
   border: 1px solid #0073ff;
@@ -67,7 +72,7 @@ defineEmits(['update:checked'])
   left: 0;
   height: 20px;
   width: 20px;
-  background-color: #eee;
+  background-color: #ffffff;
   transition: background-color 0.25s ease;
   border: 1px solid #9395a5;
   border-radius: 5px;

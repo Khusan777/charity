@@ -21,7 +21,7 @@
     <UiCompletedProgress v-if="isCompleted === 'true'"></UiCompletedProgress>
     <UiCollectionProgress v-else is-completed="true"></UiCollectionProgress>
     <div class="published">
-      <div class="content">
+      <div class="info">
         <div class="data">
           <NuxtImg
             class="image"
@@ -49,14 +49,26 @@
     <UiBorderLine></UiBorderLine>
     <div class="diagnos-data">
       <div class="info">
-        <div class="title">Диагноз</div>
-        <div class="description">
-          Дефект предсердно-желудочковой перегородки
+        <div>
+          <div class="title">Диагноз</div>
+          <div class="description">
+            Дефект предсердно-желудочковой перегородки
+          </div>
         </div>
       </div>
       <div class="info">
-        <div class="title">Вид помощи</div>
-        <div class="description">Хирургическое лечение</div>
+        <div>
+          <div class="title">Вид помощи</div>
+          <div class="description">Хирургическое лечение</div>
+        </div>
+        <NuxtImg
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasBottom"
+          aria-controls="offcanvasBottom"
+          height="20"
+          src="/images/menu.svg"
+          alt="menu"
+        ></NuxtImg>
       </div>
       <div class="building">
         <div>
@@ -78,6 +90,7 @@
         <NuxtImg height="20" src="/images/med.svg" alt="med"></NuxtImg>
       </div>
     </div>
+    <UiBottomSheet></UiBottomSheet>
   </div>
 </template>
 
@@ -98,7 +111,7 @@ defineProps({
   background: #fff;
   & .published {
     padding-bottom: 7px;
-    & .content {
+    & .info {
       display: flex;
       gap: 10px;
     }
@@ -134,6 +147,11 @@ defineProps({
     display: flex;
     flex-direction: column;
     gap: 12px;
+    & .info {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+    }
     & .building {
       align-items: center;
       display: flex;

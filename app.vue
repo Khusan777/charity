@@ -1,4 +1,5 @@
 <template>
+  <NuxtLoadingIndicator />
   <NuxtLayout>
     <NuxtPage></NuxtPage>
   </NuxtLayout>
@@ -146,5 +147,10 @@ a {
 }
 .v-toast__item .v-toast__text {
   padding: 0.8em !important;
+}
+
+.offcanvas-bottom {
+  transform: translateY(100%);
+  transition: transform 0.5s ease;
 }
 </style>

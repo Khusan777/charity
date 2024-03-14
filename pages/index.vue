@@ -1,9 +1,12 @@
 <template>
   <div v-if="loading" class="loader-container">
-    <NuxtImg src="/images/logo.svg" alt="logo"></NuxtImg>
+    <NuxtImg
+      style="width: 100%; padding: 0 60px"
+      src="/images/logo.svg"
+      alt="logo"
+    ></NuxtImg>
   </div>
   <div v-else class="start-container">
-    {{ heightDevice }}
     <template v-if="isNotAcceptCode === 1001">
       <NuxtImg
         format="webp"
@@ -24,6 +27,7 @@
       <div style="padding: 0 20px 20px">
         <UiCheckbox
           v-model:checked="acceptCheck"
+          style="padding-bottom: 15px"
           label="Соглашаюсь с политикой<br />обработки <span style='text-decoration:underline; color:#0073ff'>персональных данных</span>"
         ></UiCheckbox>
         <UiButton
@@ -78,7 +82,7 @@ const getUserData = async () => {
     .then((response) => {
       loading.value = false
       if (response.data?.user) {
-        user.value = response._data?.user
+        user.value = response.data?.user
         router.replace('/main')
       }
     })
@@ -120,6 +124,7 @@ const acceptOfferta = async () => {
   align-items: center;
   height: v-bind(heightDevice);
   max-height: v-bind(heightDevice);
+  overflow: hidden;
 }
 .start-container {
   height: v-bind(heightDevice);
