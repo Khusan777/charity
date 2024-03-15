@@ -70,8 +70,8 @@ const heightDevice = inject('devicePlatform')
   height: v-bind(heightDevice);
   overflow-y: scroll;
   &-wrapper {
-    height: calc(100dvh - 75px);
-    max-height: calc(100dvh - 75px);
+    height: calc(heightDevice - 75px);
+    max-height: calc(heightDevice - 75px);
     padding: 0 20px;
   }
   &-item {
