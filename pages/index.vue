@@ -1,5 +1,4 @@
 <template>
-  <div style="user-select: all">{{ cookieWebSession }}</div>
   <div v-if="loading" class="loader-container">
     <NuxtImg
       style="width: 100%; padding: 0 60px"
