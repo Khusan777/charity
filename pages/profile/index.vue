@@ -6,13 +6,15 @@
         <div class="profile-user-img">
           <NuxtImg src="/images/profile.png" alt="profile"></NuxtImg>
         </div>
-        <div class="profile-user-name">{{ appStore?.user?.name }} {{ appStore?.user?.surname }}</div>
+        <div class="profile-user-name">
+          {{ appStore?.user?.name }} {{ appStore?.user?.surname }}
+        </div>
         <div class="profile-user-phone">{{ appStore?.user?.phone_number }}</div>
-        <div class="profile-user-ident" v-if="appStore?.user?.is_identified">
+        <div v-if="appStore?.user?.is_identified" class="profile-user-ident">
           <NuxtImg src="/images/ident.svg" alt="ident"></NuxtImg>
           <span>Вы идентифицированы</span>
         </div>
-        <div class="profile-user-ident" v-else>
+        <div v-else class="profile-user-ident">
           <NuxtImg src="/images/not-ident.svg" alt="ident"></NuxtImg>
           <span>Вы не идентифицированы</span>
         </div>
@@ -80,7 +82,7 @@
 </template>
 
 <script setup>
-import { useAppStore } from "@/stores/AppStore";
+import { useAppStore } from '@/stores/AppStore'
 definePageMeta({
   layout: 'single',
 })
