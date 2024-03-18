@@ -22,11 +22,11 @@ const objCheckType = (obj, type) =>
       `[object ${type[0].toUpperCase()}${type.slice(1)}]`
     : false
 
-const setToken = function (token) {
+const setToken = function (token, expiresIn) {
   if (apiClient?.defaults?.headers?.common) {
     apiClient.defaults.headers.common.Authorization = token
   } else throw new Error('Ошибка во время установки токена')
-  const authToken = useCookie('auth')
+  const authToken = useCookie('auth', { maxAge: expiresIn })
   authToken.value = token
 }
 

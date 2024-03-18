@@ -85,7 +85,7 @@ const getUserData = async () => {
       loading.value = false
       if (response.data?.user) {
         user.value = response.data?.user
-        setToken(response.data?.token)
+        setToken(response.data?.token, response.data?.expires_in)
         router.replace('/main')
       }
     })
@@ -93,7 +93,6 @@ const getUserData = async () => {
       loading.value = false
       isNotAcceptCode.value = err.response?.data?.error?.code
       if (isNotAcceptCode.value !== 1001) {
-        $toast.error(parseErrorsFromResponse(err))
         router.push('error')
       }
     })
@@ -111,7 +110,7 @@ const acceptOfferta = async () => {
   })
     .then((response) => {
       user.value = response.data?.user
-      setToken(response.data?.token)
+      setToken(response.data?.token, response.data?.expires_in)
       if (user.value) {
         router.replace('/main')
       }

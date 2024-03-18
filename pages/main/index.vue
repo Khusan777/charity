@@ -311,8 +311,7 @@ watch(
     border: 1px solid rgb(183, 184, 198);
     border-radius: 10px;
     height: 40px;
-    background: url('../../public/images/search.svg') no-repeat
-      rgb(255, 255, 255);
+    background: url('/images/search.svg') no-repeat rgb(255, 255, 255);
     background-position: 10px center;
     width: 100%;
     display: flex;

@@ -1,7 +1,7 @@
 import { useToast } from 'vue-toast-notification'
 import { useCookie } from '#app'
 import { refreshAuthToken } from '~/services/app.api'
-import { objCheckType, parseErrorsFromResponse, setToken } from '~/utils'
+import { objCheckType, parseErrorsFromResponse } from '~/utils'
 import { apiClient } from '~/services/apiClient'
 
 export default defineNuxtPlugin(() => {
@@ -40,7 +40,10 @@ export default defineNuxtPlugin(() => {
       }
       if (response) {
         const token = 'Bearer' + ' ' + response.data?.token
-        setToken(token)
+        if (apiClient?.defaults?.headers?.common) {
+          apiClient.defaults.headers.common.Authorization = token
+        } else throw new Error('Ошибка во время установки токена')
+        authToken.value = token
         return apiClient(request)
       }
     } catch (e) {

@@ -2,28 +2,56 @@
   <div class="name">Сенбаев Арслан <span>(4 года)</span></div>
   <div v-if="withCity" class="city">Город Фергана</div>
   <div class="charity-swiper">
-    <Swiper
-      :space-between="10"
-      :centered-slides="true"
-      :slides-per-view="'auto'"
-      :pagination="{
-        clickable: true,
+    <FancyBoxWrapper
+      :options="{
+        Carousel: {
+          infinite: false,
+        },
       }"
-      :modules="[Pagination]"
     >
-      <SwiperSlide class="main-help-slide">
-        <NuxtImg v-viewer src="/images/user.png" class="help-images"></NuxtImg>
-      </SwiperSlide>
-      <SwiperSlide class="main-help-slide">
-        <NuxtImg v-viewer src="/images/user.png" class="help-images"></NuxtImg>
-      </SwiperSlide>
-      <SwiperSlide class="main-help-slide">
-        <NuxtImg v-viewer src="/images/user.png" class="help-images"></NuxtImg>
-      </SwiperSlide>
-      <SwiperSlide class="main-help-slide">
-        <NuxtImg v-viewer src="/images/user.png" class="help-images"></NuxtImg>
-      </SwiperSlide>
-    </Swiper>
+      <Swiper
+        :space-between="10"
+        :centered-slides="true"
+        :slides-per-view="'auto'"
+        :pagination="{
+          clickable: true,
+        }"
+        :modules="[Pagination]"
+      >
+        <SwiperSlide class="main-help-slide">
+          <NuxtImg
+            data-fancybox="gallery"
+            href="/images/user.png"
+            src="/images/user.png"
+            class="help-images"
+          ></NuxtImg>
+        </SwiperSlide>
+        <SwiperSlide class="main-help-slide">
+          <NuxtImg
+            data-fancybox="gallery"
+            href="/images/user.png"
+            src="/images/user.png"
+            class="help-images"
+          ></NuxtImg>
+        </SwiperSlide>
+        <SwiperSlide class="main-help-slide">
+          <NuxtImg
+            data-fancybox="gallery"
+            href="/images/user.png"
+            src="/images/user.png"
+            class="help-images"
+          ></NuxtImg>
+        </SwiperSlide>
+        <SwiperSlide class="main-help-slide">
+          <NuxtImg
+            data-fancybox="gallery"
+            href="/images/user.png"
+            src="/images/user.png"
+            class="help-images"
+          ></NuxtImg>
+        </SwiperSlide>
+      </Swiper>
+    </FancyBoxWrapper>
   </div>
 </template>
 
