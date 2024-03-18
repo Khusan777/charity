@@ -2,14 +2,17 @@
   <div
     class="chart-card"
     @click="
-      $router.push({ path: `/main/${feeItem.id}`, query: { completed: false } })
+      $router.push({
+        path: `/main/${feeItem?.id}`,
+        query: { completed: false },
+      })
     "
   >
     <div class="fond-container">
       <div class="data">
         <NuxtImg
           class="fond-img"
-          :src="`${config.public.apiBase}/storage/${feeItem.fond.icon}`"
+          :src="`${config.public.apiBase}/storage/${feeItem?.fond?.icon}`"
           alt="fond"
         ></NuxtImg>
         <div v-if="$i18n.locale === 'en'">{{ feeItem?.fond?.name_en }}</div>
@@ -64,7 +67,7 @@ const props = defineProps({
   },
 })
 const amount = toRef({
-  amount: props.feeItem.amount,
-  leftAmount: props.feeItem.left_amount,
+  amount: props.feeItem?.amount,
+  leftAmount: props.feeItem?.left_amount,
 })
 </script>
