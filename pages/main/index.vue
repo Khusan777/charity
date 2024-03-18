@@ -41,17 +41,11 @@
           ваша помощь.
         </div>
       </div>
-      <div v-for="feeItem in indexFee.data?.length" :key="feeItem">
+      <div v-for="feeItem in indexFee?.data" :key="feeItem">
         <ChartCardNotCollected
-          v-if="feeItem?.status_id === 1"
           :key="feeItem.id"
           :fee-item="feeItem"
         ></ChartCardNotCollected>
-        <ChartCardCollected
-          v-else
-          :key="feeItem.id"
-          :fee-item="feeItem"
-        ></ChartCardCollected>
       </div>
       <div class="charity-banner">
         <div class="text">
@@ -120,7 +114,6 @@ import MainHeaderSkeleton from '~/components/skeleton/MainHeaderSkeleton.vue'
 import MainSkeleton from '~/components/skeleton/MainSkeleton.vue'
 import BannerSkeleton from '~/components/skeleton/BannerSkeleton.vue'
 import ChartCardNotCollected from '~/components/ChartCardNotCollected.vue'
-import ChartCardCollected from '~/components/ChartCardCollected.vue'
 import { getFee } from '~/services/app.api'
 import { debounce } from '~/utils'
 
@@ -141,6 +134,7 @@ const indexFee = reactive({
 const paginationData = ref(null)
 const queryFee = reactive({
   page: 1,
+  status_id: 3,
   search: null,
 })
 const regions = reactive([

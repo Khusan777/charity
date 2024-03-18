@@ -2,7 +2,7 @@
   <div class="collection-progress">
     <div class="goal">
       <div class="title">Необходимо собрать:</div>
-      <div class="price">10 582 000 сумов</div>
+      <div class="price">{{ amount.amount }} сумов</div>
     </div>
     <div style="height: 6px" class="progress">
       <div
@@ -17,7 +17,7 @@
     <div class="current-money">
       <div>
         <div class="text">Собрано</div>
-        <div class="price">10 582 000 сумов</div>
+        <div class="price">{{ amount.leftAmount }} сумов</div>
       </div>
       <div>
         <div style="text-align: right" class="text">Осталось собрать</div>
@@ -41,6 +41,10 @@
 defineProps({
   isCompleted: {
     type: String,
+    required: true,
+  },
+  amount: {
+    type: Object,
     required: true,
   },
 })

@@ -3,7 +3,8 @@ import { apiClient } from '~/services/apiClient'
 const parseErrorsFromResponse = (error) => {
   const responseErrors = []
   if (error.response && error.response.data.errors) {
-    const errors = error.response && error.response.data.errors
+    const errors =
+      error.response && error.response.data.errors && error.response.data.error
     for (const err of Object.keys(errors)) {
       responseErrors.push(errors[err][0])
     }
@@ -12,7 +13,6 @@ const parseErrorsFromResponse = (error) => {
       error.response?.data?.error || '[FE] Ошибка при получении данных',
     )
   }
-
   return responseErrors
 }
 
@@ -26,7 +26,7 @@ const setToken = function (token, expiresIn) {
   if (apiClient?.defaults?.headers?.common) {
     apiClient.defaults.headers.common.Authorization = token
   } else throw new Error('Ошибка во время установки токена')
-  const authToken = useCookie('auth', { maxAge: expiresIn })
+  const authToken = useCookie('auth', { maxAge: expiresIn, sameSite: 'none' })
   authToken.value = token
 }
 

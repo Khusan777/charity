@@ -41,7 +41,6 @@
     "@pinia/nuxt": "^0.4.11",
     "axios": "^1.4.0",
     "pinia": "^2.1.7",
-    "viewerjs": "^1.11.6",
     "vue-i18n": "^9.9.1",
     "vue-toast-notification": "^3.1.2",
     "vue3-whr-ripple-directive": "^1.0.0"
