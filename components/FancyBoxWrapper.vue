@@ -4,7 +4,10 @@ import '@fancyapps/ui/dist/fancybox/fancybox.css'
 
 export default {
   props: {
-    options: Object,
+    options: {
+      type: Object,
+      required: true,
+    },
   },
   mounted() {
     Fancybox.bind(this.$refs.container, '[data-fancybox]', {
