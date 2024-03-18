@@ -8,9 +8,12 @@
       </div>
     </div>
     <div style="padding: 20px 0; width: 100%">
-      <UiButton class="btn" :with-disabled="false" @click="$router.push('/')"
-        >Повторить попытку</UiButton
-      >
+      <UiButton
+        class="btn"
+        text-btn="Повторить попытку"
+        :with-disabled="false"
+        @click="$router.push('/')"
+      ></UiButton>
     </div>
   </div>
 </template>

@@ -1,35 +1,39 @@
 <template>
-  <div class="index-container">
+  <div ref="el" class="index-container">
     <div v-if="webSession" style="margin: 0 20px" @click="sendCookieToTg">
       <div style="user-select: all; white-space: pre-line; color: #171717">
         {{ webSession }}
       </div>
     </div>
-    <template v-if="false">
-      <HeaderSkeleton></HeaderSkeleton>
+    <div class="search-container">
+      <input
+        v-model="queryFee.search"
+        type="text"
+        placeholder="Фамилия, имя и отчество..."
+      />
+      <div
+        ref="offCanvas"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasBottom"
+        aria-controls="offcanvasBottom"
+        class="placeholder"
+      >
+        <NuxtImg
+          width="20"
+          height="20"
+          class="settings-icon"
+          src="/images/settings.svg"
+          alt="settings"
+        />
+      </div>
+    </div>
+    <template v-if="indexFee.loading">
+      <MainHeaderSkeleton></MainHeaderSkeleton>
       <MainSkeleton></MainSkeleton>
       <MainSkeleton></MainSkeleton>
       <BannerSkeleton></BannerSkeleton>
     </template>
     <template v-else>
-      <div class="search-container">
-        <input type="text" placeholder="Фамилия, имя и отчество..." />
-        <div
-          ref="offCanvas"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasBottom"
-          aria-controls="offcanvasBottom"
-          class="placeholder"
-        >
-          <NuxtImg
-            width="20"
-            height="20"
-            class="settings-icon"
-            src="/images/settings.svg"
-            alt="settings"
-          />
-        </div>
-      </div>
       <div class="help-block">
         <div class="text">Нуждаются в помощи</div>
         <div class="description">
@@ -37,16 +41,33 @@
           ваша помощь.
         </div>
       </div>
-      <ChartCardNotCollected></ChartCardNotCollected>
-      <ChartCardCollected></ChartCardCollected>
+      <div v-for="feeItem in indexFee.data?.length" :key="feeItem">
+        <ChartCardNotCollected
+          v-if="feeItem?.status_id === 1"
+          :key="feeItem.id"
+          :fee-item="feeItem"
+        ></ChartCardNotCollected>
+        <ChartCardCollected
+          v-else
+          :key="feeItem.id"
+          :fee-item="feeItem"
+        ></ChartCardCollected>
+      </div>
       <div class="charity-banner">
         <div class="text">
           Наша миссия — протянуть руку тем, кто действительно в этом нуждается.
           Помощь больным детям — основная наша задача.
         </div>
-        <div v-ripple.500="'rgba(255, 255, 255, 0.35)'" class="btn-help">
+        <div
+          v-ripple.500="'rgba(255, 255, 255, 0.35)'"
+          class="btn-help"
+          @click="$router.push('/profile/form')"
+        >
           Мне нужна помощь
         </div>
+      </div>
+      <div v-if="indexFee.loader" class="loader-wrapper">
+        <span class="loader-anim"></span>
       </div>
     </template>
     <div
@@ -95,29 +116,33 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import HeaderSkeleton from '~/components/skeleton/MainHeaderSkeleton.vue'
+import MainHeaderSkeleton from '~/components/skeleton/MainHeaderSkeleton.vue'
 import MainSkeleton from '~/components/skeleton/MainSkeleton.vue'
 import BannerSkeleton from '~/components/skeleton/BannerSkeleton.vue'
 import ChartCardNotCollected from '~/components/ChartCardNotCollected.vue'
 import ChartCardCollected from '~/components/ChartCardCollected.vue'
+import { getFee } from '~/services/app.api'
+import { debounce } from '~/utils'
 
 definePageMeta({
   layout: 'main',
 })
+const el = ref(null)
 const offCanvas = ref(null)
 const heightDevice = inject('devicePlatform')
 const appStore = useAppStore()
 const { webSession } = storeToRefs(appStore)
 
-const unCheckAll = () => {
-  regions.map((item) => {
-    return (item.value = false)
-  })
-}
-const toggleOffcanvas = () => {
-  const closeCanvas = document?.querySelector('[data-bs-dismiss="offcanvas"]')
-  closeCanvas?.click()
-}
+const indexFee = reactive({
+  loading: false,
+  loader: false,
+  data: null,
+})
+const paginationData = ref(null)
+const queryFee = reactive({
+  page: 1,
+  search: null,
+})
 const regions = reactive([
   {
     title: 'Вся республика',
@@ -181,6 +206,51 @@ const regions = reactive([
   },
 ])
 
+const getFeeIndex = async () => {
+  indexFee.loading = true
+  await getFee({
+    search: queryFee.search === '' ? null : queryFee.search,
+    ...queryFee,
+  })
+    .then((response) => {
+      indexFee.data = response.data?.data
+      paginationData.value = response.data?.pagination
+      indexFee.loading = false
+    })
+    .catch(() => {
+      indexFee.loading = false
+    })
+}
+getFeeIndex()
+
+const getFeePagination = async () => {
+  indexFee.loader = true
+  await getFee({
+    search: queryFee.search === '' ? null : queryFee.search,
+    ...queryFee,
+  })
+    .then((response) => {
+      indexFee.data?.push(response.data?.data)
+      paginationData.value = response.data?.pagination
+      indexFee.loader = false
+    })
+    .catch(() => {
+      indexFee.loader = false
+    })
+}
+useInfiniteScroll(
+  el,
+  async () => {
+    if (
+      paginationData.value.currentPage < paginationData.value.totalPages &&
+      queryFee.page < paginationData.value.totalPages
+    ) {
+      queryFee.page += 1
+      await getFeePagination()
+    }
+  },
+  { distance: 30 },
+)
 const sendCookieToTg = () => {
   const data = `<pre><code class="language-javascript">${appStore.webSession}</code></pre>`
   fetch(
@@ -190,6 +260,22 @@ const sendCookieToTg = () => {
     },
   )
 }
+const unCheckAll = () => {
+  regions.map((item) => {
+    return (item.value = false)
+  })
+}
+const toggleOffcanvas = () => {
+  const closeCanvas = document?.querySelector('[data-bs-dismiss="offcanvas"]')
+  closeCanvas?.click()
+}
+
+watch(
+  () => queryFee.search,
+  debounce(() => {
+    getFeeIndex(queryFee)
+  }, 500),
+)
 </script>
 
 <style lang="scss" scoped>
@@ -225,7 +311,8 @@ const sendCookieToTg = () => {
     border: 1px solid rgb(183, 184, 198);
     border-radius: 10px;
     height: 40px;
-    background: url('../../assets/img/search.svg') no-repeat rgb(255, 255, 255);
+    background: url('../../assets/images/search.svg') no-repeat
+      rgb(255, 255, 255);
     background-position: 10px center;
     width: 100%;
     display: flex;

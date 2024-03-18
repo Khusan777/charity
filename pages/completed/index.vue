@@ -129,11 +129,12 @@ definePageMeta({
 }
 [class*='nav-tabs'] {
   width: 100%;
-  height: 35px;
   left: 0;
   right: 0;
   position: fixed;
   z-index: 9;
+  height: 50px;
+  background: rgb(226, 228, 240);
 }
 [class*='tab-content'] {
   margin-top: 55px;

@@ -61,6 +61,7 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
     'mixpanel-nuxt',
     '@nuxt/image',
+    '@vueuse/nuxt',
   ],
   mixpanel: {
     token: 'f4fa3ffddf7c416ea8c428221abda738',

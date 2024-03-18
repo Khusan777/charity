@@ -8,7 +8,6 @@
         <NuxtImg class="fond-img" src="/images/fond.svg" alt="fond"></NuxtImg>
         <div>Mehrli qo'llar</div>
       </div>
-      <NuxtImg class="refferal" src="/images/ref.svg" alt="ref"></NuxtImg>
     </div>
     <div class="user-disease">
       <NuxtImg class="image-user" src="/images/user.png" alt="user"></NuxtImg>
@@ -30,4 +29,11 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup>
+defineProps({
+  feeItem: {
+    type: Object,
+    required: true,
+  },
+})
+</script>

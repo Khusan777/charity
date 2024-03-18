@@ -1,7 +1,4 @@
 <template>
-  <div style="padding: 0 20px 18px">
-    <UiAnimatedSkeleton height="40px" width="100%" border-radius="10px" />
-  </div>
   <div
     style="padding: 0 20px 0; display: flex; flex-direction: column; gap: 8px"
   >

@@ -20,7 +20,6 @@
         <UiAnimatedSkeleton height="24px" width="24px" border-radius="50%" />
         <UiAnimatedSkeleton height="8px" width="100px" />
       </div>
-      <UiAnimatedSkeleton height="20px" width="20px" />
     </div>
     <div style="display: flex; gap: 10px; width: 100%; padding-bottom: 8px">
       <UiAnimatedSkeleton height="91px" width="91px" border-radius="6px" />

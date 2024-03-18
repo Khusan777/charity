@@ -52,7 +52,7 @@ defineEmits(['update:checked'])
 }
 .checkbox.style-c {
   display: flex;
-  padding: 4px 0 0;
+  padding: 5.5px 0 0;
   align-items: center;
 }
 .checkbox.style-c input:checked ~ .checkbox__checkmark {
