@@ -1,15 +1,14 @@
 import { useToast } from 'vue-toast-notification'
-import { useCookie } from '#app'
 import { refreshAuthToken } from '~/services/app.api'
 import { objCheckType, parseErrorsFromResponse } from '~/utils'
 import { apiClient } from '~/services/apiClient'
 
 export default defineNuxtPlugin(() => {
-  const authToken = useCookie('auth')
+  const authToken = window?.localStorage?.getItem('auth')
   const $toast = useToast()
   const router = useRouter()
   const unAuthenticate = async () => {
-    authToken.value = null
+    // window?.localStorage?.setItem('auth', null)
     delete apiClient.defaults.headers.Authorization
     await router.push('/')
   }
@@ -43,11 +42,11 @@ export default defineNuxtPlugin(() => {
         if (apiClient?.defaults?.headers?.common) {
           apiClient.defaults.headers.common.Authorization = token
         } else throw new Error('Ошибка во время установки токена')
-        authToken.value = token
+        window?.localStorage?.setItem('auth', token)
         return apiClient(request)
       }
     } catch (e) {
-      authToken.value = null
+      window?.localStorage?.setItem('auth', null)
       await router.push('/error')
       delete apiClient.defaults.headers.common.Authorization
     } finally {
@@ -56,8 +55,8 @@ export default defineNuxtPlugin(() => {
     return null
   }
   const authInterceptor = (config) => {
-    if (authToken.value) {
-      config.headers.Authorization = 'Bearer ' + authToken.value
+    if (window?.localStorage?.getItem('auth')) {
+      config.headers.Authorization = 'Bearer ' + JSON.parse(authToken)
     }
     return config
   }

@@ -22,12 +22,11 @@ const objCheckType = (obj, type) =>
       `[object ${type[0].toUpperCase()}${type.slice(1)}]`
     : false
 
-const setToken = function (token, expiresIn) {
+const setToken = function (token) {
   if (apiClient?.defaults?.headers?.common) {
     apiClient.defaults.headers.common.Authorization = token
   } else throw new Error('Ошибка во время установки токена')
-  const authToken = useCookie('auth', { maxAge: expiresIn, sameSite: 'none' })
-  authToken.value = token
+  window?.localStorage?.setItem('auth', token)
 }
 
 const debounce = (func, wait) => {
@@ -42,15 +41,16 @@ const debounce = (func, wait) => {
 }
 
 const getCookie = function (name) {
-  let arr
-  const reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
-  if (window?.document?.cookie) {
-    if ((arr = document.cookie.match(reg))) {
-      return arr[2]
-    }
-  } else {
-    return null
-  }
+  // let arr
+  // const reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
+  // if (window?.document?.cookie) {
+  //   if ((arr = document.cookie.match(reg))) {
+  //     return arr[2]
+  //   }
+  // } else {
+  //   return null
+  // }
+  return 'f3ccb87b-90f6-472f-b5c4-99f64536cfce'
 }
 
 export { parseErrorsFromResponse, objCheckType, getCookie, setToken, debounce }

@@ -85,7 +85,7 @@ const getUserData = async () => {
       loading.value = false
       if (response.data?.user) {
         user.value = response.data?.user
-        setToken(response.data?.token, response.data?.expires_in)
+        setToken(response.data?.token)
         router.replace('/main')
       }
     })
@@ -110,7 +110,7 @@ const acceptOfferta = async () => {
   })
     .then((response) => {
       user.value = response.data?.user
-      setToken(response.data?.token, response.data?.expires_in)
+      setToken(response.data?.token)
       if (user.value) {
         router.replace('/main')
       }

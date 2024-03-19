@@ -66,8 +66,19 @@ const props = defineProps({
     required: true,
   },
 })
-const amount = toRef({
-  amount: props.feeItem?.amount,
-  leftAmount: props.feeItem?.left_amount,
+const amount = ref({
+  amount: null,
+  leftAmount: null,
 })
+
+watch(
+  () => props.feeItem,
+  (value) => {
+    if (value) {
+      console.log(value)
+      amount.value.amount = value.feeItem.amount
+      amount.value.leftAmount = value.feeItem.left_amount
+    }
+  },
+)
 </script>

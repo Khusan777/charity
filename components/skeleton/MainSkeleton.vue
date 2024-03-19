@@ -56,7 +56,7 @@
       <UiAnimatedSkeleton height="15px" width="100%" border-radius="12px" />
       <UiAnimatedSkeleton height="15px" width="100%" border-radius="12px" />
     </div>
-    <div style="padding-bottom: 10px">
+    <div style="padding-bottom: 10px; padding-top: 10px">
       <UiAnimatedSkeleton height="40px" width="100%" border-radius="10px" />
     </div>
   </div>
