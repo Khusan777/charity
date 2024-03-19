@@ -62,6 +62,7 @@ export default defineNuxtConfig({
     'mixpanel-nuxt',
     '@nuxt/image',
     '@vueuse/nuxt',
+    '@nuxtjs/color-mode',
   ],
   mixpanel: {
     token: 'f4fa3ffddf7c416ea8c428221abda738',
