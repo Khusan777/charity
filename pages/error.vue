@@ -1,14 +1,5 @@
 <template>
   <div class="error-container">
-    <div>
-      <h1>Color mode: {{ $colorMode.value }}</h1>
-      <select v-model="$colorMode.preference">
-        <option value="system">System</option>
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-        <option value="sepia">Sepia</option>
-      </select>
-    </div>
     <div class="data">
       <NuxtImg src="/images/error.png" alt="error"></NuxtImg>
       <div class="title">Упс что-то пошло не так</div>

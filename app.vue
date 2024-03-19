@@ -1,7 +1,6 @@
 <template>
   <NuxtLoadingIndicator />
   <NuxtLayout>
-    {{ getTheme }}
     <NuxtPage></NuxtPage>
   </NuxtLayout>
 </template>
@@ -13,7 +12,7 @@ colorMode.preference = getTheme.value || 'light'
 </script>
 
 <style lang="scss">
-@forward 'assets/styles/theme-style';
+//@forward 'assets/styles/theme-style';
 
 @font-face {
   font-family: 'GolosTextWebMedium';
@@ -40,7 +39,7 @@ body,
 #__nuxt {
   font-family: GolosTextWebMedium, sans-serif !important;
   overflow: hidden;
-  background: var(--primary);
+  background: rgb(226, 228, 240);
 }
 a {
   text-decoration: none !important;
