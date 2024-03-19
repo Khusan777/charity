@@ -55,6 +55,7 @@ import { useToast } from 'vue-toast-notification'
 import { useAppStore } from '~/stores/AppStore'
 import { getMe } from '~/services/app.api'
 import { parseErrorsFromResponse, setToken } from '~/utils'
+import { apiClient } from '~/services/apiClient'
 
 const loading = ref(true)
 const acceptBtn = ref(false)
@@ -74,6 +75,8 @@ const cookieWebSession = computed(() =>
 if (!appStore.webSession) {
   appStore.setWebSession(cookieWebSession.value)
 }
+
+const lang = computed(() => getCookie('lang'))
 
 const getUserData = async () => {
   await getMe({
@@ -99,8 +102,8 @@ const getUserData = async () => {
 }
 
 getUserData()
-
 const acceptOfferta = async () => {
+  apiClient.defaults.headers.common['Accept-Language'] = lang.value
   acceptBtn.value = true
   await getMe({
     web_session: appStore.webSession
@@ -111,6 +114,7 @@ const acceptOfferta = async () => {
     .then((response) => {
       user.value = response.data?.user
       setToken(response.data?.token)
+      delete apiClient.defaults.headers.common['Accept-Language']
       if (user.value) {
         router.replace('/main')
       }

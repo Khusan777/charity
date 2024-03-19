@@ -12,73 +12,81 @@
       <div class="data">
         <NuxtImg
           class="fond-img"
-          :src="`${config.public.apiBase}/storage/${feeItem?.fond?.icon}`"
+          :src="`https://dev-promo23.click.uz/storage/${feeItem?.fond?.icon}`"
           alt="fond"
         ></NuxtImg>
-        <div v-if="$i18n.locale === 'en'">{{ feeItem?.fond?.name_en }}</div>
-        <div v-if="$i18n.locale === 'uz'">{{ feeItem?.fond?.name_uz }}</div>
-        <div v-else>{{ feeItem?.fond?.name_ru }}</div>
+        <div>
+          {{
+            $i18n.locale === 'en'
+              ? feeItem?.fond?.name_en
+              : $i18n.locale === 'uz'
+                ? feeItem?.fond?.name_uz
+                : feeItem?.fond?.name_ru
+          }}
+        </div>
       </div>
     </div>
     <div class="user-disease">
-      <NuxtImg class="image-user" src="/images/user.png" alt="user"></NuxtImg>
+      <NuxtImg
+        class="image-user"
+        :src="`https://dev-promo23.click.uz/storage/${feeItem?.main_photo?.name}`"
+        alt="user"
+      ></NuxtImg>
       <div>
         <UiBadge
           with-image
           img-ref="/images/badge/urgentHelp.svg"
-          status-text="Нужна срочная помощь"
+          :status-text="
+            $i18n.locale === 'uz'
+              ? feeItem?.type_need?.name_uz
+              : $i18n.locale === 'en'
+                ? feeItem?.type_need?.name_en
+                : feeItem?.type_need?.name_ru
+          "
           back-color="rgb(255, 243, 224)"
           colour="rgb(251, 140, 0)"
         ></UiBadge>
         <div class="name">
-          {{
-            feeItem?.patient_name + feeItem?.patient_surname || 'Сенбаев Арслан'
-          }}
-          <span>(4 года)</span>
+          {{ feeItem?.patient_name + ' ' + feeItem?.patient_surname || '' }}
+          <span>({{ feeItem?.patient_age }} года)</span>
         </div>
         <div class="city">
-          {{ feeItem?.region_name || 'Фергана' }}
+          {{
+            $i18n.locale === 'uz'
+              ? feeItem?.region?.name_uz
+              : $i18n.locale === 'en'
+                ? feeItem?.region?.name_en
+                : feeItem?.region?.name_uz
+          }}
         </div>
         <UiBorderLine></UiBorderLine>
-        <div v-if="$i18n.locale === 'en'" class="disease">
-          {{ feeItem?.sick_category?.name_en }}
-        </div>
-        <div v-if="$i18n.locale === 'uz'" class="disease">
-          {{ feeItem?.sick_category?.name_uz }}
-        </div>
-        <div v-else class="disease">
-          {{ feeItem?.sick_category?.name_ru }}
+        <div class="disease">
+          {{
+            $i18n.locale === 'uz'
+              ? feeItem?.sick_category?.name_uz
+              : $i18n.locale === 'en'
+                ? feeItem?.sick_category?.name_en
+                : feeItem?.sick_category?.name_ru
+          }}
         </div>
       </div>
     </div>
     <UiCollectionProgress
-      :amount="amount"
+      :amount="amountData"
       is-completed="false"
     ></UiCollectionProgress>
   </div>
 </template>
 
 <script setup>
-const config = useRuntimeConfig()
 const props = defineProps({
   feeItem: {
     type: Object,
     required: true,
   },
 })
-const amount = ref({
-  amount: null,
-  leftAmount: null,
+const amountData = reactive({
+  leftAmount: props.feeItem?.left_amount,
+  amount: props.feeItem?.amount,
 })
-
-watch(
-  () => props.feeItem,
-  (value) => {
-    if (value) {
-      console.log(value)
-      amount.value.amount = value.feeItem.amount
-      amount.value.leftAmount = value.feeItem.left_amount
-    }
-  },
-)
 </script>

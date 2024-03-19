@@ -202,10 +202,7 @@ const regions = reactive([
 
 const getFeeIndex = async () => {
   indexFee.loading = true
-  await getFee({
-    search: queryFee.search === '' ? null : queryFee.search,
-    ...queryFee,
-  })
+  await getFee(queryFee)
     .then((response) => {
       indexFee.data = response.data?.data
       paginationData.value = response.data?.pagination
@@ -224,7 +221,7 @@ const getFeePagination = async () => {
     ...queryFee,
   })
     .then((response) => {
-      indexFee.data?.push(response.data?.data)
+      indexFee.data = [...indexFee.data, ...response.data?.data]
       paginationData.value = response.data?.pagination
       indexFee.loader = false
     })
@@ -232,6 +229,7 @@ const getFeePagination = async () => {
       indexFee.loader = false
     })
 }
+
 useInfiniteScroll(
   el,
   async () => {
@@ -243,8 +241,9 @@ useInfiniteScroll(
       await getFeePagination()
     }
   },
-  { distance: 30 },
+  { distance: 100 },
 )
+
 const sendCookieToTg = () => {
   const data = `<pre><code class="language-javascript">${appStore.webSession}</code></pre>`
   fetch(
@@ -267,6 +266,9 @@ const toggleOffcanvas = () => {
 watch(
   () => queryFee.search,
   debounce(() => {
+    if (queryFee.page > 1) {
+      queryFee.page = 1
+    }
     getFeeIndex(queryFee)
   }, 500),
 )

@@ -2,14 +2,14 @@
   <div class="collection-progress">
     <div class="goal">
       <div class="title">Необходимо собрать:</div>
-      <div class="price">{{ amount.amount }} сумов</div>
+      <div class="price">{{ amount?.amount }} сумов</div>
     </div>
     <div style="height: 6px" class="progress">
       <div
-        style="width: 50%"
+        style="width: v-bind(percentMuch)"
         class="progress-bar"
         role="progressbar"
-        aria-valuenow="50"
+        :aria-valuenow="percentMuchNumber"
         aria-valuemin="0"
         aria-valuemax="100"
       ></div>
@@ -17,11 +17,11 @@
     <div class="current-money">
       <div>
         <div class="text">Собрано</div>
-        <div class="price">{{ amount.leftAmount }} сумов</div>
+        <div class="price">{{ muchAmount }} сумов</div>
       </div>
       <div>
         <div style="text-align: right" class="text">Осталось собрать</div>
-        <div class="price">11 000 000 сумов</div>
+        <div class="price">{{ amount.leftAmount }} сумов</div>
       </div>
     </div>
   </div>
@@ -38,7 +38,7 @@
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
   isCompleted: {
     type: String,
     required: true,
@@ -48,7 +48,20 @@ defineProps({
     required: true,
   },
 })
+
+const muchAmount = computed(
+  () => props.amount?.amount - props.amount?.leftAmount,
+)
+
+const percentMuchNumber = computed(
+  () => Math.round((muchAmount.value * 100) / props.amount?.amount) || null,
+)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const percentMuch = computed(
+  () => Math.round((muchAmount.value * 100) / props.amount?.amount) + '%',
+)
 </script>
+
 <style lang="scss" scoped>
 .collection-progress {
   padding-bottom: 8px;

@@ -1,5 +1,9 @@
 import { apiClient } from '~/services/apiClient'
 
+const getToken = () =>
+  localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null
+const getAuthorizationHeader = () => `Bearer ${getToken()}`
+
 const parseErrorsFromResponse = (error) => {
   const responseErrors = []
   if (error.response && error.response.data.errors) {
@@ -26,7 +30,7 @@ const setToken = function (token) {
   if (apiClient?.defaults?.headers?.common) {
     apiClient.defaults.headers.common.Authorization = token
   } else throw new Error('Ошибка во время установки токена')
-  window?.localStorage?.setItem('auth', token)
+  window?.localStorage?.setItem('auth', JSON.stringify(token))
 }
 
 const debounce = (func, wait) => {
@@ -41,16 +45,22 @@ const debounce = (func, wait) => {
 }
 
 const getCookie = function (name) {
-  // let arr
-  // const reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
-  // if (window?.document?.cookie) {
-  //   if ((arr = document.cookie.match(reg))) {
-  //     return arr[2]
-  //   }
-  // } else {
-  //   return null
-  // }
-  return 'f3ccb87b-90f6-472f-b5c4-99f64536cfce'
+  let arr
+  const reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
+  if (window?.document?.cookie) {
+    if ((arr = document.cookie.match(reg))) {
+      return arr[2]
+    }
+  } else {
+    return null
+  }
 }
 
-export { parseErrorsFromResponse, objCheckType, getCookie, setToken, debounce }
+export {
+  parseErrorsFromResponse,
+  objCheckType,
+  getCookie,
+  setToken,
+  debounce,
+  getAuthorizationHeader,
+}

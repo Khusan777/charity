@@ -4,11 +4,10 @@ import { objCheckType, parseErrorsFromResponse } from '~/utils'
 import { apiClient } from '~/services/apiClient'
 
 export default defineNuxtPlugin(() => {
-  const authToken = window?.localStorage?.getItem('auth')
   const $toast = useToast()
   const router = useRouter()
   const unAuthenticate = async () => {
-    // window?.localStorage?.setItem('auth', null)
+    window?.localStorage?.setItem('auth', null)
     delete apiClient.defaults.headers.Authorization
     await router.push('/')
   }
@@ -42,7 +41,7 @@ export default defineNuxtPlugin(() => {
         if (apiClient?.defaults?.headers?.common) {
           apiClient.defaults.headers.common.Authorization = token
         } else throw new Error('Ошибка во время установки токена')
-        window?.localStorage?.setItem('auth', token)
+        window?.localStorage?.setItem('auth', JSON.stringify(token))
         return apiClient(request)
       }
     } catch (e) {
@@ -55,8 +54,9 @@ export default defineNuxtPlugin(() => {
     return null
   }
   const authInterceptor = (config) => {
-    if (window?.localStorage?.getItem('auth')) {
-      config.headers.Authorization = 'Bearer ' + JSON.parse(authToken)
+    const authToken = window?.localStorage?.getItem('auth')
+    if (authToken) {
+      config.headers.Authorization = getAuthorizationHeader()
     }
     return config
   }
@@ -79,7 +79,8 @@ export default defineNuxtPlugin(() => {
         return Promise.resolve(responseWithRefreshedToken)
       }
       errorStatus[error.response.status]()
-    } else {
+    }
+    if (error.response.data.error.code !== 1001) {
       generateToaster(errors)
     }
     return Promise.reject(error)
