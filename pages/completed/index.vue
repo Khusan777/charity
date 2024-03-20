@@ -87,7 +87,7 @@ const completedFee = reactive({
 const completedEl = ref(null)
 const getFeeCompletedIndex = () => {
   completedFee.loading = true
-  getFee({ ...queryFee, status_id: [4, 5] })
+  getFee({ ...queryFee, status_ids: [4] })
     .then((response) => {
       completedFee.index = response.data?.data
       paginationData.value = response.data?.pagination
@@ -97,13 +97,11 @@ const getFeeCompletedIndex = () => {
       completedFee.loading = false
     })
 }
-onMounted(() => {
-  getFeeCompletedIndex()
-})
+getFeeCompletedIndex()
 
 const getFeePagination = () => {
   completedFee.loader = true
-  getFee({ ...queryFee, status_id: [4, 5] })
+  getFee({ ...queryFee, status_ids: [4] })
     .then((response) => {
       completedFee.index = [...completedFee.index, ...response.data?.data]
       paginationData.value = response.data?.pagination
