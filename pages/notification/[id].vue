@@ -49,6 +49,7 @@ const heightDevice = inject('devicePlatform')
     font-size: 14px;
     line-height: 17px;
     margin-bottom: 10px;
+    font-weight: 500;
   }
   &-des {
     p {
