@@ -85,7 +85,7 @@ a {
     padding-bottom: 8px;
     & .image-user {
       width: 91px;
-      height: 91px;
+      height: auto;
       border-radius: 6px;
     }
     & .name {
