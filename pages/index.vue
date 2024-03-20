@@ -114,7 +114,6 @@ const acceptOfferta = () => {
     .then((response) => {
       user.value = response.data?.user
       setToken(response.data?.token)
-      delete apiClient.defaults.headers.common['Accept-Language']
       if (user.value) {
         router.replace('/main')
       }
