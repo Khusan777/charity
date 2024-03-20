@@ -28,6 +28,7 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-vue": "^7.12.1",
     "husky": "^8.0.2",
+    "ipx": "^3.0.1",
     "lint-staged": "^13.0.3",
     "mixpanel-nuxt": "^0.0.7",
     "nuxt": "^3.8.2",

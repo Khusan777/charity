@@ -70,7 +70,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import CharityReport from '~/components/CharityReport.vue'
 import { getCompletedFee } from '~/services/app.api'
 import CompletedSkeleton from '~/components/skeleton/CompletedSkeleton.vue'
@@ -100,7 +100,6 @@ const getFeeCompletedIndex = () => {
 getFeeCompletedIndex()
 
 const getFeePagination = () => {
-  console.log('here')
   completedFee.loader = true
   getCompletedFee({ ...queryFee, status_ids: [4, 5] })
     .then((response) => {
