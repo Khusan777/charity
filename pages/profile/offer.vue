@@ -29,7 +29,7 @@ const getInfoText = async () => {
       console.log(err)
     })
 }
-if(!appStore.info){
+if (!appStore.info) {
   getInfoText()
 }
 </script>
