@@ -15,11 +15,38 @@ colorMode.preference = getTheme.value || 'light'
 //@forward 'assets/styles/theme-style';
 
 @font-face {
-  font-family: 'GolosTextWebMedium';
+  font-family: 'GolosText';
   src:
     url('/font/golos-text_medium.woff2') format('woff2'),
     url('/font/golos-text_medium.woff') format('woff');
-  font-weight: normal;
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GolosText';
+  src:
+    url('/font/golos-text_regular.woff2') format('woff2'),
+    url('/font/golos-text_regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GolosText';
+  src:
+    url('/font/golos-text_demibold.woff2') format('woff2'),
+    url('/font/golos-text_demibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GolosText';
+  src:
+    url('/font/golos-text_bold.woff2') format('woff2'),
+    url('/font/golos-text_bold.woff') format('woff');
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -37,9 +64,10 @@ colorMode.preference = getTheme.value || 'light'
 html,
 body,
 #__nuxt {
-  font-family: GolosTextWebMedium, sans-serif !important;
+  font-family: GolosText, sans-serif !important;
   overflow: hidden;
   background: rgb(226, 228, 240);
+  font-weight: 400;
 }
 a {
   text-decoration: none !important;

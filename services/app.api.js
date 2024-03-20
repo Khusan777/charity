@@ -3,8 +3,10 @@ const getMe = (params) => apiClient.post('/login', params)
 
 const getFee = (params) => apiClient.get('/fee', { params })
 
+const getInfo = () => apiClient.get('/info')
+
+const refreshAuthToken = () => apiClient.post(`/refresh`)
+
 const getCompletedFee = (params) => apiClient.get('/fee', { params })
 
-const refreshAuthToken = () => apiClient.post(`/refreshToken`)
-
-export { getMe, getFee, refreshAuthToken, getCompletedFee }
+export { getMe, getFee, refreshAuthToken, getInfo, getCompletedFee }
