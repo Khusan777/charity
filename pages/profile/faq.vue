@@ -69,7 +69,7 @@ export default {
   computed: {
     getFaqs() {
       const items = []
-      this.appStore.info.forEach((item) => {
+      this.appStore?.info?.forEach((item) => {
         if (item.type === 2) {
           items.push(item)
         }

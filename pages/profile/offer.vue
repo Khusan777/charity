@@ -2,11 +2,11 @@
   <div class="offer">
     <UiHeaderComponent
       center
-      :center-text="appStore.info[0].name_ru"
+      :center-text="appStore.info[0]?.name_ru"
       left-route="/profile"
     ></UiHeaderComponent>
     <div class="offer-wrapper">
-      <div class="offer-text" v-html="appStore.info[0].description_ru"></div>
+      <div class="offer-text" v-html="appStore.info[0]?.description_ru"></div>
     </div>
   </div>
 </template>
