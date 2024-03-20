@@ -15,6 +15,6 @@ export const useAppStore = defineStore('AppStore', () => {
     user,
     setWebSession,
     webSession,
-    info
+    info,
   }
 })

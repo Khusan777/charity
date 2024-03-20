@@ -7,7 +7,7 @@
     ></UiHeaderComponent>
     <div class="faq-wrapper">
       <div class="faq-list">
-        <div class="faq-item" v-for="faq in getFaqs" :key="faq.id">
+        <div v-for="faq in getFaqs" :key="faq.id" class="faq-item">
           <button
             class="faq-item-top collapsed"
             type="button"
@@ -61,27 +61,27 @@ import { apiClient } from '~/services/apiClient'
 import { useAppStore } from '~/stores/AppStore'
 export default {
   name: 'Faq',
-  data () {
-    return{
-      appStore: useAppStore()
+  data() {
+    return {
+      appStore: useAppStore(),
     }
   },
   computed: {
-    getFaqs(){
-      let items = [];
-      this.appStore.info.forEach(item => {
-        if(item.type == 2){
-          items.push(item);
+    getFaqs() {
+      const items = []
+      this.appStore.info.forEach((item) => {
+        if (item.type === 2) {
+          items.push(item)
         }
-      });
-      return items;
-    }
+      })
+      return items
+    },
   },
-  mounted () {
-    apiClient.get('/info').then(res => {
+  mounted() {
+    apiClient.get('/info').then((res) => {
       this.appStore.info = res.data
     })
-  }
+  },
 }
 </script>
 
@@ -91,8 +91,8 @@ export default {
   height: v-bind(heightDevice);
   overflow-y: scroll;
   &-wrapper {
-    height: calc(heightDevice - 75px);
-    max-height: calc(heightDevice - 75px);
+    height: calc(v-bind(heightDevice) - 75px);
+    max-height: calc(v-bind(heightDevice) - 75px);
     padding: 0 20px;
   }
   &-item {

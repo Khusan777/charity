@@ -25,23 +25,23 @@
         </div>
         <div class="sendform-pac-input">
           <label for="fio">Фамилия ребенка<span>*</span></label>
-          <input id="fio" placeholder="Фамилия" v-model="surname" />
+          <input id="fio" v-model="surname" placeholder="Фамилия" />
         </div>
         <div class="sendform-pac-input">
           <label for="name">Имя ребенка<span>*</span></label>
-          <input id="name" placeholder="Имя" v-model="name" />
+          <input id="name" v-model="name" placeholder="Имя" />
         </div>
         <div class="sendform-pac-input">
           <label for="birthday">Дата рождения<span>*</span></label>
-          <input id="birthday" type="date" v-model="birthday" />
+          <input id="birthday" v-model="birthday" type="date" />
         </div>
         <div class="sendform-pac-select">
           <label for="region">Область проживания<span>*</span></label>
           <select
             id="region"
+            v-model="region"
             class="form-select"
             aria-label="Default select example"
-            v-model="region"
           >
             <option value="1" selected>г. Ташкент</option>
             <option value="2">Ташкентская область</option>
@@ -50,11 +50,16 @@
         </div>
         <div class="sendform-pac-input">
           <label for="phone">Ваш телефон<span>*</span></label>
-          <input type="tel" v-mask="'(##) ###-##-##'" v-model="phone" />
+          <input v-model="phone" v-mask="'(##) ###-##-##'" type="tel" />
         </div>
         <div class="sendform-pac-select">
           <label for="type">Тип нуждаемости<span>*</span></label>
-          <select id="type" class="form-select" aria-label="Болезнь" v-model="type">
+          <select
+            id="type"
+            v-model="type"
+            class="form-select"
+            aria-label="Болезнь"
+          >
             <option value="1" selected>Болезнь</option>
             <option value="2">Сложная ситуация</option>
             <option value="3">Помощь</option>
@@ -62,37 +67,83 @@
         </div>
         <div class="sendform-pac-input">
           <label for="des">Кратко опишите вашу ситуацию</label>
-          <textarea id="des" placeholder="Ваше сообщение" v-model="des"></textarea>
+          <textarea
+            id="des"
+            v-model="des"
+            placeholder="Ваше сообщение"
+          ></textarea>
         </div>
       </div>
       <div class="sendform-photo">
         <div class="sendform-photo-title">Прикрепите Фото ребенка</div>
-        <div class="sendform-photo-des">Допустимые расширения файлов: jpeg, png<br />Размер каждого файла не более 5 МБ</div>
-        <input type="file" accept="image/*" @change="uploadImage" class="sendform-photo-input" id="photo">
+        <div class="sendform-photo-des">
+          Допустимые расширения файлов: jpeg, png<br />Размер каждого файла не
+          более 5 МБ
+        </div>
+        <input
+          id="photo"
+          type="file"
+          accept="image/*"
+          class="sendform-photo-input"
+          @change="uploadImage"
+        />
         <label for="photo" class="sendform-photo-box">
-          <NuxtImg :src="previewImage" class="uploading-image" v-if="previewImage"></NuxtImg>
-          <NuxtImg src="/images/upload.svg" v-else></NuxtImg>
+          <NuxtImg
+            v-if="previewImage"
+            :src="previewImage"
+            class="uploading-image"
+          ></NuxtImg>
+          <NuxtImg v-else src="/images/upload.svg"></NuxtImg>
         </label>
       </div>
-      <div class="sendform-bottom">Направляя нам просьбу о помощи, пожалуйста, помните, что она может быть проверена Национальным агентством социальной защиты и внесена в государственную базу данных малоимущих.</div>
+      <div class="sendform-bottom">
+        Направляя нам просьбу о помощи, пожалуйста, помните, что она может быть
+        проверена Национальным агентством социальной защиты и внесена в
+        государственную базу данных малоимущих.
+      </div>
       <div class="sendform-button">
-        <p>Нажимая кнопку «Отправить», я даю свое согласие на обработку моих персональных данных</p>
-        <button @click="send" :disabled="loading">
+        <p>
+          Нажимая кнопку «Отправить», я даю свое согласие на обработку моих
+          персональных данных
+        </p>
+        <button :disabled="loading" @click="send">
           <span v-if="!loading">Отправить запрос</span>
-          <span class="spinner-border spinner-border-sm" aria-hidden="true" v-if="loading"></span>
-          <span role="status" v-if="loading">Загрузка...</span>
+          <span
+            v-if="loading"
+            class="spinner-border spinner-border-sm"
+            aria-hidden="true"
+          ></span>
+          <span v-if="loading" role="status">Загрузка...</span>
         </button>
       </div>
-      <div class="modal fade success-modal" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+      <div
+        id="successModal"
+        class="modal fade success-modal"
+        tabindex="-1"
+        aria-labelledby="successModalLabel"
+        aria-hidden="true"
+      >
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-body">
               <div class="success-modal-icon">
                 <NuxtImg src="/images/success.svg"></NuxtImg>
               </div>
-              <div class="success-modal-title">Ваша заявка успешно отправлена</div>
-              <div class="success-modal-des">В рабочие дни с вами свяжется сотрудник фонда для уточнения деталей. В течение 10 рабочих дней вы получите ответ с решением экспертной комиссии.</div>
-              <button class="success-modal-btn" @click="goHome" data-bs-dismiss="modal">Готово</button>
+              <div class="success-modal-title">
+                Ваша заявка успешно отправлена
+              </div>
+              <div class="success-modal-des">
+                В рабочие дни с вами свяжется сотрудник фонда для уточнения
+                деталей. В течение 10 рабочих дней вы получите ответ с решением
+                экспертной комиссии.
+              </div>
+              <button
+                class="success-modal-btn"
+                data-bs-dismiss="modal"
+                @click="goHome"
+              >
+                Готово
+              </button>
             </div>
           </div>
         </div>
@@ -102,13 +153,16 @@
 </template>
 
 <script>
-import {mask} from 'vue-the-mask'
+import { mask } from 'vue-the-mask'
 import { apiClient } from '~/services/apiClient'
 import { useAppStore } from '~/stores/AppStore'
 
 export default {
   name: 'Form',
-  data () {
+  directives: {
+    mask,
+  },
+  data() {
     return {
       surname: null,
       name: null,
@@ -117,54 +171,53 @@ export default {
       region: null,
       des: null,
       type: null,
-      previewImage:null,
+      previewImage: null,
       file: null,
       heightDevice: inject('devicePlatform'),
       appStore: useAppStore(),
-      loading: false
+      loading: false,
     }
-  },
-  directives: {
-    mask
   },
   methods: {
-    uploadImage(e){
-        const image = e.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(image);
-        reader.onload = e =>{
-            this.previewImage = e.target.result;
-        };
-        this.file = e.target.files[0];
+    uploadImage(e) {
+      const image = e.target.files[0]
+      const reader = new FileReader()
+      reader.readAsDataURL(image)
+      reader.onload = (e) => {
+        this.previewImage = e.target.result
+      }
+      this.file = e.target.files[0]
     },
-    send(){
+    send() {
       this.loading = true
-      let data = new FormData();
-      let phone_number = this.phone.replace(/[- )(]/g,'');
-      let result_number = '998' + phone_number; 
-      const modal = new bootstrap.Modal('#successModal');
-      data.append('customer_id', this.appStore.user.id);
-      data.append('patient_name', this.name);
-      data.append('patient_surname', this.surname);
-      data.append('patient_birth_date', this.birthday);
-      data.append('region_id', this.region);
-      data.append('patient_phone', result_number);
-      data.append('type_help_id', this.type);
-      data.append('photos[]', this.file, this.file.name);
-      data.append('comment', this.des);
-      apiClient.post('/fee', data, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }).then(res => {
-        this.loading = false;
-        modal.show();
-      })
+      const data = new FormData()
+      const phone_number = this.phone.replace(/[- )(]/g, '')
+      const result_number = '998' + phone_number
+      const modal = new bootstrap.Modal('#successModal')
+      data.append('customer_id', this.appStore.user.id)
+      data.append('patient_name', this.name)
+      data.append('patient_surname', this.surname)
+      data.append('patient_birth_date', this.birthday)
+      data.append('region_id', this.region)
+      data.append('patient_phone', result_number)
+      data.append('type_help_id', this.type)
+      data.append('photos[]', this.file, this.file.name)
+      data.append('comment', this.des)
+      apiClient
+        .post('/fee', data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then(() => {
+          this.loading = false
+          modal.show()
+        })
     },
-    goHome(){
+    goHome() {
       this.$router.push('/')
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -277,7 +330,7 @@ export default {
       }
     }
   }
-  &-photo{
+  &-photo {
     background: #fff;
     padding: 20px 15px;
     border-radius: 12px;
@@ -296,38 +349,41 @@ export default {
       color: #2c2d35;
       margin-bottom: 15px;
     }
-    &-input{
+    &-input {
       opacity: 0;
       top: 0;
       right: 0;
       position: absolute;
       z-index: -1;
     }
-    &-box{
+    &-box {
       display: flex;
       justify-content: center;
       gap: 15px;
-      img{
+      img {
         max-width: 135px;
         width: 100%;
       }
     }
   }
-  &-bottom{
+  &-bottom {
     font-size: 12px;
     line-height: 16px;
     margin-bottom: 40px;
   }
-  &-button{
-    p{
+  &-button {
+    p {
       font-size: 12px;
       line-height: 14.4px;
       margin-bottom: 10px;
     }
-    button{
+    button {
       width: 100%;
       background: linear-gradient(
-        0deg,rgb(0, 115, 255) -1.25%,rgb(0, 194, 255) 100%);
+        0deg,
+        rgb(0, 115, 255) -1.25%,
+        rgb(0, 194, 255) 100%
+      );
       border-radius: 10px;
       height: 40px;
       line-height: 40px;
@@ -338,12 +394,12 @@ export default {
     }
   }
 }
-.success-modal{
-  .modal-dialog{
+.success-modal {
+  .modal-dialog {
     padding: 0 10px;
-    .modal-content{
-      background: #E2E4F0;
-      .modal-body{
+    .modal-content {
+      background: #e2e4f0;
+      .modal-body {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -353,30 +409,33 @@ export default {
       }
     }
   }
-  &-icon{
+  &-icon {
     margin-bottom: 20px;
-    img{
+    img {
       width: 80px;
     }
   }
-  &-title{
+  &-title {
     font-size: 16px;
     line-height: 18px;
     color: #363845;
     margin-bottom: 8px;
     font-weight: 600;
   }
-  &-des{
+  &-des {
     font-size: 14px;
     color: #363845;
     line-height: 18px;
     margin-bottom: 20px;
     font-weight: 400;
   }
-  &-btn{
+  &-btn {
     width: 100%;
     background: linear-gradient(
-      0deg,rgb(0, 115, 255) -1.25%,rgb(0, 194, 255) 100%);
+      0deg,
+      rgb(0, 115, 255) -1.25%,
+      rgb(0, 194, 255) 100%
+    );
     border-radius: 10px;
     height: 40px;
     line-height: 40px;
