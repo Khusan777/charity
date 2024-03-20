@@ -7,31 +7,27 @@
     ></UiHeaderComponent>
     <div class="faq-wrapper">
       <div class="faq-list">
-        <div class="faq-item">
+        <div class="faq-item" v-for="faq in getFaqs" :key="faq.id">
           <button
             class="faq-item-top collapsed"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#faq1"
+            :data-bs-target="'#faq' + faq.id"
             aria-expanded="false"
-            aria-controls="faq1"
+            :aria-controls="'faq' + faq.id"
           >
-            <div class="faq-item-title">
-              Куда попадут деньги от пожертвований?
-            </div>
+            <div class="faq-item-title">{{ faq.name_ru }}</div>
             <div class="faq-item-icon">
               <NuxtImg src="/images/tick.svg"></NuxtImg>
             </div>
           </button>
-          <div id="faq1" class="collapse faq-item-body">
+          <div :id="'faq' + faq.id" class="collapse faq-item-body">
             <div class="faq-item-content">
-              Все денежные средства (пожертвования) через системы Payme, CLICK ,
-              UZUM и боксов попадают на расчетный счет фонда, и оттуда
-              распределяются по программам.
+              <div class="faq-item-body" v-html="faq.description_ru"></div>
             </div>
           </div>
         </div>
-        <div class="faq-item">
+        <!-- <div class="faq-item">
           <button
             class="faq-item-top collapsed"
             type="button"
@@ -54,14 +50,39 @@
               распределяются по программам.
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
-const heightDevice = inject('devicePlatform')
+<script>
+import { apiClient } from '~/services/apiClient'
+import { useAppStore } from '~/stores/AppStore'
+export default {
+  name: 'Faq',
+  data () {
+    return{
+      appStore: useAppStore()
+    }
+  },
+  computed: {
+    getFaqs(){
+      let items = [];
+      this.appStore.info.forEach(item => {
+        if(item.type == 2){
+          items.push(item);
+        }
+      });
+      return items;
+    }
+  },
+  mounted () {
+    apiClient.get('/info').then(res => {
+      this.appStore.info = res.data
+    })
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -107,6 +128,7 @@ const heightDevice = inject('devicePlatform')
       color: #363845;
       font-size: 12px;
       font-weight: 500;
+      text-align: left;
     }
     &-icon {
       width: 25px;

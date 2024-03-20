@@ -47,7 +47,7 @@
             <NuxtImg src="/images/arrow.svg"></NuxtImg>
           </div>
         </router-link>
-        <router-link class="profile-menu-item" to="/main">
+        <router-link class="profile-menu-item" to="/profile/offer">
           <div class="profile-menu-left">
             <NuxtImg src="/images/info.svg"></NuxtImg>
             <span>Пользовательское соглашение</span>
