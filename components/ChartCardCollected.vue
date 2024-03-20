@@ -32,13 +32,13 @@
       <div>
         <UiBadge
           with-image
-          :img-ref="feeItem?.type_need?.icon"
+          :img-ref="feeItem?.status?.icon"
           :status-text="
             $i18n.locale === 'uz'
-              ? feeItem?.type_need?.name_uz
+              ? feeItem?.status?.name_uz
               : $i18n.locale === 'en'
-                ? feeItem?.type_need?.name_en
-                : feeItem?.type_need?.name_ru
+                ? feeItem?.status?.name_en
+                : feeItem?.status?.name_ru
           "
           back-color="#F1F8E9"
           colour="#66ca28"

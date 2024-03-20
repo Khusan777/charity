@@ -1,7 +1,7 @@
 <template>
   <div class="completed-pages">
     <UiHeaderComponent center center-text="Завершенные"></UiHeaderComponent>
-    <div ref="completedEl" class="content-data">
+    <div class="content-data">
       <div class="container">
         <ul id="myTab" class="nav nav-tabs complete-tabs" role="tablist">
           <li class="nav-item">
