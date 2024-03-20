@@ -21,7 +21,9 @@
       </div>
       <div>
         <div style="text-align: right" class="text">Осталось собрать</div>
-        <div class="price">{{ amount.leftAmount?.toLocaleString() }} сумов</div>
+        <div class="price">
+          {{ amount?.leftAmount?.toLocaleString() }} сумов
+        </div>
       </div>
     </div>
   </div>

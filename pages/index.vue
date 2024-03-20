@@ -78,8 +78,8 @@ if (!appStore.webSession) {
 
 const lang = computed(() => getCookie('lang'))
 
-const getUserData = async () => {
-  await getMe({
+const getUserData = () => {
+  getMe({
     web_session: appStore.webSession
       ? appStore.webSession
       : cookieWebSession.value,
@@ -102,10 +102,10 @@ const getUserData = async () => {
 }
 
 getUserData()
-const acceptOfferta = async () => {
+const acceptOfferta = () => {
   apiClient.defaults.headers.common['Accept-Language'] = lang.value
   acceptBtn.value = true
-  await getMe({
+  getMe({
     web_session: appStore.webSession
       ? appStore.webSession
       : cookieWebSession.value,

@@ -1,7 +1,7 @@
 <template>
   <div class="completed-pages">
     <UiHeaderComponent center center-text="Завершенные"></UiHeaderComponent>
-    <div class="content-data">
+    <div ref="completedEl" class="content-data">
       <div class="container">
         <ul id="myTab" class="nav nav-tabs complete-tabs" role="tablist">
           <li class="nav-item">
@@ -37,7 +37,6 @@
       <div id="myTabContent" class="tab-content">
         <div
           id="complete-tab-pane"
-          ref="completedEl"
           class="tab-pane fade show active"
           role="tabpanel"
           aria-labelledby="complete-tab"
@@ -87,9 +86,9 @@ const completedFee = reactive({
   index: null,
 })
 const completedEl = ref(null)
-const getFeeCompletedIndex = async () => {
+const getFeeCompletedIndex = () => {
   completedFee.loading = true
-  await getFee(queryFee)
+  getFee(queryFee)
     .then((response) => {
       completedFee.index = response.data?.data
       paginationData.value = response.data?.pagination
@@ -101,9 +100,9 @@ const getFeeCompletedIndex = async () => {
 }
 getFeeCompletedIndex()
 
-const getFeePagination = async () => {
+const getFeePagination = () => {
   completedFee.loader = true
-  await getFee(queryFee)
+  getFee(queryFee)
     .then((response) => {
       completedFee.index = [...completedFee.index, ...response.data?.data]
       paginationData.value = response.data?.pagination

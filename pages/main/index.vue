@@ -200,9 +200,9 @@ const regions = reactive([
   },
 ])
 
-const getFeeIndex = async () => {
+const getFeeIndex = () => {
   indexFee.loading = true
-  await getFee(queryFee)
+  getFee(queryFee)
     .then((response) => {
       indexFee.data = response.data?.data
       paginationData.value = response.data?.pagination
@@ -214,9 +214,9 @@ const getFeeIndex = async () => {
 }
 getFeeIndex()
 
-const getFeePagination = async () => {
+const getFeePagination = () => {
   indexFee.loader = true
-  await getFee({
+  getFee({
     search: queryFee.search === '' ? null : queryFee.search,
     ...queryFee,
   })
