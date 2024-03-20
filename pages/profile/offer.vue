@@ -29,8 +29,9 @@ const getInfoText = async () => {
       console.log(err)
     })
 }
-
-getInfoText()
+if(!appStore.info){
+  getInfoText()
+}
 </script>
 
 <style scoped lang="scss">

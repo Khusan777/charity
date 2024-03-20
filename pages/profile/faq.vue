@@ -78,9 +78,11 @@ export default {
     },
   },
   mounted() {
-    apiClient.get('/info').then((res) => {
-      this.appStore.info = res.data
-    })
+    if(!this.appStore.info){
+      apiClient.get('/info').then((res) => {
+        this.appStore.info = res.data
+      })
+    }
   },
 }
 </script>

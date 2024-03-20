@@ -6,16 +6,12 @@
       left-route="/profile"
     ></UiHeaderComponent>
     <div class="sendform-wrapper">
-      <div class="sendform-top">
-        <p>
-          Если вам нужна помощь, пожалуйста, заполните и отправьте
-          анкету-обращение. Ваше обращение будет рассмотрено медицинскими
-          специалистами и экспертами.
-        </p>
-        <p>
-          Пожалуйста, обратите внимание, что фонд может оказывать помощь только
-          пациентам с сердечно-сосудистыми заболеваниями.
-        </p>
+      <div class="sendform-top">Если вам нужна помощь, пожалуйста, заполните и отправьте анкету-обращение. Рассмотрение заявки осуществляется в течение 14 дней с момента подачи заявки. Помощь будет оказана в клиниках партнерах.</div>
+      <div class="sendform-info">
+        <div class="sendform-info-icon">
+          <NuxtImg src="/images/info.svg"></NuxtImg>
+        </div>
+        <div class="sendform-info-text">Пожалуйста, обратите внимание, что фонд может оказывать помощь только детям с врожденным пороком сердца</div>
       </div>
       <div class="sendform-pac">
         <div class="sendform-pac-title">Данные пациента</div>
@@ -80,6 +76,7 @@
           Допустимые расширения файлов: jpeg, png<br />Размер каждого файла не
           более 5 МБ
         </div>
+        <input type="file" name="file" id="file">
         <input
           id="photo"
           type="file"
@@ -232,15 +229,27 @@ export default {
     overflow-y: scroll;
   }
   &-top {
+    font-size: 12px;
+    line-height: 16px;
+    color: #363845;
+    margin-bottom: 10px;
+  }
+  &-info{
+    border-radius: 12px;
+    background: #fff;
+    padding: 15px 10px;
     margin-bottom: 20px;
-    p {
+    display: flex;
+    gap: 5px;
+    &-icon{
+      img{
+        width: 24px;
+      }
+    }
+    &-text{
       font-size: 12px;
       line-height: 16px;
       color: #363845;
-      margin-bottom: 15px;
-      &:last-child {
-        margin-bottom: 0;
-      }
     }
   }
   &-pac {
