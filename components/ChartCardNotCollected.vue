@@ -35,7 +35,7 @@
       <div>
         <UiBadge
           with-image
-          img-ref="/images/badge/urgentHelp.svg"
+          :img-ref="feeItem?.type_need?.icon"
           :status-text="
             $i18n.locale === 'uz'
               ? feeItem?.type_need?.name_uz
@@ -56,7 +56,7 @@
               ? feeItem?.region?.name_uz
               : $i18n.locale === 'en'
                 ? feeItem?.region?.name_en
-                : feeItem?.region?.name_uz
+                : feeItem?.region?.name_ru
           }}
         </div>
         <UiBorderLine></UiBorderLine>

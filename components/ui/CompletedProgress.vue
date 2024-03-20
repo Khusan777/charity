@@ -15,10 +15,21 @@
       ></div>
     </div>
     <div class="completed-summa">
-      <div class="summa">Сумма собрана: <span>25 000 000 сумов</span></div>
+      <div class="summa">
+        Сумма собрана: <span>{{ amount }} сумов</span>
+      </div>
     </div>
   </div>
 </template>
+
+<script setup>
+defineProps({
+  amount: {
+    type: Number,
+    required: true,
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .collection-progress {

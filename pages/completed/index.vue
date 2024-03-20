@@ -37,15 +37,25 @@
       <div id="myTabContent" class="tab-content">
         <div
           id="complete-tab-pane"
+          ref="completedEl"
           class="tab-pane fade show active"
           role="tabpanel"
           aria-labelledby="complete-tab"
           tabindex="0"
         >
-          <ChartCardCollected></ChartCardCollected>
-          <ChartCardCollected></ChartCardCollected>
-          <ChartCardCollected></ChartCardCollected>
-          <ChartCardCollected></ChartCardCollected>
+          <template v-if="completedFee.loading">
+            <CompletedSkeleton></CompletedSkeleton>
+            <CompletedSkeleton></CompletedSkeleton>
+            <CompletedSkeleton></CompletedSkeleton>
+          </template>
+          <template v-else>
+            <div v-for="feeItem in completedFee.index" :key="feeItem.id">
+              <ChartCardCollected
+                :key="feeItem.id"
+                :fee-item="feeItem"
+              ></ChartCardCollected>
+            </div>
+          </template>
         </div>
         <div
           id="report-tab-pane"
@@ -63,8 +73,60 @@
 
 <script setup lang="ts">
 import CharityReport from '~/components/CharityReport.vue'
+import { getFee } from '~/services/app.api'
+import CompletedSkeleton from '~/components/skeleton/CompletedSkeleton.vue'
 
+const queryFee = reactive({
+  page: 1,
+  status_ids: [4, 5],
+})
 const heightDevice = inject('devicePlatform')
+const paginationData = ref(null)
+const completedFee = reactive({
+  loading: false,
+  index: null,
+})
+const completedEl = ref(null)
+const getFeeCompletedIndex = async () => {
+  completedFee.loading = true
+  await getFee(queryFee)
+    .then((response) => {
+      completedFee.index = response.data?.data
+      paginationData.value = response.data?.pagination
+      completedFee.loading = false
+    })
+    .catch(() => {
+      completedFee.loading = false
+    })
+}
+getFeeCompletedIndex()
+
+const getFeePagination = async () => {
+  completedFee.loader = true
+  await getFee(queryFee)
+    .then((response) => {
+      completedFee.index = [...completedFee.index, ...response.data?.data]
+      paginationData.value = response.data?.pagination
+      completedFee.loader = false
+    })
+    .catch(() => {
+      completedFee.loader = false
+    })
+}
+
+useInfiniteScroll(
+  completedEl,
+  async () => {
+    if (
+      paginationData.value.currentPage < paginationData.value.totalPages &&
+      queryFee.page < paginationData.value.totalPages
+    ) {
+      queryFee.page += 1
+      await getFeePagination()
+    }
+  },
+  { distance: 100 },
+)
 
 definePageMeta({
   layout: 'single',

@@ -2,7 +2,7 @@
   <div class="collection-progress">
     <div class="goal">
       <div class="title">Необходимо собрать:</div>
-      <div class="price">{{ amount?.amount }} сумов</div>
+      <div class="price">{{ amount?.amount?.toLocaleString() }} сумов</div>
     </div>
     <div style="height: 6px" class="progress">
       <div
@@ -21,7 +21,7 @@
       </div>
       <div>
         <div style="text-align: right" class="text">Осталось собрать</div>
-        <div class="price">{{ amount.leftAmount }} сумов</div>
+        <div class="price">{{ amount.leftAmount?.toLocaleString() }} сумов</div>
       </div>
     </div>
   </div>

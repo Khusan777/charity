@@ -4,7 +4,7 @@
     <NuxtImg
       v-if="withImage"
       class="image"
-      :src="imgRef"
+      :src="`https://dev-promo23.click.uz/storage/${imgRef}`"
       alt="urgent"
     ></NuxtImg>
   </div>
