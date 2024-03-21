@@ -1,7 +1,7 @@
 <template>
   <div class="completed-pages">
     <UiHeaderComponent center center-text="Завершенные"></UiHeaderComponent>
-    <div class="content-data">
+    <div ref="el" class="content-data">
       <div class="container">
         <ul id="myTab" class="nav nav-tabs complete-tabs" role="tablist">
           <li class="nav-item">
@@ -55,6 +55,9 @@
               ></ChartCardCollected>
             </div>
           </template>
+          <div v-if="completedFee.loader" class="loader-wrapper">
+            <span class="loader-anim"></span>
+          </div>
         </div>
         <div
           id="report-tab-pane"
@@ -84,7 +87,7 @@ const completedFee = reactive({
   loading: false,
   index: null,
 })
-const completedEl = ref(null)
+const el = ref(null)
 const getFeeCompletedIndex = () => {
   completedFee.loading = true
   getCompletedFee({ ...queryFee, status_ids: [4, 5] })
@@ -112,19 +115,15 @@ const getFeePagination = () => {
     })
 }
 
-useInfiniteScroll(
-  completedEl,
-  async () => {
-    if (
-      paginationData.value.currentPage < paginationData.value.totalPages &&
-      queryFee.page < paginationData.value.totalPages
-    ) {
-      queryFee.page += 1
-      await getFeePagination()
-    }
-  },
-  { distance: 100 },
-)
+useInfiniteScroll(el, async () => {
+  if (
+    paginationData.value.currentPage < paginationData.value.totalPages &&
+    queryFee.page < paginationData.value.totalPages
+  ) {
+    queryFee.page += 1
+    await getFeePagination()
+  }
+})
 
 definePageMeta({
   layout: 'single',
@@ -137,8 +136,8 @@ definePageMeta({
   height: v-bind(heightDevice);
   overflow: hidden;
   & .content-data {
-    max-height: calc(v-bind(heightDevice) - 150px);
-    height: calc(v-bind(heightDevice) - 150px);
+    max-height: calc(v-bind(heightDevice) - 153px);
+    height: calc(v-bind(heightDevice) - 153px);
     overflow-y: auto;
     & .complete {
       &-tabs {
