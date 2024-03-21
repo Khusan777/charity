@@ -12,7 +12,7 @@ colorMode.preference = getTheme.value || 'light'
 </script>
 
 <style lang="scss">
-//@forward 'assets/styles/theme-style';
+@forward 'assets/styles/theme-style';
 
 @font-face {
   font-family: 'GolosText';
@@ -66,7 +66,7 @@ body,
 #__nuxt {
   font-family: GolosText, sans-serif !important;
   overflow: hidden;
-  background: rgb(226, 228, 240);
+  background: var(--bg-color);
   font-weight: 400;
 }
 a {
@@ -75,7 +75,7 @@ a {
 
 .chart-card {
   overflow-y: auto;
-  background: #fff;
+  background: var(--chart-card-bg);
   border-radius: 12px;
   margin: 10px 20px 8px;
   padding: 10px 10px 0 10px;
@@ -97,7 +97,7 @@ a {
         font-weight: 400;
         line-height: 12px;
         text-align: left;
-        color: #6a6a6a;
+        color: var(--fond-color);
       }
     }
     & .refferal {
@@ -119,23 +119,23 @@ a {
     & .name {
       font-weight: 600;
       font-size: 14px;
-      color: #363845;
+      color: var(--user-name);
       align-self: center;
       padding-bottom: 2px;
       & span {
         font-size: 12px;
-        color: #2c2d35;
+        color: var(--user-age);
       }
     }
     & .city {
       font-weight: 400;
       font-size: 10px;
-      color: #6a6a6a;
+      color: var(--city-name);
     }
     & .disease {
       font-weight: 400;
       font-size: 10px;
-      color: #6a6a6a;
+      color: var(--disease-name);
     }
   }
 }
@@ -156,7 +156,7 @@ a {
     height: 40px;
     border-radius: 50%;
     margin-bottom: 10px;
-    border-top: 3px solid #312f2f;
+    border-top: 3px solid var(--loader-color);
     border-right: 3px solid transparent;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;

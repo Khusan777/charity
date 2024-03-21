@@ -33,7 +33,6 @@
       width: 100%;
     }
     & .title {
-      font-family: var(--font-family);
       font-weight: 700;
       font-size: 12px;
       color: #0d0d0d;

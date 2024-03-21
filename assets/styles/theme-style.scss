@@ -1,6 +1,20 @@
 .light-mode {
-  --primary: rgb(226, 228, 240);
+  --bg-color: rgb(226, 228, 240);
+  --fond-color: #6a6a6a;
+  --chart-card-bg:  #fff;
+  --user-name: #363845;
+  --user-age: #2c2d35;
+  --city-name: #6a6a6a;
+  --disease-name: #6a6a6a;
+  --loader-color:  #312f2f;
 }
 .dark-mode {
-  --primary: #34353f;
+  --bg-color: #242429;
+  --fond-color: #fff;
+  --chart-card-bg:  #34353f;
+  --user-name: #fff;
+  --user-age: #fff;
+  --city-name: #b3b7ce;
+  --disease-name: #b3b7ce;
+  --loader-color:  #fff;
 }
