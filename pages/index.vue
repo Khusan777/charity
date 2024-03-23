@@ -1,15 +1,15 @@
 <template>
   <div v-if="loading" class="loader-container">
     <NuxtImg
-      v-if="$colorMode.preference === 'light'"
+      v-if="$colorMode.preference === 'dark'"
       style="width: 100%; padding: 0 60px"
-      src="/images/logo_light.svg"
+      src="/images/logo_dark.svg"
       alt="logo"
     ></NuxtImg>
     <NuxtImg
       v-else
       style="width: 100%; padding: 0 60px"
-      src="/images/logo_dark.svg"
+      src="/images/logo_light.svg"
       alt="logo"
     ></NuxtImg>
   </div>
@@ -64,6 +64,7 @@ import { getMe } from '~/services/app.api'
 import { parseErrorsFromResponse, setToken } from '~/utils'
 import { apiClient } from '~/services/apiClient'
 
+const colorMode = useColorMode()
 const loading = ref(true)
 const acceptBtn = ref(false)
 const isNotAcceptCode = ref(null)
@@ -74,6 +75,9 @@ const appStore = useAppStore()
 const { user } = storeToRefs(appStore)
 const $toast = useToast()
 
+const getTheme = computed(() => getCookie('theme'))
+colorMode.preference = getTheme.value
+
 const cookieWebSession = computed(() =>
   getCookie('click-web-session')
     ? getCookie('click-web-session')
@@ -82,7 +86,6 @@ const cookieWebSession = computed(() =>
 if (!appStore.webSession) {
   appStore.setWebSession(cookieWebSession.value)
 }
-
 const lang = computed(() => getCookie('lang'))
 
 const getUserData = () => {

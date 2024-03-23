@@ -5,12 +5,6 @@
   </NuxtLayout>
 </template>
 
-<script setup>
-const colorMode = useColorMode()
-const getTheme = computed(() => getCookie('theme'))
-colorMode.preference = getTheme.value || 'light'
-</script>
-
 <style lang="scss">
 @forward 'assets/styles/theme-style';
 
