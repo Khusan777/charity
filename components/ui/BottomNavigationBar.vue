@@ -135,7 +135,7 @@
 <style scoped lang="scss">
 .footer-navigation {
   z-index: 1000;
-  border-top: 1px solid rgb(216, 219, 240);
+  border-top: 1px solid var(--bottom-nav-top);
   display: flex;
   align-items: center;
   width: 100%;
@@ -145,7 +145,7 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  background: rgb(226, 228, 240);
+  background: var(--bg-color);
   & img {
     width: 28px;
     height: 28px;

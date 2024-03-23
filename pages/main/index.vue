@@ -1,7 +1,7 @@
 <template>
   <div ref="el" class="index-container">
     <div v-if="webSession" style="margin: 0 20px" @click="sendCookieToTg">
-      <div style="user-select: all; white-space: pre-line; color: #171717">
+      <div style="user-select: all; white-space: pre-line; color: #fff">
         {{ webSession }}
       </div>
     </div>
@@ -21,7 +21,7 @@
         <NuxtImg
           width="20"
           height="20"
-          class="settings-icon"
+          style="color: var(--search-icon-color)"
           src="/images/settings.svg"
           alt="settings"
         />
@@ -179,8 +179,7 @@ watch(
     border: 1px solid rgb(183, 184, 198);
     border-radius: 10px;
     height: 40px;
-    background: url('/images/search.svg') no-repeat rgb(255, 255, 255);
-    background-position: 10px center;
+    background: var(--search-bg) url('/images/search.svg') no-repeat 10px center;
     width: 100%;
     display: flex;
     align-items: center;
@@ -197,14 +196,14 @@ watch(
       line-height: 20px;
       letter-spacing: 0;
       text-align: left;
-      color: rgb(106, 106, 106);
+      color: var(--search-placeholder);
     }
     &:focus {
       outline: 0;
     }
   }
   & .placeholder {
-    background: rgb(255, 255, 255);
+    background: var(--search-bg);
     right: 40px;
     top: 6px;
     position: absolute;
@@ -214,7 +213,7 @@ watch(
 .help-block {
   padding: 0 20px 0;
   & .text {
-    color: rgb(54, 56, 69);
+    color: var(--need-help);
     font-size: 16px;
     font-weight: 600;
     line-height: 19px;
@@ -223,7 +222,7 @@ watch(
     padding-bottom: 5px;
   }
   & .description {
-    color: rgb(106, 106, 106);
+    color: var(--need-help-desc);
     font-size: 12px;
     font-weight: 400;
     line-height: 14px;

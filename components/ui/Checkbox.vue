@@ -96,7 +96,7 @@ defineEmits(['update:checked'])
   line-height: 14px;
   font-weight: 500;
   font-size: 12px;
-  color: #2c2d35;
+  color: var(--checkbox-body);
 }
 span {
   text-decoration: underline;

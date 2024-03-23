@@ -28,21 +28,21 @@
   & .data {
     width: 50%;
     border-radius: 12px;
-    background: #fff;
+    background: var(--reports-card-bg);
     & .image {
       width: 100%;
     }
     & .title {
       font-weight: 700;
       font-size: 12px;
-      color: #0d0d0d;
+      color: var(--reports-card-title);
       line-height: normal;
       padding: 10px 10px 5.5px;
     }
     & .description {
       font-weight: 400;
       font-size: 10px;
-      color: #6a6a6a;
+      color: var(--reports-card-desc);
       padding: 0 10px 5px;
     }
     & .detail {

@@ -62,11 +62,21 @@
           <div class="description">Хирургическое лечение</div>
         </div>
         <NuxtImg
+          v-if="$colorMode.preference === 'light'"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasBottom"
           aria-controls="offcanvasBottom"
           height="20"
-          src="/images/menu.svg"
+          src="/images/menu_light.svg"
+          alt="menu"
+        ></NuxtImg>
+        <NuxtImg
+          v-else
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasBottom"
+          aria-controls="offcanvasBottom"
+          height="20"
+          src="/images/menu_dark.svg"
           alt="menu"
         ></NuxtImg>
       </div>
@@ -90,11 +100,13 @@
         <NuxtImg height="20" src="/images/med.svg" alt="med"></NuxtImg>
       </div>
     </div>
-    <UiBottomSheet></UiBottomSheet>
+    <BottomSheetDisease></BottomSheetDisease>
   </div>
 </template>
 
 <script setup>
+import BottomSheetDisease from '~/components/ui/BottomSheetDisease.vue'
+
 defineProps({
   isCompleted: {
     type: String,
@@ -108,7 +120,7 @@ defineProps({
   margin: 0 20px 20px;
   border-radius: 12px;
   padding: 16px 10px;
-  background: #fff;
+  background: var(--bg-patient-card);
   & .published {
     padding-bottom: 7px;
     & .info {
@@ -122,7 +134,7 @@ defineProps({
       align-items: center;
       gap: 5px;
       border-radius: 6px;
-      background: #f6f6f6;
+      background: var(--published-bg);
       & .image {
         width: 16px;
         height: 16px;
@@ -131,14 +143,14 @@ defineProps({
         font-weight: 400;
         font-size: 8px;
         line-height: normal;
-        color: #6a6a6a;
+        color: var(--published-title);
       }
       & .date {
         font-size: 12px;
         font-weight: 500;
         line-height: 14px;
         text-align: left;
-        color: #2c2d35;
+        color: var(--published-date);
       }
     }
   }
@@ -162,13 +174,13 @@ defineProps({
     line-height: normal;
     font-weight: 400;
     font-size: 10px;
-    color: #6a6a6a;
+    color: var(--diagnos-data-title);
   }
   .description {
     line-height: normal;
     font-weight: 400;
     font-size: 12px;
-    color: #363845;
+    color: var(--diagnos-data-desc);
   }
 }
 </style>

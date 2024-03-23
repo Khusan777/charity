@@ -91,6 +91,8 @@ a {
       & .fond-img {
         width: 24px;
         height: 24px;
+        background-size: cover;
+        border-radius: 50%;
       }
       & div {
         font-size: 10px;

@@ -1,34 +1,43 @@
 <template>
   <div
     id="offcanvasBottom"
-    style="height: 80%"
+    style="height: 80%; background: var(--bottom-sheet-bg)"
     class="offcanvas offcanvas-bottom rounded-top-4"
     tabindex="-1"
     aria-labelledby="offcanvasBottomLabel"
   >
     <div style="padding: 20px 20px 0" class="offcanvas-header">
-      <h5 id="offcanvasBottomLabel" class="offcanvas-title">Фильтры</h5>
-      <button
-        type="button"
-        class="btn-close text-reset"
+      <h5
+        id="offcanvasBottomLabel"
+        style="color: var(--bottom-sheet-title)"
+        class="offcanvas-title"
+      >
+        Фильтры
+      </h5>
+      <NuxtImg
+        width="20"
+        height="20"
         data-bs-dismiss="offcanvas"
-        aria-label="Close"
-      ></button>
+        src="/images/x-icon.svg"
+        alt="x-icon"
+      ></NuxtImg>
     </div>
-    <div class="subtitle">Ниже выберите параметры для поиска</div>
+    <div style="color: var(--bottom-sheet-desc)" class="subtitle">
+      Ниже выберите параметры для поиска
+    </div>
     <div class="offcanvas-body">
       <div v-for="item in regions" :key="item" style="margin-top: -7px">
         <UiCheckbox
           v-model:checked="item.value"
           with-border-line
           label-clicked
-          :label="`<div style='font-weight:400;font-size:14px;color:#363845'>${item.title}</div><div style='font-weight:400;font-size:10px;color:#6a6a6a;'>${item.subtitle}</div>`"
+          :label="`<div style='font-weight:400;font-size:14px;color:var(--checkbox-region-title)'>${item.title}</div><div style='font-weight:400;font-size:10px;color:var(--checkbox-region-subtitle);'>${item.subtitle}</div>`"
         ></UiCheckbox>
       </div>
     </div>
     <div class="btns">
       <UiButton
-        style="background: #fff; color: #575965"
+        style="background: transparent; color: #575965"
         text-btn="Сбросить фильтр"
         :with-disabled="false"
         @click="unCheckAll"

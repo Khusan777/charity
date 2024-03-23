@@ -25,11 +25,11 @@
   margin: 0 20px 20px;
   border-radius: 12px;
   padding: 16px 10px;
-  background: #fff;
+  background: var(--history-bg-card);
   & .title {
     font-weight: 600;
     font-size: 16px;
-    color: #363845;
+    color: var(--history-card-title);
     padding-bottom: 8px;
   }
   & .title2 {
@@ -37,13 +37,13 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 133%;
-    color: #6a6a6a;
+    color: var(--history-text-color);
   }
   & .description {
     font-weight: 400;
     font-size: 12px;
     line-height: 133%;
-    color: #6a6a6a;
+    color: var(--history-text-color);
   }
 }
 </style>

@@ -110,14 +110,14 @@
   & .title {
     font-weight: 600;
     font-size: 16px;
-    color: #363845;
+    color: var(--report-transction-title);
   }
   & .data {
     width: 48%;
     padding: 8px 10px;
     display: flex;
     flex-direction: column;
-    background: #fff;
+    background: var(--report-transaction-card);
     border-radius: 12px;
     & .info {
       display: flex;
@@ -128,20 +128,20 @@
       font-weight: 400;
       font-size: 12px;
       line-height: 150%;
-      color: #6a6a6a;
+      color: var(--report-transaction-date);
     }
     & .time {
       font-weight: 400;
       font-size: 12px;
       line-height: 150%;
-      color: #6a6a6a;
+      color: var(--report-transaction-date);
     }
   }
   & .summa {
     font-weight: 700;
     line-height: normal;
     font-size: 14px;
-    color: #363845;
+    color: var(--report-transaction-summ);
   }
 }
 </style>

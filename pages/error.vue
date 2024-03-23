@@ -1,7 +1,7 @@
 <template>
   <div class="error-container">
     <div class="data">
-      <NuxtImg src="/images/error.png" alt="error"></NuxtImg>
+      <NuxtImg class="error-img" src="/images/error.png" alt="error"></NuxtImg>
       <div class="title">Упс что-то пошло не так</div>
       <div class="description">
         Произошла техническая ошибка. Попробуйте ещё раз.
@@ -34,6 +34,11 @@ const heightDevice = inject('devicePlatform')
   align-items: center;
   & .data {
     margin: auto;
+    & .error-img {
+      margin-left: 30px;
+      width: calc(100% - 40px);
+      text-align: center;
+    }
   }
   & .title {
     padding-top: 60px;
@@ -41,14 +46,14 @@ const heightDevice = inject('devicePlatform')
     font-weight: 500;
     font-size: 20px;
     text-align: center;
-    color: #363845;
+    color: var(--error-title);
   }
   & .description {
     font-weight: 400;
     font-size: 14px;
     line-height: 135%;
     text-align: center;
-    color: #6a6a6a;
+    color: var(--error-description);
   }
 }
 </style>

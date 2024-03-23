@@ -136,8 +136,8 @@ definePageMeta({
   height: v-bind(heightDevice);
   overflow: hidden;
   & .content-data {
-    max-height: calc(v-bind(heightDevice) - 153px);
-    height: calc(v-bind(heightDevice) - 153px);
+    max-height: calc(v-bind(heightDevice) - 150px);
+    height: calc(v-bind(heightDevice) - 150px);
     overflow-y: auto;
     & .complete {
       &-tabs {
@@ -151,7 +151,7 @@ definePageMeta({
           flex-wrap: nowrap;
 
           .nav-link {
-            background: #fff;
+            background: var(--actual-nav-tabs);
             box-shadow: -10px 10px 25px 0px rgba(255, 255, 255, 0.1) inset;
             backdrop-filter: blur(15px);
             width: 100%;
@@ -159,7 +159,7 @@ definePageMeta({
             border-radius: 0;
             font-weight: 400;
             font-size: 12px;
-            color: #363845;
+            color: var(--tabs-color);
             border: 0;
 
             &.active {
@@ -193,7 +193,7 @@ definePageMeta({
   position: fixed;
   z-index: 9;
   height: 50px;
-  background: rgb(226, 228, 240);
+  background: var(--bg-color);
 }
 [class*='tab-content'] {
   margin-top: 55px;

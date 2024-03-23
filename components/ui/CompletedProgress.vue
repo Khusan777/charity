@@ -16,7 +16,7 @@
     </div>
     <div class="completed-summa">
       <div class="summa">
-        Сумма собрана: <span>{{ amount }} сумов</span>
+        Сумма собрана: <span>{{ amount?.toLocaleString() }} сумов</span>
       </div>
     </div>
   </div>
@@ -48,23 +48,24 @@ defineProps({
     & .text {
       font-weight: 400;
       font-size: 10px;
-      color: #363845;
+      color: var(--collected);
     }
   }
   & .completed-summa {
     display: flex;
     align-items: center;
-    padding-bottom: 5px;
+    padding-top: 4px;
+    padding-bottom: 7px;
     & .summa {
       font-weight: 400;
       line-height: 12px;
       font-size: 10px;
-      color: #6a6a6a;
+      color: var(--collected-completed);
     }
     & span {
       font-weight: 700;
       font-size: 14px;
-      color: #363845;
+      color: var(--summa-span);
     }
   }
 }

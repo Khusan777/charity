@@ -80,20 +80,20 @@ const heightDevice = inject('devicePlatform')
     & .info-panel {
       border-radius: 0 0 12px 12px;
       padding: 20px 10px;
-      background: #fff;
+      background: var(--history-bg-card);
       & .date {
         font-weight: 500;
         font-size: 10px;
-        color: #6a6a6a;
+        color: var(--history-text-color);
         padding-bottom: 4px;
       }
       & .name {
         padding-bottom: 16px;
         font-weight: 500;
         font-size: 18px;
-        color: #363845;
+        color: var(--history-card-title);
         & span {
-          color: #2c2d35;
+          color: var(--history-card-title);
         }
       }
       & .info1 {
@@ -101,26 +101,26 @@ const heightDevice = inject('devicePlatform')
         font-weight: 400;
         font-size: 12px;
         line-height: 133%;
-        color: #6a6a6a;
+        color: var(--history-text-color);
       }
       & .info2 {
         padding-bottom: 10px;
         font-weight: 400;
         font-size: 12px;
         line-height: 133%;
-        color: #6a6a6a;
+        color: var(--history-text-color);
       }
     }
     & .photo-gallery {
       margin: 30px 0 20px;
       border-radius: 12px;
       padding: 10px 10px 20px 10px;
-      background: #fff;
+      background: var(--history-bg-card);
       & .title {
         padding-bottom: 8px;
         font-weight: 600;
         font-size: 16px;
-        color: #363845;
+        color: var(--history-card-title);
       }
     }
   }

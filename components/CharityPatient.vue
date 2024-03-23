@@ -73,16 +73,16 @@ defineProps({
   padding: 4px 20px 0;
   font-weight: 500;
   font-size: 18px;
-  color: #363845;
+  color: var(--patient-name);
   & span {
-    color: #2c2d35;
+    color: var(--patient-name-span);
   }
 }
 .city {
   padding: 0 20px 13px;
   font-weight: 400;
   font-size: 10px;
-  color: #6a6a6a;
+  color: var(--patient-city);
 }
 .charity-swiper {
   width: 100%;

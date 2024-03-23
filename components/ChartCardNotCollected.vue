@@ -75,6 +75,16 @@
       :amount="amountData"
       is-completed="false"
     ></UiCollectionProgress>
+    <div v-ripple.500="'rgba(255, 255, 255, 0.35)'" class="help-btn">
+      <UiButton
+        :with-disabled="false"
+        @click="
+          $router.push({
+            path: `/main/${feeItem?.id}`,
+          })
+        "
+      ></UiButton>
+    </div>
   </div>
 </template>
 
@@ -90,3 +100,9 @@ const amountData = reactive({
   amount: props.feeItem?.amount,
 })
 </script>
+
+<style lang="scss" scoped>
+.help-btn {
+  padding-bottom: 10px;
+}
+</style>

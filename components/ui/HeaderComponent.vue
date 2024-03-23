@@ -2,35 +2,41 @@
   <div class="aheader">
     <div class="header-content">
       <nuxt-link v-if="leftRoute" :to="leftRoute">
-        <svg
+        <NuxtImg
+          v-if="$colorMode.preference === 'light'"
           width="20"
-          height="24"
-          viewBox="0 0 20 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M13.6667 17.6615L7 10.9948L13.6667 4.32812"
-            stroke="#616380"
-            stroke-width="2"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
+          height="22"
+          src="/images/left-icon-light.svg"
+          alt="left-icon"
+        ></NuxtImg>
+        <NuxtImg
+          v-else
+          width="20"
+          height="22"
+          src="/images/left-icon-dark.svg"
+          alt="left-icon"
+        ></NuxtImg>
       </nuxt-link>
       <div v-if="!left && !leftRoute" style="width: 20px; height: 24px"></div>
       <div v-if="center" class="header-center">
-        <div
-          class="header-center-text"
-          :style="color === 'black' ? 'color: #000;' : ''"
-        >
+        <div class="header-center-text">
           {{ centerText }}
         </div>
       </div>
       <div v-if="left" class="left-container">
         <div class="logo-data">
-          <NuxtImg class="logo-img" src="/images/logo.svg" alt="logo"></NuxtImg>
+          <NuxtImg
+            v-if="$colorMode.preference === 'light'"
+            class="logo-img"
+            src="/images/logo_light.svg"
+            alt="logo"
+          ></NuxtImg>
+          <NuxtImg
+            v-else
+            class="logo-img"
+            src="/images/logo_dark.svg"
+            alt="logo"
+          ></NuxtImg>
         </div>
         <div v-if="!loading" class="help-now">
           <div class="counters">
@@ -60,7 +66,7 @@
           ></NuxtImg>
         </div>
       </div>
-      <div v-else style="width: 20px; height: 24px"></div>
+      <div v-else style="width: 20px; height: 22px"></div>
     </div>
   </div>
 </template>
@@ -124,7 +130,7 @@ defineProps({
           }
 
           & .text {
-            color: rgb(54, 56, 69);
+            color: var(--text-count);
             font-size: 12px;
             font-weight: 700;
             line-height: 14px;
@@ -139,7 +145,7 @@ defineProps({
         }
 
         & .text-content {
-          color: rgb(106, 106, 106);
+          color: var(--now-help);
           font-size: 10px;
           font-weight: 400;
           line-height: 12px;
@@ -154,7 +160,7 @@ defineProps({
       font-weight: 700;
       font-size: 16px;
       text-align: center;
-      color: #363845;
+      color: var(--header-center-text);
       font-style: normal;
       line-height: normal;
     }

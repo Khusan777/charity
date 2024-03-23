@@ -1,8 +1,15 @@
 <template>
   <div v-if="loading" class="loader-container">
     <NuxtImg
+      v-if="$colorMode.preference === 'light'"
       style="width: 100%; padding: 0 60px"
-      src="/images/logo.svg"
+      src="/images/logo_light.svg"
+      alt="logo"
+    ></NuxtImg>
+    <NuxtImg
+      v-else
+      style="width: 100%; padding: 0 60px"
+      src="/images/logo_dark.svg"
       alt="logo"
     ></NuxtImg>
   </div>
@@ -153,7 +160,7 @@ const acceptOfferta = () => {
     text-align: left;
     font-weight: 700;
     font-size: 24px;
-    color: #363845;
+    color: var(--start-title);
   }
   & .description {
     padding: 16px 20px 0;
@@ -161,7 +168,7 @@ const acceptOfferta = () => {
     font-weight: 400;
     font-size: 12px;
     line-height: 133%;
-    color: #2c2d35;
+    color: var(--start-description);
   }
 }
 

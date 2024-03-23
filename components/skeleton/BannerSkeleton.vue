@@ -6,7 +6,7 @@
       margin: 20px;
       padding: 15px 15px 15px;
       border-radius: 12px;
-      background: #fff;
+      background: var(--chart-card-bg);
       height: auto;
     "
   >
