@@ -184,14 +184,16 @@ export default {
       data.append('type_help_id', this.type)
       data.append('comment', this.des)
       console.log(data)
-      apiClient.post('/fee', data, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }).then(() => {
-        this.loading = false
-        modal.show()
-      })
+      apiClient
+        .post('/fee', data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then(() => {
+          this.loading = false
+          modal.show()
+        })
     },
     goHome() {
       this.$router.push('/')

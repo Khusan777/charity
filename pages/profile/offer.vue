@@ -45,7 +45,7 @@ if (!appStore.info) {
     overflow-y: scroll;
     font-size: 14px;
   }
-  &-text{
+  &-text {
     color: var(--text5);
   }
 }

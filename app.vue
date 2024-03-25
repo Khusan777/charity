@@ -7,7 +7,7 @@
 
 <script setup>
 const colorMode = useColorMode()
-const getTheme = computed(() => getCookie('theme'))
+// const getTheme = computed(() => getCookie('theme'))
 colorMode.preference = 'dark'
 </script>
 

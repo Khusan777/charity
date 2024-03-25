@@ -178,7 +178,7 @@ const appStore = useAppStore()
       img {
         width: 24px;
       }
-      span{
+      span {
         color: var(--text3);
       }
     }
