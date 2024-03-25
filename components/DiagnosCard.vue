@@ -1,11 +1,17 @@
 <template>
   <div class="help-data">
     <UiBadge
-      v-if="isCompleted === 'false'"
+      v-if="!isCompleted"
       style="margin-bottom: 10px"
       with-image
-      img-ref="/images/badge/urgentHelp.svg"
-      status-text="Нужна срочная помощь"
+      :img-ref="`https://dev-promo23.click.uz/storage/${patient?.type_need?.icon}`"
+      :status-text="
+        $i18n.locale === 'en'
+          ? patient?.type_need?.name_en
+          : $i18n.locale === 'uz'
+            ? patient?.type_need?.name_uz
+            : patient?.type_need?.name_ru
+      "
       back-color="rgb(255, 243, 224)"
       colour="rgb(251, 140, 0)"
     ></UiBadge>
@@ -13,13 +19,26 @@
       v-else
       style="margin-bottom: 10px"
       with-image
-      img-ref="/images/badge/treatment.svg"
-      status-text="На лечении"
+      :img-ref="`https://dev-promo23.click.uz/storage/${patient?.status?.icon}`"
+      :status-text="
+        $i18n.locale === 'en'
+          ? patient?.status?.name_en
+          : $i18n.locale === 'uz'
+            ? patient?.status?.name_uz
+            : patient?.status?.name_ru
+      "
       back-color="#EDF8E9"
       colour="#66ca28"
     ></UiBadge>
-    <UiCompletedProgress v-if="isCompleted === 'true'"></UiCompletedProgress>
-    <UiCollectionProgress v-else is-completed="true"></UiCollectionProgress>
+    <UiCompletedProgress
+      v-if="isCompleted"
+      :amount="patient?.amount"
+    ></UiCompletedProgress>
+    <UiCollectionProgress
+      v-else
+      :amount="{ amount: patient?.amount, leftAmount: patient?.left_amount }"
+      is-completed="true"
+    ></UiCollectionProgress>
     <div class="published">
       <div class="info">
         <div class="data">
@@ -30,7 +49,7 @@
           ></NuxtImg>
           <div>
             <div class="text">Дата публикации</div>
-            <div class="date">10 февр. 2024</div>
+            <div class="date">{{ formatted(patient?.created_at) }}</div>
           </div>
         </div>
         <div class="data">
@@ -41,7 +60,7 @@
           ></NuxtImg>
           <div>
             <div class="text">Уже помогают</div>
-            <div class="date">45 558</div>
+            <div class="date">{{ patient?.transactions_count }}</div>
           </div>
         </div>
       </div>
@@ -52,7 +71,13 @@
         <div>
           <div class="title">Диагноз</div>
           <div class="description">
-            Дефект предсердно-желудочковой перегородки
+            {{
+              $i18n.locale === 'uz'
+                ? patient?.sick_category?.name_uz
+                  ? $i18n.locale === 'en'
+                  : patient?.sick_category?.name_en
+                : patient?.sick_category?.name_ru
+            }}
           </div>
         </div>
       </div>
@@ -82,8 +107,16 @@
       </div>
       <div class="building">
         <div>
-          <div class="title">Вид помощи</div>
-          <div class="description">Хирургическое лечение</div>
+          <div class="title">Фонд</div>
+          <div class="description">
+            {{
+              $i18n.locale === 'uz'
+                ? patient?.fond?.name_uz
+                  ? $i18n.locale === 'en'
+                  : patient?.fond?.name_en
+                : patient?.fond?.name_ru
+            }}
+          </div>
         </div>
         <NuxtImg
           width="48"
@@ -105,14 +138,32 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
 import BottomSheetDisease from '~/components/ui/BottomSheetDisease.vue'
 
+const $i18n = useI18n()
 defineProps({
   isCompleted: {
-    type: String,
+    type: Boolean,
+    required: true,
+  },
+  patient: {
+    type: Object,
     required: true,
   },
 })
+const formatted = (date) => {
+  const parsedDate = useDateFormat(date, 'DD MMM. YYYY', {
+    locales:
+      $i18n.locale.value === 'en'
+        ? // eslint-disable-next-line no-constant-condition
+          'en-En'
+          ? $i18n.locale.value === 'uz'
+          : 'uz-Uz'
+        : 'ru-Ru',
+  })
+  return parsedDate.value?.replace(/['"]+/g, '')
+}
 </script>
 
 <style scoped lang="scss">

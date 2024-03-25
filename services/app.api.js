@@ -9,4 +9,13 @@ const refreshAuthToken = () => apiClient.post(`/refresh`)
 
 const getCompletedFee = (params) => apiClient.get('/fee', { params })
 
-export { getMe, getFee, refreshAuthToken, getInfo, getCompletedFee }
+const getDetailPatient = (patientId) => apiClient.get(`/fee/${patientId}`)
+
+export {
+  getMe,
+  getFee,
+  refreshAuthToken,
+  getInfo,
+  getCompletedFee,
+  getDetailPatient,
+}

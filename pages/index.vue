@@ -64,7 +64,6 @@ import { getMe } from '~/services/app.api'
 import { parseErrorsFromResponse, setToken } from '~/utils'
 import { apiClient } from '~/services/apiClient'
 
-const colorMode = useColorMode()
 const loading = ref(true)
 const acceptBtn = ref(false)
 const isNotAcceptCode = ref(null)
@@ -75,9 +74,6 @@ const appStore = useAppStore()
 const { user } = storeToRefs(appStore)
 const $toast = useToast()
 
-const getTheme = computed(() => getCookie('theme'))
-colorMode.preference = getTheme.value
-
 const cookieWebSession = computed(() =>
   getCookie('click-web-session')
     ? getCookie('click-web-session')
@@ -86,7 +82,6 @@ const cookieWebSession = computed(() =>
 if (!appStore.webSession) {
   appStore.setWebSession(cookieWebSession.value)
 }
-const lang = computed(() => getCookie('lang'))
 
 const getUserData = () => {
   getMe({
@@ -113,7 +108,7 @@ const getUserData = () => {
 
 getUserData()
 const acceptOfferta = () => {
-  apiClient.defaults.headers.common['Accept-Language'] = lang.value
+  apiClient.defaults.headers.common['Accept-Language'] = appStore.lang
   acceptBtn.value = true
   getMe({
     web_session: appStore.webSession

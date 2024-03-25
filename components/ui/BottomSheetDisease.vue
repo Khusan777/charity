@@ -83,6 +83,18 @@
   </div>
 </template>
 
+<script setup>
+import { useAppStore } from '~/stores/AppStore'
+import { apiClient } from '~/services/apiClient'
+
+const appStore = useAppStore()
+if (!appStore.info) {
+  apiClient.get('/info').then((res) => {
+    appStore.info = res.data
+  })
+}
+</script>
+
 <style scoped lang="scss">
 .offcanvas {
   & .offcanvas-body {
@@ -101,4 +113,3 @@
   }
 }
 </style>
-<script setup lang="ts"></script>

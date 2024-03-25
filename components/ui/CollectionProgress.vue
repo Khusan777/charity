@@ -41,7 +41,7 @@ const props = defineProps({
 })
 
 const muchAmount = computed(
-  () => props.amount?.amount - props.amount?.leftAmount || null,
+  () => props.amount?.amount - props.amount?.leftAmount || 0,
 )
 const percentMuchNumber = computed(
   () => Math.round((muchAmount.value * 100) / props.amount?.amount) || null,

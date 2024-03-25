@@ -5,6 +5,26 @@
   </NuxtLayout>
 </template>
 
+<script setup>
+import { useI18n } from 'vue-i18n'
+import { useAppStore } from '~/stores/AppStore'
+
+const $i18n = useI18n()
+const colorMode = useColorMode()
+const getTheme = computed(() => getCookie('theme'))
+colorMode.preference = getTheme.value || 'dark'
+
+const appStore = useAppStore()
+const lang = computed(() => getCookie('lang'))
+appStore.setLang(lang.value)
+if (lang.value && lang.value === 'uz') {
+  $i18n.locale.value = 'uz'
+}
+if (lang.value && lang.value === 'en') {
+  $i18n.locale.value = 'en'
+}
+</script>
+
 <style lang="scss">
 @forward 'assets/styles/theme-style';
 
@@ -109,7 +129,7 @@ a {
     padding-bottom: 8px;
     & .image-user {
       width: 91px;
-      height: auto;
+      height: 91px;
       border-radius: 6px;
     }
     & .name {

@@ -1,24 +1,27 @@
 <template>
   <div class="history">
     <div class="title">История о подопечном</div>
-    <div class="description">
-      Каждая история наших подопечных — это история преодоления: обстоятельств,
-      случайностей, себя. Юра лучше многих знает о том, что такое преодоление.
-      Жизнь подбрасывала парню столько событий, которые могли сломать его, но
-      Юра просто еще усерднее работал, чтобы преодолеть очередное препятствие.
-      Мы верим, что и новые испытания Юра сможет преодолеть. Но для этого парню
-      нужна наша помощь.
-      <div class="title2">
-        В 2004 году родителей Юры лишили родительских прав. За подобными словами
-        всегда стоит трагедия — трагедия семьи, трагедия детей, оказавшихся на
-        попечении государства. Юра и его брат оказались в интернате. Несколько
-        раз Юру пытались определить в приемную семью, но всякий раз он
-        отказывался — не хотел разлучаться с братом, единственным оставшимся
-        рядом родным человеком.
-      </div>
-    </div>
+    <div
+      class="description"
+      v-html="
+        $i18n.locale === 'en'
+          ? historyPatient?.description_en
+          : $i18n.locale === 'uz'
+            ? historyPatient?.description_uz
+            : historyPatient?.description_uz
+      "
+    ></div>
   </div>
 </template>
+
+<script setup>
+defineProps({
+  historyPatient: {
+    type: Object,
+    required: true,
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .history {
@@ -26,24 +29,15 @@
   border-radius: 12px;
   padding: 16px 10px;
   background: var(--history-bg-card);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: var(--history-text-color);
   & .title {
     font-weight: 600;
     font-size: 16px;
     color: var(--history-card-title);
     padding-bottom: 8px;
-  }
-  & .title2 {
-    padding-top: 10px;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 133%;
-    color: var(--history-text-color);
-  }
-  & .description {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 133%;
-    color: var(--history-text-color);
   }
 }
 </style>

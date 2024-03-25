@@ -38,7 +38,7 @@
           <UiAnimatedSkeleton height="8px" width="200px" />
         </div>
         <UiBorderLine></UiBorderLine>
-        <div class="disease">
+        <div>
           <UiAnimatedSkeleton height="10px" width="200px" />
         </div>
       </div>
@@ -50,7 +50,6 @@
         flex-direction: column;
         gap: 5px;
       "
-      class="collection-progress"
     >
       <UiAnimatedSkeleton height="15px" width="100%" border-radius="12px" />
       <UiAnimatedSkeleton height="15px" width="100%" border-radius="12px" />
@@ -61,4 +60,3 @@
     </div>
   </div>
 </template>
-<script setup lang="ts"></script>

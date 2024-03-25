@@ -32,6 +32,8 @@
       <MainSkeleton></MainSkeleton>
       <MainSkeleton></MainSkeleton>
       <BannerSkeleton></BannerSkeleton>
+      <MainSkeleton></MainSkeleton>
+      <MainSkeleton></MainSkeleton>
     </template>
     <template v-else>
       <div class="help-block">
@@ -165,8 +167,8 @@ watch(
 
 <style lang="scss" scoped>
 .index-container {
-  height: calc(v-bind(heightDevice) - 150px);
-  max-height: calc(v-bind(heightDevice) - 150px);
+  height: calc(v-bind(heightDevice) - 165px);
+  max-height: calc(v-bind(heightDevice) - 165px);
   padding-bottom: 8px;
   overflow-y: auto !important;
 }

@@ -29,7 +29,7 @@
     <div class="user-disease">
       <NuxtImg
         class="image-user"
-        :src="`https://dev-promo23.click.uz/storage/${feeItem?.main_photo?.name}`"
+        :src="`https://dev-promo23.click.uz/storage/${feeItem?.patient_photo}`"
         alt="user"
       ></NuxtImg>
       <div>

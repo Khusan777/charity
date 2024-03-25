@@ -5,9 +5,13 @@ export const useAppStore = defineStore('AppStore', () => {
   const user = ref(null)
   const webSession = ref(null)
   const info = ref(null)
+  const lang = ref(null)
 
   const setWebSession = (session) => {
     webSession.value = session
+  }
+  const setLang = (language) => {
+    lang.value = language
   }
 
   return {
@@ -16,5 +20,7 @@ export const useAppStore = defineStore('AppStore', () => {
     setWebSession,
     webSession,
     info,
+    setLang,
+    lang,
   }
 })
