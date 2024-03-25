@@ -8,7 +8,8 @@
     <div class="about-wrapper">
       <div class="about-info">
         <div class="about-logo">
-          <NuxtImg src="/images/logo.svg"></NuxtImg>
+          <NuxtImg src="/images/logo.svg" v-if="$colorMode.preference == 'light'"></NuxtImg>
+          <NuxtImg src="/images/logo-dark.svg" v-if="$colorMode.preference == 'dark'"></NuxtImg>
         </div>
         <div class="about-text">
           <p>
@@ -59,8 +60,8 @@ const heightDevice = inject('devicePlatform')
   height: v-bind(heightDevice);
   overflow-y: scroll;
   &-wrapper {
-    height: calc(heightDevice - 75px);
-    max-height: calc(heightDevice - 75px);
+    height: calc(v-bind(heightDevice) - 75px);
+    max-height: calc(v-bind(heightDevice) - 75px);
     padding: 0 20px;
     display: flex;
     flex-direction: column;
@@ -76,7 +77,7 @@ const heightDevice = inject('devicePlatform')
     &-item {
       width: 40px;
       height: 40px;
-      background: #fff;
+      background: var(--bg3);
       border-radius: 10px;
       display: flex;
       align-items: center;
@@ -99,7 +100,7 @@ const heightDevice = inject('devicePlatform')
       margin-bottom: 20px;
       line-height: 16px;
       font-size: 12px;
-      color: #2c2d35;
+      color: var(--text5);
       &:last-child {
         margin-bottom: 0;
       }

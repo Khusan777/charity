@@ -154,7 +154,7 @@ defineProps({
       font-weight: 700;
       font-size: 16px;
       text-align: center;
-      color: #363845;
+      color: var(--text);
       font-style: normal;
       line-height: normal;
     }

@@ -97,8 +97,8 @@ const appStore = useAppStore()
   padding-bottom: 75px;
   overflow-y: scroll;
   &-wrapper {
-    height: calc(100% - 75px);
-    max-height: calc(100% - 75px);
+    height: calc(v-bind(heightDevice) - 75px);
+    max-height: calc(v-bind(heightDevice) - 75px);
     padding: 0 20px;
   }
   &-user {
@@ -112,23 +112,23 @@ const appStore = useAppStore()
       width: 90px;
       height: 90px;
       border-radius: 50%;
-      border: 2px solid #fff;
+      border: 2px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #fff;
+      background: var(--bg1);
       img {
         width: 57px;
       }
     }
     &-name {
-      color: #363845;
+      color: var(--text);
       font-size: 20px;
       font-weight: 600;
       line-height: 100%;
     }
     &-phone {
-      color: #6a6a6a;
+      color: var(--text2);
       font-size: 14px;
       margin-bottom: 5px;
     }
@@ -140,8 +140,8 @@ const appStore = useAppStore()
       gap: 6px;
       padding: 0 10px;
       border-radius: 100px;
-      background: #fff;
-      color: #6a6a6a;
+      background: var(--bg1);
+      color: var(--text2);
       font-size: 12px;
       img {
         width: 18px;
@@ -149,7 +149,7 @@ const appStore = useAppStore()
     }
   }
   &-menu {
-    background: #fff;
+    background: var(--bg1);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -159,7 +159,7 @@ const appStore = useAppStore()
     }
     &-item {
       display: flex;
-      border-bottom: 1px solid #d8dbf0;
+      border-bottom: 1px solid var(--border2);
       height: 44px;
       display: flex;
       align-items: center;
@@ -177,6 +177,9 @@ const appStore = useAppStore()
       font-size: 14px;
       img {
         width: 24px;
+      }
+      span{
+        color: var(--text3);
       }
     }
     &-right {
