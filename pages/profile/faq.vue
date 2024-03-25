@@ -99,7 +99,7 @@ export default {
   }
   &-item {
     margin-bottom: 16px;
-    background: #fff;
+    background: var(--bg3);
     border-radius: 6px;
     padding: 10px 15px;
     &:last-child {
@@ -127,7 +127,7 @@ export default {
     }
     &-title {
       width: calc(100% - 35px);
-      color: #363845;
+      color: var(--text);
       font-size: 12px;
       font-weight: 500;
       text-align: left;
@@ -144,10 +144,10 @@ export default {
     }
     &-content {
       margin-top: 10px;
-      color: #6a6a6a;
+      color: var(--text5);
       font-size: 12px;
       padding-top: 5px;
-      border-top: 1px solid #f6f6f6;
+      border-top: 1px solid var(--border);
     }
   }
 }

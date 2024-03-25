@@ -53,8 +53,8 @@ const heightDevice = inject('devicePlatform')
   height: v-bind(heightDevice);
   overflow-y: scroll;
   &-wrapper {
-    height: calc(100% - 75px);
-    max-height: calc(100% - 75px);
+    height: calc(v-bind(heightDevice) - 75px);
+    max-height: calc(v-bind(heightDevice) - 75px);
     padding: 0 20px;
     display: flex;
     flex-direction: column;
@@ -62,7 +62,7 @@ const heightDevice = inject('devicePlatform')
   }
   &-item {
     padding: 10px;
-    background: #fff;
+    background: var(--bg3);
     border-radius: 10px;
     margin-bottom: 10px;
     &:last-child {
@@ -85,16 +85,16 @@ const heightDevice = inject('devicePlatform')
     &-title {
       line-height: 19.2px;
       font-size: 16px;
-      color: #363845;
+      color: var(--text);
     }
     &-city {
       font-size: 12px;
       line-height: 14.4px;
-      color: #6a6a6a;
+      color: var(--text4);
     }
     &-hr {
       margin: 10px 0;
-      background: #f6f6f6;
+      background: var(--border);
       width: 100%;
       height: 1px;
     }
@@ -120,13 +120,13 @@ const heightDevice = inject('devicePlatform')
         font-size: 12px;
         font-weight: 500;
         line-height: 100%;
-        color: #363845;
+        color: var(--text);
       }
     }
     &-des {
       font-size: 12px;
       line-height: 16px;
-      color: #6a6a6a;
+      color: var(--text2);
     }
   }
 }

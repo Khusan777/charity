@@ -77,29 +77,6 @@
           ></textarea>
         </div>
       </div>
-      <div class="sendform-photo">
-        <div class="sendform-photo-title">Прикрепите Фото ребенка</div>
-        <div class="sendform-photo-des">
-          Допустимые расширения файлов: jpeg, png<br />Размер каждого файла не
-          более 5 МБ
-        </div>
-        <input id="file" type="file" name="file" />
-        <input
-          id="photo"
-          type="file"
-          accept="image/*"
-          class="sendform-photo-input"
-          @change="uploadImage"
-        />
-        <label for="photo" class="sendform-photo-box">
-          <NuxtImg
-            v-if="previewImage"
-            :src="previewImage"
-            class="uploading-image"
-          ></NuxtImg>
-          <NuxtImg v-else src="/images/upload.svg"></NuxtImg>
-        </label>
-      </div>
       <div class="sendform-bottom">
         Направляя нам просьбу о помощи, пожалуйста, помните, что она может быть
         проверена Национальным агентством социальной защиты и внесена в
@@ -205,8 +182,8 @@ export default {
       data.append('region_id', this.region)
       data.append('patient_phone', result_number)
       data.append('type_help_id', this.type)
-      data.append('photos[]', this.file, this.file.name)
       data.append('comment', this.des)
+      console.log(data)
       apiClient
         .post('/fee', data, {
           headers: {
@@ -238,12 +215,12 @@ export default {
   &-top {
     font-size: 12px;
     line-height: 16px;
-    color: #363845;
+    color: var(--text4);
     margin-bottom: 10px;
   }
   &-info {
     border-radius: 12px;
-    background: #fff;
+    background: var(--bg1);
     padding: 15px 10px;
     margin-bottom: 20px;
     display: flex;
@@ -256,24 +233,25 @@ export default {
     &-text {
       font-size: 12px;
       line-height: 16px;
-      color: #363845;
+      color: var(--text);
     }
   }
   &-pac {
-    background: #fff;
+    background: var(--bg1);
     padding: 20px 15px;
     border-radius: 12px;
+    margin-bottom: 20px;
     &-title {
       font-size: 16px;
       font-weight: 700;
       line-height: 19.2px;
-      color: #363845;
+      color: var(--text);
       margin-bottom: 4px;
     }
     &-des {
       font-size: 12px;
       line-height: 14.4px;
-      color: #2c2d35;
+      color: var(--text5);
       margin-bottom: 15px;
     }
     &-input {
@@ -286,7 +264,7 @@ export default {
       label {
         font-size: 12px;
         line-height: 16px;
-        color: #6a6a6a;
+        color: var(--text2);
         margin-bottom: 2px;
         span {
           color: #fd7172;
@@ -295,12 +273,14 @@ export default {
       input {
         height: 45px;
         line-height: 45px;
-        border: 1px solid #d8dbf0;
+        border: 1px solid var(--border2);
         border-radius: 10px;
         padding: 0 10px;
         width: 100%;
         font-size: 14px;
         transition: 0.5s;
+        background: none;
+        color: var(--text);
         &:focus {
           border-color: #0073ff;
           transition: 0.5s;
@@ -310,12 +290,14 @@ export default {
       textarea {
         height: 90px;
         line-height: 20px;
-        border: 1px solid #d8dbf0;
+        border: 1px solid var(--border2);
         border-radius: 10px;
         padding: 5px 10px;
         width: 100%;
         font-size: 14px;
         transition: 0.5s;
+        background: none;
+        color: var(--text);
         &:focus {
           border-color: #0073ff;
           transition: 0.5s;
@@ -333,7 +315,7 @@ export default {
       label {
         font-size: 12px;
         line-height: 16px;
-        color: #6a6a6a;
+        color: var(--text2);
         margin-bottom: 2px;
         span {
           color: #fd7172;
@@ -342,43 +324,9 @@ export default {
       select {
         font-size: 14px;
         height: 45px;
-        border: 1px solid #d8dbf0;
-      }
-    }
-  }
-  &-photo {
-    background: #fff;
-    padding: 20px 15px;
-    border-radius: 12px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    &-title {
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 19.2px;
-      color: #363845;
-      margin-bottom: 4px;
-    }
-    &-des {
-      font-size: 12px;
-      line-height: 14.4px;
-      color: #2c2d35;
-      margin-bottom: 15px;
-    }
-    &-input {
-      opacity: 0;
-      top: 0;
-      right: 0;
-      position: absolute;
-      z-index: -1;
-    }
-    &-box {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      img {
-        max-width: 135px;
-        width: 100%;
+        border: 1px solid var(--border2);
+        background: none;
+        color: var(--text);
       }
     }
   }
@@ -386,12 +334,14 @@ export default {
     font-size: 12px;
     line-height: 16px;
     margin-bottom: 40px;
+    color: var(--text4);
   }
   &-button {
     p {
       font-size: 12px;
       line-height: 14.4px;
       margin-bottom: 10px;
+      color: var(--text4);
     }
     button {
       width: 100%;
@@ -414,7 +364,7 @@ export default {
   .modal-dialog {
     padding: 0 10px;
     .modal-content {
-      background: #e2e4f0;
+      background: var(--bg2);
       .modal-body {
         display: flex;
         flex-direction: column;
@@ -434,13 +384,13 @@ export default {
   &-title {
     font-size: 16px;
     line-height: 18px;
-    color: #363845;
+    color: var(--text);
     margin-bottom: 8px;
     font-weight: 600;
   }
   &-des {
     font-size: 14px;
-    color: #363845;
+    color: var(--text4);
     line-height: 18px;
     margin-bottom: 20px;
     font-weight: 400;
