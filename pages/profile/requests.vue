@@ -34,19 +34,25 @@
               <div class="requests-item-body-val">Сенбаев Арслан</div>
             </div>
             <div class="requests-item-body-item">
-              <div class="requests-item-body-label">ФИО ребенка</div>
-              <div class="requests-item-body-val">Сенбаев Арслан</div>
+              <div class="requests-item-body-label">Дата рождения</div>
+              <div class="requests-item-body-val">20.03.2018</div>
             </div>
             <div class="requests-item-body-item">
-              <div class="requests-item-body-label">ФИО ребенка</div>
-              <div class="requests-item-body-val">Сенбаев Арслан</div>
+              <div class="requests-item-body-label">Область проживания</div>
+              <div class="requests-item-body-val">Ташкент</div>
             </div>
             <div class="requests-item-body-item">
-              <div class="requests-item-body-label">ФИО ребенка</div>
-              <div class="requests-item-body-val">Сенбаев Арслан</div>
+              <div class="requests-item-body-label">Номер телефона</div>
+              <div class="requests-item-body-val">+998 (99) 123 45 67</div>
+            </div>
+            <div class="requests-item-body-item">
+              <div class="requests-item-body-label">Тип нуждаемости</div>
+              <div class="requests-item-body-val">Хирургическое лечение</div>
             </div>
           </div>
-          <button class="requests-item-more" v-if="status == 1">Подробнее</button>
+          <button class="requests-item-more" v-if="status == 1" @click="
+            $router.push({ path: `/main/81`, query: { completed: true } })
+          ">Подробнее</button>
         </div>
       </div>
     </div>
@@ -59,7 +65,7 @@ export default {
   data() {
     return {
       heightDevice: inject('devicePlatform'),
-      status: 2
+      status: 1
     }
   }
 }

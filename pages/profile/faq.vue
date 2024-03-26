@@ -27,30 +27,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="faq-item">
-          <button
-            class="faq-item-top collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#faq2"
-            aria-expanded="false"
-            aria-controls="faq2"
-          >
-            <div class="faq-item-title">
-              Куда попадут деньги от пожертвований?
-            </div>
-            <div class="faq-item-icon">
-              <NuxtImg src="/images/tick.svg"></NuxtImg>
-            </div>
-          </button>
-          <div id="faq2" class="collapse faq-item-body">
-            <div class="faq-item-content">
-              Все денежные средства (пожертвования) через системы Payme, CLICK ,
-              UZUM и боксов попадают на расчетный счет фонда, и оттуда
-              распределяются по программам.
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>
@@ -92,11 +68,11 @@ export default {
 .faq {
   max-height: v-bind(heightDevice);
   height: v-bind(heightDevice);
-  overflow-y: scroll;
   &-wrapper {
-    height: calc(v-bind(heightDevice) - 75px);
-    max-height: calc(v-bind(heightDevice) - 75px);
+    height: calc(100% - 75px);
+    max-height: calc(100% - 75px);
     padding: 0 20px;
+    overflow-y: scroll;
   }
   &-item {
     margin-bottom: 16px;
