@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       appStore: useAppStore(),
-      heightDevice: inject('devicePlatform')
+      heightDevice: inject('devicePlatform'),
     }
   },
   computed: {

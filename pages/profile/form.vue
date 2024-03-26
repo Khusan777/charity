@@ -28,11 +28,21 @@
         </div>
         <div class="sendform-pac-input">
           <label for="fio">Фамилия ребенка<span>*</span></label>
-          <input id="fio" v-model="surname" placeholder="Фамилия" @input="filterSurname" />
+          <input
+            id="fio"
+            v-model="surname"
+            placeholder="Фамилия"
+            @input="filterSurname"
+          />
         </div>
         <div class="sendform-pac-input">
           <label for="name">Имя ребенка<span>*</span></label>
-          <input id="name" v-model="name" placeholder="Имя" @input="filterName" />
+          <input
+            id="name"
+            v-model="name"
+            placeholder="Имя"
+            @input="filterName"
+          />
         </div>
         <div class="sendform-pac-input">
           <label for="birthday">Дата рождения<span>*</span></label>
@@ -40,11 +50,7 @@
         </div>
         <div class="sendform-pac-select">
           <label for="region">Область проживания<span>*</span></label>
-          <select
-            id="region"
-            v-model="region"
-            class="form-select"
-          >
+          <select id="region" v-model="region" class="form-select">
             <option value="10" selected>г. Ташкент</option>
             <option value="11">Ташкентская область</option>
             <option value="1">Андижанская область</option>
@@ -70,11 +76,7 @@
         </div>
         <div class="sendform-pac-select">
           <label for="type">Тип нуждаемости<span>*</span></label>
-          <select
-            id="type"
-            v-model="type"
-            class="form-select"
-          >
+          <select id="type" v-model="type" class="form-select">
             <option value="1" selected>Хирургическое лечение</option>
             <option value="2">Медикаменты</option>
           </select>
@@ -168,6 +170,18 @@ export default {
       loading: false,
     }
   },
+  computed: {
+    disabled() {
+      return (
+        this.surname != null &&
+        this.name != null &&
+        this.phone != null &&
+        this.birthday != null &&
+        this.region != null &&
+        this.type != null
+      )
+    },
+  },
   methods: {
     uploadImage(e) {
       const image = e.target.files[0]
@@ -208,17 +222,12 @@ export default {
       this.$router.push('/')
     },
     filterSurname() {
-			this.surname = this.surname.replace(/[^a-zа-яё\s]/gi, "");
-		},
+      this.surname = this.surname.replace(/[^a-zа-яё\s]/gi, '')
+    },
     filterName() {
-			this.name = this.name.replace(/[^a-zа-яё\s]/gi, "");
-		}
+      this.name = this.name.replace(/[^a-zа-яё\s]/gi, '')
+    },
   },
-  computed: {
-    disabled(){
-      return this.surname != null && this.name != null && this.phone != null && this.birthday != null && this.region != null && this.type != null
-    }
-  }
 }
 </script>
 
@@ -324,11 +333,11 @@ export default {
           outline: 0;
         }
       }
-      &-box{
+      &-box {
         display: flex;
         align-items: center;
         gap: 5px;
-        span{
+        span {
           font-size: 14px;
           color: var(--text);
         }
@@ -386,7 +395,7 @@ export default {
       border: 0;
       font-size: 14px;
       font-weight: 600;
-      &:disabled{
+      &:disabled {
         background: #606060;
         opacity: 0.5;
       }

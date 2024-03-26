@@ -10,23 +10,51 @@
         <div class="requests-top-icon">
           <NuxtImg src="/images/info.svg"></NuxtImg>
         </div>
-        <div class="requests-top-text">После отправки Заявления и получения полного пакета документов, в рабочие дни с вами может связаться сотрудник фонда для уточнения деталей, и в течение 10 рабочих дней вам придет ответ с решением экспертной комиссии.</div>
+        <div class="requests-top-text">
+          После отправки Заявления и получения полного пакета документов, в
+          рабочие дни с вами может связаться сотрудник фонда для уточнения
+          деталей, и в течение 10 рабочих дней вам придет ответ с решением
+          экспертной комиссии.
+        </div>
       </div>
       <div class="requests-list">
         <div class="requests-item">
           <div class="requests-item-top">
             <div class="requests-item-box">
               <div class="requests-item-top-left">
-                <div class="requests-item-top-left-date">10:35 03 февр. 16.05</div>
-                <div class="requests-item-top-left-title">Номер заявки: <span>3456789</span></div>
+                <div class="requests-item-top-left-date">
+                  10:35 03 февр. 16.05
+                </div>
+                <div class="requests-item-top-left-title">
+                  Номер заявки: <span>3456789</span>
+                </div>
               </div>
               <div class="requests-item-top-right">
-                <div class="requests-item-top-right-status pending" v-if="status == 0">Заявка на рассмотрении</div>
-                <div class="requests-item-top-right-status success" v-if="status == 1">Заявка одобрена</div>
-                <div class="requests-item-top-right-status error" v-if="status == 2">Заявка отлонена</div>
+                <div
+                  v-if="status == 0"
+                  class="requests-item-top-right-status pending"
+                >
+                  Заявка на рассмотрении
+                </div>
+                <div
+                  v-if="status == 1"
+                  class="requests-item-top-right-status success"
+                >
+                  Заявка одобрена
+                </div>
+                <div
+                  v-if="status == 2"
+                  class="requests-item-top-right-status error"
+                >
+                  Заявка отлонена
+                </div>
               </div>
             </div>
-            <div class="requests-item-top-error" v-if="status == 2">К сожалению, мы не можем принять к рассмотрению вашу заявку, так как приоритетное направление работы фонда «Mehrli qo'llar» помощь детям, нуждающимся в операции на сердце.</div>
+            <div v-if="status == 2" class="requests-item-top-error">
+              К сожалению, мы не можем принять к рассмотрению вашу заявку, так
+              как приоритетное направление работы фонда «Mehrli qo'llar» помощь
+              детям, нуждающимся в операции на сердце.
+            </div>
           </div>
           <div class="requests-item-body">
             <div class="requests-item-body-item">
@@ -50,9 +78,15 @@
               <div class="requests-item-body-val">Хирургическое лечение</div>
             </div>
           </div>
-          <button class="requests-item-more" v-if="status == 1" @click="
-            $router.push({ path: `/main/81`, query: { completed: true } })
-          ">Подробнее</button>
+          <button
+            v-if="status == 1"
+            class="requests-item-more"
+            @click="
+              $router.push({ path: `/main/81`, query: { completed: true } })
+            "
+          >
+            Подробнее
+          </button>
         </div>
       </div>
     </div>
@@ -65,9 +99,9 @@ export default {
   data() {
     return {
       heightDevice: inject('devicePlatform'),
-      status: 1
+      status: 1,
     }
-  }
+  },
 }
 </script>
 
@@ -81,7 +115,7 @@ export default {
     max-height: calc(v-bind(heightDevice) - 75px);
     padding: 0 20px;
   }
-  &-top{
+  &-top {
     border-radius: 12px;
     background: var(--bg1);
     padding: 15px 10px;
@@ -99,41 +133,41 @@ export default {
       color: var(--text);
     }
   }
-  &-list{
+  &-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
-  &-item{
+  &-item {
     background: var(--bg3);
     padding: 10px;
     border-radius: 10px;
-    &-box{
+    &-box {
       display: flex;
       justify-content: space-between;
       width: 100%;
     }
-    &-top{
+    &-top {
       padding-bottom: 10px;
       border-bottom: 1px solid var(--border);
-      &-left{
-        &-date{
+      &-left {
+        &-date {
           font-size: 10px;
           line-height: 20px;
           color: var(--text2);
         }
-        &-title{
+        &-title {
           font-size: 12px;
           line-height: 16.8px;
           color: var(--text);
           font-weight: 500;
-          span{
+          span {
             font-size: 14px;
           }
         }
       }
-      &-right{
-        &-status{
+      &-right {
+        &-status {
           height: 24px;
           line-height: 24px;
           border-radius: 50px;
@@ -143,46 +177,46 @@ export default {
           width: max-content;
           font-weight: 600;
         }
-        &-status.pending{
-          background: #FFF3E0;
-          color: #FCA523;
+        &-status.pending {
+          background: #fff3e0;
+          color: #fca523;
         }
-        &-status.success{
-          background: #F1F8E9;
-          color: #66CA28;
+        &-status.success {
+          background: #f1f8e9;
+          color: #66ca28;
         }
-        &-status.error{
-          background: #FBE9E7;
-          color: #FD7172;
+        &-status.error {
+          background: #fbe9e7;
+          color: #fd7172;
         }
       }
-      &-error{
+      &-error {
         font-size: 12px;
-        color: #FCA523;
+        color: #fca523;
         line-height: 14px;
         margin-top: 10px;
       }
     }
-    &-body{
+    &-body {
       padding: 10px 0 0;
       display: flex;
       flex-wrap: wrap;
       gap: 16px;
-      &-item{
+      &-item {
         width: calc(50% - 8px);
       }
-      &-label{
+      &-label {
         font-size: 12px;
         line-height: 14.4px;
         color: var(--text2);
       }
-      &-val{
+      &-val {
         color: var(--text);
         font-size: 14px;
         line-height: 16.8px;
       }
     }
-    &-more{
+    &-more {
       margin-top: 20px;
       width: 100%;
       background: linear-gradient(
