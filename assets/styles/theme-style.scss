@@ -68,6 +68,7 @@
   --report-transaction-card: #fff;
   --report-transaction-date: #6a6a6a;
   --report-transaction-summ: #363845;
+  --modal: #fff;
 }
 
 .dark-mode {
@@ -140,4 +141,10 @@
   --report-transaction-card: #34353f;
   --report-transaction-date: #b3b7ce;
   --report-transaction-summ: #fff;
+  --modal: #1a1b25;
+}
+
+.modal-backdrop{
+  --bs-backdrop-bg: var(--modal);
+  --bs-backdrop-opacity: 0.8;
 }

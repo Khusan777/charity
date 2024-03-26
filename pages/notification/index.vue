@@ -82,12 +82,12 @@ const heightDevice = inject('devicePlatform')
     gap: 10px;
   }
   &-item {
-    background: #fff;
+    background: var(--bg3);
     border-radius: 10px;
     padding: 10px;
     display: flex;
     gap: 10px;
-    color: #363845;
+    color: var(--text);
   }
   &-icon {
     padding: 0 3px;
@@ -96,7 +96,7 @@ const heightDevice = inject('devicePlatform')
     }
   }
   &-date {
-    color: #6a6a6a;
+    color: var(--text2);
     font-size: 10px;
   }
   &-box {
@@ -120,7 +120,7 @@ const heightDevice = inject('devicePlatform')
   }
   &-des {
     font-size: 12px;
-    color: #6a6a6a;
+    color: var(--text2);
     line-height: 14px;
   }
 }

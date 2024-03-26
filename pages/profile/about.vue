@@ -10,11 +10,11 @@
         <div class="about-logo">
           <NuxtImg
             v-if="$colorMode.preference == 'light'"
-            src="/images/logo.svg"
+            src="/images/logo_light.svg"
           ></NuxtImg>
           <NuxtImg
             v-if="$colorMode.preference == 'dark'"
-            src="/images/logo-dark.svg"
+            src="/images/logo_dark.svg"
           ></NuxtImg>
         </div>
         <div class="about-text">

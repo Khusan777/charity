@@ -29,7 +29,7 @@
             <NuxtImg src="/images/arrow.svg"></NuxtImg>
           </div>
         </router-link>
-        <router-link class="profile-menu-item" to="/main">
+        <router-link class="profile-menu-item" to="/profile/requests">
           <div class="profile-menu-left">
             <NuxtImg src="/images/doc.svg"></NuxtImg>
             <span>Мои заявки</span>
@@ -97,8 +97,8 @@ const appStore = useAppStore()
   padding-bottom: 75px;
   overflow-y: scroll;
   &-wrapper {
-    height: calc(v-bind(heightDevice) - 75px);
-    max-height: calc(v-bind(heightDevice) - 75px);
+    height: calc(100% - 75px);
+    max-height: calc(100% - 75px);
     padding: 0 20px;
   }
   &-user {

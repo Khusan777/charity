@@ -28,11 +28,21 @@
         </div>
         <div class="sendform-pac-input">
           <label for="fio">Фамилия ребенка<span>*</span></label>
-          <input id="fio" v-model="surname" placeholder="Фамилия" />
+          <input
+            id="fio"
+            v-model="surname"
+            placeholder="Фамилия"
+            @input="filterSurname"
+          />
         </div>
         <div class="sendform-pac-input">
           <label for="name">Имя ребенка<span>*</span></label>
-          <input id="name" v-model="name" placeholder="Имя" />
+          <input
+            id="name"
+            v-model="name"
+            placeholder="Имя"
+            @input="filterName"
+          />
         </div>
         <div class="sendform-pac-input">
           <label for="birthday">Дата рождения<span>*</span></label>
@@ -40,32 +50,35 @@
         </div>
         <div class="sendform-pac-select">
           <label for="region">Область проживания<span>*</span></label>
-          <select
-            id="region"
-            v-model="region"
-            class="form-select"
-            aria-label="Default select example"
-          >
-            <option value="1" selected>г. Ташкент</option>
-            <option value="2">Ташкентская область</option>
-            <option value="3">Андижанская область</option>
+          <select id="region" v-model="region" class="form-select">
+            <option value="10" selected>г. Ташкент</option>
+            <option value="11">Ташкентская область</option>
+            <option value="1">Андижанская область</option>
+            <option value="2">Бухарская область</option>
+            <option value="3">Джизакская область</option>
+            <option value="4">Кашкадарьинская область</option>
+            <option value="5">Навоиская область</option>
+            <option value="6">Наманганская область</option>
+            <option value="7">Самаркандская область</option>
+            <option value="8">Сурхандарьинская область</option>
+            <option value="9">Сырдарьинская область</option>
+            <option value="12">Ферганская область</option>
+            <option value="13">Хорезмская область</option>
+            <option value="14">Республика Каракалпакстан</option>
           </select>
         </div>
         <div class="sendform-pac-input">
           <label for="phone">Ваш телефон<span>*</span></label>
-          <input v-model="phone" v-mask="'(##) ###-##-##'" type="tel" />
+          <div class="sendform-pac-input-box">
+            <span>+998</span>
+            <input v-model="phone" v-mask="'(##) ###-##-##'" type="tel" />
+          </div>
         </div>
         <div class="sendform-pac-select">
           <label for="type">Тип нуждаемости<span>*</span></label>
-          <select
-            id="type"
-            v-model="type"
-            class="form-select"
-            aria-label="Болезнь"
-          >
-            <option value="1" selected>Болезнь</option>
-            <option value="2">Сложная ситуация</option>
-            <option value="3">Помощь</option>
+          <select id="type" v-model="type" class="form-select">
+            <option value="1" selected>Хирургическое лечение</option>
+            <option value="2">Медикаменты</option>
           </select>
         </div>
         <div class="sendform-pac-input">
@@ -87,7 +100,7 @@
           Нажимая кнопку «Отправить», я даю свое согласие на обработку моих
           персональных данных
         </p>
-        <button :disabled="loading" @click="send">
+        <button :disabled="loading || !disabled" @click="send">
           <span v-if="!loading">Отправить запрос</span>
           <span
             v-if="loading"
@@ -152,12 +165,22 @@ export default {
       region: null,
       des: null,
       type: null,
-      previewImage: null,
-      file: null,
       heightDevice: inject('devicePlatform'),
       appStore: useAppStore(),
       loading: false,
     }
+  },
+  computed: {
+    disabled() {
+      return (
+        this.surname != null &&
+        this.name != null &&
+        this.phone != null &&
+        this.birthday != null &&
+        this.region != null &&
+        this.type != null
+      )
+    },
   },
   methods: {
     uploadImage(e) {
@@ -197,6 +220,12 @@ export default {
     },
     goHome() {
       this.$router.push('/')
+    },
+    filterSurname() {
+      this.surname = this.surname.replace(/[^a-zа-яё\s]/gi, '')
+    },
+    filterName() {
+      this.name = this.name.replace(/[^a-zа-яё\s]/gi, '')
     },
   },
 }
@@ -304,6 +333,15 @@ export default {
           outline: 0;
         }
       }
+      &-box {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        span {
+          font-size: 14px;
+          color: var(--text);
+        }
+      }
     }
     &-select {
       margin-bottom: 15px;
@@ -357,6 +395,10 @@ export default {
       border: 0;
       font-size: 14px;
       font-weight: 600;
+      &:disabled {
+        background: #606060;
+        opacity: 0.5;
+      }
     }
   }
 }
