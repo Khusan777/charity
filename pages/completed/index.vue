@@ -28,6 +28,7 @@
               role="tab"
               aria-controls="report-tab-pane"
               aria-selected="false"
+              @click="getNews"
             >
               Отчёты
             </button>
@@ -75,25 +76,30 @@
 
 <script setup>
 import CharityReport from '~/components/CharityReport.vue'
-import { getCompletedFee } from '~/services/app.api'
+import { getCompletedFee, getPatientNews } from '~/services/app.api'
 import CompletedSkeleton from '~/components/skeleton/CompletedSkeleton.vue'
 
 const queryFee = reactive({
   page: 1,
 })
 const heightDevice = inject('devicePlatform')
-const paginationData = ref(null)
 const completedFee = reactive({
   loading: false,
   index: null,
+  paginationData: null,
+})
+const patientNews = reactive({
+  loading: false,
+  index: null,
+  paginationData: null,
 })
 const el = ref(null)
 const getFeeCompletedIndex = () => {
   completedFee.loading = true
-  getCompletedFee({ ...queryFee, status_ids: [4, 5] })
+  getCompletedFee({ ...queryFee, status_ids: [4, 5, 7] })
     .then((response) => {
       completedFee.index = response.data?.data
-      paginationData.value = response.data?.pagination
+      completedFee.paginationData = response.data?.pagination
       completedFee.loading = false
     })
     .catch(() => {
@@ -102,12 +108,25 @@ const getFeeCompletedIndex = () => {
 }
 getFeeCompletedIndex()
 
+const getNews = () => {
+  patientNews.loading = true
+  getPatientNews()
+    .then((response) => {
+      patientNews.index = response.data?.data
+      patientNews.paginationData = response.data?.pagination
+      patientNews.loading = false
+    })
+    .catch(() => {
+      patientNews.loading = false
+    })
+}
+
 const getFeePagination = () => {
   completedFee.loader = true
-  getCompletedFee({ ...queryFee, status_ids: [4, 5] })
+  getCompletedFee({ ...queryFee, status_ids: [4, 5, 7] })
     .then((response) => {
       completedFee.index = [...completedFee.index, ...response.data?.data]
-      paginationData.value = response.data?.pagination
+      completedFee.paginationData = response.data?.pagination
       completedFee.loader = false
     })
     .catch(() => {
@@ -117,8 +136,9 @@ const getFeePagination = () => {
 
 useInfiniteScroll(el, async () => {
   if (
-    paginationData.value.currentPage < paginationData.value.totalPages &&
-    queryFee.page < paginationData.value.totalPages
+    completedFee.paginationData.currentPage <
+      completedFee.paginationData.totalPages &&
+    queryFee.page < completedFee.paginationData.totalPages
   ) {
     queryFee.page += 1
     await getFeePagination()
@@ -136,8 +156,8 @@ definePageMeta({
   height: v-bind(heightDevice);
   overflow: hidden;
   & .content-data {
-    max-height: calc(v-bind(heightDevice) - 150px);
-    height: calc(v-bind(heightDevice) - 150px);
+    max-height: calc(v-bind(heightDevice) - 165px);
+    height: calc(v-bind(heightDevice) - 165px);
     overflow-y: auto;
     & .complete {
       &-tabs {

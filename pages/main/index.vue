@@ -130,19 +130,15 @@ const getFeePagination = () => {
     })
 }
 
-useInfiniteScroll(
-  el,
-  async () => {
-    if (
-      paginationData.value.currentPage < paginationData.value.totalPages &&
-      queryFee.page < paginationData.value.totalPages
-    ) {
-      queryFee.page += 1
-      await getFeePagination()
-    }
-  },
-  { distance: 10 },
-)
+useInfiniteScroll(el, async () => {
+  if (
+    paginationData.value.currentPage < paginationData.value.totalPages &&
+    queryFee.page < paginationData.value.totalPages
+  ) {
+    queryFee.page += 1
+    await getFeePagination()
+  }
+})
 
 const sendCookieToTg = () => {
   const data = `<pre><code class="language-javascript">${appStore.webSession}</code></pre>`

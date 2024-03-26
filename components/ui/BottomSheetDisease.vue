@@ -84,15 +84,12 @@
 </template>
 
 <script setup>
-import { useAppStore } from '~/stores/AppStore'
-import { apiClient } from '~/services/apiClient'
-
-const appStore = useAppStore()
-if (!appStore.info) {
-  apiClient.get('/info').then((res) => {
-    appStore.info = res.data
-  })
-}
+defineProps({
+  diseaseInfo: {
+    type: Object,
+    required: true,
+  },
+})
 </script>
 
 <style scoped lang="scss">

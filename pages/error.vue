@@ -1,7 +1,18 @@
 <template>
   <div class="error-container">
     <div class="data">
-      <NuxtImg class="error-img" src="/images/error.png" alt="error"></NuxtImg>
+      <NuxtImg
+        v-if="$colorMode.preference === 'dark'"
+        class="error-img"
+        src="/images/error_dark.svg"
+        alt="error"
+      ></NuxtImg>
+      <NuxtImg
+        v-else
+        class="error-img"
+        src="/images/error_light.svg"
+        alt="error"
+      ></NuxtImg>
       <div class="title">Упс что-то пошло не так</div>
       <div class="description">
         Произошла техническая ошибка. Попробуйте ещё раз.
