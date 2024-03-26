@@ -4,7 +4,7 @@
       v-if="!isCompleted"
       style="margin-bottom: 10px"
       with-image
-      :img-ref="`https://dev-promo23.click.uz/storage/${patient?.type_need?.icon}`"
+      :img-ref="patient?.type_need?.icon"
       :status-text="
         $i18n.locale === 'en'
           ? patient?.type_need?.name_en
@@ -19,7 +19,7 @@
       v-else
       style="margin-bottom: 10px"
       with-image
-      :img-ref="`https://dev-promo23.click.uz/storage/${patient?.status?.icon}`"
+      :img-ref="patient?.status?.icon"
       :status-text="
         $i18n.locale === 'en'
           ? patient?.status?.name_en
@@ -80,12 +80,6 @@
             }}
           </div>
         </div>
-      </div>
-      <div class="info">
-        <div>
-          <div class="title">Вид помощи</div>
-          <div class="description">Хирургическое лечение</div>
-        </div>
         <NuxtImg
           v-if="$colorMode.preference === 'light'"
           data-bs-toggle="offcanvas"
@@ -105,6 +99,20 @@
           alt="menu"
         ></NuxtImg>
       </div>
+      <div class="info">
+        <div>
+          <div class="title">Вид помощи</div>
+          <div class="description">
+            {{
+              $i18n.locale === 'uz'
+                ? patient?.type_help?.name_uz
+                  ? $i18n.locale === 'en'
+                  : patient?.type_help?.name_en
+                : patient?.type_help?.name_ru
+            }}
+          </div>
+        </div>
+      </div>
       <div class="building">
         <div>
           <div class="title">Фонд</div>
@@ -119,16 +127,24 @@
           </div>
         </div>
         <NuxtImg
-          width="48"
+          width="20"
           height="20"
-          src="/images/fond.png"
+          :src="`https://dev-promo23.click.uz/storage/${patient?.fond?.icon}`"
           alt="fond"
         ></NuxtImg>
       </div>
       <div class="building">
         <div>
           <div class="title">Медицинское учреждение</div>
-          <div class="description">Heart Team Clinic</div>
+          <div class="description">
+            {{
+              $i18n.locale === 'uz'
+                ? patient?.clinic?.name_uz
+                  ? $i18n.locale === 'en'
+                  : patient?.clinic?.name_en
+                : patient?.clinic?.name_ru
+            }}
+          </div>
         </div>
         <NuxtImg height="20" src="/images/med.svg" alt="med"></NuxtImg>
       </div>

@@ -2,109 +2,59 @@
   <div class="reports">
     <div class="title">Отчёты по переводам</div>
     <div class="all-transactions">
-      <div class="data">
-        <div class="info">
-          <NuxtImg
-            width="12"
-            height="12"
-            src="/images/check.svg"
-            alt="check"
-          ></NuxtImg>
-          <div class="date">20.02.2024</div>
-          <div class="time">10:00</div>
+      <div
+        v-for="transaction in transactions"
+        :key="transaction.id"
+        style="width: 48%"
+      >
+        <div class="data">
+          <div class="info">
+            <NuxtImg
+              width="12"
+              height="12"
+              src="/images/check.svg"
+              alt="check"
+            ></NuxtImg>
+            <div class="date">{{ formatDate(transaction?.created_at) }}</div>
+            <div class="time">
+              {{ formatTime(transaction?.created_at) }}
+            </div>
+          </div>
+          <div class="summa">
+            {{ transaction?.transaction_amount?.toLocaleString() }} cумов
+          </div>
         </div>
-        <div class="summa">25 000 cумов</div>
-      </div>
-      <div class="data">
-        <div class="info">
-          <NuxtImg
-            width="12"
-            height="12"
-            src="/images/check.svg"
-            alt="check"
-          ></NuxtImg>
-          <div class="date">20.02.2024</div>
-          <div class="time">10:00</div>
-        </div>
-        <div class="summa">25 000 cумов</div>
-      </div>
-      <div class="data">
-        <div class="info">
-          <NuxtImg
-            width="12"
-            height="12"
-            src="/images/check.svg"
-            alt="check"
-          ></NuxtImg>
-          <div class="date">20.02.2024</div>
-          <div class="time">10:00</div>
-        </div>
-        <div class="summa">25 000 cумов</div>
-      </div>
-      <div class="data">
-        <div class="info">
-          <NuxtImg
-            width="12"
-            height="12"
-            src="/images/check.svg"
-            alt="check"
-          ></NuxtImg>
-          <div class="date">20.02.2024</div>
-          <div class="time">10:00</div>
-        </div>
-        <div class="summa">25 000 cумов</div>
-      </div>
-      <div class="data">
-        <div class="info">
-          <NuxtImg
-            width="12"
-            height="12"
-            src="/images/check.svg"
-            alt="check"
-          ></NuxtImg>
-          <div class="date">20.02.2024</div>
-          <div class="time">10:00</div>
-        </div>
-        <div class="summa">25 000 cумов</div>
-      </div>
-      <div class="data">
-        <div class="info">
-          <NuxtImg
-            width="12"
-            height="12"
-            src="/images/check.svg"
-            alt="check"
-          ></NuxtImg>
-          <div class="date">20.02.2024</div>
-          <div class="time">10:00</div>
-        </div>
-        <div class="summa">25 000 cумов</div>
-      </div>
-      <div class="data">
-        <div class="info">
-          <NuxtImg
-            width="12"
-            height="12"
-            src="/images/check.svg"
-            alt="check"
-          ></NuxtImg>
-          <div class="date">20.02.2024</div>
-          <div class="time">10:00</div>
-        </div>
-        <div class="summa">25 000 cумов</div>
       </div>
     </div>
   </div>
 </template>
 
+<script setup>
+defineProps({
+  transactions: {
+    type: Array,
+    required: true,
+  },
+})
+
+const formatDate = (date) => {
+  const parsedDate = useDateFormat(date, 'DD.MM.YYYY')
+  return parsedDate.value?.replace(/['"]+/g, '')
+}
+const formatTime = (date) => {
+  const parsedTime = useDateFormat(date, 'HH:mm')
+  return parsedTime.value?.replace(/['"]+/g, '')
+}
+</script>
+
 <style scoped lang="scss">
 .reports {
   margin: 10px 20px 8px;
   & .all-transactions {
+    width: 100%;
     padding-top: 8px;
     display: flex;
     gap: 8px;
-    flex: 1 1 0;
     flex-wrap: wrap;
   }
   & .title {
@@ -113,7 +63,6 @@
     color: var(--report-transction-title);
   }
   & .data {
-    width: 48%;
     padding: 8px 10px;
     display: flex;
     flex-direction: column;

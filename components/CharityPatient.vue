@@ -55,7 +55,7 @@ defineProps({
     margin-bottom: 20px;
     background-size: cover;
     border-radius: 16px;
-    height: 320px;
+    height: auto;
     width: 100%;
   }
 }

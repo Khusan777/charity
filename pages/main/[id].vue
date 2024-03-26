@@ -29,12 +29,9 @@
           ></DiagnosCard>
           <HistoryInfo :history-patient="patientData"></HistoryInfo>
           <template v-if="patientData?.transactions?.length">
-            <div
-              v-for="(transactionItem, index) in patientData?.transactions"
-              :key="transactionItem?.id"
-            >
-              <ReportTransactions :key="index"></ReportTransactions>
-            </div>
+            <ReportTransactions
+              :transactions="patientData?.transactions"
+            ></ReportTransactions>
           </template>
         </div>
         <div
