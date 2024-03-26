@@ -330,6 +330,7 @@ export default {
         gap: 5px;
         span{
           font-size: 14px;
+          color: var(--text);
         }
       }
     }
