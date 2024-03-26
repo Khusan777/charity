@@ -41,7 +41,7 @@ const heightDevice = inject('devicePlatform')
     padding: 0 20px;
   }
   &-date {
-    color: #6a6a6a;
+    color: var(--text2);
     font-size: 10px;
     margin-bottom: 5px;
   }
@@ -50,11 +50,12 @@ const heightDevice = inject('devicePlatform')
     line-height: 17px;
     margin-bottom: 10px;
     font-weight: 500;
+    color: var(--text);
   }
   &-des {
     p {
       font-size: 12px;
-      color: #6a6a6a;
+      color: var(--text2);
       line-height: 14px;
       margin-bottom: 10px;
     }

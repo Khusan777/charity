@@ -97,8 +97,8 @@ const appStore = useAppStore()
   padding-bottom: 75px;
   overflow-y: scroll;
   &-wrapper {
-    height: calc(v-bind(heightDevice) - 75px);
-    max-height: calc(v-bind(heightDevice) - 75px);
+    height: calc(100% - 75px);
+    max-height: calc(100% - 75px);
     padding: 0 20px;
   }
   &-user {

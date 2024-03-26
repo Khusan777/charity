@@ -53,7 +53,10 @@
         </div>
         <div class="sendform-pac-input">
           <label for="phone">Ваш телефон<span>*</span></label>
-          <input v-model="phone" v-mask="'(##) ###-##-##'" type="tel" />
+          <div class="sendform-pac-input-box">
+            <span>+998</span>
+            <input v-model="phone" v-mask="'(##) ###-##-##'" type="tel" />
+          </div>
         </div>
         <div class="sendform-pac-select">
           <label for="type">Тип нуждаемости<span>*</span></label>
@@ -87,7 +90,7 @@
           Нажимая кнопку «Отправить», я даю свое согласие на обработку моих
           персональных данных
         </p>
-        <button :disabled="loading" @click="send">
+        <button :disabled="loading || !disabled" @click="send">
           <span v-if="!loading">Отправить запрос</span>
           <span
             v-if="loading"
@@ -152,8 +155,6 @@ export default {
       region: null,
       des: null,
       type: null,
-      previewImage: null,
-      file: null,
       heightDevice: inject('devicePlatform'),
       appStore: useAppStore(),
       loading: false,
@@ -199,6 +200,11 @@ export default {
       this.$router.push('/')
     },
   },
+  computed: {
+    disabled(){
+      return this.surname != null && this.name != null && this.phone != null && this.birthday != null && this.region != null && this.type != null
+    }
+  }
 }
 </script>
 
@@ -304,6 +310,14 @@ export default {
           outline: 0;
         }
       }
+      &-box{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        span{
+          font-size: 14px;
+        }
+      }
     }
     &-select {
       margin-bottom: 15px;
@@ -357,6 +371,10 @@ export default {
       border: 0;
       font-size: 14px;
       font-weight: 600;
+      &:disabled{
+        background: #606060;
+        opacity: 0.5;
+      }
     }
   }
 }
