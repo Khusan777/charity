@@ -28,11 +28,11 @@
         </div>
         <div class="sendform-pac-input">
           <label for="fio">Фамилия ребенка<span>*</span></label>
-          <input id="fio" v-model="surname" placeholder="Фамилия" />
+          <input id="fio" v-model="surname" placeholder="Фамилия" @input="filterSurname" />
         </div>
         <div class="sendform-pac-input">
           <label for="name">Имя ребенка<span>*</span></label>
-          <input id="name" v-model="name" placeholder="Имя" />
+          <input id="name" v-model="name" placeholder="Имя" @input="filterName" />
         </div>
         <div class="sendform-pac-input">
           <label for="birthday">Дата рождения<span>*</span></label>
@@ -44,11 +44,21 @@
             id="region"
             v-model="region"
             class="form-select"
-            aria-label="Default select example"
           >
-            <option value="1" selected>г. Ташкент</option>
-            <option value="2">Ташкентская область</option>
-            <option value="3">Андижанская область</option>
+            <option value="10" selected>г. Ташкент</option>
+            <option value="11">Ташкентская область</option>
+            <option value="1">Андижанская область</option>
+            <option value="2">Бухарская область</option>
+            <option value="3">Джизакская область</option>
+            <option value="4">Кашкадарьинская область</option>
+            <option value="5">Навоиская область</option>
+            <option value="6">Наманганская область</option>
+            <option value="7">Самаркандская область</option>
+            <option value="8">Сурхандарьинская область</option>
+            <option value="9">Сырдарьинская область</option>
+            <option value="12">Ферганская область</option>
+            <option value="13">Хорезмская область</option>
+            <option value="14">Республика Каракалпакстан</option>
           </select>
         </div>
         <div class="sendform-pac-input">
@@ -64,11 +74,9 @@
             id="type"
             v-model="type"
             class="form-select"
-            aria-label="Болезнь"
           >
-            <option value="1" selected>Болезнь</option>
-            <option value="2">Сложная ситуация</option>
-            <option value="3">Помощь</option>
+            <option value="1" selected>Хирургическое лечение</option>
+            <option value="2">Медикаменты</option>
           </select>
         </div>
         <div class="sendform-pac-input">
@@ -199,6 +207,12 @@ export default {
     goHome() {
       this.$router.push('/')
     },
+    filterSurname() {
+			this.surname = this.surname.replace(/[^a-zа-яё\s]/gi, "");
+		},
+    filterName() {
+			this.name = this.name.replace(/[^a-zа-яё\s]/gi, "");
+		}
   },
   computed: {
     disabled(){

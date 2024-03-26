@@ -29,7 +29,7 @@
             <NuxtImg src="/images/arrow.svg"></NuxtImg>
           </div>
         </router-link>
-        <router-link class="profile-menu-item" to="/main">
+        <router-link class="profile-menu-item" to="/profile/requests">
           <div class="profile-menu-left">
             <NuxtImg src="/images/doc.svg"></NuxtImg>
             <span>Мои заявки</span>
