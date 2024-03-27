@@ -1,10 +1,17 @@
 <template>
-  <div ref="el" class="index-container">
+  <div v-if="indexFee.loading" class="index-container">
+    <MainHeaderSkeleton></MainHeaderSkeleton>
+    <MainSkeleton></MainSkeleton>
+    <MainSkeleton></MainSkeleton>
+    <MainSkeleton></MainSkeleton>
+  </div>
+  <div v-else ref="el" class="index-container">
     <div v-if="webSession" style="margin: 0 20px" @click="sendCookieToTg">
       <div style="user-select: all; white-space: pre-line; color: #fff">
         {{ webSession }}
       </div>
     </div>
+    <p style="color: #ffffff">{{ $colorMode.preference }}</p>
     <div class="search-container">
       <input
         v-model="queryFee.search"
@@ -27,45 +34,35 @@
         />
       </div>
     </div>
-    <template v-if="indexFee.loading">
-      <MainHeaderSkeleton></MainHeaderSkeleton>
-      <MainSkeleton></MainSkeleton>
-      <MainSkeleton></MainSkeleton>
-      <BannerSkeleton></BannerSkeleton>
-      <MainSkeleton></MainSkeleton>
-      <MainSkeleton></MainSkeleton>
-    </template>
-    <template v-else>
-      <div class="help-block">
-        <div class="text">Нуждаются в помощи</div>
-        <div class="description">
-          Сейчас им крайне необходима<br />
-          ваша помощь.
+    <div class="help-block">
+      <div class="text">Нуждаются в помощи</div>
+      <div class="description">
+        Сейчас им крайне необходима<br />
+        ваша помощь.
+      </div>
+    </div>
+    <div v-for="(feeItem, index) in indexFee?.data" :key="feeItem">
+      <ChartCardNotCollected
+        :key="feeItem.id"
+        :fee-item="feeItem"
+      ></ChartCardNotCollected>
+      <div v-if="index === 1" class="charity-banner">
+        <div class="text">
+          Наша миссия — протянуть руку тем, кто действительно в этом нуждается.
+          Помощь больным детям — основная наша задача.
+        </div>
+        <div
+          v-ripple.500="'rgba(255, 255, 255, 0.35)'"
+          class="btn-help"
+          @click="$router.push('/profile/form')"
+        >
+          Мне нужна помощь
         </div>
       </div>
-      <div v-for="(feeItem, index) in indexFee?.data" :key="feeItem">
-        <ChartCardNotCollected
-          :key="feeItem.id"
-          :fee-item="feeItem"
-        ></ChartCardNotCollected>
-        <div v-if="index === 1" class="charity-banner">
-          <div class="text">
-            Наша миссия — протянуть руку тем, кто действительно в этом
-            нуждается. Помощь больным детям — основная наша задача.
-          </div>
-          <div
-            v-ripple.500="'rgba(255, 255, 255, 0.35)'"
-            class="btn-help"
-            @click="$router.push('/profile/form')"
-          >
-            Мне нужна помощь
-          </div>
-        </div>
-      </div>
-      <div v-if="indexFee.loader" class="loader-wrapper">
-        <span class="loader-anim"></span>
-      </div>
-    </template>
+    </div>
+    <div v-if="indexFee.loader" class="loader-wrapper">
+      <span class="loader-anim"></span>
+    </div>
     <UiOffCanvasRegions></UiOffCanvasRegions>
   </div>
 </template>
@@ -74,7 +71,6 @@
 import { storeToRefs } from 'pinia'
 import MainHeaderSkeleton from '~/components/skeleton/MainHeaderSkeleton.vue'
 import MainSkeleton from '~/components/skeleton/MainSkeleton.vue'
-import BannerSkeleton from '~/components/skeleton/BannerSkeleton.vue'
 import ChartCardNotCollected from '~/components/ChartCardNotCollected.vue'
 import { getFee } from '~/services/app.api'
 import { debounce } from '~/utils'
@@ -141,7 +137,7 @@ useInfiniteScroll(
       await getFeePagination()
     }
   },
-  { distance: 10 },
+  { distance: 100 },
 )
 
 const sendCookieToTg = () => {

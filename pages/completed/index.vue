@@ -1,7 +1,7 @@
 <template>
   <div class="completed-pages">
     <UiHeaderComponent center center-text="Завершенные"></UiHeaderComponent>
-    <div ref="el" class="content-data">
+    <div v-if="completedFee.loading" class="content-data">
       <div class="container">
         <ul id="myTab" class="nav nav-tabs complete-tabs" role="tablist">
           <li class="nav-item">
@@ -28,6 +28,78 @@
               role="tab"
               aria-controls="report-tab-pane"
               aria-selected="false"
+              @click="getNews"
+            >
+              Отчёты
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div id="myTabContent" class="tab-content">
+        <div
+          id="complete-tab-pane"
+          class="tab-pane fade show active"
+          role="tabpanel"
+          aria-labelledby="complete-tab"
+          tabindex="0"
+        >
+          <template v-if="completedFee.loading">
+            <CompletedSkeleton></CompletedSkeleton>
+            <CompletedSkeleton></CompletedSkeleton>
+            <CompletedSkeleton></CompletedSkeleton>
+            <CompletedSkeleton></CompletedSkeleton>
+          </template>
+          <template v-else>
+            <div v-for="feeItem in completedFee.index" :key="feeItem.id">
+              <ChartCardCollected
+                :key="feeItem.id"
+                :fee-item="feeItem"
+              ></ChartCardCollected>
+            </div>
+          </template>
+          <div v-if="completedFee.loader" class="loader-wrapper">
+            <span class="loader-anim"></span>
+          </div>
+        </div>
+        <div
+          id="report-tab-pane"
+          class="tab-pane fade"
+          role="tabpanel"
+          aria-labelledby="report-tab"
+          tabindex="0"
+        >
+          <CharityReport></CharityReport>
+        </div>
+      </div>
+    </div>
+    <div v-else ref="el" class="content-data">
+      <div class="container">
+        <ul id="myTab" class="nav nav-tabs complete-tabs" role="tablist">
+          <li class="nav-item">
+            <button
+              id="complete-tab"
+              class="nav-link nav-link active"
+              data-bs-toggle="tab"
+              data-bs-target="#complete-tab-pane"
+              type="button"
+              role="tab"
+              aria-controls="complete-tab-pane"
+              aria-selected="true"
+            >
+              Завершённые
+            </button>
+          </li>
+          <li class="nav-item">
+            <button
+              id="report-tab"
+              class="nav-link"
+              data-bs-toggle="tab"
+              data-bs-target="#report-tab-pane"
+              type="button"
+              role="tab"
+              aria-controls="report-tab-pane"
+              aria-selected="false"
+              @click="getNews"
             >
               Отчёты
             </button>
@@ -75,25 +147,30 @@
 
 <script setup>
 import CharityReport from '~/components/CharityReport.vue'
-import { getCompletedFee } from '~/services/app.api'
+import { getCompletedFee, getPatientNews } from '~/services/app.api'
 import CompletedSkeleton from '~/components/skeleton/CompletedSkeleton.vue'
 
 const queryFee = reactive({
   page: 1,
 })
 const heightDevice = inject('devicePlatform')
-const paginationData = ref(null)
 const completedFee = reactive({
   loading: false,
   index: null,
+  paginationData: null,
 })
-const el = ref(null)
+const patientNews = reactive({
+  loading: false,
+  index: null,
+  paginationData: null,
+})
+const el = shallowRef(null)
 const getFeeCompletedIndex = () => {
   completedFee.loading = true
-  getCompletedFee({ ...queryFee, status_ids: [4, 5] })
+  getCompletedFee({ ...queryFee, status_ids: [4, 5, 7] })
     .then((response) => {
       completedFee.index = response.data?.data
-      paginationData.value = response.data?.pagination
+      completedFee.paginationData = response.data?.pagination
       completedFee.loading = false
     })
     .catch(() => {
@@ -102,12 +179,25 @@ const getFeeCompletedIndex = () => {
 }
 getFeeCompletedIndex()
 
+const getNews = () => {
+  patientNews.loading = true
+  getPatientNews()
+    .then((response) => {
+      patientNews.index = response.data?.data
+      patientNews.paginationData = response.data?.pagination
+      patientNews.loading = false
+    })
+    .catch(() => {
+      patientNews.loading = false
+    })
+}
+
 const getFeePagination = () => {
   completedFee.loader = true
-  getCompletedFee({ ...queryFee, status_ids: [4, 5] })
+  getCompletedFee({ ...queryFee, status_ids: [4, 5, 7] })
     .then((response) => {
       completedFee.index = [...completedFee.index, ...response.data?.data]
-      paginationData.value = response.data?.pagination
+      completedFee.paginationData = response.data?.pagination
       completedFee.loader = false
     })
     .catch(() => {
@@ -115,15 +205,20 @@ const getFeePagination = () => {
     })
 }
 
-useInfiniteScroll(el, async () => {
-  if (
-    paginationData.value.currentPage < paginationData.value.totalPages &&
-    queryFee.page < paginationData.value.totalPages
-  ) {
-    queryFee.page += 1
-    await getFeePagination()
-  }
-})
+useInfiniteScroll(
+  el,
+  async () => {
+    if (
+      completedFee.paginationData.currentPage <
+        completedFee.paginationData.totalPages &&
+      queryFee.page < completedFee.paginationData.totalPages
+    ) {
+      queryFee.page += 1
+      await getFeePagination()
+    }
+  },
+  { distance: 100 },
+)
 
 definePageMeta({
   layout: 'single',

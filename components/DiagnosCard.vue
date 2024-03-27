@@ -149,7 +149,9 @@
         <NuxtImg height="20" src="/images/med.svg" alt="med"></NuxtImg>
       </div>
     </div>
-    <BottomSheetDisease></BottomSheetDisease>
+    <BottomSheetDisease
+      :disease-info="patient?.sick_category"
+    ></BottomSheetDisease>
   </div>
 </template>
 
@@ -168,6 +170,7 @@ defineProps({
     required: true,
   },
 })
+
 const formatted = (date) => {
   const parsedDate = useDateFormat(date, 'DD MMM. YYYY', {
     locales:
