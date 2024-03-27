@@ -9,27 +9,32 @@
       <NuxtImg
         style="width: 100%"
         class="user-image"
-        src="/images/img.png"
+        :src="`https://dev-promo23.click.uz/storage/${patientNew?.image}`"
         alt="user"
       ></NuxtImg>
       <div class="info-panel">
-        <div class="date">15 Февраля 2024</div>
-        <div class="name">Сенбаев Арслан <span>(4 года)</span></div>
-        <div class="info1">
-          Каждая история наших подопечных — это история преодоления:
-          обстоятельств, случайностей, себя. Юра лучше многих знает о том, что
-          такое преодоление. Жизнь подбрасывала парню столько событий, которые
-          могли сломать его, но Юра просто еще усерднее работал, чтобы
-          преодолеть очередное препятствие. Мы верим, что и новые испытания Юра
-          сможет преодолеть. Но для этого парню нужна наша помощь.
+        <div class="date">
+          {{ formatMonthDate(patientNew?.publication_date) }}
         </div>
-        <div class="info2">
-          В 2004 году родителей Юры лишили родительских прав. За подобными
-          словами всегда стоит трагедия — трагедия семьи, трагедия детей,
-          оказавшихся на попечении государства. Юра и его брат оказались в
-          интернате. Несколько раз Юру пытались определить в приемную семью, но
-          всякий раз он отказывался — не хотел разлучаться с братом,
-          единственным оставшимся рядом родным человеком.
+        <div class="name">
+          {{
+            $i18n.locale === 'uz'
+              ? patientNew?.name_uz
+              : $i18n.locale === 'en'
+                ? patientNew?.name_en
+                : patientNew?.name_ru
+          }}
+        </div>
+        <div class="info1">
+          <div
+            v-html="
+              $i18n.locale === 'uz'
+                ? patientNew?.description_uz
+                : $i18n.locale === 'en'
+                  ? patientNew?.description_en
+                  : patientNew?.description_ru
+            "
+          ></div>
         </div>
       </div>
       <div class="photo-gallery">
@@ -64,6 +69,11 @@
 
 <script setup>
 const heightDevice = inject('devicePlatform')
+const route = useRoute()
+const appStore = useAppStore()
+const patientNew = computed(() =>
+  appStore.patientNews.index?.find((item) => item.id === +route.params.id),
+)
 </script>
 
 <style lang="scss" scoped>
@@ -77,6 +87,9 @@ const heightDevice = inject('devicePlatform')
     height: calc(v-bind(heightDevice) - 75px);
     padding: 0 20px;
     overflow-y: scroll;
+    & .user-image {
+      border-radius: 12px 12px 0 0;
+    }
     & .info-panel {
       border-radius: 0 0 12px 12px;
       padding: 20px 10px;
@@ -92,18 +105,8 @@ const heightDevice = inject('devicePlatform')
         font-weight: 500;
         font-size: 18px;
         color: var(--history-card-title);
-        & span {
-          color: var(--history-card-title);
-        }
       }
       & .info1 {
-        padding-bottom: 10px;
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 133%;
-        color: var(--history-text-color);
-      }
-      & .info2 {
         padding-bottom: 10px;
         font-weight: 400;
         font-size: 12px;

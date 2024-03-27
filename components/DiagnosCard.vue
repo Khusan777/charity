@@ -49,7 +49,7 @@
           ></NuxtImg>
           <div>
             <div class="text">Дата публикации</div>
-            <div class="date">{{ formatted(patient?.created_at) }}</div>
+            <div class="date">{{ formattedDate(patient?.created_at) }}</div>
           </div>
         </div>
         <div class="data">
@@ -146,7 +146,11 @@
             }}
           </div>
         </div>
-        <NuxtImg height="20" src="/images/med.svg" alt="med"></NuxtImg>
+        <NuxtImg
+          height="20"
+          :src="`https://dev-promo23.click.uz/storage/${patient?.clinic?.icon}`"
+          alt="med"
+        ></NuxtImg>
       </div>
     </div>
     <BottomSheetDisease
@@ -156,10 +160,8 @@
 </template>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
 import BottomSheetDisease from '~/components/ui/BottomSheetDisease.vue'
 
-const $i18n = useI18n()
 defineProps({
   isCompleted: {
     type: Boolean,
@@ -170,19 +172,6 @@ defineProps({
     required: true,
   },
 })
-
-const formatted = (date) => {
-  const parsedDate = useDateFormat(date, 'DD MMM. YYYY', {
-    locales:
-      $i18n.locale.value === 'en'
-        ? // eslint-disable-next-line no-constant-condition
-          'en-En'
-          ? $i18n.locale.value === 'uz'
-          : 'uz-Uz'
-        : 'ru-Ru',
-  })
-  return parsedDate.value?.replace(/['"]+/g, '')
-}
 </script>
 
 <style scoped lang="scss">

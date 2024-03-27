@@ -23,22 +23,21 @@
             :patient="patientData"
             :is-completed="
               Boolean(
-                patientData?.status?.id === 4 || patientData?.status?.id === 5,
+                patientData?.status?.id === 4 ||
+                  patientData?.status?.id === 5 ||
+                  patientData?.status?.id === 7,
               )
             "
           ></DiagnosCard>
           <HistoryInfo :history-patient="patientData"></HistoryInfo>
-          <template v-if="patientData?.transactions?.length">
-            <ReportTransactions
-              :transactions="patientData?.transactions"
-            ></ReportTransactions>
-          </template>
+          <!--          <template v-if="patientData?.transactions?.length">-->
+          <!--            <ReportTransactions-->
+          <!--              :transactions="patientData?.transactions"-->
+          <!--            ></ReportTransactions>-->
+          <!--          </template>-->
         </div>
       </div>
-      <div
-        v-if="patientData?.status?.id !== 4 || patientData?.status?.id !== 5"
-        class="btn-help"
-      >
+      <div v-if="route.query.completed === 'false'" class="btn-help">
         <UiButton :with-disabled="false"></UiButton>
       </div>
     </template>
@@ -64,6 +63,9 @@ const heightDevice = inject('devicePlatform')
 const route = useRoute()
 const router = useRouter()
 const $toast = useToast()
+const calculate = computed(() =>
+  route.query.completed === 'true' ? '85px' : '135px',
+)
 
 const detailPatientData = () => {
   loading.value = true
@@ -95,8 +97,8 @@ detailPatientData()
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-height: calc(v-bind(heightDevice) - 170px);
-    height: calc(v-bind(heightDevice) - 170px);
+    max-height: calc(v-bind(heightDevice) - v-bind(calculate));
+    height: calc(v-bind(heightDevice) - v-bind(calculate));
     padding-bottom: 8px;
     overflow-y: scroll;
     & .badge-ui {
@@ -104,7 +106,7 @@ detailPatientData()
     }
   }
   & .btn-help {
-    margin: 25px 20px 20px;
+    margin: 10px 20px 10px;
   }
 }
 </style>

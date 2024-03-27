@@ -33,13 +33,7 @@ defineProps({
   height: v-bind(height);
   width: v-bind(width);
   border-radius: v-bind(borderRadius);
-  background-image: linear-gradient(
-    to right,
-    #d6d7d8 0%,
-    #e2e3e4 10%,
-    #d6d7d8 20%,
-    #d6d7d8 100%
-  );
+  background: linear-gradient(304deg, #ededed 0%, #d6d7d9 100%);
   background-size: 200% 100%;
   animation: bgAnimate 1.2s linear infinite;
 }

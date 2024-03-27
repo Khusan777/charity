@@ -1,7 +1,9 @@
 <template>
   <div
     class="chart-card"
-    @click="$router.push({ path: `/main/${feeItem?.id}` })"
+    @click="
+      $router.push({ path: `/main/${feeItem?.id}`, query: { completed: true } })
+    "
   >
     <div class="fond-container">
       <div class="data">
@@ -42,8 +44,10 @@
           colour="#66ca28"
         ></UiBadge>
         <div class="name">
-          {{ feeItem?.patient_name + ' ' + feeItem?.patient_surname || '' }}
-          <span>({{ feeItem?.patient_age }} года)</span>
+          <div>
+            {{ feeItem?.patient_name + ' ' + feeItem?.patient_surname || '' }}
+            <span>({{ feeItem?.patient_age }} года)</span>
+          </div>
         </div>
         <div class="city">
           {{

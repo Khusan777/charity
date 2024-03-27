@@ -1,3 +1,4 @@
+import { useI18n } from 'vue-i18n'
 import { apiClient } from '~/services/apiClient'
 
 const getToken = () =>
@@ -56,6 +57,34 @@ const getCookie = function (name) {
   }
 }
 
+const formattedDate = (date) => {
+  const $i18n = useI18n()
+  const parsedDate = useDateFormat(date, 'DD MMM. YYYY', {
+    locales:
+      $i18n.locale.value === 'en'
+        ? // eslint-disable-next-line no-constant-condition
+          'en-En'
+          ? $i18n.locale.value === 'uz'
+          : 'uz-Uz'
+        : 'ru-Ru',
+  })
+  return parsedDate.value?.replace(/['"]+/g, '')
+}
+
+const formatMonthDate = (date) => {
+  const $i18n = useI18n()
+  const parsedDate = useDateFormat(date, 'DD MMMM YYYY', {
+    locales:
+      $i18n.locale.value === 'en'
+        ? // eslint-disable-next-line no-constant-condition
+          'en-En'
+          ? $i18n.locale.value === 'uz'
+          : 'uz-Uz'
+        : 'ru-Ru',
+  })
+  return parsedDate.value?.replace(/['"]+/g, '')
+}
+
 export {
   parseErrorsFromResponse,
   objCheckType,
@@ -63,4 +92,6 @@ export {
   setToken,
   debounce,
   getAuthorizationHeader,
+  formattedDate,
+  formatMonthDate,
 }

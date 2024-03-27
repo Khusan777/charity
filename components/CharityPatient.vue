@@ -4,6 +4,7 @@
     <span>({{ patient?.age }} года)</span>
   </div>
   <div v-if="withCity" class="city">
+    Город
     {{
       $i18n.locale === 'en'
         ? patient?.region?.name_en

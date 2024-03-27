@@ -9,12 +9,13 @@
 import { useI18n } from 'vue-i18n'
 import { useAppStore } from '~/stores/AppStore'
 
+const appStore = useAppStore()
 const $i18n = useI18n()
 const colorMode = useColorMode()
 const getTheme = computed(() => getCookie('theme'))
-colorMode.preference = getTheme.value || 'dark'
+appStore.setTheme(getTheme.value)
+colorMode.preference = getTheme.value || 'light'
 
-const appStore = useAppStore()
 const lang = computed(() => getCookie('lang'))
 appStore.setLang(lang.value)
 if (lang.value && lang.value === 'uz') {
@@ -133,10 +134,15 @@ a {
       border-radius: 6px;
     }
     & .name {
+      padding-top: 2px;
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      line-height: normal;
+      justify-content: space-between;
       font-weight: 600;
       font-size: 14px;
       color: var(--user-name);
-      align-self: center;
       padding-bottom: 2px;
       & span {
         font-size: 12px;

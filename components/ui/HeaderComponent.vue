@@ -38,24 +38,24 @@
             alt="logo"
           ></NuxtImg>
         </div>
-        <div v-if="!loading" class="help-now">
-          <div class="counters">
-            <div class="circle"></div>
-            <div class="text">158</div>
-            <NuxtImg
-              class="icon"
-              src="/images/group-icon.svg"
-              alt="group-icon"
-            ></NuxtImg>
-          </div>
-          <div class="text-content">
-            <div>Сейчас помогают</div>
-          </div>
-        </div>
-        <div v-else style="display: flex; flex-direction: column; gap: 5px">
-          <UiAnimatedSkeleton height="10px" width="55px" />
-          <UiAnimatedSkeleton height="8px" width="100px" />
-        </div>
+        <!--        <div v-if="!loading" class="help-now">-->
+        <!--          <div class="counters">-->
+        <!--            <div class="circle"></div>-->
+        <!--            <div class="text">158</div>-->
+        <!--            <NuxtImg-->
+        <!--              class="icon"-->
+        <!--              src="/images/group-icon.svg"-->
+        <!--              alt="group-icon"-->
+        <!--            ></NuxtImg>-->
+        <!--          </div>-->
+        <!--          <div class="text-content">-->
+        <!--            <div>Сейчас помогают</div>-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <!--        <div v-else style="display: flex; flex-direction: column; gap: 5px">-->
+        <!--          <UiAnimatedSkeleton height="10px" width="55px" />-->
+        <!--          <UiAnimatedSkeleton height="8px" width="100px" />-->
+        <!--        </div>-->
       </div>
       <div v-if="right" class="header-right">
         <div class="header-right-text">
@@ -72,12 +72,6 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import { useAppStore } from '~/stores/AppStore'
-
-const appStore = useAppStore()
-const { loading } = storeToRefs(appStore)
-
 defineProps({
   left: {
     type: Boolean,

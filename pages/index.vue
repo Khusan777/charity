@@ -32,13 +32,13 @@
         </div>
       </div>
       <div style="padding: 0 20px 20px">
-        <UiCheckbox
-          v-model:checked="acceptCheck"
-          label="Соглашаюсь с политикой<br />обработки <span style='text-decoration:underline; color:#0073ff'>персональных данных</span>"
-        ></UiCheckbox>
+        <!--        <UiCheckbox-->
+        <!--          v-model:checked="acceptCheck"-->
+        <!--          label="Соглашаюсь с политикой<br />обработки <span style='text-decoration:underline; color:#0073ff'>персональных данных</span>"-->
+        <!--        ></UiCheckbox>-->
         <div style="padding-top: 15px">
           <UiButton
-            v-if="!acceptCheck || acceptBtn"
+            v-if="acceptBtn"
             class="btn-accept"
             :with-disabled="true"
             text-btn="Готово"
@@ -68,7 +68,6 @@ const loading = ref(true)
 const acceptBtn = ref(false)
 const isNotAcceptCode = ref(null)
 const router = useRouter()
-const acceptCheck = ref(false)
 const heightDevice = inject('devicePlatform')
 const appStore = useAppStore()
 const { user } = storeToRefs(appStore)
@@ -82,6 +81,8 @@ const cookieWebSession = computed(() =>
 if (!appStore.webSession) {
   appStore.setWebSession(cookieWebSession.value)
 }
+const colorMode = useColorMode()
+colorMode.preference = appStore.theme || getCookie('theme')
 
 const getUserData = () => {
   getMe({
