@@ -133,20 +133,18 @@
         <NuxtImg height="20" src="/images/med.svg" alt="med"></NuxtImg>
       </div>
     </div>
-    <BottomSheetDisease :disease-info="diseaseInfo"></BottomSheetDisease>
+    <BottomSheetDisease
+      :disease-info="patient?.sick_category"
+    ></BottomSheetDisease>
   </div>
 </template>
 
 <script setup>
 import { useI18n } from 'vue-i18n'
 import BottomSheetDisease from '~/components/ui/BottomSheetDisease.vue'
-import { getInfo } from '~/services/app.api'
-import { useAppStore } from '~/stores/AppStore'
 
 const $i18n = useI18n()
-const appStore = useAppStore()
-const diseaseInfo = ref(null)
-const props = defineProps({
+defineProps({
   isCompleted: {
     type: Boolean,
     required: true,
@@ -157,30 +155,6 @@ const props = defineProps({
   },
 })
 
-const getInfoText = () => {
-  getInfo()
-    .then((response) => {
-      if (response.status === 200) {
-        appStore.info = response.data
-        console.log(props.patient?.sick_category_id)
-      }
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-}
-if (!appStore.info) {
-  getInfoText()
-}
-
-const getSickCategoryInfo = (diseaseId) => {
-  diseaseInfo.value = appStore.info?.filter(
-    (disease) => disease.id === diseaseId,
-  )
-  console.log(diseaseInfo.value)
-}
-
-getSickCategoryInfo(props.patient?.sick_category_id)
 const formatted = (date) => {
   const parsedDate = useDateFormat(date, 'DD MMM. YYYY', {
     locales:
