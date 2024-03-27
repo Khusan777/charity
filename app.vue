@@ -1,6 +1,5 @@
 <template>
   <NuxtLoadingIndicator />
-  <p style="color: #ffffff">{{ getTheme }}</p>
   <NuxtLayout>
     <NuxtPage></NuxtPage>
   </NuxtLayout>

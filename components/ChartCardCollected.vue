@@ -1,9 +1,7 @@
 <template>
   <div
     class="chart-card"
-    @click="
-      $router.push({ path: `/main/${feeItem?.id}`, query: { completed: true } })
-    "
+    @click="$router.push({ path: `/main/${feeItem?.id}` })"
   >
     <div class="fond-container">
       <div class="data">

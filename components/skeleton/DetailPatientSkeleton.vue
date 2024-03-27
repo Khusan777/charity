@@ -18,7 +18,7 @@
     />
     <UiAnimatedSkeleton
       style="margin-top: 12px; margin-bottom: 20px"
-      height="320px"
+      height="240px"
       width="100%"
       border-radius="16px"
     />

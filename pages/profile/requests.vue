@@ -81,9 +81,7 @@
           <button
             v-if="status == 1"
             class="requests-item-more"
-            @click="
-              $router.push({ path: `/main/81`, query: { completed: true } })
-            "
+            @click="$router.push({ path: `/main/81` })"
           >
             Подробнее
           </button>

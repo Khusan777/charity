@@ -34,12 +34,12 @@
             ></ReportTransactions>
           </template>
         </div>
-        <div
-          v-if="patientData?.status?.id !== 4 || patientData?.status?.id !== 5"
-          class="btn-help"
-        >
-          <UiButton :with-disabled="false"></UiButton>
-        </div>
+      </div>
+      <div
+        v-if="patientData?.status?.id !== 4 || patientData?.status?.id !== 5"
+        class="btn-help"
+      >
+        <UiButton :with-disabled="false"></UiButton>
       </div>
     </template>
   </div>
@@ -95,16 +95,16 @@ detailPatientData()
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-height: calc(v-bind(heightDevice) - 75px);
-    height: calc(v-bind(heightDevice) - 75px);
+    max-height: calc(v-bind(heightDevice) - 170px);
+    height: calc(v-bind(heightDevice) - 170px);
     padding-bottom: 8px;
     overflow-y: scroll;
     & .badge-ui {
       padding: 0 20px;
     }
-    & .btn-help {
-      margin: 20px 20px 10px;
-    }
+  }
+  & .btn-help {
+    margin: 25px 20px 20px;
   }
 }
 </style>
