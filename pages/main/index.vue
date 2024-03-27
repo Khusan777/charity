@@ -5,7 +5,6 @@
         {{ webSession }}
       </div>
     </div>
-    <p style="color: #ffffff">{{ $colorMode.preference }}</p>
     <div class="search-container">
       <input v-model="queryFee.search" type="text" placeholder="Фамилия, имя" />
       <!--      <div-->

@@ -11,6 +11,7 @@ import { useAppStore } from '~/stores/AppStore'
 
 const appStore = useAppStore()
 const $i18n = useI18n()
+
 const colorMode = useColorMode()
 const getTheme = computed(() => getCookie('theme'))
 appStore.setTheme(getTheme.value)
