@@ -2,15 +2,15 @@
   <div class="error-container">
     <div class="data">
       <NuxtImg
-        v-if="$colorMode.preference === 'dark'"
+        v-if="$colorMode.value === 'light'"
         class="error-img"
-        src="/images/error_dark.svg"
+        src="/images/error_light.svg"
         alt="error"
       ></NuxtImg>
       <NuxtImg
         v-else
         class="error-img"
-        src="/images/error_light.svg"
+        src="/images/error_dark.svg"
         alt="error"
       ></NuxtImg>
       <div class="title">Упс что-то пошло не так</div>
