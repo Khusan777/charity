@@ -1,13 +1,5 @@
 <template>
-  <div
-    class="chart-card"
-    @click="
-      $router.push({
-        path: `/main/${feeItem?.id}`,
-        query: { completed: false },
-      })
-    "
-  >
+  <div class="chart-card" @click="goToDetailPage(feeItem?.id)">
     <div class="fond-container">
       <div class="data">
         <NuxtImg
@@ -34,6 +26,7 @@
       ></NuxtImg>
       <div style="width: calc(100% - 100px)">
         <UiBadge
+          v-if="feeItem?.type_need?.id !== 2"
           with-image
           :img-ref="feeItem?.type_need?.icon"
           :status-text="
@@ -106,6 +99,8 @@
 </template>
 
 <script setup>
+const appStore = useAppStore()
+const router = useRouter()
 const props = defineProps({
   feeItem: {
     type: Object,
@@ -116,6 +111,14 @@ const amountData = reactive({
   leftAmount: props.feeItem?.left_amount,
   amount: props.feeItem?.amount,
 })
+
+const goToDetailPage = (feeId) => {
+  appStore.fromMainPage = true
+  router.push({
+    path: `/main/${feeId}`,
+    query: { completed: false },
+  })
+}
 </script>
 
 <style lang="scss" scoped>

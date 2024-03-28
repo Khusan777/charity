@@ -5,8 +5,6 @@ export default defineNuxtPlugin(() => {
     (_, from) => {
       if (from.name === 'completed-id') {
         appStore.patientNews.activeTabs = true
-      } else {
-        appStore.patientNews.activeTabs = false
       }
     },
     { global: true },

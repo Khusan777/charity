@@ -3,7 +3,7 @@
     <UiHeaderComponent
       center
       center-text="Личная карточка"
-      left-route="/main"
+      :left-route="appStore.fromMainPage ? '/main' : '/completed'"
     ></UiHeaderComponent>
     <template v-if="loading">
       <DetailPatientSkeleton></DetailPatientSkeleton>
@@ -37,10 +37,10 @@
           <!--          </template>-->
         </div>
       </div>
-      <div v-if="route.query.completed === 'false'" class="btn-help">
-        <UiButton :with-disabled="false"></UiButton>
-      </div>
     </template>
+    <div v-if="route.query.completed === 'false'" class="btn-help">
+      <UiButton :with-disabled="false"></UiButton>
+    </div>
   </div>
 </template>
 
@@ -50,6 +50,7 @@ import { getDetailPatient } from '~/services/app.api'
 import { parseErrorsFromResponse } from '~/utils'
 import DetailPatientSkeleton from '~/components/skeleton/DetailPatientSkeleton.vue'
 
+const appStore = useAppStore()
 const loading = ref(false)
 const patientData = ref(null)
 const patient = reactive({

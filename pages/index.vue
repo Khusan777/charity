@@ -1,15 +1,15 @@
 <template>
   <div v-if="loading" class="loader-container">
     <NuxtImg
-      v-if="$colorMode.preference === 'dark'"
+      v-if="$colorMode.value === 'light'"
       style="width: 100%; padding: 0 60px"
-      src="/images/logo_dark.svg"
+      src="/images/logo_light.svg"
       alt="logo"
     ></NuxtImg>
     <NuxtImg
       v-else
       style="width: 100%; padding: 0 60px"
-      src="/images/logo_light.svg"
+      src="/images/logo_dark.svg"
       alt="logo"
     ></NuxtImg>
   </div>

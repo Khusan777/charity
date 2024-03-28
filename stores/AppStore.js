@@ -7,6 +7,7 @@ export const useAppStore = defineStore('AppStore', () => {
   const info = ref(null)
   const lang = ref(null)
   const theme = ref(null)
+  const fromMainPage = ref(false)
   const patientNews = reactive({
     loading: false,
     index: null,
@@ -36,5 +37,6 @@ export const useAppStore = defineStore('AppStore', () => {
     patientNews,
     setTheme,
     theme,
+    fromMainPage,
   }
 })

@@ -1,10 +1,5 @@
 <template>
-  <div
-    class="chart-card"
-    @click="
-      $router.push({ path: `/main/${feeItem?.id}`, query: { completed: true } })
-    "
-  >
+  <div class="chart-card" @click="goToDetailPage(feeItem?.id)">
     <div class="fond-container">
       <div class="data">
         <NuxtImg
@@ -75,6 +70,10 @@
 </template>
 
 <script setup>
+import { useAppStore } from '~/stores/AppStore'
+
+const router = useRouter()
+const appStore = useAppStore()
 const props = defineProps({
   feeItem: {
     type: Object,
@@ -84,4 +83,9 @@ const props = defineProps({
 const amountData = reactive({
   amount: props.feeItem?.amount,
 })
+
+const goToDetailPage = (feeId) => {
+  appStore.fromMainPage = false
+  router.push({ path: `/main/${feeId}`, query: { completed: true } })
+}
 </script>

@@ -119,27 +119,29 @@
         </ul>
       </div>
       <div id="myTabContent" class="tab-content">
-        <div
-          id="complete-tab-pane"
-          :class="
-            appStore.patientNews.activeTabs
-              ? 'tab-pane fade'
-              : 'tab-pane fade show active'
-          "
-          role="tabpanel"
-          aria-labelledby="complete-tab"
-          tabindex="0"
-        >
-          <div v-for="feeItem in completedFee.index" :key="feeItem.id">
-            <ChartCardCollected
-              :key="feeItem.id"
-              :fee-item="feeItem"
-            ></ChartCardCollected>
+        <template v-if="!appStore.patientNews.activeTabs">
+          <div
+            id="complete-tab-pane"
+            :class="
+              appStore.patientNews.activeTabs
+                ? 'tab-pane fade'
+                : 'tab-pane fade show active'
+            "
+            role="tabpanel"
+            aria-labelledby="complete-tab"
+            tabindex="0"
+          >
+            <div v-for="feeItem in completedFee.index" :key="feeItem.id">
+              <ChartCardCollected
+                :key="feeItem.id"
+                :fee-item="feeItem"
+              ></ChartCardCollected>
+            </div>
+            <div v-if="completedFee.loader" class="loader-wrapper">
+              <span class="loader-anim"></span>
+            </div>
           </div>
-          <div v-if="completedFee.loader" class="loader-wrapper">
-            <span class="loader-anim"></span>
-          </div>
-        </div>
+        </template>
         <div
           id="report-tab-pane"
           :class="

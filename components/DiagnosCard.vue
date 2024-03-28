@@ -1,7 +1,7 @@
 <template>
   <div class="help-data">
     <UiBadge
-      v-if="!isCompleted"
+      v-if="!isCompleted && patient?.type_need?.id !== 2"
       style="margin-bottom: 10px"
       with-image
       :img-ref="patient?.type_need?.icon"
@@ -16,7 +16,7 @@
       colour="rgb(251, 140, 0)"
     ></UiBadge>
     <UiBadge
-      v-else
+      v-if="isCompleted && patient?.type_need?.id !== 2"
       style="margin-bottom: 10px"
       with-image
       :img-ref="patient?.status?.icon"

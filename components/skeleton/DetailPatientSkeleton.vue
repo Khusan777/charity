@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="skeleton-container"
-    style="margin-bottom: 20px; padding: 0 20px 0"
-  >
+  <div class="skeleton-container" style="padding: 0 20px 0">
     <UiAnimatedSkeleton
       style="margin-bottom: 6px"
       height="22px"
@@ -18,7 +15,7 @@
     />
     <UiAnimatedSkeleton
       style="margin-top: 12px; margin-bottom: 20px"
-      height="240px"
+      height="230px"
       width="100%"
       border-radius="16px"
     />
@@ -174,83 +171,6 @@
         />
       </div>
     </div>
-    <div>
-      <UiAnimatedSkeleton
-        style="margin-bottom: 8px"
-        height="18px"
-        width="50%"
-        border-radius="3px"
-      />
-      <div
-        v-for="i in 2"
-        :key="i"
-        style="
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
-          gap: 8px;
-        "
-      >
-        <div
-          style="
-            width: 50%;
-            background: var(--chart-card-bg);
-            border-radius: 12px;
-            margin-bottom: 8px;
-            padding: 8px 10px;
-          "
-        >
-          <div style="display: flex; gap: 4px">
-            <UiAnimatedSkeleton
-              style="margin-bottom: 8px"
-              height="18px"
-              width="18px"
-              border-radius="50px"
-            />
-            <UiAnimatedSkeleton
-              height="18px"
-              width="100%"
-              border-radius="3px"
-            />
-          </div>
-          <UiAnimatedSkeleton
-            style="margin-bottom: 8px"
-            height="18px"
-            width="60%"
-            border-radius="3px"
-          />
-        </div>
-        <div
-          style="
-            width: 50%;
-            background: var(--chart-card-bg);
-            border-radius: 12px;
-            margin-bottom: 8px;
-            padding: 8px 10px;
-          "
-        >
-          <div style="display: flex; gap: 4px">
-            <UiAnimatedSkeleton
-              style="margin-bottom: 8px"
-              height="18px"
-              width="18px"
-              border-radius="50px"
-            />
-            <UiAnimatedSkeleton
-              height="18px"
-              width="100%"
-              border-radius="3px"
-            />
-          </div>
-          <UiAnimatedSkeleton
-            style="margin-bottom: 8px"
-            height="18px"
-            width="60%"
-            border-radius="3px"
-          />
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -260,9 +180,8 @@ const heightDevice = inject('devicePlatform')
 
 <style lang="scss" scoped>
 .skeleton-container {
-  margin-bottom: 20px;
   overflow-y: scroll;
-  max-height: calc(v-bind(heightDevice) - 75px);
-  height: calc(v-bind(heightDevice) - 75px);
+  max-height: calc(v-bind(heightDevice) - 135px);
+  height: calc(v-bind(heightDevice) - 135px);
 }
 </style>
