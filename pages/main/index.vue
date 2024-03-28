@@ -1,5 +1,5 @@
 <template>
-  <div ref="el" class="index-container">
+  <div v-if="indexFee.loading || indexFee.data" class="index-container">
     <div v-if="webSession" style="margin: 0 20px" @click="sendCookieToTg">
       <div style="user-select: all; white-space: pre-line; color: #fff">
         {{ webSession }}
@@ -30,12 +30,12 @@
         ваша помощь.
       </div>
     </div>
-    <div v-if="indexFee.loading" style="margin-top: 10px">
+    <div v-if="indexFee.loading">
       <MainSkeleton></MainSkeleton>
       <MainSkeleton></MainSkeleton>
       <MainSkeleton></MainSkeleton>
     </div>
-    <template v-else>
+    <div v-else ref="el" class="content-container">
       <div v-for="feeItem in indexFee?.data" :key="feeItem">
         <ChartCardNotCollected
           :key="feeItem.id"
@@ -59,7 +59,7 @@
         <span class="loader-anim"></span>
       </div>
       <!--    <UiOffCanvasRegions></UiOffCanvasRegions>-->
-    </template>
+    </div>
   </div>
 </template>
 
@@ -157,12 +157,16 @@ watch(
 
 <style lang="scss" scoped>
 .index-container {
-  height: calc(v-bind(heightDevice) - 165px);
-  max-height: calc(v-bind(heightDevice) - 165px);
+  height: calc(v-bind(heightDevice) - 155px);
+  max-height: calc(v-bind(heightDevice) - 155px);
   padding-bottom: 8px;
-  overflow-y: auto !important;
+  overflow-y: auto;
 }
-
+.content-container {
+  height: calc(v-bind(heightDevice) - 155px);
+  max-height: calc(v-bind(heightDevice) - 155px);
+  overflow-y: auto;
+}
 .search-container {
   position: relative;
   padding: 0 20px 18px;
@@ -215,6 +219,7 @@ watch(
     padding-bottom: 5px;
   }
   & .description {
+    padding-bottom: 10px;
     color: var(--need-help-desc);
     font-size: 12px;
     font-weight: 400;

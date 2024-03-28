@@ -4,7 +4,7 @@
       overflow-y: auto;
       background: var(--chart-card-bg);
       border-radius: 12px;
-      margin: 10px 20px 8px;
+      margin: 0 20px 10px;
       padding: 10px 10px 0 10px;
     "
   >

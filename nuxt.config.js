@@ -6,16 +6,17 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vue-toastification'],
   },
-  // routeRules: {
-  //   '/': { prerender: true },
-  //   '/billion': { prerender: true },
-  //   '/error': { prerender: true },
-  //   cors: true,
-  //   '/game': { ssr: false },
-  //   '/result/*': { isg: true },
-  //   '/profile': { swr: 3600 },
-  //   '/swr': { swr: true },
-  // },
+  routeRules: {
+    '/': { prerender: true },
+    '/completed': { prerender: true },
+    '/completed/*': { prerender: true },
+    // '/error': { prerender: true },
+    cors: true,
+    // '/game': { ssr: false },
+    // '/result/*': { isg: true },
+    // '/profile': { swr: 3600 },
+    // '/swr': { swr: true },
+  },
   app: {
     pageTransition: { name: 'page', mode: 'out-in', appear: true },
     head: {
