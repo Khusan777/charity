@@ -6,7 +6,7 @@
       :left-route="appStore.fromMainPage ? '/main' : '/completed'"
     ></UiHeaderComponent>
     <template v-if="loading">
-      <DetailPatientSkeleton></DetailPatientSkeleton>
+      <DetailPatientSkeleton :height-calc="calculate"></DetailPatientSkeleton>
     </template>
     <template v-else>
       <div class="detail-container">
@@ -39,8 +39,11 @@
       </div>
     </template>
     <div
-      v-if="route.query.completed === 'false'"
-      v-ripple.500="'rgba(255, 255, 255, 0.35)'"
+      v-if="
+        patientData?.status?.id !== 4 &&
+        patientData?.status?.id !== 5 &&
+        patientData?.status?.id !== 7
+      "
       class="btn-help"
       @click="$router.push(`/paid/${patientData?.id}`)"
     >

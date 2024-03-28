@@ -175,13 +175,19 @@
 </template>
 
 <script setup>
+defineProps({
+  heightCalc: {
+    type: String,
+    required: true,
+  },
+})
 const heightDevice = inject('devicePlatform')
 </script>
 
 <style lang="scss" scoped>
 .skeleton-container {
   overflow-y: scroll;
-  max-height: calc(v-bind(heightDevice) - 135px);
-  height: calc(v-bind(heightDevice) - 135px);
+  max-height: calc(v-bind(heightDevice) - v-bind(heightCalc));
+  height: calc(v-bind(heightDevice) - v-bind(heightCalc));
 }
 </style>

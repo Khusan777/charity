@@ -15,7 +15,7 @@ const $i18n = useI18n()
 const colorMode = useColorMode()
 const getTheme = computed(() => getCookie('theme'))
 appStore.setTheme(getTheme.value)
-colorMode.preference = getTheme.value
+colorMode.preference = 'dark' || getTheme.value
 
 const lang = computed(() => getCookie('lang'))
 appStore.setLang(lang.value)

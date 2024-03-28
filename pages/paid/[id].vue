@@ -6,69 +6,74 @@
       center-text="Нужна помощь"
     ></HeaderComponent>
     <div class="paid-container">
-      <div>
-        <div class="chart-card">
-          <div class="user-disease">
-            <NuxtImg
-              class="image-user"
-              :src="`https://dev-promo23.click.uz/storage/${patientData?.patient_photo}`"
-              alt="user"
-            ></NuxtImg>
-            <div style="width: calc(100% - 100px)">
-              <div class="name">
-                <div>
-                  {{
-                    patientData?.patient_name +
-                      ' ' +
-                      patientData?.patient_surname || ''
-                  }}
-                  <span>({{ patientData?.patient_age }} года)</span>
+      <template v-if="loading">
+        <PaidPageSkeleton></PaidPageSkeleton>
+      </template>
+      <template v-else>
+        <div>
+          <div class="chart-card">
+            <div class="user-disease">
+              <NuxtImg
+                class="image-user"
+                :src="`https://dev-promo23.click.uz/storage/${patientData?.patient_photo}`"
+                alt="user"
+              ></NuxtImg>
+              <div style="width: calc(100% - 100px)">
+                <div class="name">
+                  <div>
+                    {{
+                      patientData?.patient_name +
+                        ' ' +
+                        patientData?.patient_surname || ''
+                    }}
+                    <span>({{ patientData?.patient_age }} года)</span>
+                  </div>
+                  <div></div>
                 </div>
-                <div></div>
-              </div>
-              <div class="city">
-                {{
-                  $i18n.locale === 'uz'
-                    ? patientData?.region?.name_uz
-                    : $i18n.locale === 'en'
-                      ? patientData?.region?.name_en
-                      : patientData?.region?.name_ru
-                }}
-              </div>
-              <UiBorderLine></UiBorderLine>
-              <div class="disease">
-                {{
-                  $i18n.locale === 'uz'
-                    ? patientData?.sick_category?.name_uz
-                    : $i18n.locale === 'en'
-                      ? patientData?.sick_category?.name_en
-                      : patientData?.sick_category?.name_ru
-                }}
+                <div class="city">
+                  {{
+                    $i18n.locale === 'uz'
+                      ? patientData?.region?.name_uz
+                      : $i18n.locale === 'en'
+                        ? patientData?.region?.name_en
+                        : patientData?.region?.name_ru
+                  }}
+                </div>
+                <UiBorderLine></UiBorderLine>
+                <div class="disease">
+                  {{
+                    $i18n.locale === 'uz'
+                      ? patientData?.sick_category?.name_uz
+                      : $i18n.locale === 'en'
+                        ? patientData?.sick_category?.name_en
+                        : patientData?.sick_category?.name_ru
+                  }}
+                </div>
               </div>
             </div>
+            <UiCollectionProgress
+              :amount="{
+                amount: patientData?.amount,
+                leftAmount: patientData?.left_amount,
+              }"
+              is-completed="false"
+            ></UiCollectionProgress>
           </div>
-          <UiCollectionProgress
-            :amount="{
-              amount: patientData?.amount,
-              leftAmount: patientData?.left_amount,
-            }"
-            is-completed="false"
-          ></UiCollectionProgress>
-        </div>
-        <div class="warning-container">
-          <NuxtImg
-            width="24"
-            height="24"
-            src="/images/info.svg"
-            alt="info"
-          ></NuxtImg>
-          <div class="text">
-            При нажатии на кнопку "Пожертвовать" вы будете перенаправлены на
-            страницу оплаты в фонд Mehrli qo’llar. Сумма, которую вы укажете,
-            будет переведена на счет этого фонда.
+          <div class="warning-container">
+            <NuxtImg
+              width="24"
+              height="24"
+              src="/images/info.svg"
+              alt="info"
+            ></NuxtImg>
+            <div class="text">
+              При нажатии на кнопку "Пожертвовать" вы будете перенаправлены на
+              страницу оплаты в фонд Mehrli qo’llar. Сумма, которую вы укажете,
+              будет переведена на счет этого фонда.
+            </div>
           </div>
         </div>
-      </div>
+      </template>
       <div>
         <div class="search-container">
           <label class="label-text" for="paid-summ">Сумма помощи</label>
@@ -101,16 +106,19 @@ import { useToast } from 'vue-toast-notification'
 import { getDetailPatient } from '~/services/app.api'
 import { parseErrorsFromResponse } from '~/utils'
 import HeaderComponent from '~/components/ui/HeaderComponent.vue'
+import PaidPageSkeleton from '~/components/skeleton/PaidPageSkeleton.vue'
 
 const heightDevice = inject('devicePlatform')
 const $toast = useToast()
 const route = useRoute()
 const router = useRouter
+const id = computed(() => route.params.id)
 const patientData = ref(null)
 const loading = ref(false)
-const PatientData = () => {
+
+const PatientData = (patientId) => {
   loading.value = true
-  getDetailPatient(+route.params.id)
+  getDetailPatient(+patientId)
     .then((response) => {
       patientData.value = response.data?.data
       loading.value = false
@@ -121,7 +129,7 @@ const PatientData = () => {
     })
 }
 
-PatientData()
+PatientData(id.value)
 </script>
 
 <style lang="scss" scoped>
