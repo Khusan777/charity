@@ -33,7 +33,7 @@ defineProps({
   height: v-bind(height);
   width: v-bind(width);
   border-radius: v-bind(borderRadius);
-  background: linear-gradient(304deg, #ededed 0%, #d6d7d9 100%);
+  background: var(--skeleton-bg);
   background-size: 200% 100%;
   animation: bgAnimate 1.2s linear infinite;
 }

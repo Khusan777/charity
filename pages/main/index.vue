@@ -199,12 +199,12 @@ watch(
       outline: 0;
     }
   }
-  & .placeholder {
-    background: var(--search-bg);
-    right: 40px;
-    top: 6px;
-    position: absolute;
-  }
+  //& .placeholder {
+  //  background: var(--search-bg);
+  //  right: 40px;
+  //  top: 6px;
+  //  position: absolute;
+  //}
 }
 
 .help-block {

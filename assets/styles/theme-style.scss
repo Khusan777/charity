@@ -69,6 +69,7 @@
   --report-transaction-date: #6a6a6a;
   --report-transaction-summ: #363845;
   --modal: #fff;
+  --skeleton-bg: linear-gradient(to right, #d8d8d8 0%, #bdbdbd 20%, #d8d8d8 40%, #d8d8d8 100%);
 }
 
 .dark-mode {
@@ -142,6 +143,7 @@
   --report-transaction-date: #b3b7ce;
   --report-transaction-summ: #fff;
   --modal: #1a1b25;
+  --skeleton-bg: linear-gradient(to right, #50535a 0%, #656871 20%, #50535a 40%, #50535a 100%);
 }
 
 .modal-backdrop{

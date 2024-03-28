@@ -18,7 +18,10 @@
         Произошла техническая ошибка. Попробуйте ещё раз.
       </div>
     </div>
-    <div style="padding: 20px 0; width: 100%">
+    <div
+      v-ripple.500="'rgba(255, 255, 255, 0.35)'"
+      style="padding: 20px 0; width: 100%"
+    >
       <UiButton
         class="btn"
         text-btn="Повторить попытку"

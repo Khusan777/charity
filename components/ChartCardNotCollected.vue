@@ -88,11 +88,7 @@
     <div v-ripple.500="'rgba(255, 255, 255, 0.35)'" class="help-btn">
       <UiButton
         :with-disabled="false"
-        @click="
-          $router.push({
-            path: `/main/${feeItem?.id}`,
-          })
-        "
+        @click="$router.push(`/paid/${feeItem?.id}`)"
       ></UiButton>
     </div>
   </div>

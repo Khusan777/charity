@@ -38,7 +38,12 @@
         </div>
       </div>
     </template>
-    <div v-if="route.query.completed === 'false'" class="btn-help">
+    <div
+      v-if="route.query.completed === 'false'"
+      v-ripple.500="'rgba(255, 255, 255, 0.35)'"
+      class="btn-help"
+      @click="$router.push(`/paid/${patientData?.id}`)"
+    >
       <UiButton :with-disabled="false"></UiButton>
     </div>
   </div>

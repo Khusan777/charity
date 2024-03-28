@@ -36,7 +36,10 @@
         <!--          v-model:checked="acceptCheck"-->
         <!--          label="Соглашаюсь с политикой<br />обработки <span style='text-decoration:underline; color:#0073ff'>персональных данных</span>"-->
         <!--        ></UiCheckbox>-->
-        <div style="padding-top: 15px">
+        <div
+          v-ripple.500="'rgba(255, 255, 255, 0.35)'"
+          style="padding-top: 15px"
+        >
           <UiButton
             v-if="acceptBtn"
             class="btn-accept"

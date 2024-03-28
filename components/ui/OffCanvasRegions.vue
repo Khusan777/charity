@@ -35,7 +35,7 @@
         ></UiCheckbox>
       </div>
     </div>
-    <div class="btns">
+    <div v-ripple.500="'rgba(255, 255, 255, 0.35)'" class="btns">
       <UiButton
         style="background: transparent; color: #575965"
         text-btn="Сбросить фильтр"
