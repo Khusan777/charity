@@ -13,7 +13,8 @@ export const useAppStore = defineStore('AppStore', () => {
     index: null,
     paginationData: null,
     activeTabs: false,
-  })
+  }) 
+  const myFees = ref(null)
 
   const setWebSession = (session) => {
     webSession.value = session
@@ -38,5 +39,6 @@ export const useAppStore = defineStore('AppStore', () => {
     setTheme,
     theme,
     fromMainPage,
+    myFees
   }
 })

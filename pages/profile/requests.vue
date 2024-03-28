@@ -18,15 +18,15 @@
         </div>
       </div>
       <div class="requests-list">
-        <div class="requests-item">
+        <div class="requests-item" v-for="fee in getMyFees" :key="fee?.id">
           <div class="requests-item-top">
             <div class="requests-item-box">
               <div class="requests-item-top-left">
                 <div class="requests-item-top-left-date">
-                  10:35 03 февр. 16.05
+                  {{ formattedDate(fee?.created_at) }}
                 </div>
                 <div class="requests-item-top-left-title">
-                  Номер заявки: <span>3456789</span>
+                  Номер заявки: <span>{{ fee?.id }}</span>
                 </div>
               </div>
               <div class="requests-item-top-right">
@@ -59,23 +59,19 @@
           <div class="requests-item-body">
             <div class="requests-item-body-item">
               <div class="requests-item-body-label">ФИО ребенка</div>
-              <div class="requests-item-body-val">Сенбаев Арслан</div>
+              <div class="requests-item-body-val">{{ fee?.patient_surname }} {{ fee?.patient_name }}</div>
             </div>
             <div class="requests-item-body-item">
               <div class="requests-item-body-label">Дата рождения</div>
-              <div class="requests-item-body-val">20.03.2018</div>
+              <div class="requests-item-body-val">{{ formattedDate(fee?.patient_birth_date) }}</div>
             </div>
             <div class="requests-item-body-item">
               <div class="requests-item-body-label">Область проживания</div>
-              <div class="requests-item-body-val">Ташкент</div>
-            </div>
-            <div class="requests-item-body-item">
-              <div class="requests-item-body-label">Номер телефона</div>
-              <div class="requests-item-body-val">+998 (99) 123 45 67</div>
+              <div class="requests-item-body-val">{{ fee?.region?.name_ru }}</div>
             </div>
             <div class="requests-item-body-item">
               <div class="requests-item-body-label">Тип нуждаемости</div>
-              <div class="requests-item-body-val">Хирургическое лечение</div>
+              <div class="requests-item-body-val">{{ fee?.type_help?.name_ru }}</div>
             </div>
           </div>
           <button
@@ -92,13 +88,28 @@
 </template>
 
 <script>
+import { apiClient } from '~/services/apiClient'
+import { useAppStore } from '~/stores/AppStore'
+import { formattedDate } from '~/utils/index'
+
 export default {
   name: 'Faq',
   data() {
     return {
       heightDevice: inject('devicePlatform'),
+      appStore: useAppStore(),
       status: 1,
     }
+  },
+  computed: {
+    getMyFees() {
+      return this.appStore?.myFees
+    },
+  },
+  mounted() {
+    apiClient.get('/myFees').then((res) => {
+      this.appStore.myFees = res.data.data
+    })
   },
 }
 </script>
@@ -107,11 +118,11 @@ export default {
 .requests {
   max-height: v-bind(heightDevice);
   height: v-bind(heightDevice);
-  overflow-y: scroll;
   &-wrapper {
     height: calc(v-bind(heightDevice) - 75px);
     max-height: calc(v-bind(heightDevice) - 75px);
-    padding: 0 20px;
+    padding: 0 20px 20px;
+    overflow-y: scroll;
   }
   &-top {
     border-radius: 12px;
