@@ -185,7 +185,6 @@ PatientData()
         }
         &:focus {
           border: 1px solid #0073ff;
-          color: #b3b7ce;
           outline: 0;
         }
       }
