@@ -7,11 +7,22 @@
 
 <script setup>
 const appStore = useAppStore()
+const colorMode = useColorMode()
 const themeCookie = computed(() =>
   getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
 )
+if (themeCookie.value == 'dark') {
+  colorMode.preference = 'dark'
+  appStore.setTheme(themeCookie.value)
+} else {
+  colorMode.preference = 'light'
+  appStore.setTheme(themeCookie.value)
+}
 if (!appStore.theme) {
   appStore.setTheme(themeCookie.value)
+  if (themeCookie.value) {
+    colorMode.preference = themeCookie.value
+  }
 }
 </script>
 

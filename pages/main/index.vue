@@ -7,7 +7,9 @@
       <div style="color: #fff">
         {{ getCookie('theme') }}
       </div>
-      <div style="color: #ffffff">Document cookie {{ cookies }}</div>
+      <div style="color: #ffffff">
+        Theme {{ appStore.theme }} - {{ $colorMode.value }}
+      </div>
     </div>
     <div class="search-container">
       <input v-model="queryFee.search" type="text" placeholder="Фамилия, имя" />
@@ -80,10 +82,8 @@ definePageMeta({
 const el = shallowRef(null)
 const heightDevice = inject('devicePlatform')
 const appStore = useAppStore()
-const colorMode = useColorMode()
 const { webSession } = storeToRefs(appStore)
 
-const cookies = computed(() => colorMode.value)
 const indexFee = reactive({
   loading: false,
   loader: false,

@@ -70,9 +70,9 @@ import { apiClient } from '~/services/apiClient'
 
 const appStore = useAppStore()
 const heightDevice = inject('devicePlatform')
-const { user, theme } = storeToRefs(appStore)
+const { user } = storeToRefs(appStore)
 const $toast = useToast()
-const colorMode = useColorMode()
+// const colorMode = useColorMode()
 const loading = ref(true)
 const acceptBtn = ref(false)
 const isNotAcceptCode = ref(null)
@@ -128,20 +128,20 @@ if (!appStore.webSession) {
   appStore.setWebSession(cookieWebSession.value)
 }
 
-const themeCookie = computed(() =>
-  getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
-)
-if (!appStore.theme) {
-  appStore.setTheme(themeCookie.value)
-}
+// const themeCookie = computed(() =>
+//   getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
+// )
+// if (!appStore.theme) {
+//   appStore.setTheme(themeCookie.value)
+// }
 // const storedThemeData = ref(appStore.theme)
 // definePageMeta({
 //   colorMode: themeCookie.value,
 // })
-colorMode.value = themeCookie.value ? themeCookie.value : appStore.theme
-colorMode.preference = themeCookie.value ? themeCookie.value : appStore.theme
-colorMode.preference = theme.value ? theme.value : themeCookie.value
-colorMode.value = theme.value ? theme.value : themeCookie.value
+// colorMode.value = themeCookie.value ? themeCookie.value : appStore.theme
+// colorMode.preference = themeCookie.value ? themeCookie.value : appStore.theme
+// colorMode.preference = theme.value ? theme.value : themeCookie.value
+// colorMode.value = theme.value ? theme.value : themeCookie.value
 const getUserData = () => {
   getMe({
     web_session: appStore.webSession
