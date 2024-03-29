@@ -5,42 +5,6 @@
   </NuxtLayout>
 </template>
 
-<script>
-import { useColorMode } from '@vueuse/core'
-export default {
-  data() {
-    return {
-      colorState: useColorMode(),
-    }
-  },
-  computed: {
-    cookie() {
-      return getCookie('web-session')
-    },
-    theme() {
-      return getCookie('theme')
-    },
-  },
-  created() {
-    if (this.theme && this.theme == 'light') {
-      this.colorState.preference = 'light'
-      this.$colorMode.preference = 'light'
-    }
-    const lang = getCookie('lang')
-    if (lang && lang == 'uz') {
-      this.$i18n.locale = 'uz'
-    }
-    if (lang && lang == 'en') {
-      this.$i18n.locale = 'en'
-    }
-    const currentTheme = getCookie('theme')
-    if (currentTheme && currentTheme == 'light') {
-      this.$colorMode.preference = 'light'
-    }
-  },
-}
-</script>
-
 <style lang="scss">
 @forward 'assets/styles/theme-style';
 

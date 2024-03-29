@@ -62,7 +62,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useToast } from 'vue-toast-notification'
-import { useI18n } from 'vue-i18n'
+// import { useI18n } from 'vue-i18n'
 import { useAppStore } from '~/stores/AppStore'
 import { getMe } from '~/services/app.api'
 import { parseErrorsFromResponse, setToken } from '~/utils'
@@ -72,7 +72,7 @@ const heightDevice = inject('devicePlatform')
 const appStore = useAppStore()
 const { user } = storeToRefs(appStore)
 const $toast = useToast()
-const { locale } = useI18n()
+// const { locale } = useI18n()
 
 const loading = ref(true)
 const acceptBtn = ref(false)
@@ -80,37 +80,13 @@ const isNotAcceptCode = ref(null)
 const router = useRouter()
 const colorMode = useColorMode()
 
-const oldTheme = computed(() => getCookie('click-theme'))
-const currentTheme = computed(() => getCookie('theme'))
-const theme = getCookie('theme')
-const lang = getCookie('lang')
-
-if (theme && theme == 'dark') {
-  colorMode.preference = 'dark'
-  appStore.setLang(theme.value)
+const theme = computed(() =>
+  getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
+)
+if (theme && theme.value == 'light') {
+  document?.documentElement?.class?.add('light')
 } else {
-  colorMode.preference = 'light'
-}
-
-if (currentTheme.value && currentTheme.value == 'dark') {
-  colorMode.preference = 'dark'
-  appStore.setLang(currentTheme.value)
-} else {
-  colorMode.preference = 'light'
-}
-
-if (oldTheme.value && oldTheme.value == 'dark') {
-  colorMode.preference = 'dark'
-  appStore.setLang(oldTheme.value)
-} else {
-  colorMode.preference = 'light'
-}
-
-if (lang && lang === 'uz') {
-  locale.value = 'uz'
-}
-if (lang && lang === 'en') {
-  locale.value = 'en'
+  document?.documentElement?.class?.add('dark')
 }
 
 if (!appStore.theme) {
