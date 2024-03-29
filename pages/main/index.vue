@@ -4,6 +4,9 @@
       <div style="user-select: all; white-space: pre-line; color: #fff">
         {{ webSession }}
       </div>
+      <div style="color: #fff">
+        {{ appStore?.theme }}
+      </div>
     </div>
     <div class="search-container">
       <input v-model="queryFee.search" type="text" placeholder="Фамилия, имя" />
