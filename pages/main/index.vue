@@ -5,7 +5,7 @@
         {{ webSession }}
       </div>
       <div style="color: #fff">
-        {{ appStore?.theme }}
+        {{ getCookie('theme') }}
       </div>
     </div>
     <div class="search-container">
