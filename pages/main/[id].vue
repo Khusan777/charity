@@ -23,8 +23,8 @@
             :patient="patientData"
             :is-completed="
               Boolean(
-                patientData?.status?.id === 4 &&
-                  patientData?.status?.id === 5 &&
+                patientData?.status?.id === 4 ||
+                  patientData?.status?.id === 5 ||
                   patientData?.status?.id === 7,
               )
             "
