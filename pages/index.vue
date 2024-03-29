@@ -81,7 +81,7 @@ const router = useRouter()
 const colorMode = useColorMode()
 
 const theme = getCookie('theme')
-if (theme && theme === 'light') {
+if (theme && theme == 'light') {
   colorMode.preference = 'light'
   appStore.setLang(theme)
 }
