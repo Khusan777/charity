@@ -6,24 +6,24 @@
 </template>
 
 <script setup>
-const appStore = useAppStore()
-const colorMode = useColorMode()
-const themeCookie = computed(() =>
-  getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
-)
-if (themeCookie.value == 'light') {
-  colorMode.value = 'light'
-  appStore.setTheme(themeCookie.value)
-} else {
-  colorMode.value = 'dark'
-  appStore.setTheme(themeCookie.value)
-}
-if (!appStore.theme) {
-  appStore.setTheme(themeCookie.value)
-  if (themeCookie.value) {
-    colorMode.value = themeCookie.value
-  }
-}
+onMounted(() => {
+  const themeCookie = computed(() =>
+    getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
+  )
+  // Check what the system color scheme preferences are
+  try {
+    // See references for more context for why "not all" is used here
+    const rootElem = document.documentElement
+    if (themeCookie.value == 'dark') {
+      rootElem.setAttribute('data-theme', 'dark')
+    } else if (themeCookie.value == 'light') {
+      rootElem.setAttribute('data-theme', 'light')
+    } else {
+      rootElem.setAttribute('data-theme', 'dark')
+    }
+    // catches browser/OS level preference changes while the page is already loaded
+  } catch (err) {}
+})
 </script>
 
 <!--<script>-->
