@@ -11,19 +11,20 @@ const colorMode = useColorMode()
 const themeCookie = computed(() =>
   getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
 )
-if (themeCookie.value == 'dark') {
-  colorMode.preference = 'dark'
+if (themeCookie.value == 'light') {
+  colorMode.value = 'light'
   appStore.setTheme(themeCookie.value)
 } else {
-  colorMode.preference = 'light'
+  colorMode.value = 'dark'
   appStore.setTheme(themeCookie.value)
 }
 if (!appStore.theme) {
   appStore.setTheme(themeCookie.value)
   if (themeCookie.value) {
-    colorMode.preference = themeCookie.value
+    colorMode.value = themeCookie.value
   }
 }
+colorMode.value = appStore.theme
 </script>
 
 <!--<script>-->
