@@ -51,11 +51,11 @@ const heightDevice = inject('devicePlatform')
 .fonds {
   max-height: v-bind(heightDevice);
   height: v-bind(heightDevice);
-  overflow-y: scroll;
   &-wrapper {
     height: calc(v-bind(heightDevice) - 75px);
     max-height: calc(v-bind(heightDevice) - 75px);
-    padding: 0 20px;
+    padding: 0 20px 20px;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     gap: 5px;

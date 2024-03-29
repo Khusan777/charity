@@ -95,11 +95,11 @@ const appStore = useAppStore()
   max-height: v-bind(heightDevice);
   height: v-bind(heightDevice);
   padding-bottom: 75px;
-  overflow-y: scroll;
   &-wrapper {
     height: calc(100% - 75px);
     max-height: calc(100% - 75px);
-    padding: 0 20px;
+    padding: 0 20px 20px;
+    overflow-y: scroll;
   }
   &-user {
     display: flex;

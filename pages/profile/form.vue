@@ -11,6 +11,31 @@
         анкету-обращение. Рассмотрение заявки осуществляется в течение 14 дней с
         момента подачи заявки. Помощь будет оказана в клиниках партнерах.
       </div>
+      <div class="sendform-fond">
+        <div class="sendform-fond-top">
+          <div class="sendform-fond-top-icon">
+            <NuxtImg src="/images/fonds/01.png"></NuxtImg>
+          </div>
+          <div class="sendform-fond-top-text">
+            <div class="sendform-fond-top-title">Mehrli qo'llar</div>
+            <div class="sendform-fond-top-line"></div>
+            <a
+              href="tel:998712000083"
+              target="_blank"
+              class="sendform-fond-top-phone"
+            >
+              <div class="sendform-fond-top-phone-icon">
+                <NuxtImg src="/images/call.svg"></NuxtImg>
+              </div>
+              <div class="sendform-fond-top-phone-val">+998 71 200-00-83</div>
+            </a>
+          </div>
+        </div>
+        <div class="sendform-fond-des">
+          Является негосударственной некоммерческой организацией в форме
+          учреждения созданного при учредительстве Союза молодежи Узбекистана
+        </div>
+      </div>
       <div class="sendform-info">
         <div class="sendform-info-icon">
           <NuxtImg src="/images/info.svg"></NuxtImg>
@@ -30,27 +55,50 @@
           <label for="fio">Фамилия ребенка<span>*</span></label>
           <input
             id="fio"
-            v-model="surname"
+            v-model="v$.surname.$model"
             placeholder="Фамилия"
+            :class="v$.surname.$error ? 'error' : ''"
             @input="filterSurname"
           />
+          <div v-if="v$.surname.$error" class="sendform-pac-error">
+            Введите фамилию
+          </div>
         </div>
         <div class="sendform-pac-input">
           <label for="name">Имя ребенка<span>*</span></label>
           <input
             id="name"
-            v-model="name"
+            v-model="v$.name.$model"
             placeholder="Имя"
+            :class="v$.name.$error ? 'error' : ''"
             @input="filterName"
           />
+          <div v-if="v$.name.$error" class="sendform-pac-error">
+            Введите имя
+          </div>
         </div>
         <div class="sendform-pac-input">
           <label for="birthday">Дата рождения<span>*</span></label>
-          <input id="birthday" v-model="birthday" type="date" />
+          <input
+            v-model="v$.birthday.$model"
+            v-mask="'##-##-####'"
+            type="text"
+            inputmode="numeric"
+            placeholder="ДД-ММ-ГГГГ"
+            :class="v$.birthday.$error ? 'error' : ''"
+          />
+          <div v-if="v$.birthday.$error" class="sendform-pac-error">
+            Введите дату рождения
+          </div>
         </div>
         <div class="sendform-pac-select">
           <label for="region">Область проживания<span>*</span></label>
-          <select id="region" v-model="region" class="form-select">
+          <select
+            id="region"
+            v-model="v$.region.$model"
+            class="form-select"
+            :class="v$.region.$error ? 'error' : ''"
+          >
             <option value="10" selected>г. Ташкент</option>
             <option value="11">Ташкентская область</option>
             <option value="1">Андижанская область</option>
@@ -66,20 +114,41 @@
             <option value="13">Хорезмская область</option>
             <option value="14">Республика Каракалпакстан</option>
           </select>
+          <div v-if="v$.region.$error" class="sendform-pac-error">
+            Выберите область проживания
+          </div>
         </div>
         <div class="sendform-pac-input">
           <label for="phone">Ваш телефон<span>*</span></label>
           <div class="sendform-pac-input-box">
             <span>+998</span>
-            <input v-model="phone" v-mask="'(##) ###-##-##'" type="tel" />
+            <input
+              v-model="v$.phone.$model"
+              v-mask="'(##) ###-##-##'"
+              type="tel"
+              inputmode="numeric"
+              placeholder="(00) 000-00-00"
+              :class="v$.phone.$error ? 'error' : ''"
+            />
+          </div>
+          <div v-if="v$.region.$error" class="sendform-pac-error">
+            Введите номер телефона
           </div>
         </div>
         <div class="sendform-pac-select">
           <label for="type">Тип нуждаемости<span>*</span></label>
-          <select id="type" v-model="type" class="form-select">
+          <select
+            id="type"
+            v-model="v$.type.$model"
+            class="form-select"
+            :class="v$.type.$error ? 'error' : ''"
+          >
             <option value="1" selected>Хирургическое лечение</option>
             <option value="2">Медикаменты</option>
           </select>
+          <div v-if="v$.type.$error" class="sendform-pac-error">
+            Выберите тип нуждаемости
+          </div>
         </div>
         <div class="sendform-pac-input">
           <label for="des">Кратко опишите вашу ситуацию</label>
@@ -100,7 +169,7 @@
           Нажимая кнопку «Отправить», я даю свое согласие на обработку моих
           персональных данных
         </p>
-        <button :disabled="loading || !disabled" @click="send">
+        <button :disabled="loading" @click="send">
           <span v-if="!loading">Отправить запрос</span>
           <span
             v-if="loading"
@@ -148,7 +217,8 @@
 
 <script>
 import { mask } from 'vue-the-mask'
-import { apiClient } from '~/services/apiClient'
+import { useVuelidate } from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
 import { useAppStore } from '~/stores/AppStore'
 
 export default {
@@ -156,31 +226,24 @@ export default {
   directives: {
     mask,
   },
+  setup() {
+    return {
+      v$: useVuelidate(),
+    }
+  },
   data() {
     return {
-      surname: null,
-      name: null,
-      phone: null,
-      birthday: null,
-      region: null,
-      des: null,
-      type: null,
+      surname: '',
+      name: '',
+      phone: '',
+      birthday: '',
+      region: '',
+      des: '',
+      type: '',
       heightDevice: inject('devicePlatform'),
       appStore: useAppStore(),
       loading: false,
     }
-  },
-  computed: {
-    disabled() {
-      return (
-        this.surname != null &&
-        this.name != null &&
-        this.phone != null &&
-        this.birthday != null &&
-        this.region != null &&
-        this.type != null
-      )
-    },
   },
   methods: {
     uploadImage(e) {
@@ -192,31 +255,37 @@ export default {
       }
       this.file = e.target.files[0]
     },
-    send() {
-      this.loading = true
-      const data = new FormData()
-      const phone_number = this.phone.replace(/[- )(]/g, '')
-      const result_number = '998' + phone_number
-      const modal = new bootstrap.Modal('#successModal')
-      data.append('customer_id', this.appStore.user.id)
-      data.append('patient_name', this.name)
-      data.append('patient_surname', this.surname)
-      data.append('patient_birth_date', this.birthday)
-      data.append('region_id', this.region)
-      data.append('patient_phone', result_number)
-      data.append('type_help_id', this.type)
-      data.append('comment', this.des)
-      console.log(data)
-      apiClient
-        .post('/fee', data, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        })
-        .then(() => {
-          this.loading = false
-          modal.show()
-        })
+    getValidationState({ dirty, validated, valid = null }) {
+      return dirty || validated ? valid : null
+    },
+    async send() {
+      const isFormCorrect = await this.v$.$validate()
+      if (isFormCorrect) {
+        console.log('return')
+      }
+      // this.loading = true
+      // const data = new FormData()
+      // const phone_number = this.phone.replace(/[- )(]/g, '')
+      // const result_number = '998' + phone_number
+      // const modal = new bootstrap.Modal('#successModal')
+      // data.append('customer_id', this.appStore.user.id)
+      // data.append('patient_name', this.name)
+      // data.append('patient_surname', this.surname)
+      // data.append('patient_birth_date', this.birthday)
+      // data.append('region_id', this.region)
+      // data.append('patient_phone', result_number)
+      // data.append('type_help_id', this.type)
+      // data.append('comment', this.des)
+      // apiClient
+      //   .post('/fee', data, {
+      //     headers: {
+      //       'Content-Type': 'multipart/form-data',
+      //     },
+      //   })
+      //   .then(() => {
+      //     this.loading = false
+      //     modal.show()
+      //   })
     },
     goHome() {
       this.$router.push('/')
@@ -227,6 +296,16 @@ export default {
     filterName() {
       this.name = this.name.replace(/[^a-zа-яё\s]/gi, '')
     },
+  },
+  validations() {
+    return {
+      surname: { required },
+      name: { required },
+      birthday: { required },
+      region: { required },
+      phone: { required },
+      type: { required },
+    }
   },
 }
 </script>
@@ -246,6 +325,71 @@ export default {
     line-height: 16px;
     color: var(--text4);
     margin-bottom: 10px;
+  }
+  &-fond {
+    border-radius: 10px;
+    background: var(--bg1);
+    margin-bottom: 10px;
+    padding: 10px;
+    &-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      &-icon {
+        width: 60px;
+        height: 60px;
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 60px;
+        }
+      }
+      &-text {
+        width: calc(100% - 70px);
+      }
+      &-title {
+        line-height: 19.2px;
+        font-size: 16px;
+        color: var(--text);
+      }
+      &-line {
+        margin: 10px 0;
+        background: var(--border);
+        width: 100%;
+        height: 1px;
+      }
+      &-phone {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 10px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        &-icon {
+          width: 16px;
+          height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            width: 16px;
+          }
+        }
+        &-val {
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 100%;
+          color: var(--text);
+        }
+      }
+    }
+    &-des {
+      font-size: 12px;
+      line-height: 16px;
+      color: var(--text2);
+    }
   }
   &-info {
     border-radius: 12px;
@@ -316,6 +460,9 @@ export default {
           outline: 0;
         }
       }
+      input.error {
+        border: 1px solid #fd7172;
+      }
       textarea {
         height: 90px;
         line-height: 20px;
@@ -366,6 +513,13 @@ export default {
         background: none;
         color: var(--text);
       }
+      select.error {
+        border: 1px solid #fd7172;
+      }
+    }
+    &-error {
+      font-size: 12px;
+      color: #fd7172;
     }
   }
   &-bottom {

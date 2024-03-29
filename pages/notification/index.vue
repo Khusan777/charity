@@ -1,7 +1,7 @@
 <template>
   <div class="notification">
     <UiHeaderComponent center center-text="Уведомления"></UiHeaderComponent>
-    <div class="notification-list">
+    <!-- <div class="notification-list">
       <router-link to="/notification/1" class="notification-item">
         <div class="notification-icon">
           <NuxtImg
@@ -56,6 +56,13 @@
           </div>
         </div>
       </router-link>
+    </div> -->
+    <div class="notification-none">
+      <NuxtImg src="/images/not-n.png"></NuxtImg>
+      <p>
+        Тут будут уведомления о том, как вы меняете мир к лучшему. Следи за
+        новостями о своих благотворительных делах здесь!
+      </p>
     </div>
   </div>
 </template>
@@ -122,6 +129,26 @@ const heightDevice = inject('devicePlatform')
     font-size: 12px;
     color: var(--text2);
     line-height: 14px;
+  }
+  &-none {
+    height: calc(100% - 75px);
+    max-height: calc(100% - 75px);
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    img {
+      width: 80%;
+    }
+    p {
+      margin-bottom: 0;
+      color: var(--text2);
+      text-align: center;
+      font-size: 14px;
+      line-height: 16.8px;
+    }
   }
 }
 </style>

@@ -71,7 +71,7 @@ export default {
   &-wrapper {
     height: calc(100% - 75px);
     max-height: calc(100% - 75px);
-    padding: 0 20px;
+    padding: 0 20px 20px;
     overflow-y: scroll;
   }
   &-item {

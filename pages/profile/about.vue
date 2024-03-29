@@ -9,11 +9,11 @@
       <div class="about-info">
         <div class="about-logo">
           <NuxtImg
-            v-if="$colorMode.preference == 'light'"
+            v-if="$colorMode.value === 'light'"
             src="/images/logo_light.svg"
           ></NuxtImg>
           <NuxtImg
-            v-if="$colorMode.preference == 'dark'"
+            v-if="$colorMode.value === 'dark'"
             src="/images/logo_dark.svg"
           ></NuxtImg>
         </div>
@@ -64,7 +64,6 @@ const heightDevice = inject('devicePlatform')
 .about {
   max-height: v-bind(heightDevice);
   height: v-bind(heightDevice);
-  overflow-y: scroll;
   &-wrapper {
     height: calc(v-bind(heightDevice) - 75px);
     max-height: calc(v-bind(heightDevice) - 75px);
@@ -73,6 +72,7 @@ const heightDevice = inject('devicePlatform')
     flex-direction: column;
     justify-content: space-between;
     gap: 30px;
+    overflow-y: scroll;
   }
   &-soc {
     padding-bottom: 35px;

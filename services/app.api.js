@@ -13,6 +13,8 @@ const getDetailPatient = (patientId) => apiClient.get(`/fee/${patientId}`)
 
 const getPatientNews = () => apiClient.get(`/news`)
 
+const getMyFee = () => apiClient.get(`/myFees`)
+
 export {
   getMe,
   getFee,
@@ -21,4 +23,5 @@ export {
   getCompletedFee,
   getDetailPatient,
   getPatientNews,
+  getMyFee,
 }
