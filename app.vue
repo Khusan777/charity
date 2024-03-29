@@ -18,8 +18,6 @@ onMounted(() => {
       rootElem.setAttribute('data-theme', 'dark')
     } else if (themeCookie.value == 'light') {
       rootElem.setAttribute('data-theme', 'light')
-    } else {
-      rootElem.setAttribute('data-theme', 'dark')
     }
     // catches browser/OS level preference changes while the page is already loaded
   } catch (err) {}
