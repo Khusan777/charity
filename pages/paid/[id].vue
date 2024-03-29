@@ -77,26 +77,32 @@
       </template>
       <div>
         <div class="search-container">
-          <label class="label-text" for="paid-summ">Сумма помощи</label>
+          <label class="label-text" for="help-summa">Сумма помощи</label>
           <input
-            id="paid-summ"
+            id="help-summa"
+            v-model.trim="summa"
             type="text"
+            minlength="3"
+            inputmode="decimal"
             placeholder="Введите сумму помощи"
+            @input="filterNonNumeric"
           />
         </div>
         <div class="close-paid">
-          <div class="text">Закрыть весь сбор (11 000 000 сумов)</div>
+          <div class="text" @click="summa = String(patientData?.remains)">
+            Закрыть весь сбор ({{ String(patientData?.remains) }} сумов)
+          </div>
         </div>
       </div>
-      <div
-        v-ripple.500="'rgba(255, 255, 255, 0.35)'"
-        style="padding: 20px 0; margin: 0 20px"
-      >
-        <UiButton
-          class="btn"
-          text-btn="Пожертвовать"
-          :with-disabled="false"
-        ></UiButton>
+      <div style="padding: 20px 0; margin: 0 20px">
+        <a
+          v-if="summa?.length >= 3"
+          v-ripple.500="'rgba(255, 255, 255, 0.35)'"
+          :href="`https://my.click.uz/services/pay/?service_id=2&amount=${summa}&transaction_param=977543210&user_phone=977543210&return_url=https%3A%2F%2Fmy.click.uz%2Fapp%2FwebView%3Fauth%3Dtrue%26url%3Dhttps%253A%252F%252Fcredits.click.uz`"
+          class="paid-active"
+          >Пожертвовать</a
+        >
+        <button v-else class="paid-disabled">Пожертвовать</button>
       </div>
     </div>
   </div>
@@ -109,6 +115,7 @@ import { parseErrorsFromResponse } from '~/utils'
 import HeaderComponent from '~/components/ui/HeaderComponent.vue'
 import PaidPageSkeleton from '~/components/skeleton/PaidPageSkeleton.vue'
 
+const summa = ref('')
 const heightDevice = inject('devicePlatform')
 const $toast = useToast()
 const route = useRoute()
@@ -129,8 +136,11 @@ const PatientData = (patientId) => {
       router.push('/error')
     })
 }
-
 PatientData(id.value)
+
+const filterNonNumeric = () => {
+  summa.value = summa.value.replace(/[^0-9]/g, '')
+}
 </script>
 
 <style lang="scss" scoped>
@@ -213,6 +223,43 @@ PatientData(id.value)
         color: #363845;
       }
     }
+  }
+  & .paid-active {
+    all: unset;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+    letter-spacing: 0;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 0;
+    background: linear-gradient(
+      0deg,
+      rgb(0, 115, 255) -1.25%,
+      rgb(0, 194, 255) 100%
+    );
+    border-radius: 10px;
+  }
+  & .paid-disabled {
+    all: unset;
+    line-height: 17px;
+    letter-spacing: 0;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #cccfde;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    color: #575965;
   }
 }
 </style>

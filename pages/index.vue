@@ -76,6 +76,16 @@ const appStore = useAppStore()
 const { user } = storeToRefs(appStore)
 const $toast = useToast()
 
+const currentTheme = computed(() =>
+  getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
+)
+const colorMode = useColorMode()
+colorMode.preference = currentTheme.value
+
+watch(currentTheme, (value) => {
+  colorMode.preference = value
+})
+
 const cookieWebSession = computed(() =>
   getCookie('click-web-session')
     ? getCookie('click-web-session')
