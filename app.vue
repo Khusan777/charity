@@ -5,54 +5,53 @@
   </NuxtLayout>
 </template>
 
-<!--<script setup>-->
-<!--const appStore = useAppStore()-->
-
-<!--const themeCookie = computed(() =>-->
-<!--  getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),-->
-<!--)-->
-<!--if (!appStore.theme) {-->
-<!--  appStore.setTheme(themeCookie.value)-->
-<!--}-->
-<!--</script>-->
-
-<script>
-import { useColorMode } from '@vueuse/core'
-export default {
-  data() {
-    return {
-      colorState: useColorMode(),
-    }
-  },
-  computed: {
-    cookie() {
-      return getCookie('web-session')
-    },
-    theme() {
-      return getCookie('theme')
-    },
-  },
-  created() {
-    if (this.theme && this.theme == 'light') {
-      this.colorState.preference = 'light'
-      this.$colorMode.preference = 'light'
-    } else {
-      this.$colorMode.preference = 'dark'
-    }
-    const lang = getCookie('lang')
-    if (lang && lang == 'uz') {
-      this.$i18n.locale = 'uz'
-    }
-    if (lang && lang == 'en') {
-      this.$i18n.locale = 'en'
-    }
-    const currentTheme = getCookie('theme')
-    if (currentTheme && currentTheme == 'light') {
-      this.$colorMode.preference = 'light'
-    }
-  },
+<script setup>
+const appStore = useAppStore()
+const themeCookie = computed(() =>
+  getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
+)
+if (!appStore.theme) {
+  appStore.setTheme(themeCookie.value)
 }
 </script>
+
+<!--<script>-->
+<!--import { useColorMode } from '@vueuse/core'-->
+<!--export default {-->
+<!--  data() {-->
+<!--    return {-->
+<!--      colorState: useColorMode(),-->
+<!--    }-->
+<!--  },-->
+<!--  computed: {-->
+<!--    cookie() {-->
+<!--      return getCookie('web-session')-->
+<!--    },-->
+<!--    theme() {-->
+<!--      return getCookie('theme')-->
+<!--    },-->
+<!--  },-->
+<!--  created() {-->
+<!--    if (this.theme && this.theme == 'light') {-->
+<!--      this.colorState.preference = 'light'-->
+<!--      this.$colorMode.preference = 'light'-->
+<!--    } else {-->
+<!--      this.$colorMode.preference = 'dark'-->
+<!--    }-->
+<!--    const lang = getCookie('lang')-->
+<!--    if (lang && lang == 'uz') {-->
+<!--      this.$i18n.locale = 'uz'-->
+<!--    }-->
+<!--    if (lang && lang == 'en') {-->
+<!--      this.$i18n.locale = 'en'-->
+<!--    }-->
+<!--    const currentTheme = getCookie('theme')-->
+<!--    if (currentTheme && currentTheme == 'light') {-->
+<!--      this.$colorMode.preference = 'light'-->
+<!--    }-->
+<!--  },-->
+<!--}-->
+<!--</script>-->
 
 <style lang="scss">
 @forward 'assets/styles/theme-style';

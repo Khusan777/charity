@@ -80,9 +80,10 @@ definePageMeta({
 const el = shallowRef(null)
 const heightDevice = inject('devicePlatform')
 const appStore = useAppStore()
+const colorMode = useColorMode()
 const { webSession } = storeToRefs(appStore)
 
-const cookies = computed(() => document?.cookie)
+const cookies = computed(() => colorMode.value)
 const indexFee = reactive({
   loading: false,
   loader: false,
