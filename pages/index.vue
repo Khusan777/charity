@@ -68,15 +68,6 @@ import { parseErrorsFromResponse, setToken } from '~/utils'
 import { apiClient } from '~/services/apiClient'
 
 const appStore = useAppStore()
-const oldTheme = computed(() => getCookie('click-theme'))
-const currentTheme = computed(() => getCookie('theme'))
-if (oldTheme.value) {
-  appStore.setTheme(oldTheme.value)
-}
-if (currentTheme.value) {
-  appStore.setTheme(currentTheme.value)
-}
-
 const heightDevice = inject('devicePlatform')
 const { user } = storeToRefs(appStore)
 const $toast = useToast()
@@ -101,7 +92,9 @@ if (!appStore.theme) {
   appStore.setTheme(themeCookie.value)
 }
 colorMode.preference = appStore.theme ? appStore.theme : themeCookie.value
-
+definePageMeta({
+  colorMode: appStore.theme || themeCookie.value,
+})
 const getUserData = () => {
   getMe({
     web_session: appStore.webSession

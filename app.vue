@@ -6,19 +6,7 @@
 </template>
 
 <script setup>
-const colorMode = useColorMode()
 const appStore = useAppStore()
-definePageMeta({
-  colorMode: appStore.theme,
-})
-const cookieWebSession = computed(() =>
-  getCookie('click-web-session')
-    ? getCookie('click-web-session')
-    : getCookie('web-session'),
-)
-if (!appStore.webSession) {
-  appStore.setWebSession(cookieWebSession.value)
-}
 
 const themeCookie = computed(() =>
   getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
@@ -26,7 +14,6 @@ const themeCookie = computed(() =>
 if (!appStore.theme) {
   appStore.setTheme(themeCookie.value)
 }
-colorMode.preference = appStore.theme ? appStore.theme : themeCookie.value
 </script>
 
 <style lang="scss">
