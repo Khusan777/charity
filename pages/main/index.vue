@@ -7,7 +7,7 @@
       <div style="color: #fff">
         {{ getCookie('theme') }}
       </div>
-      <div style="color: #ffffff">Document cookie {{ document?.cookie }}</div>
+      <div style="color: #ffffff">Document cookie {{ cookies }}</div>
     </div>
     <div class="search-container">
       <input v-model="queryFee.search" type="text" placeholder="Фамилия, имя" />
@@ -82,6 +82,7 @@ const heightDevice = inject('devicePlatform')
 const appStore = useAppStore()
 const { webSession } = storeToRefs(appStore)
 
+const cookies = computed(() => document?.cookie)
 const indexFee = reactive({
   loading: false,
   loader: false,
