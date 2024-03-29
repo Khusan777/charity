@@ -7,9 +7,7 @@
       <div style="color: #fff">
         {{ getCookie('theme') }}
       </div>
-      <div style="color: #ffffff">
-        {{ document?.cookie }}
-      </div>
+      <div style="color: #ffffff">Document cookie {{ document?.cookie }}</div>
     </div>
     <div class="search-container">
       <input v-model="queryFee.search" type="text" placeholder="Фамилия, имя" />
