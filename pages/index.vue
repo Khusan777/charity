@@ -80,9 +80,14 @@ const isNotAcceptCode = ref(null)
 const router = useRouter()
 const colorMode = useColorMode()
 
-const lang = computed(() => getCookie('lang'))
-appStore.setLang(lang.value)
-if (lang.value && lang.value === 'uz') {
+const theme = getCookie('theme')
+if (theme && theme === 'light') {
+  colorMode.preference = 'light'
+  appStore.setLang(theme)
+}
+
+const lang = getCookie('lang')
+if (lang && lang === 'uz') {
   locale.value = 'uz'
 }
 if (lang.value && lang.value === 'en') {
