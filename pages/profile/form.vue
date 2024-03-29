@@ -160,7 +160,7 @@
           Нажимая кнопку «Отправить», я даю свое согласие на обработку моих
           персональных данных
         </p>
-        <button :disabled="loading" @click="send">
+        <button :disabled="loading" @click.prevent="send">
           <span v-if="!loading">Отправить запрос</span>
           <span
             v-if="loading"
@@ -211,6 +211,7 @@ import { mask } from 'vue-the-mask'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import { useAppStore } from '~/stores/AppStore'
+import { apiClient } from '~/services/apiClient'
 
 export default {
   name: 'Form',
@@ -237,34 +238,26 @@ export default {
     }
   },
   methods: {
-    uploadImage(e) {
-      const image = e.target.files[0]
-      const reader = new FileReader()
-      reader.readAsDataURL(image)
-      reader.onload = (e) => {
-        this.previewImage = e.target.result
-      }
-      this.file = e.target.files[0]
-    },
     getValidationState({ dirty, validated, valid = null }) {
       return dirty || validated ? valid : null
     },
-    async send() {
-      const isFormCorrect = await this.v$.$validate()
+    send() {
+      const isFormCorrect = this.v$.$validate()
       if (isFormCorrect) {
         this.loading = true
-        const data = new FormData()
         const phone_number = this.phone.replace(/[- )(]/g, '')
         const result_number = '998' + phone_number
         const modal = new bootstrap.Modal('#successModal')
-        data.append('customer_id', this.appStore.user.id)
-        data.append('patient_name', this.name)
-        data.append('patient_surname', this.surname)
-        data.append('patient_birth_date', this.birthday)
-        data.append('region_id', this.region)
-        data.append('patient_phone', result_number)
-        data.append('type_help_id', this.type)
-        data.append('comment', this.des)
+        const data = {
+          customer_id: this.appStore.user.id,
+          patient_name: this.name,
+          patient_surname: this.surname,
+          patient_birth_date: this.birthday,
+          region_id: this.region,
+          patient_phone: result_number,
+          type_help_id: this.type,
+          comment: this.comment,
+        }
         apiClient
           .post('/fee', data, {
             headers: {
