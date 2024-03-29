@@ -234,7 +234,7 @@ export default {
       type: '',
       heightDevice: inject('devicePlatform'),
       appStore: useAppStore(),
-      loading: false
+      loading: false,
     }
   },
   methods: {
@@ -256,7 +256,7 @@ export default {
           region_id: this.region,
           patient_phone: result_number,
           type_help_id: this.type,
-          comment: this.comment
+          comment: this.comment,
         }
         apiClient
           .post('/fee', data, {
