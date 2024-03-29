@@ -6,12 +6,11 @@
       left-route="/profile"
     ></UiHeaderComponent>
     <div class="sendform-wrapper">
-      <div class="sendform-top">
-        Если вам нужна помощь, пожалуйста, заполните и отправьте
-        анкету-обращение. Рассмотрение заявки осуществляется в течение 14 дней с
-        момента подачи заявки. Помощь будет оказана в клиниках партнерах.
-      </div>
       <div class="sendform-fond">
+        <div class="sendform-fond-des">
+          Является негосударственной некоммерческой организацией в форме
+          учреждения созданного при учредительстве Союза молодежи Узбекистана
+        </div>
         <div class="sendform-fond-top">
           <div class="sendform-fond-top-icon">
             <NuxtImg src="/images/fonds/01.png"></NuxtImg>
@@ -31,19 +30,11 @@
             </a>
           </div>
         </div>
-        <div class="sendform-fond-des">
-          Является негосударственной некоммерческой организацией в форме
-          учреждения созданного при учредительстве Союза молодежи Узбекистана
-        </div>
       </div>
-      <div class="sendform-info">
-        <div class="sendform-info-icon">
-          <NuxtImg src="/images/info.svg"></NuxtImg>
-        </div>
-        <div class="sendform-info-text">
-          Пожалуйста, обратите внимание, что фонд может оказывать помощь только
-          детям с врожденным пороком сердца
-        </div>
+      <div class="sendform-top">
+        Если вам нужна помощь, пожалуйста, заполните и отправьте
+        анкету-обращение. Рассмотрение заявки осуществляется в течение 14 дней с
+        момента подачи заявки. Помощь будет оказана в клиниках партнерах.
       </div>
       <div class="sendform-pac">
         <div class="sendform-pac-title">Данные пациента</div>
@@ -261,31 +252,30 @@ export default {
     async send() {
       const isFormCorrect = await this.v$.$validate()
       if (isFormCorrect) {
-        console.log('return')
+        this.loading = true
+        const data = new FormData()
+        const phone_number = this.phone.replace(/[- )(]/g, '')
+        const result_number = '998' + phone_number
+        const modal = new bootstrap.Modal('#successModal')
+        data.append('customer_id', this.appStore.user.id)
+        data.append('patient_name', this.name)
+        data.append('patient_surname', this.surname)
+        data.append('patient_birth_date', this.birthday)
+        data.append('region_id', this.region)
+        data.append('patient_phone', result_number)
+        data.append('type_help_id', this.type)
+        data.append('comment', this.des)
+        apiClient
+          .post('/fee', data, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          })
+          .then(() => {
+            this.loading = false
+            modal.show()
+          })
       }
-      // this.loading = true
-      // const data = new FormData()
-      // const phone_number = this.phone.replace(/[- )(]/g, '')
-      // const result_number = '998' + phone_number
-      // const modal = new bootstrap.Modal('#successModal')
-      // data.append('customer_id', this.appStore.user.id)
-      // data.append('patient_name', this.name)
-      // data.append('patient_surname', this.surname)
-      // data.append('patient_birth_date', this.birthday)
-      // data.append('region_id', this.region)
-      // data.append('patient_phone', result_number)
-      // data.append('type_help_id', this.type)
-      // data.append('comment', this.des)
-      // apiClient
-      //   .post('/fee', data, {
-      //     headers: {
-      //       'Content-Type': 'multipart/form-data',
-      //     },
-      //   })
-      //   .then(() => {
-      //     this.loading = false
-      //     modal.show()
-      //   })
     },
     goHome() {
       this.$router.push('/')
@@ -329,13 +319,12 @@ export default {
   &-fond {
     border-radius: 10px;
     background: var(--bg1);
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     padding: 10px;
     &-top {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 10px;
       &-icon {
         width: 60px;
         height: 60px;
@@ -389,6 +378,7 @@ export default {
       font-size: 12px;
       line-height: 16px;
       color: var(--text2);
+      margin-bottom: 10px;
     }
   }
   &-info {
