@@ -58,13 +58,13 @@ const getCookie = function (name) {
 }
 
 const formattedDate = (date) => {
-  const $i18n = useI18n()
+  const { locale } = useI18n()
   const parsedDate = useDateFormat(date, 'DD MMM. YYYY', {
     locales:
-      $i18n.locale.value === 'en'
+      locale.value === 'en'
         ? // eslint-disable-next-line no-constant-condition
           'en-En'
-          ? $i18n.locale.value === 'uz'
+          ? locale.value === 'uz'
           : 'uz-Uz'
         : 'ru-Ru',
   })
@@ -72,15 +72,14 @@ const formattedDate = (date) => {
 }
 
 const formatMonthDate = (date) => {
-  const $i18n = useI18n()
+  const { locale } = useI18n()
   const parsedDate = useDateFormat(date, 'DD MMMM YYYY', {
     locales:
-      $i18n.locale.value === 'en'
-        ? // eslint-disable-next-line no-constant-condition
-          'en-En'
-          ? $i18n.locale.value === 'uz'
-          : 'uz-Uz'
-        : 'ru-Ru',
+      locale.value === 'en'
+        ? 'en-En'
+        : locale.value === 'uz'
+          ? 'uz-Uz'
+          : 'ru-Ru',
   })
   return parsedDate.value?.replace(/['"]+/g, '')
 }

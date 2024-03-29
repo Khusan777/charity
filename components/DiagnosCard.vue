@@ -6,9 +6,9 @@
       with-image
       :img-ref="patient?.type_need?.icon"
       :status-text="
-        $i18n.locale === 'en'
+        locale === 'en'
           ? patient?.type_need?.name_en
-          : $i18n.locale === 'uz'
+          : locale === 'uz'
             ? patient?.type_need?.name_uz
             : patient?.type_need?.name_ru
       "
@@ -21,9 +21,9 @@
       with-image
       :img-ref="patient?.status?.icon"
       :status-text="
-        $i18n.locale === 'en'
+        locale === 'en'
           ? patient?.status?.name_en
-          : $i18n.locale === 'uz'
+          : locale === 'uz'
             ? patient?.status?.name_uz
             : patient?.status?.name_ru
       "
@@ -36,7 +36,11 @@
     ></UiCompletedProgress>
     <UiCollectionProgress
       v-else
-      :amount="{ amount: patient?.amount, leftAmount: patient?.left_amount }"
+      :amount="{
+        collectedAmount: patient?.collected || 0,
+        amount: patient?.amount,
+        remainsAmount: patient?.remains || 0,
+      }"
       is-completed="true"
     ></UiCollectionProgress>
     <div class="published">
@@ -72,11 +76,11 @@
           <div class="title">Диагноз</div>
           <div class="description">
             {{
-              $i18n.locale === 'uz'
+              locale === 'uz'
                 ? patient?.sick_category?.name_uz
-                  ? $i18n.locale === 'en'
-                  : patient?.sick_category?.name_en
-                : patient?.sick_category?.name_ru
+                : locale === 'en'
+                  ? patient?.sick_category?.name_en
+                  : patient?.sick_category?.name_ru
             }}
           </div>
         </div>
@@ -104,11 +108,11 @@
           <div class="title">Вид помощи</div>
           <div class="description">
             {{
-              $i18n.locale === 'uz'
+              locale === 'uz'
                 ? patient?.type_help?.name_uz
-                  ? $i18n.locale === 'en'
-                  : patient?.type_help?.name_en
-                : patient?.type_help?.name_ru
+                : locale === 'en'
+                  ? patient?.type_help?.name_en
+                  : patient?.type_help?.name_ru
             }}
           </div>
         </div>
@@ -118,11 +122,11 @@
           <div class="title">Фонд</div>
           <div class="description">
             {{
-              $i18n.locale === 'uz'
+              locale === 'uz'
                 ? patient?.fond?.name_uz
-                  ? $i18n.locale === 'en'
-                  : patient?.fond?.name_en
-                : patient?.fond?.name_ru
+                : locale === 'en'
+                  ? patient?.fond?.name_en
+                  : patient?.fond?.name_ru
             }}
           </div>
         </div>
@@ -138,11 +142,11 @@
           <div class="title">Медицинское учреждение</div>
           <div class="description">
             {{
-              $i18n.locale === 'uz'
+              locale === 'uz'
                 ? patient?.clinic?.name_uz
-                  ? $i18n.locale === 'en'
-                  : patient?.clinic?.name_en
-                : patient?.clinic?.name_ru
+                : locale === 'en'
+                  ? patient?.clinic?.name_en
+                  : patient?.clinic?.name_ru
             }}
           </div>
         </div>
@@ -160,8 +164,10 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
 import BottomSheetDisease from '~/components/ui/BottomSheetDisease.vue'
 
+const { locale } = useI18n()
 defineProps({
   isCompleted: {
     type: Boolean,

@@ -53,8 +53,9 @@
             </div>
             <UiCollectionProgress
               :amount="{
+                collectedAmount: patientData?.collected || 0,
                 amount: patientData?.amount,
-                leftAmount: patientData?.left_amount,
+                remainsAmount: patientData?.remains || 0,
               }"
               is-completed="false"
             ></UiCollectionProgress>

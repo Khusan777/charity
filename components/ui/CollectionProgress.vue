@@ -20,12 +20,14 @@
     <div class="current-money">
       <div>
         <div class="text">Собрано</div>
-        <div class="price">{{ muchAmount?.toLocaleString() }} сумов</div>
+        <div class="price">
+          {{ amount?.collectedAmount?.toLocaleString() }} сумов
+        </div>
       </div>
       <div>
         <div style="text-align: right" class="text">Осталось собрать</div>
         <div class="price">
-          {{ amount?.leftAmount?.toLocaleString() }} сумов
+          {{ amount?.remainsAmount?.toLocaleString() }} сумов
         </div>
       </div>
     </div>
@@ -40,14 +42,17 @@ const props = defineProps({
   },
 })
 
-const muchAmount = computed(
-  () => props.amount?.amount - props.amount?.leftAmount || 0,
-)
+// const muchAmount = computed(
+//   () => props.amount?.amount - props.amount?.leftAmount || 0,
+// )
 const percentMuchNumber = computed(
-  () => Math.round((muchAmount.value * 100) / props.amount?.amount) || null,
+  () =>
+    Math.round((props.amount?.remainsAmount * 100) / props.amount?.amount) || 0,
 )
 const percentMuch = computed(
-  () => Math.round((muchAmount.value * 100) / props.amount?.amount) + '%',
+  () =>
+    Math.round((props.amount?.remainsAmount * 100) / props.amount?.amount) +
+    '%',
 )
 </script>
 

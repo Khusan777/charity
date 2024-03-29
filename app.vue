@@ -10,33 +10,20 @@ import { useI18n } from 'vue-i18n'
 import { useAppStore } from '~/stores/AppStore'
 
 const appStore = useAppStore()
-const $i18n = useI18n()
+const { locale } = useI18n()
 
+const currentTheme = computed(() => getCookie('theme'))
 const colorMode = useColorMode()
-onMounted(() => {
-  const currentTheme = computed(() => getCookie('theme'))
-  colorMode.preference = currentTheme.value
-  colorMode.preference = currentTheme.value
-  // appStore.setTheme(currentTheme.value)
-})
+colorMode.preference = currentTheme.value
 
 const lang = computed(() => getCookie('lang'))
 appStore.setLang(lang.value)
 if (lang.value && lang.value === 'uz') {
-  $i18n.locale.value = 'uz'
+  locale.value = 'uz'
 }
 if (lang.value && lang.value === 'en') {
-  $i18n.locale.value = 'en'
+  locale.value = 'en'
 }
-
-watch(
-  () => getCookie('theme'),
-  (value) => {
-    colorMode.value = value
-    colorMode.preference = value
-  },
-  { immediate: true },
-)
 </script>
 
 <style lang="scss">

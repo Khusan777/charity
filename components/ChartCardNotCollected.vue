@@ -107,8 +107,9 @@ const props = defineProps({
   },
 })
 const amountData = reactive({
-  leftAmount: props.feeItem?.left_amount,
+  collectedAmount: props.feeItem?.collected || 0,
   amount: props.feeItem?.amount,
+  remainsAmount: props.feeItem?.remains || 0,
 })
 
 const goToDetailPage = (feeId) => {
