@@ -82,7 +82,7 @@
             id="help-summa"
             v-model.trim="summa"
             type="text"
-            minlength="3"
+            minlength="4"
             inputmode="decimal"
             placeholder="Введите сумму помощи"
             @input="filterNonNumeric"
@@ -96,7 +96,7 @@
       </div>
       <div style="padding: 20px 0; margin: 0 20px">
         <a
-          v-if="summa?.length >= 3"
+          v-if="summa?.length >= 4"
           v-ripple.500="'rgba(255, 255, 255, 0.35)'"
           :href="`https://my.click.uz/services/pay/?service_id=2&amount=${summa}&transaction_param=977543210&user_phone=977543210&return_url=https%3A%2F%2Fmy.click.uz%2Fapp%2FwebView%3Fauth%3Dtrue%26url%3Dhttps%253A%252F%252Fcredits.click.uz`"
           class="paid-active"

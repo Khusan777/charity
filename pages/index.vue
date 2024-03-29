@@ -80,13 +80,32 @@ const isNotAcceptCode = ref(null)
 const router = useRouter()
 const colorMode = useColorMode()
 
+const oldTheme = computed(() => getCookie('click-theme'))
+const currentTheme = computed(() => getCookie('theme'))
 const theme = getCookie('theme')
-if (theme && theme == 'light') {
+const lang = getCookie('lang')
+
+if (theme && theme == 'dark') {
+  colorMode.preference = 'dark'
+  appStore.setLang(theme.value)
+} else {
   colorMode.preference = 'light'
-  appStore.setLang(theme)
 }
 
-const lang = getCookie('lang')
+if (currentTheme.value && currentTheme.value == 'dark') {
+  colorMode.preference = 'dark'
+  appStore.setLang(currentTheme.value)
+} else {
+  colorMode.preference = 'light'
+}
+
+if (oldTheme.value && oldTheme.value == 'dark') {
+  colorMode.preference = 'dark'
+  appStore.setLang(oldTheme.value)
+} else {
+  colorMode.preference = 'light'
+}
+
 if (lang && lang === 'uz') {
   locale.value = 'uz'
 }
@@ -94,7 +113,6 @@ if (lang && lang === 'en') {
   locale.value = 'en'
 }
 
-const currentTheme = computed(() => getCookie('theme'))
 if (!appStore.theme) {
   appStore.setTheme(currentTheme.value)
   colorMode.preference = appStore.theme || currentTheme.value
