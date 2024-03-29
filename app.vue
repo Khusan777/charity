@@ -25,6 +25,8 @@ export default {
     if (this.theme && this.theme == 'light') {
       this.colorState.preference = 'light'
       this.$colorMode.preference = 'light'
+    } else{
+      this.$colorMode.preference = 'dark'
     }
     const lang = getCookie('lang')
     if (lang && lang == 'uz') {
