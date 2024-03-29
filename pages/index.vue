@@ -85,7 +85,8 @@ if (!appStore.webSession) {
   appStore.setWebSession(cookieWebSession.value)
 }
 const colorMode = useColorMode()
-if (appStore.theme) {
+if (getCookie('theme')) {
+  colorMode.preference = appStore.theme || getCookie('theme')
   colorMode.value = appStore.theme || getCookie('theme')
 }
 

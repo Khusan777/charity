@@ -14,10 +14,9 @@ const $i18n = useI18n()
 
 const colorMode = useColorMode()
 const getTheme = computed(() => getCookie('theme'))
-if (getTheme.value) {
-  colorMode.value = getTheme.value || 'light'
-  appStore.setTheme(getTheme.value)
-}
+colorMode.preference = getTheme.value || 'light'
+colorMode.value = getTheme.value || 'light'
+appStore.setTheme(getTheme.value)
 
 const lang = computed(() => getCookie('lang'))
 appStore.setLang(lang.value)
