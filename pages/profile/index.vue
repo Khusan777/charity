@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="profile-menu">
-        <router-link class="profile-menu-item" to="/profile/form">
+        <router-link class="profile-menu-item" to="/profile/form" v-if="appStore?.user?.is_identified">
           <div class="profile-menu-left">
             <NuxtImg src="/images/edit.svg"></NuxtImg>
             <span>Мне нужна помощь</span>
@@ -29,6 +29,15 @@
             <NuxtImg src="/images/arrow.svg"></NuxtImg>
           </div>
         </router-link>
+        <div class="profile-menu-item" @click="goModal" v-else>
+          <div class="profile-menu-left">
+            <NuxtImg src="/images/edit.svg"></NuxtImg>
+            <span>Мне нужна помощь</span>
+          </div>
+          <div class="profile-menu-right">
+            <NuxtImg src="/images/arrow.svg"></NuxtImg>
+          </div>
+        </div>
         <router-link class="profile-menu-item" to="/profile/requests">
           <div class="profile-menu-left">
             <NuxtImg src="/images/doc.svg"></NuxtImg>
@@ -77,6 +86,26 @@
           </div>
         </router-link>
       </div>
+      <div
+        id="identModal"
+        class="modal fade ident-modal"
+        tabindex="-1"
+        aria-labelledby="identModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="ident-modal-des">Для того чтобы отправить заявку, необходимо пройти идентификацию в Click</div>
+              <a href="https://my.click.uz/app/identification"
+                class="ident-modal-btn"
+              >
+                Начать индентификацию
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -88,6 +117,10 @@ definePageMeta({
 })
 const heightDevice = inject('devicePlatform')
 const appStore = useAppStore()
+const goModal = () => {
+  const modal = new bootstrap.Modal('#identModal')
+  modal.show();
+}
 </script>
 
 <style scoped lang="scss">
@@ -185,6 +218,43 @@ const appStore = useAppStore()
     &-right {
       img {
         width: 10px;
+      }
+    }
+  }
+}
+.ident-modal {
+  &-des{
+    font-size: 14px;
+    line-height: 18px;
+    color: var(--text);
+    margin-bottom: 15px;
+  }
+  &-btn{
+    width: 100%;
+    background: linear-gradient(
+      0deg,
+      rgb(0, 115, 255) -1.25%,
+      rgb(0, 194, 255) 100%
+    );
+    border-radius: 10px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    border: 0;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .modal-dialog {
+    padding: 0 10px;
+    .modal-content {
+      background: var(--bg2);
+      .modal-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        padding: 25px 20px 20px;
+        text-align: center;
       }
     }
   }

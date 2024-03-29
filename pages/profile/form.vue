@@ -271,7 +271,7 @@ export default {
       }
     },
     goHome() {
-      this.$router.push('/')
+      this.$router.push('/main')
     },
     filterSurname() {
       this.surname = this.surname.replace(/[^a-zа-яё\s]/gi, '')

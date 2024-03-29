@@ -31,26 +31,26 @@
               </div>
               <div class="requests-item-top-right">
                 <div
-                  v-if="status == 0"
+                  v-if="fee?.status_id == 2"
                   class="requests-item-top-right-status pending"
                 >
                   Заявка на рассмотрении
                 </div>
                 <div
-                  v-if="status == 1"
+                  v-if="fee?.status_id != 2 && fee?.status_id != 9"
                   class="requests-item-top-right-status success"
                 >
                   Заявка одобрена
                 </div>
                 <div
-                  v-if="status == 2"
+                  v-if="fee?.status_id == 9"
                   class="requests-item-top-right-status error"
                 >
                   Заявка отлонена
                 </div>
               </div>
             </div>
-            <div v-if="status == 2" class="requests-item-top-error">
+            <div v-if="fee?.status_id == 9" class="requests-item-top-error">
               К сожалению, мы не можем принять к рассмотрению вашу заявку, так
               как приоритетное направление работы фонда «Mehrli qo'llar» помощь
               детям, нуждающимся в операции на сердце.
@@ -83,9 +83,9 @@
             </div>
           </div>
           <button
-            v-if="status == 1"
+            v-if="fee?.status_id != 2 && fee?.status_id != 9"
             class="requests-item-more"
-            @click="$router.push({ path: `/main/81` })"
+            @click="$router.push({ path: `/main/${fee?.id}` })"
           >
             Подробнее
           </button>
