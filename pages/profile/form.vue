@@ -19,7 +19,11 @@
           <div class="sendform-fond-top-text">
             <div class="sendform-fond-top-title">Mehrli qo'llar</div>
             <div class="sendform-fond-top-line"></div>
-            <a href="tel:998712000083" target="_blank" class="sendform-fond-top-phone">
+            <a
+              href="tel:998712000083"
+              target="_blank"
+              class="sendform-fond-top-phone"
+            >
               <div class="sendform-fond-top-phone-icon">
                 <NuxtImg src="/images/call.svg"></NuxtImg>
               </div>
@@ -27,7 +31,10 @@
             </a>
           </div>
         </div>
-        <div class="sendform-fond-des">Является негосударственной некоммерческой организацией в форме учреждения созданного при учредительстве Союза молодежи Узбекистана</div>
+        <div class="sendform-fond-des">
+          Является негосударственной некоммерческой организацией в форме
+          учреждения созданного при учредительстве Союза молодежи Узбекистана
+        </div>
       </div>
       <div class="sendform-info">
         <div class="sendform-info-icon">
@@ -40,17 +47,22 @@
       </div>
       <div class="sendform-pac">
         <div class="sendform-pac-title">Данные пациента</div>
-        <div class="sendform-pac-des">Для оформления Анкеты-обращения вам необходимо заполнить контактные данные</div>
+        <div class="sendform-pac-des">
+          Для оформления Анкеты-обращения вам необходимо заполнить контактные
+          данные
+        </div>
         <div class="sendform-pac-input">
           <label for="fio">Фамилия ребенка<span>*</span></label>
           <input
             id="fio"
             v-model="v$.surname.$model"
             placeholder="Фамилия"
-            @input="filterSurname"
             :class="v$.surname.$error ? 'error' : ''"
+            @input="filterSurname"
           />
-          <div v-if="v$.surname.$error" class="sendform-pac-error">Введите фамилию</div>
+          <div v-if="v$.surname.$error" class="sendform-pac-error">
+            Введите фамилию
+          </div>
         </div>
         <div class="sendform-pac-input">
           <label for="name">Имя ребенка<span>*</span></label>
@@ -58,19 +70,35 @@
             id="name"
             v-model="v$.name.$model"
             placeholder="Имя"
-            @input="filterName"
             :class="v$.name.$error ? 'error' : ''"
+            @input="filterName"
           />
-          <div v-if="v$.name.$error" class="sendform-pac-error">Введите имя</div>
+          <div v-if="v$.name.$error" class="sendform-pac-error">
+            Введите имя
+          </div>
         </div>
         <div class="sendform-pac-input">
           <label for="birthday">Дата рождения<span>*</span></label>
-          <input v-model="v$.birthday.$model" v-mask="'##-##-####'" type="text" inputmode="numeric" placeholder="ДД-ММ-ГГГГ" :class="v$.birthday.$error ? 'error' : ''" />
-          <div v-if="v$.birthday.$error" class="sendform-pac-error">Введите дату рождения</div>
+          <input
+            v-model="v$.birthday.$model"
+            v-mask="'##-##-####'"
+            type="text"
+            inputmode="numeric"
+            placeholder="ДД-ММ-ГГГГ"
+            :class="v$.birthday.$error ? 'error' : ''"
+          />
+          <div v-if="v$.birthday.$error" class="sendform-pac-error">
+            Введите дату рождения
+          </div>
         </div>
         <div class="sendform-pac-select">
           <label for="region">Область проживания<span>*</span></label>
-          <select id="region" v-model="v$.region.$model" class="form-select" :class="v$.region.$error ? 'error' : ''">
+          <select
+            id="region"
+            v-model="v$.region.$model"
+            class="form-select"
+            :class="v$.region.$error ? 'error' : ''"
+          >
             <option value="10" selected>г. Ташкент</option>
             <option value="11">Ташкентская область</option>
             <option value="1">Андижанская область</option>
@@ -86,23 +114,41 @@
             <option value="13">Хорезмская область</option>
             <option value="14">Республика Каракалпакстан</option>
           </select>
-          <div v-if="v$.region.$error" class="sendform-pac-error">Выберите область проживания</div>
+          <div v-if="v$.region.$error" class="sendform-pac-error">
+            Выберите область проживания
+          </div>
         </div>
         <div class="sendform-pac-input">
           <label for="phone">Ваш телефон<span>*</span></label>
           <div class="sendform-pac-input-box">
             <span>+998</span>
-            <input v-model="v$.phone.$model" v-mask="'(##) ###-##-##'" type="tel" inputmode="numeric" placeholder="(00) 000-00-00" :class="v$.phone.$error ? 'error' : ''" />
+            <input
+              v-model="v$.phone.$model"
+              v-mask="'(##) ###-##-##'"
+              type="tel"
+              inputmode="numeric"
+              placeholder="(00) 000-00-00"
+              :class="v$.phone.$error ? 'error' : ''"
+            />
           </div>
-          <div v-if="v$.region.$error" class="sendform-pac-error">Введите номер телефона</div>
+          <div v-if="v$.region.$error" class="sendform-pac-error">
+            Введите номер телефона
+          </div>
         </div>
         <div class="sendform-pac-select">
           <label for="type">Тип нуждаемости<span>*</span></label>
-          <select id="type" v-model="v$.type.$model" class="form-select" :class="v$.type.$error ? 'error' : ''">
+          <select
+            id="type"
+            v-model="v$.type.$model"
+            class="form-select"
+            :class="v$.type.$error ? 'error' : ''"
+          >
             <option value="1" selected>Хирургическое лечение</option>
             <option value="2">Медикаменты</option>
           </select>
-          <div v-if="v$.type.$error" class="sendform-pac-error">Выберите тип нуждаемости</div>
+          <div v-if="v$.type.$error" class="sendform-pac-error">
+            Выберите тип нуждаемости
+          </div>
         </div>
         <div class="sendform-pac-input">
           <label for="des">Кратко опишите вашу ситуацию</label>
@@ -171,19 +217,18 @@
 
 <script>
 import { mask } from 'vue-the-mask'
-import { apiClient } from '~/services/apiClient'
-import { useAppStore } from '~/stores/AppStore'
 import { useVuelidate } from '@vuelidate/core'
-import { required, minLength } from '@vuelidate/validators'
+import { required } from '@vuelidate/validators'
+import { useAppStore } from '~/stores/AppStore'
 
 export default {
   name: 'Form',
   directives: {
     mask,
   },
-  setup () {
-    return { 
-      v$: useVuelidate() 
+  setup() {
+    return {
+      v$: useVuelidate(),
     }
   },
   data() {
@@ -210,14 +255,13 @@ export default {
       }
       this.file = e.target.files[0]
     },
-    getValidationState({ dirty, validated, valid = null }){
+    getValidationState({ dirty, validated, valid = null }) {
       return dirty || validated ? valid : null
     },
     async send() {
       const isFormCorrect = await this.v$.$validate()
-      if (isFormCorrect){
+      if (isFormCorrect) {
         console.log('return')
-        return
       }
       // this.loading = true
       // const data = new FormData()
@@ -251,18 +295,18 @@ export default {
     },
     filterName() {
       this.name = this.name.replace(/[^a-zа-яё\s]/gi, '')
-    }
+    },
   },
-  validations () {
+  validations() {
     return {
       surname: { required },
       name: { required },
       birthday: { required },
       region: { required },
       phone: { required },
-      type: { required }
+      type: { required },
     }
-  }
+  },
 }
 </script>
 
@@ -282,40 +326,40 @@ export default {
     color: var(--text4);
     margin-bottom: 10px;
   }
-  &-fond{
+  &-fond {
     border-radius: 10px;
     background: var(--bg1);
     margin-bottom: 10px;
     padding: 10px;
-    &-top{
+    &-top {
       display: flex;
       align-items: center;
       gap: 10px;
       margin-bottom: 10px;
-      &-icon{
+      &-icon {
         width: 60px;
         height: 60px;
-        img{
+        img {
           width: 60px;
           height: 60px;
           border-radius: 60px;
         }
       }
-      &-text{
+      &-text {
         width: calc(100% - 70px);
       }
-      &-title{
+      &-title {
         line-height: 19.2px;
         font-size: 16px;
         color: var(--text);
       }
-      &-line{
+      &-line {
         margin: 10px 0;
         background: var(--border);
         width: 100%;
         height: 1px;
       }
-      &-phone{
+      &-phone {
         display: flex;
         align-items: center;
         gap: 6px;
@@ -341,7 +385,7 @@ export default {
         }
       }
     }
-    &-des{
+    &-des {
       font-size: 12px;
       line-height: 16px;
       color: var(--text2);
@@ -416,7 +460,7 @@ export default {
           outline: 0;
         }
       }
-      input.error{
+      input.error {
         border: 1px solid #fd7172;
       }
       textarea {
@@ -469,11 +513,11 @@ export default {
         background: none;
         color: var(--text);
       }
-      select.error{
+      select.error {
         border: 1px solid #fd7172;
       }
     }
-    &-error{
+    &-error {
       font-size: 12px;
       color: #fd7172;
     }

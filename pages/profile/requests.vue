@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="requests-list">
-        <div class="requests-item" v-for="fee in getMyFees" :key="fee?.id">
+        <div v-for="fee in getMyFees" :key="fee?.id" class="requests-item">
           <div class="requests-item-top">
             <div class="requests-item-box">
               <div class="requests-item-top-left">
@@ -59,19 +59,27 @@
           <div class="requests-item-body">
             <div class="requests-item-body-item">
               <div class="requests-item-body-label">ФИО ребенка</div>
-              <div class="requests-item-body-val">{{ fee?.patient_surname }} {{ fee?.patient_name }}</div>
+              <div class="requests-item-body-val">
+                {{ fee?.patient_surname }} {{ fee?.patient_name }}
+              </div>
             </div>
             <div class="requests-item-body-item">
               <div class="requests-item-body-label">Дата рождения</div>
-              <div class="requests-item-body-val">{{ formattedDate(fee?.patient_birth_date) }}</div>
+              <div class="requests-item-body-val">
+                {{ formattedDate(fee?.patient_birth_date) }}
+              </div>
             </div>
             <div class="requests-item-body-item">
               <div class="requests-item-body-label">Область проживания</div>
-              <div class="requests-item-body-val">{{ fee?.region?.name_ru }}</div>
+              <div class="requests-item-body-val">
+                {{ fee?.region?.name_ru }}
+              </div>
             </div>
             <div class="requests-item-body-item">
               <div class="requests-item-body-label">Тип нуждаемости</div>
-              <div class="requests-item-body-val">{{ fee?.type_help?.name_ru }}</div>
+              <div class="requests-item-body-val">
+                {{ fee?.type_help?.name_ru }}
+              </div>
             </div>
           </div>
           <button
@@ -90,7 +98,6 @@
 <script>
 import { apiClient } from '~/services/apiClient'
 import { useAppStore } from '~/stores/AppStore'
-import { formattedDate } from '~/utils/index'
 
 export default {
   name: 'Faq',

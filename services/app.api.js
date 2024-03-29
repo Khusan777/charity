@@ -23,5 +23,5 @@ export {
   getCompletedFee,
   getDetailPatient,
   getPatientNews,
-  getMyFee
+  getMyFee,
 }

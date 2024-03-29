@@ -59,7 +59,10 @@
     </div> -->
     <div class="notification-none">
       <NuxtImg src="/images/not-n.png"></NuxtImg>
-      <p>Тут будут уведомления о том, как вы меняете мир к лучшему. Следи за новостями о своих благотворительных делах здесь!</p>
+      <p>
+        Тут будут уведомления о том, как вы меняете мир к лучшему. Следи за
+        новостями о своих благотворительных делах здесь!
+      </p>
     </div>
   </div>
 </template>
@@ -127,7 +130,7 @@ const heightDevice = inject('devicePlatform')
     color: var(--text2);
     line-height: 14px;
   }
-  &-none{
+  &-none {
     height: calc(100% - 75px);
     max-height: calc(100% - 75px);
     padding: 0 20px;
@@ -136,10 +139,10 @@ const heightDevice = inject('devicePlatform')
     justify-content: center;
     align-items: center;
     gap: 40px;
-    img{
+    img {
       width: 80%;
     }
-    p{
+    p {
       margin-bottom: 0;
       color: var(--text2);
       text-align: center;
