@@ -7,9 +7,10 @@ export default defineNuxtConfig({
     transpile: ['vue-toastification'],
   },
   routeRules: {
-    '/': { prerender: true },
-    '/completed': { prerender: true },
-    '/completed/*': { prerender: true },
+    ssr: true,
+    // '/': { prerender: true },
+    // '/completed': { prerender: true },
+    // '/completed/*': { prerender: true },
     // '/error': { prerender: true },
     cors: true,
     // '/game': { ssr: false },

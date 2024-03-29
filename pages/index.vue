@@ -84,13 +84,13 @@ const cookieWebSession = computed(() =>
 if (!appStore.webSession) {
   appStore.setWebSession(cookieWebSession.value)
 }
-const currentTheme = computed(() => getCookie('theme'))
-const colorMode = useColorMode()
-colorMode.value = appStore.theme || currentTheme.value
+// const currentTheme = computed(() => getCookie('theme'))
+// const colorMode = useColorMode()
+// colorMode.value = appStore.theme || currentTheme.value
 
-watchEffect(() => {
-  colorMode.value = currentTheme.value
-})
+// watchEffect(() => {
+//   colorMode.value = currentTheme.value
+// })
 
 const getUserData = () => {
   getMe({
