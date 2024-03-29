@@ -8,10 +8,10 @@
 <script>
 import { useColorMode } from '@vueuse/core'
 export default {
-  data(){
-   return {
-     colorState: useColorMode()
-   }
+  data() {
+    return {
+      colorState: useColorMode(),
+    }
   },
   computed: {
     cookie() {
@@ -21,20 +21,20 @@ export default {
       return getCookie('theme')
     },
   },
-  async created() {
+  created() {
     if (this.theme && this.theme == 'light') {
       this.colorState.preference = 'light'
       this.$colorMode.preference = 'light'
     }
     const lang = getCookie('lang')
     if (lang && lang == 'uz') {
-      await this.$i18n.locale = 'uz'
+      this.$i18n.locale = 'uz'
     }
     if (lang && lang == 'en') {
-      await this.$i18n.locale = 'en'
+      this.$i18n.locale = 'en'
     }
     const currentTheme = getCookie('theme')
-    if(currentTheme && currentTheme == 'light'){
+    if (currentTheme && currentTheme == 'light') {
       this.$colorMode.preference = 'light'
     }
   },
