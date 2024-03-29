@@ -5,30 +5,6 @@
   </NuxtLayout>
 </template>
 
-<script setup>
-import { useI18n } from 'vue-i18n'
-import { useAppStore } from '~/stores/AppStore'
-
-const appStore = useAppStore()
-const { locale } = useI18n()
-
-const currentTheme = computed(() =>
-  getCookie('click-theme') ? getCookie('click-theme') : getCookie('theme'),
-)
-const colorMode = useColorMode()
-colorMode.preference = currentTheme.value
-// colorMode.preference = 'light'
-
-const lang = computed(() => getCookie('lang'))
-appStore.setLang(lang.value)
-if (lang.value && lang.value === 'uz') {
-  locale.value = 'uz'
-}
-if (lang.value && lang.value === 'en') {
-  locale.value = 'en'
-}
-</script>
-
 <style lang="scss">
 @forward 'assets/styles/theme-style';
 

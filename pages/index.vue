@@ -62,29 +62,38 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useToast } from 'vue-toast-notification'
+import { useI18n } from 'vue-i18n'
 import { useAppStore } from '~/stores/AppStore'
 import { getMe } from '~/services/app.api'
 import { parseErrorsFromResponse, setToken } from '~/utils'
 import { apiClient } from '~/services/apiClient'
 
-const loading = ref(true)
-const acceptBtn = ref(false)
-const isNotAcceptCode = ref(null)
-const router = useRouter()
 const heightDevice = inject('devicePlatform')
 const appStore = useAppStore()
 const { user } = storeToRefs(appStore)
 const $toast = useToast()
+const { locale } = useI18n()
 
-const currentTheme = computed(() =>
-  getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
-)
+const loading = ref(true)
+const acceptBtn = ref(false)
+const isNotAcceptCode = ref(null)
+const router = useRouter()
 const colorMode = useColorMode()
-colorMode.preference = currentTheme.value
 
-watch(currentTheme, (value) => {
-  colorMode.preference = value
-})
+const lang = computed(() => getCookie('lang'))
+appStore.setLang(lang.value)
+if (lang.value && lang.value === 'uz') {
+  locale.value = 'uz'
+}
+if (lang.value && lang.value === 'en') {
+  locale.value = 'en'
+}
+
+const currentTheme = computed(() => getCookie('theme'))
+if (!appStore.theme) {
+  appStore.setTheme(currentTheme.value)
+  colorMode.preference = appStore.theme || currentTheme.value
+}
 
 const cookieWebSession = computed(() =>
   getCookie('click-web-session')
