@@ -24,7 +24,6 @@ if (!appStore.theme) {
     colorMode.value = themeCookie.value
   }
 }
-colorMode.value = appStore.theme
 </script>
 
 <!--<script>-->

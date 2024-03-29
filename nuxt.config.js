@@ -73,5 +73,8 @@ export default defineNuxtConfig({
       persistence: 'localStorage',
     },
   },
+  colorMode: {
+    fallback: 'light',
+  },
   css: [{ src: '~/assets/css/bootstrap.min.css', lang: 'css' }],
 })
