@@ -90,7 +90,7 @@ const lang = getCookie('lang')
 if (lang && lang === 'uz') {
   locale.value = 'uz'
 }
-if (lang.value && lang.value === 'en') {
+if (lang && lang === 'en') {
   locale.value = 'en'
 }
 
