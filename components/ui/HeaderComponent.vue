@@ -8,7 +8,6 @@
           height="22"
           src="/images/left-icon-light.svg"
           alt="left-icon"
-          @click="sendCookieToTg"
         ></NuxtImg>
         <NuxtImg
           v-else
@@ -16,7 +15,6 @@
           height="22"
           src="/images/left-icon-dark.svg"
           alt="left-icon"
-          @click="sendCookieToTg"
         ></NuxtImg>
       </nuxt-link>
       <div v-if="!left && !leftRoute" style="width: 20px; height: 24px"></div>
@@ -26,7 +24,7 @@
         </div>
       </div>
       <div v-if="left" class="left-container">
-        <div class="logo-data">
+        <div class="logo-data" @click="sendCookieToTg">
           <NuxtImg
             v-if="appStore.theme === 'light'"
             class="logo-img"

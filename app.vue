@@ -28,6 +28,15 @@ onMounted(() => {
     // catches browser/OS level preference changes while the page is already loaded
   } catch (err) {}
 })
+
+const cookieWebSession = computed(() =>
+  getCookie('click-web-session')
+    ? getCookie('click-web-session')
+    : getCookie('web-session'),
+)
+if (!appStore.webSession) {
+  appStore.setWebSession(cookieWebSession.value)
+}
 </script>
 
 <!--<script>-->

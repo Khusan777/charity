@@ -20,7 +20,11 @@
         </div>
       </div>
       <div class="profile-menu">
-        <router-link class="profile-menu-item" to="/profile/form" v-if="appStore?.user?.is_identified">
+        <router-link
+          v-if="appStore?.user?.is_identified"
+          class="profile-menu-item"
+          to="/profile/form"
+        >
           <div class="profile-menu-left">
             <NuxtImg src="/images/edit.svg"></NuxtImg>
             <span>Мне нужна помощь</span>
@@ -29,7 +33,7 @@
             <NuxtImg src="/images/arrow.svg"></NuxtImg>
           </div>
         </router-link>
-        <div class="profile-menu-item" @click="goModal" v-else>
+        <div v-else class="profile-menu-item" @click="goModal">
           <div class="profile-menu-left">
             <NuxtImg src="/images/edit.svg"></NuxtImg>
             <span>Мне нужна помощь</span>
@@ -96,8 +100,12 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-body">
-              <div class="ident-modal-des">Для того чтобы отправить заявку, необходимо пройти идентификацию в Click</div>
-              <a href="https://my.click.uz/app/identification"
+              <div class="ident-modal-des">
+                Для того чтобы отправить заявку, необходимо пройти идентификацию
+                в Click
+              </div>
+              <a
+                href="https://my.click.uz/app/identification"
                 class="ident-modal-btn"
               >
                 Начать индентификацию
@@ -119,7 +127,7 @@ const heightDevice = inject('devicePlatform')
 const appStore = useAppStore()
 const goModal = () => {
   const modal = new bootstrap.Modal('#identModal')
-  modal.show();
+  modal.show()
 }
 </script>
 
@@ -223,13 +231,13 @@ const goModal = () => {
   }
 }
 .ident-modal {
-  &-des{
+  &-des {
     font-size: 14px;
     line-height: 18px;
     color: var(--text);
     margin-bottom: 15px;
   }
-  &-btn{
+  &-btn {
     width: 100%;
     background: linear-gradient(
       0deg,

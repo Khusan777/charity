@@ -53,8 +53,12 @@
           />
           <div v-if="v$.surname.$error" class="sendform-pac-error">
             <span v-if="v$.surname.required.$invalid">Введите фамилию</span>
-            <span v-if="v$.surname.minLength.$invalid">Мин.кол-во символов: 3</span>
-            <span v-if="v$.surname.maxLength.$invalid">Мин.кол-во символов: 20</span>
+            <span v-if="v$.surname.minLength.$invalid"
+              >Мин.кол-во символов: 3</span
+            >
+            <span v-if="v$.surname.maxLength.$invalid"
+              >Мин.кол-во символов: 20</span
+            >
           </div>
         </div>
         <div class="sendform-pac-input">
@@ -68,8 +72,12 @@
           />
           <div v-if="v$.name.$error" class="sendform-pac-error">
             <span v-if="v$.name.required.$invalid">Введите имя</span>
-            <span v-if="v$.name.minLength.$invalid">Мин.кол-во символов: 3</span>
-            <span v-if="v$.name.maxLength.$invalid">Мин.кол-во символов: 20</span>
+            <span v-if="v$.name.minLength.$invalid"
+              >Мин.кол-во символов: 3</span
+            >
+            <span v-if="v$.name.maxLength.$invalid"
+              >Мин.кол-во символов: 20</span
+            >
           </div>
         </div>
         <div class="sendform-pac-input">
@@ -83,7 +91,9 @@
             :class="v$.birthday.$error ? 'error' : ''"
           />
           <div v-if="v$.birthday.$error" class="sendform-pac-error">
-            <span v-if="v$.birthday.required.$invalid">Введите дату рождения</span>
+            <span v-if="v$.birthday.required.$invalid"
+              >Введите дату рождения</span
+            >
             <span v-if="v$.birthday.minLength.$invalid">Неверный формат</span>
             <span v-if="v$.birthday.maxLength.$invalid">Неверный формат</span>
           </div>
@@ -290,26 +300,26 @@ export default {
   },
   validations() {
     return {
-      surname: { 
+      surname: {
         required,
         minLength: minLength(3),
-        maxLength: maxLength(20)
+        maxLength: maxLength(20),
       },
       name: {
         required,
         minLength: minLength(3),
-        maxLength: maxLength(20)
+        maxLength: maxLength(20),
       },
       birthday: {
         required,
         minLength: minLength(10),
-        maxLength: maxLength(10)
+        maxLength: maxLength(10),
       },
       region: { required },
       phone: {
         required,
         minLength: minLength(14),
-        maxLength: maxLength(14)
+        maxLength: maxLength(14),
       },
       type: { required },
     }

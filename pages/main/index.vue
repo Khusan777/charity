@@ -1,38 +1,73 @@
 <template>
-  <div v-if="indexFee.loading || indexFee.data" class="index-container">
-    <div class="search-container">
-      <input v-model="queryFee.search" type="text" placeholder="Фамилия, имя" />
-      <!--      <div-->
-      <!--        ref="offCanvas"-->
-      <!--        data-bs-toggle="offcanvas"-->
-      <!--        data-bs-target="#offcanvasBottom"-->
-      <!--        aria-controls="offcanvasBottom"-->
-      <!--        class="placeholder"-->
-      <!--      >-->
-      <!--        <NuxtImg-->
-      <!--          width="20"-->
-      <!--          height="20"-->
-      <!--          style="color: var(&#45;&#45;search-icon-color)"-->
-      <!--          src="/images/settings.svg"-->
-      <!--          alt="settings"-->
-      <!--        />-->
-      <!--      </div>-->
-    </div>
-    <!--    <div-->
-    <!--      style="width: 100%; z-index: 9; height: 10px; background: #12129f"-->
-    <!--    ></div>-->
-    <div ref="el" class="help-block">
-      <div class="text">Нуждаются в помощи</div>
-      <div class="description">
-        Сейчас им крайне необходима<br />
-        ваша помощь.
+  <div class="index-container">
+    <template v-if="indexFee.loading">
+      <div class="loading-container">
+        <div class="text">Нуждаются в помощи</div>
+        <div class="description">
+          Сейчас им крайне необходима<br />
+          ваша помощь.
+        </div>
+        <div class="search-container">
+          <input
+            v-model="queryFee.search"
+            type="text"
+            placeholder="Фамилия, имя"
+          />
+          <!--      <div-->
+          <!--        ref="offCanvas"-->
+          <!--        data-bs-toggle="offcanvas"-->
+          <!--        data-bs-target="#offcanvasBottom"-->
+          <!--        aria-controls="offcanvasBottom"-->
+          <!--        class="placeholder"-->
+          <!--      >-->
+          <!--        <NuxtImg-->
+          <!--          width="20"-->
+          <!--          height="20"-->
+          <!--          style="color: var(&#45;&#45;search-icon-color)"-->
+          <!--          src="/images/settings.svg"-->
+          <!--          alt="settings"-->
+          <!--        />-->
+          <!--      </div>-->
+        </div>
+        <div>
+          <MainSkeleton></MainSkeleton>
+          <MainSkeleton></MainSkeleton>
+          <MainSkeleton></MainSkeleton>
+        </div>
       </div>
-      <div v-if="indexFee.loading">
-        <MainSkeleton></MainSkeleton>
-        <MainSkeleton></MainSkeleton>
-        <MainSkeleton></MainSkeleton>
-      </div>
-      <div v-else>
+    </template>
+    <template v-else>
+      <!--    <div-->
+      <!--      style="width: 100%; z-index: 9; height: 10px; background: #12129f"-->
+      <!--    ></div>-->
+      <div ref="el" class="help-block">
+        <div class="text">Нуждаются в помощи</div>
+        <div class="description">
+          Сейчас им крайне необходима<br />
+          ваша помощь.
+        </div>
+        <div class="search-container">
+          <input
+            v-model="queryFee.search"
+            type="text"
+            placeholder="Фамилия, имя"
+          />
+          <!--      <div-->
+          <!--        ref="offCanvas"-->
+          <!--        data-bs-toggle="offcanvas"-->
+          <!--        data-bs-target="#offcanvasBottom"-->
+          <!--        aria-controls="offcanvasBottom"-->
+          <!--        class="placeholder"-->
+          <!--      >-->
+          <!--        <NuxtImg-->
+          <!--          width="20"-->
+          <!--          height="20"-->
+          <!--          style="color: var(&#45;&#45;search-icon-color)"-->
+          <!--          src="/images/settings.svg"-->
+          <!--          alt="settings"-->
+          <!--        />-->
+          <!--      </div>-->
+        </div>
         <div v-for="feeItem in indexFee?.data" :key="feeItem">
           <ChartCardNotCollected
             :key="feeItem.id"
@@ -57,7 +92,7 @@
         </div>
         <!--    <UiOffCanvasRegions></UiOffCanvasRegions>-->
       </div>
-    </div>
+    </template>
   </div>
 </template>
 
@@ -145,6 +180,29 @@ watch(
   height: calc(v-bind(heightDevice) - 155px);
   max-height: calc(v-bind(heightDevice) - 155px);
 }
+.loading-container {
+  height: calc(v-bind(heightDevice) - 155px);
+  max-height: calc(v-bind(heightDevice) - 155px);
+  overflow-y: scroll;
+  & .text {
+    padding: 0 20px 5px;
+    color: var(--need-help);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0;
+    text-align: left;
+  }
+  & .description {
+    padding: 0 20px 10px;
+    color: var(--need-help-desc);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0;
+    text-align: left;
+  }
+}
 .search-container {
   position: relative;
   padding: 0 20px 18px;
@@ -186,8 +244,8 @@ watch(
 }
 
 .help-block {
-  height: calc(v-bind(heightDevice) - 225px);
-  max-height: calc(v-bind(heightDevice) - 225px);
+  height: calc(v-bind(heightDevice) - 160px);
+  max-height: calc(v-bind(heightDevice) - 160px);
   overflow-y: auto;
   & .text {
     padding: 0 20px 5px;

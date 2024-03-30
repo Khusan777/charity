@@ -119,14 +119,6 @@ if (lang.value && lang.value === 'en') {
 //   colorMode.preference = appStore.theme || currentTheme.value
 // }
 //
-const cookieWebSession = computed(() =>
-  getCookie('click-web-session')
-    ? getCookie('click-web-session')
-    : getCookie('web-session'),
-)
-if (!appStore.webSession) {
-  appStore.setWebSession(cookieWebSession.value)
-}
 
 // const themeCookie = computed(() =>
 //   getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
