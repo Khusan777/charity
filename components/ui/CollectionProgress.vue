@@ -47,11 +47,12 @@ const props = defineProps({
 // )
 const percentMuchNumber = computed(
   () =>
-    Math.round((props.amount?.remainsAmount * 100) / props.amount?.amount) || 0,
+    Math.round((props.amount?.collectedAmount * 100) / props.amount?.amount) ||
+    0,
 )
 const percentMuch = computed(
   () =>
-    Math.round((props.amount?.remainsAmount * 100) / props.amount?.amount) +
+    Math.round((props.amount?.collectedAmount * 100) / props.amount?.amount) +
     '%',
 )
 </script>
