@@ -191,6 +191,8 @@
       <div
         id="successModal"
         class="modal fade success-modal"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
         tabindex="-1"
         aria-labelledby="successModalLabel"
         aria-hidden="true"
@@ -274,7 +276,7 @@ export default {
           region_id: this.region,
           patient_phone: result_number,
           type_help_id: this.type,
-          comment: this.comment,
+          comment: this.des,
         }
         apiClient
           .post('/fee', data, {

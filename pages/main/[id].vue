@@ -2,7 +2,7 @@
   <div class="detail-page">
     <UiHeaderComponent
       center
-      center-text="Личная карточка"
+      :center-text="idPage"
       :left-route="appStore.fromMainPage ? '/main' : '/completed'"
     ></UiHeaderComponent>
     <template v-if="loading">
@@ -76,9 +76,11 @@ const calculate = computed(() =>
   route.query.completed === 'true' ? '85px' : '135px',
 )
 
+const idPage = computed(() => route.params.id )
+
 const detailPatientData = () => {
   loading.value = true
-  getDetailPatient(+route.params.id)
+  getDetailPatient(idPage.value)
     .then((response) => {
       patientData.value = response.data?.data
       patient.name = response.data?.data?.patient_name
