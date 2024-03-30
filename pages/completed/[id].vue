@@ -37,32 +37,32 @@
           ></div>
         </div>
       </div>
-      <div class="photo-gallery">
-        <div class="title">Фотогалерея</div>
-        <div style="display: flex; gap: 10px; width: 100%" class="galleries">
-          <div style="width: 65%" class="left">
-            <NuxtImg
-              style="width: 100%; height: 100%"
-              src="/images/user.png"
-              alt="user"
-            ></NuxtImg>
-          </div>
-          <div
-            style="width: 35%; display: flex; flex-direction: column; gap: 10px"
-          >
-            <NuxtImg
-              style="width: 100%; height: 100%"
-              src="/images/user.png"
-              alt="user"
-            ></NuxtImg>
-            <NuxtImg
-              style="width: 100%; height: 100%"
-              src="/images/user.png"
-              alt="user"
-            ></NuxtImg>
-          </div>
-        </div>
-      </div>
+      <!--      <div class="photo-gallery">-->
+      <!--        <div class="title">Фотогалерея</div>-->
+      <!--        <div style="display: flex; gap: 10px; width: 100%" class="galleries">-->
+      <!--          <div style="width: 65%" class="left">-->
+      <!--            <NuxtImg-->
+      <!--              style="width: 100%; height: 100%"-->
+      <!--              src="/images/user.png"-->
+      <!--              alt="user"-->
+      <!--            ></NuxtImg>-->
+      <!--          </div>-->
+      <!--          <div-->
+      <!--            style="width: 35%; display: flex; flex-direction: column; gap: 10px"-->
+      <!--          >-->
+      <!--            <NuxtImg-->
+      <!--              style="width: 100%; height: 100%"-->
+      <!--              src="/images/user.png"-->
+      <!--              alt="user"-->
+      <!--            ></NuxtImg>-->
+      <!--            <NuxtImg-->
+      <!--              style="width: 100%; height: 100%"-->
+      <!--              src="/images/user.png"-->
+      <!--              alt="user"-->
+      <!--            ></NuxtImg>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
     </div>
   </div>
 </template>
@@ -85,7 +85,7 @@ const patientNew = computed(() =>
   & .history-container {
     max-height: calc(v-bind(heightDevice) - 75px);
     height: calc(v-bind(heightDevice) - 75px);
-    padding: 0 20px;
+    padding: 0 20px 10px;
     overflow-y: scroll;
     & .user-image {
       border-radius: 12px 12px 0 0;
@@ -114,18 +114,18 @@ const patientNew = computed(() =>
         color: var(--history-text-color);
       }
     }
-    & .photo-gallery {
-      margin: 30px 0 20px;
-      border-radius: 12px;
-      padding: 10px 10px 20px 10px;
-      background: var(--history-bg-card);
-      & .title {
-        padding-bottom: 8px;
-        font-weight: 600;
-        font-size: 16px;
-        color: var(--history-card-title);
-      }
-    }
+    //& .photo-gallery {
+    //  margin: 30px 0 20px;
+    //  border-radius: 12px;
+    //  padding: 10px 10px 20px 10px;
+    //  background: var(--history-bg-card);
+    //  & .title {
+    //    padding-bottom: 8px;
+    //    font-weight: 600;
+    //    font-size: 16px;
+    //    color: var(--history-card-title);
+    //  }
+    //}
   }
 }
 </style>

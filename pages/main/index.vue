@@ -218,7 +218,7 @@ watch(
     display: flex;
     align-items: center;
     padding: 12px 10px 12px 35px;
-    color: rgb(106, 106, 106);
+    color: var(--search-placeholder);
     font-size: 12px;
     font-weight: 400;
     line-height: 20px;
@@ -233,6 +233,7 @@ watch(
       color: var(--search-placeholder);
     }
     &:focus {
+      border-color: #0073ff;
       color: var(--search-placeholder);
       outline: 0;
     }

@@ -70,6 +70,8 @@
   --report-transaction-summ: #363845;
   --modal: #fff;
   --skeleton-bg: linear-gradient(to right, #d8d8d8 0%, #bdbdbd 20%, #d8d8d8 40%, #d8d8d8 100%);
+  --warning-bg: rgba(255, 255, 255, 0.6);
+  --placeholder-input: #b3b7ce;
 }
 
 :root {
@@ -144,6 +146,8 @@
   --report-transaction-summ: #fff;
   --modal: #1a1b25;
   --skeleton-bg: linear-gradient(to right, #50535a 0%, #656871 20%, #50535a 40%, #50535a 100%);
+  --warning-bg:  rgba(52, 53, 63, 0.6);
+  --placeholder-input: #b3b7ce;
 }
 
 .modal-backdrop{

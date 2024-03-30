@@ -182,6 +182,7 @@ a {
     & .image-user {
       width: 91px;
       height: auto;
+      object-fit: cover;
       border-radius: 6px;
     }
     & .name {

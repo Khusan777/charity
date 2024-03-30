@@ -24,7 +24,7 @@
         :src="`https://dev-promo23.click.uz/storage/${feeItem?.patient_photo}`"
         alt="user"
       ></NuxtImg>
-      <div>
+      <div style="width: calc(100% - 100px)">
         <UiBadge
           with-image
           :img-ref="feeItem?.status?.icon"
@@ -42,6 +42,21 @@
           <div>
             {{ feeItem?.patient_surname + ' ' + feeItem?.patient_name || '' }}
             <span>({{ feeItem?.patient_age }} года)</span>
+          </div>
+          <div
+            @click.stop="
+              $router.push({
+                path: `/main/${feeItem?.id}`,
+                query: { completed: false },
+              })
+            "
+          >
+            <NuxtImg
+              width="16"
+              height="16"
+              src="/images/right-icon.svg"
+              alt="right-icon"
+            ></NuxtImg>
           </div>
         </div>
         <div class="city">

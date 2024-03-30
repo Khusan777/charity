@@ -7,7 +7,20 @@
     ></HeaderComponent>
     <div class="paid-container">
       <template v-if="loading">
-        <PaidPageSkeleton></PaidPageSkeleton>
+        <div>
+          <PaidPageSkeleton></PaidPageSkeleton>
+          <div class="warning-container">
+            <div v-if="loading" style="width: 100%">
+              <div v-for="i in 5" :key="i" style="padding: 2px 0">
+                <UiAnimatedSkeleton
+                  height="12px"
+                  width="100%"
+                  border-radius="12px"
+                ></UiAnimatedSkeleton>
+              </div>
+            </div>
+          </div>
+        </div>
       </template>
       <template v-else>
         <div>
@@ -80,7 +93,7 @@
           <label class="label-text" for="help-summa">Сумма помощи</label>
           <input
             id="help-summa"
-            v-model.trim="summa"
+            v-model="summa"
             type="text"
             minlength="4"
             inputmode="decimal"
@@ -88,9 +101,19 @@
             @input="filterNonNumeric"
           />
         </div>
-        <div class="close-paid">
+        <div v-if="loading" style="border-radius: 6px; padding: 12px 15px">
+          <UiAnimatedSkeleton
+            width="100%"
+            height="38px"
+            border-radius="6px"
+          ></UiAnimatedSkeleton>
+        </div>
+        <div v-else class="close-paid">
           <div class="text" @click="summa = String(patientData?.remains)">
-            Закрыть весь сбор ({{ String(patientData?.remains) }} сумов)
+            Закрыть весь сбор ({{
+              String(patientData?.remains?.toLocaleString())
+            }}
+            сумов)
           </div>
         </div>
       </div>
@@ -139,7 +162,9 @@ const PatientData = (patientId) => {
 PatientData(id.value)
 
 const filterNonNumeric = () => {
-  summa.value = summa.value.replace(/[^0-9]/g, '')
+  let inputValue = summa.value.replace(/[^0-9]/g, '')
+  inputValue = inputValue.replace(/(.{3})/g, '$1 ')
+  summa.value = inputValue.trim()
 }
 </script>
 
@@ -161,14 +186,14 @@ const filterNonNumeric = () => {
       margin: 16px 20px 0;
       border-radius: 12px;
       padding: 15px 10px;
-      background: rgba(255, 255, 255, 0.6);
+      background: var(--warning-bg);
     }
 
     & .text {
       font-weight: 400;
       font-size: 12px;
       line-height: 133%;
-      color: #363845;
+      color: var(--text);
     }
     & .search-container {
       position: relative;
@@ -178,14 +203,14 @@ const filterNonNumeric = () => {
         font-weight: 400;
         font-size: 10px;
         line-height: 160%;
-        color: #6a6a6a;
+        color: var(--city-name);
       }
       & input {
         position: relative;
         border: 1px solid rgb(183, 184, 198);
         border-radius: 10px;
         height: 45px;
-        background: #fff;
+        background: var(--chart-card-bg);
         width: 100%;
         display: flex;
         align-items: center;
@@ -201,7 +226,7 @@ const filterNonNumeric = () => {
           line-height: 129%;
           letter-spacing: 0;
           text-align: left;
-          color: #b3b7ce;
+          color: var(--placeholder-input);
         }
         &:focus {
           border: 1px solid #0073ff;
@@ -214,20 +239,20 @@ const filterNonNumeric = () => {
       border-radius: 6px;
       padding: 12px 15px;
       height: 38px;
-      background: #fff;
+      background: var(--published-bg);
       & .text {
         display: flex;
         justify-content: center;
         align-items: center;
         font-weight: 500;
         font-size: 12px;
-        color: #363845;
+        color: var(--user-name);
       }
     }
   }
   & .paid-active {
     all: unset;
-    color: rgb(255, 255, 255);
+    color: #fff;
     font-size: 14px;
     font-weight: 600;
     line-height: 17px;
