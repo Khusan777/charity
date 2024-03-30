@@ -131,15 +131,49 @@
             aria-labelledby="complete-tab"
             tabindex="0"
           >
-            <div v-for="feeItem in completedFee.index" :key="feeItem.id">
-              <ChartCardCollected
-                :key="feeItem.id"
-                :fee-item="feeItem"
-              ></ChartCardCollected>
-            </div>
-            <div v-if="completedFee.loader" class="loader-wrapper">
-              <span class="loader-anim"></span>
-            </div>
+            <template v-if="completedFee.index?.length">
+              <div v-for="feeItem in completedFee.index" :key="feeItem.id">
+                <ChartCardCollected
+                  :key="feeItem.id"
+                  :fee-item="feeItem"
+                ></ChartCardCollected>
+              </div>
+              <div v-if="completedFee.loader" class="loader-wrapper">
+                <span class="loader-anim"></span>
+              </div>
+            </template>
+            <template v-else>
+              <div style="width: 100%">
+                <div
+                  style="
+                    padding: 30px 0 0;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                  "
+                >
+                  <NuxtImg
+                    v-if="appStore.theme === 'light'"
+                    style="margin: auto; display: block"
+                    width="35"
+                    height="35"
+                    src="/images/icon-search-light.svg"
+                    alt="search-icon"
+                  ></NuxtImg>
+                  <NuxtImg
+                    v-else
+                    style="margin: auto; display: block"
+                    width="35"
+                    height="35"
+                    src="/images/icon-search-light.svg"
+                    alt="search-icon"
+                  ></NuxtImg>
+                  <div class="text-message">
+                    По вашему запросу ничего не найдено
+                  </div>
+                </div>
+              </div>
+            </template>
           </div>
         </template>
         <div
@@ -160,11 +194,45 @@
             overflow-x: hidden;
           "
         >
-          <template
-            v-for="patientData in appStore.patientNews.index"
-            :key="patientData?.id"
-          >
-            <CharityReport :patient-new="patientData"></CharityReport>
+          <template v-if="appStore.patientNews.index?.length">
+            <div
+              v-for="patientData in appStore.patientNews.index"
+              :key="patientData?.id"
+            >
+              <CharityReport :patient-new="patientData"></CharityReport>
+            </div>
+          </template>
+          <template v-else>
+            <div style="width: 100%">
+              <div
+                style="
+                  padding: 30px 0 0;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                "
+              >
+                <NuxtImg
+                  v-if="appStore.theme === 'light'"
+                  style="margin: auto; display: block"
+                  width="35"
+                  height="35"
+                  src="/images/icon-search-light.svg"
+                  alt="search-icon"
+                ></NuxtImg>
+                <NuxtImg
+                  v-else
+                  style="margin: auto; display: block"
+                  width="35"
+                  height="35"
+                  src="/images/icon-search-light.svg"
+                  alt="search-icon"
+                ></NuxtImg>
+                <div class="text-message">
+                  По вашему запросу ничего не найдено
+                </div>
+              </div>
+            </div>
           </template>
         </div>
       </div>

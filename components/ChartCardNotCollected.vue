@@ -42,7 +42,7 @@
           ></UiBadge>
           <div class="name">
             <div>
-              {{ feeItem?.patient_name + ' ' + feeItem?.patient_surname || '' }}
+              {{ feeItem?.patient_surname + ' ' + feeItem?.patient_name || '' }}
               <span>({{ feeItem?.patient_age }} года)</span>
             </div>
             <div

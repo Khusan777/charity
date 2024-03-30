@@ -101,7 +101,7 @@ detailPatientData()
 .detail-page {
   max-height: v-bind(heightDevice);
   height: v-bind(heightDevice);
-  overflow-y: hidden;
+  overflow: hidden;
   & .detail-container {
     display: flex;
     flex-direction: column;

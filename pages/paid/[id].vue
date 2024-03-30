@@ -22,9 +22,9 @@
                 <div class="name">
                   <div>
                     {{
-                      patientData?.patient_name +
+                      patientData?.patient_surname +
                         ' ' +
-                        patientData?.patient_surname || ''
+                        patientData?.patient_name || ''
                     }}
                     <span>({{ patientData?.patient_age }} года)</span>
                   </div>
@@ -147,6 +147,7 @@ const filterNonNumeric = () => {
 .paid-page {
   max-height: v-bind(heightDevice);
   height: v-bind(heightDevice);
+  overflow: hidden;
   & .paid-container {
     height: calc(v-bind(heightDevice) - 80px);
     max-height: calc(v-bind(heightDevice) - 80px);

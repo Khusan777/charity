@@ -1,6 +1,6 @@
 <template>
   <div class="name">
-    {{ patient?.name }} {{ patient?.surname }}
+    {{ patient?.surname }} {{ patient?.name }}
     <span>({{ patient?.age }} года)</span>
   </div>
   <div v-if="withCity" class="city">

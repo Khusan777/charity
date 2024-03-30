@@ -236,6 +236,14 @@ a {
   }
 }
 
+.text-message {
+  text-align: center;
+  padding-top: 25px;
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--disease-name);
+}
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);

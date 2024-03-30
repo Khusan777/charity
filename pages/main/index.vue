@@ -1,33 +1,59 @@
 <template>
   <div class="index-container">
+    <div class="search-container">
+      <input v-model="queryFee.search" type="text" placeholder="Фамилия, имя" />
+      <template v-if="!indexFee.data?.length && !indexFee.loading">
+        <div style="width: 100%">
+          <div
+            style="
+              padding: 30px 0 0;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+            "
+          >
+            <NuxtImg
+              v-if="appStore.theme === 'light'"
+              style="margin: auto; display: block"
+              width="35"
+              height="35"
+              src="/images/icon-search-light.svg"
+              alt="search-icon"
+            ></NuxtImg>
+            <NuxtImg
+              v-else
+              style="margin: auto; display: block"
+              width="35"
+              height="35"
+              src="/images/icon-search-light.svg"
+              alt="search-icon"
+            ></NuxtImg>
+            <div class="text-message">По вашему запросу ничего не найдено</div>
+          </div>
+        </div>
+      </template>
+      <!--      <div-->
+      <!--        ref="offCanvas"-->
+      <!--        data-bs-toggle="offcanvas"-->
+      <!--        data-bs-target="#offcanvasBottom"-->
+      <!--        aria-controls="offcanvasBottom"-->
+      <!--        class="placeholder"-->
+      <!--      >-->
+      <!--        <NuxtImg-->
+      <!--          width="20"-->
+      <!--          height="20"-->
+      <!--          style="color: var(&#45;&#45;search-icon-color)"-->
+      <!--          src="/images/settings.svg"-->
+      <!--          alt="settings"-->
+      <!--        />-->
+      <!--      </div>-->
+    </div>
     <template v-if="indexFee.loading">
       <div class="loading-container">
         <div class="text">Нуждаются в помощи</div>
         <div class="description">
           Сейчас им крайне необходима<br />
           ваша помощь.
-        </div>
-        <div class="search-container">
-          <input
-            v-model="queryFee.search"
-            type="text"
-            placeholder="Фамилия, имя"
-          />
-          <!--      <div-->
-          <!--        ref="offCanvas"-->
-          <!--        data-bs-toggle="offcanvas"-->
-          <!--        data-bs-target="#offcanvasBottom"-->
-          <!--        aria-controls="offcanvasBottom"-->
-          <!--        class="placeholder"-->
-          <!--      >-->
-          <!--        <NuxtImg-->
-          <!--          width="20"-->
-          <!--          height="20"-->
-          <!--          style="color: var(&#45;&#45;search-icon-color)"-->
-          <!--          src="/images/settings.svg"-->
-          <!--          alt="settings"-->
-          <!--        />-->
-          <!--      </div>-->
         </div>
         <div>
           <MainSkeleton></MainSkeleton>
@@ -36,37 +62,12 @@
         </div>
       </div>
     </template>
-    <template v-else>
-      <!--    <div-->
-      <!--      style="width: 100%; z-index: 9; height: 10px; background: #12129f"-->
-      <!--    ></div>-->
+    <template v-if="indexFee.data?.length">
       <div ref="el" class="help-block">
         <div class="text">Нуждаются в помощи</div>
         <div class="description">
           Сейчас им крайне необходима<br />
           ваша помощь.
-        </div>
-        <div class="search-container">
-          <input
-            v-model="queryFee.search"
-            type="text"
-            placeholder="Фамилия, имя"
-          />
-          <!--      <div-->
-          <!--        ref="offCanvas"-->
-          <!--        data-bs-toggle="offcanvas"-->
-          <!--        data-bs-target="#offcanvasBottom"-->
-          <!--        aria-controls="offcanvasBottom"-->
-          <!--        class="placeholder"-->
-          <!--      >-->
-          <!--        <NuxtImg-->
-          <!--          width="20"-->
-          <!--          height="20"-->
-          <!--          style="color: var(&#45;&#45;search-icon-color)"-->
-          <!--          src="/images/settings.svg"-->
-          <!--          alt="settings"-->
-          <!--        />-->
-          <!--      </div>-->
         </div>
         <div v-for="feeItem in indexFee?.data" :key="feeItem">
           <ChartCardNotCollected
@@ -102,6 +103,7 @@ import ChartCardNotCollected from '~/components/ChartCardNotCollected.vue'
 import { getFee } from '~/services/app.api'
 import { debounce } from '~/utils'
 
+const appStore = useAppStore()
 definePageMeta({
   layout: 'main',
 })
@@ -244,8 +246,8 @@ watch(
 }
 
 .help-block {
-  height: calc(v-bind(heightDevice) - 160px);
-  max-height: calc(v-bind(heightDevice) - 160px);
+  height: calc(v-bind(heightDevice) - 225px);
+  max-height: calc(v-bind(heightDevice) - 225px);
   overflow-y: auto;
   & .text {
     padding: 0 20px 5px;
