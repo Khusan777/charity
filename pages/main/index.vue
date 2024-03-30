@@ -7,9 +7,7 @@
       <div style="color: #fff">
         {{ getCookie('theme') }}
       </div>
-      <div style="color: #ffffff">
-        Theme {{ appStore.theme }} - {{ $colorMode.value }}
-      </div>
+      <div style="color: #ffffff">Theme {{ appStore.theme }}</div>
     </div>
     <div class="search-container">
       <input v-model="queryFee.search" type="text" placeholder="Фамилия, имя" />

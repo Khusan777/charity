@@ -128,6 +128,31 @@ if (!appStore.webSession) {
   appStore.setWebSession(cookieWebSession.value)
 }
 
+onMounted(() => {
+  const themeCookie = computed(() =>
+    getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
+  )
+  const themeData = computed(() => getCookie('theme'))
+  const theme = getCookie('theme')
+  // Check what the system color scheme preferences are
+  try {
+    // See references for more context for why "not all" is used here
+    const rootElem = document.documentElement
+    if (themeCookie.value === 'dark' || themeData.value === 'dark') {
+      rootElem.setAttribute('data-theme', 'dark')
+      appStore.setTheme(themeCookie.value || themeData.value)
+    }
+    if (theme === 'dark') {
+      rootElem.setAttribute('data-theme', 'dark')
+      appStore.setTheme(themeCookie.value || themeData.value)
+    } else {
+      rootElem.setAttribute('data-theme', 'light')
+      appStore.setTheme('light')
+    }
+    // catches browser/OS level preference changes while the page is already loaded
+  } catch (err) {}
+})
+
 // const themeCookie = computed(() =>
 //   getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
 // )
