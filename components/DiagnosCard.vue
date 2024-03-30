@@ -85,7 +85,7 @@
           </div>
         </div>
         <NuxtImg
-          v-if="$colorMode.value === 'light'"
+          v-if="true"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasBottom"
           aria-controls="offcanvasBottom"

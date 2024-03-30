@@ -8,14 +8,8 @@
     <div class="about-wrapper">
       <div class="about-info">
         <div class="about-logo">
-          <NuxtImg
-            v-if="$colorMode.value === 'light'"
-            src="/images/logo_light.svg"
-          ></NuxtImg>
-          <NuxtImg
-            v-if="$colorMode.value === 'dark'"
-            src="/images/logo_dark.svg"
-          ></NuxtImg>
+          <NuxtImg v-if="true" src="/images/logo_light.svg"></NuxtImg>
+          <NuxtImg v-if="false" src="/images/logo_dark.svg"></NuxtImg>
         </div>
         <div class="about-text">
           <p>

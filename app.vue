@@ -10,13 +10,16 @@ onMounted(() => {
   const themeCookie = computed(() =>
     getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
   )
+  const themeData = computed(() => getCookie('theme'))
+  const theme = getCookie('theme')
   // Check what the system color scheme preferences are
   try {
     // See references for more context for why "not all" is used here
     const rootElem = document.documentElement
-    if (themeCookie.value == 'dark') {
-      rootElem.setAttribute('data-theme', 'dark')
-    } else if (themeCookie.value == 'light') {
+    if (themeCookie.value === 'light' || themeData.value === 'light') {
+      rootElem.setAttribute('data-theme', 'light')
+    }
+    if (theme === 'light') {
       rootElem.setAttribute('data-theme', 'light')
     }
     // catches browser/OS level preference changes while the page is already loaded

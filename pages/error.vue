@@ -2,7 +2,7 @@
   <div class="error-container">
     <div class="data">
       <NuxtImg
-        v-if="$colorMode.value === 'light'"
+        v-if="true"
         class="error-img"
         src="/images/error_light.svg"
         alt="error"

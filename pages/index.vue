@@ -1,7 +1,7 @@
 <template>
   <div v-if="loading" class="loader-container">
     <NuxtImg
-      v-if="$colorMode.value === 'light'"
+      v-if="true"
       style="width: 100%; padding: 0 60px"
       src="/images/logo_light.svg"
       alt="logo"

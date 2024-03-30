@@ -3,7 +3,7 @@
     <div class="header-content">
       <nuxt-link v-if="leftRoute" :to="leftRoute">
         <NuxtImg
-          v-if="$colorMode.value === 'light'"
+          v-if="true"
           width="20"
           height="22"
           src="/images/left-icon-light.svg"
@@ -26,7 +26,7 @@
       <div v-if="left" class="left-container">
         <div class="logo-data">
           <NuxtImg
-            v-if="$colorMode.value === 'light'"
+            v-if="true"
             class="logo-img"
             src="/images/logo_light.svg"
             alt="logo"
