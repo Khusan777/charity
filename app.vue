@@ -251,7 +251,7 @@ a {
 .page-leave-active,
 .page-enter-active,
 .page-leave-active {
-  transition: all 0.2s;
+  transition: all 0.1s;
 }
 .page-enter-from {
   opacity: 0;

