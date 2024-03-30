@@ -2,7 +2,7 @@
   <div class="error-container">
     <div class="data">
       <NuxtImg
-        v-if="true"
+        v-if="appStore.theme === 'light'"
         class="error-img"
         src="/images/error_light.svg"
         alt="error"
@@ -33,6 +33,7 @@
 </template>
 
 <script setup>
+const appStore = useAppStore()
 const heightDevice = inject('devicePlatform')
 </script>
 

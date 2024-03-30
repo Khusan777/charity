@@ -3,7 +3,7 @@
     <div class="header-content">
       <nuxt-link v-if="leftRoute" :to="leftRoute">
         <NuxtImg
-          v-if="true"
+          v-if="appStore.theme === 'light'"
           width="20"
           height="22"
           src="/images/left-icon-light.svg"
@@ -26,7 +26,7 @@
       <div v-if="left" class="left-container">
         <div class="logo-data">
           <NuxtImg
-            v-if="true"
+            v-if="appStore.theme === 'light'"
             class="logo-img"
             src="/images/logo_light.svg"
             alt="logo"
@@ -72,6 +72,7 @@
 </template>
 
 <script setup>
+const appStore = useAppStore()
 defineProps({
   left: {
     type: Boolean,

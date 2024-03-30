@@ -1,7 +1,7 @@
 <template>
   <div v-if="loading" class="loader-container">
     <NuxtImg
-      v-if="true"
+      v-if="appStore.theme === 'light'"
       style="width: 100%; padding: 0 60px"
       src="/images/logo_light.svg"
       alt="logo"
@@ -127,28 +127,6 @@ const cookieWebSession = computed(() =>
 if (!appStore.webSession) {
   appStore.setWebSession(cookieWebSession.value)
 }
-
-onMounted(() => {
-  const themeCookie = computed(() =>
-    getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
-  )
-  const themeData = computed(() => getCookie('theme'))
-  const theme = getCookie('theme')
-  // Check what the system color scheme preferences are
-  try {
-    // See references for more context for why "not all" is used here
-    const rootElem = document.documentElement
-    if (themeCookie.value === 'light' || themeData.value === 'light') {
-      rootElem.setAttribute('data-theme', 'light')
-      appStore.setTheme(themeCookie.value || themeData.value)
-    }
-    if (theme === 'light') {
-      rootElem.setAttribute('data-theme', 'light')
-      appStore.setTheme(themeCookie.value || themeData.value)
-    }
-    // catches browser/OS level preference changes while the page is already loaded
-  } catch (err) {}
-})
 
 // const themeCookie = computed(() =>
 //   getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),

@@ -8,8 +8,11 @@
     <div class="about-wrapper">
       <div class="about-info">
         <div class="about-logo">
-          <NuxtImg v-if="true" src="/images/logo_light.svg"></NuxtImg>
-          <NuxtImg v-if="false" src="/images/logo_dark.svg"></NuxtImg>
+          <NuxtImg
+            v-if="appStore.theme === 'light'"
+            src="/images/logo_light.svg"
+          ></NuxtImg>
+          <NuxtImg v-else src="/images/logo_dark.svg"></NuxtImg>
         </div>
         <div class="about-text">
           <p>
@@ -51,6 +54,7 @@
 </template>
 
 <script setup>
+const appStore = useAppStore()
 const heightDevice = inject('devicePlatform')
 </script>
 

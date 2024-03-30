@@ -85,7 +85,7 @@
           </div>
         </div>
         <NuxtImg
-          v-if="true"
+          v-if="appStore.theme === 'light'"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasBottom"
           aria-controls="offcanvasBottom"
@@ -167,6 +167,7 @@
 import { useI18n } from 'vue-i18n'
 import BottomSheetDisease from '~/components/ui/BottomSheetDisease.vue'
 
+const appStore = useAppStore()
 const { locale } = useI18n()
 defineProps({
   isCompleted: {
