@@ -109,7 +109,10 @@
           ></UiAnimatedSkeleton>
         </div>
         <div v-else class="close-paid">
-          <div class="text" @click="summa = String(patientData?.remains)">
+          <div
+            class="text"
+            @click="summa = String(patientData?.remains?.toLocaleString())"
+          >
             Закрыть весь сбор ({{
               String(patientData?.remains?.toLocaleString())
             }}

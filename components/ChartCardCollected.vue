@@ -47,7 +47,7 @@
             @click.stop="
               $router.push({
                 path: `/main/${feeItem?.id}`,
-                query: { completed: false },
+                query: { completed: true },
               })
             "
           >
