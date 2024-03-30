@@ -138,16 +138,13 @@ onMounted(() => {
   try {
     // See references for more context for why "not all" is used here
     const rootElem = document.documentElement
-    if (themeCookie.value === 'dark' || themeData.value === 'dark') {
-      rootElem.setAttribute('data-theme', 'dark')
+    if (themeCookie.value === 'light' || themeData.value === 'light') {
+      rootElem.setAttribute('data-theme', 'light')
       appStore.setTheme(themeCookie.value || themeData.value)
     }
-    if (theme === 'dark') {
-      rootElem.setAttribute('data-theme', 'dark')
-      appStore.setTheme(themeCookie.value || themeData.value)
-    } else {
+    if (theme === 'light') {
       rootElem.setAttribute('data-theme', 'light')
-      appStore.setTheme('light')
+      appStore.setTheme(themeCookie.value || themeData.value)
     }
     // catches browser/OS level preference changes while the page is already loaded
   } catch (err) {}
