@@ -70,7 +70,7 @@ import { apiClient } from '~/services/apiClient'
 
 const appStore = useAppStore()
 const heightDevice = inject('devicePlatform')
-const { user } = storeToRefs(appStore)
+const { user, cookieWebSession } = storeToRefs(appStore)
 const $toast = useToast()
 // const colorMode = useColorMode()
 const loading = ref(true)
