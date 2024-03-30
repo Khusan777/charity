@@ -70,7 +70,7 @@ import { apiClient } from '~/services/apiClient'
 
 const appStore = useAppStore()
 const heightDevice = inject('devicePlatform')
-const { user, cookieWebSession } = storeToRefs(appStore)
+const { user, webSession } = storeToRefs(appStore)
 const $toast = useToast()
 // const colorMode = useColorMode()
 const loading = ref(true)
@@ -136,9 +136,7 @@ if (lang.value && lang.value === 'en') {
 // colorMode.value = theme.value ? theme.value : themeCookie.value
 const getUserData = () => {
   getMe({
-    web_session: appStore.webSession
-      ? appStore.webSession
-      : cookieWebSession.value,
+    web_session: appStore.webSession ? appStore.webSession : webSession.value,
   })
     .then((response) => {
       loading.value = false
@@ -162,9 +160,7 @@ const acceptOfferta = () => {
   apiClient.defaults.headers.common['Accept-Language'] = appStore.lang
   acceptBtn.value = true
   getMe({
-    web_session: appStore.webSession
-      ? appStore.webSession
-      : cookieWebSession.value,
+    web_session: appStore.webSession ? appStore.webSession : webSession.value,
     activate: 1,
   })
     .then((response) => {
