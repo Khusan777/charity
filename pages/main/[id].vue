@@ -3,7 +3,13 @@
     <UiHeaderComponent
       center
       center-text="Личная карточка"
-      :left-route="appStore.fromMainPage ? '/main' : '/completed'"
+      :left-route="
+        appStore.fromMainPage
+          ? '/main'
+          : appStore.navMyFees
+            ? '/profile/requests'
+            : '/completed'
+      "
     ></UiHeaderComponent>
     <template v-if="loading">
       <DetailPatientSkeleton :height-calc="calculate"></DetailPatientSkeleton>

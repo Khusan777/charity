@@ -15,6 +15,7 @@ export const useAppStore = defineStore('AppStore', () => {
     activeTabs: false,
   })
   const myFees = ref(null)
+  const navMyFees = ref(null)
 
   const setWebSession = (session) => {
     webSession.value = session
@@ -40,5 +41,6 @@ export const useAppStore = defineStore('AppStore', () => {
     theme,
     fromMainPage,
     myFees,
+    navMyFees,
   }
 })
