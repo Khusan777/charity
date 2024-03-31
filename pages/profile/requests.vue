@@ -6,12 +6,12 @@
       left-route="/profile"
     ></UiHeaderComponent>
     <div class="requests-wrapper">
-      <div class="requests-box" v-if="getMyFees">
-        <div class="loading" v-if="loading">
+      <div v-if="getMyFees" class="requests-box">
+        <div v-if="loading" class="loading">
           <MainSkeleton></MainSkeleton>
           <MainSkeleton></MainSkeleton>
         </div>
-        <div class="not-loading" v-else>
+        <div v-else class="not-loading">
           <div class="requests-top">
             <div class="requests-top-icon">
               <NuxtImg src="/images/info.svg"></NuxtImg>
@@ -57,9 +57,9 @@
                   </div>
                 </div>
                 <div v-if="fee?.status_id == 9" class="requests-item-top-error">
-                  К сожалению, мы не можем принять к рассмотрению вашу заявку, так
-                  как приоритетное направление работы фонда «Mehrli qo'llar» помощь
-                  детям, нуждающимся в операции на сердце.
+                  К сожалению, мы не можем принять к рассмотрению вашу заявку,
+                  так как приоритетное направление работы фонда «Mehrli qo'llar»
+                  помощь детям, нуждающимся в операции на сердце.
                 </div>
               </div>
               <div class="requests-item-body">
@@ -99,12 +99,21 @@
           </div>
         </div>
       </div>
-      <div class="requests-not" v-else>
+      <div v-else class="requests-not">
         <div class="requests-not-top"></div>
         <div class="requests-not-content">
-          <NuxtImg src="/images/myfees-not.png" v-if="appStore.theme === 'dark'"></NuxtImg>
-          <NuxtImg src="/images/myfees-not-light.png" v-if="appStore.theme === 'light'"></NuxtImg>
-          <p>Тут будут уведомления о том, как вы меняете мир к лучшему. Следи за новостями о своих благотворительных делах здесь!</p>
+          <NuxtImg
+            v-if="appStore.theme === 'dark'"
+            src="/images/myfees-not.png"
+          ></NuxtImg>
+          <NuxtImg
+            v-if="appStore.theme === 'light'"
+            src="/images/myfees-not-light.png"
+          ></NuxtImg>
+          <p>
+            Тут будут уведомления о том, как вы меняете мир к лучшему. Следи за
+            новостями о своих благотворительных делах здесь!
+          </p>
         </div>
         <button class="requests-not-create">Создать заявку</button>
       </div>
@@ -119,16 +128,16 @@ import MainSkeleton from '~/components/skeleton/MainSkeleton.vue'
 
 export default {
   name: 'Faq',
+  components: {
+    MainSkeleton,
+  },
   data() {
     return {
       heightDevice: inject('devicePlatform'),
       appStore: useAppStore(),
       status: 1,
-      loading: true
+      loading: true,
     }
-  },
-  components: {
-    MainSkeleton
   },
   computed: {
     getMyFees() {
@@ -142,9 +151,9 @@ export default {
     })
   },
   methods: {
-    goMore(id){
+    goMore(id) {
       this.$router.push({ path: `/main/${id}` })
-    }
+    },
   },
 }
 </script>
@@ -277,26 +286,26 @@ export default {
       font-weight: 600;
     }
   }
-  &-not{
+  &-not {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    &-content{
+    &-content {
       text-align: center;
       display: flex;
       flex-direction: column;
       gap: 25px;
-      img{
+      img {
         width: 80%;
       }
-      p{
+      p {
         font-size: 14px;
         line-height: 16.8px;
         color: var(--text2);
       }
     }
-    &-create{
+    &-create {
       width: 100%;
       background: linear-gradient(
         0deg,
@@ -313,7 +322,7 @@ export default {
     }
   }
 }
-.loading{
+.loading {
   margin: 0 -20px;
 }
 </style>

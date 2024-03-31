@@ -76,7 +76,7 @@ const calculate = computed(() =>
   route.query.completed === 'true' ? '85px' : '135px',
 )
 
-const idPage = computed(() => route.params.id )
+const idPage = computed(() => route.params.id)
 
 const detailPatientData = () => {
   loading.value = true
