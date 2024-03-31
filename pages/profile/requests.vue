@@ -6,12 +6,12 @@
       left-route="/profile"
     ></UiHeaderComponent>
     <div class="requests-wrapper">
-      <div v-if="getMyFees" class="requests-box">
-        <div v-if="loading" class="loading">
-          <MainSkeleton></MainSkeleton>
-          <MainSkeleton></MainSkeleton>
-        </div>
-        <div v-else class="not-loading">
+      <div class="loading" v-if="loading">
+        <MainSkeleton></MainSkeleton>
+        <MainSkeleton></MainSkeleton>
+      </div>
+      <div class="not-loading" v-else>
+        <div v-if="getMyFees" class="requests-box">
           <div class="requests-top">
             <div class="requests-top-icon">
               <NuxtImg src="/images/info.svg"></NuxtImg>
@@ -29,7 +29,7 @@
                 <div class="requests-item-box">
                   <div class="requests-item-top-left">
                     <div class="requests-item-top-left-date">
-                      {{ formatDateTime(fee?.created_at) }}
+                      {{ formatMonthDateTime(fee?.created_at) }}
                     </div>
                     <div class="requests-item-top-left-title">
                       Номер заявки: <span>{{ fee?.id }}</span>
@@ -98,24 +98,24 @@
             </div>
           </div>
         </div>
-      </div>
-      <div v-else class="requests-not">
-        <div class="requests-not-top"></div>
-        <div class="requests-not-content">
-          <NuxtImg
-            v-if="appStore.theme === 'dark'"
-            src="/images/myfees-not.png"
-          ></NuxtImg>
-          <NuxtImg
-            v-if="appStore.theme === 'light'"
-            src="/images/myfees-not-light.png"
-          ></NuxtImg>
-          <p>
-            Тут будут уведомления о том, как вы меняете мир к лучшему. Следи за
-            новостями о своих благотворительных делах здесь!
-          </p>
+        <div v-else class="requests-not">
+          <div class="requests-not-top"></div>
+          <div class="requests-not-content">
+            <NuxtImg
+              v-if="appStore.theme === 'dark'"
+              src="/images/myfees-not.png"
+            ></NuxtImg>
+            <NuxtImg
+              v-if="appStore.theme === 'light'"
+              src="/images/myfees-not-light.png"
+            ></NuxtImg>
+            <p>
+              Тут будут уведомления о том, как вы меняете мир к лучшему. Следи за
+              новостями о своих благотворительных делах здесь!
+            </p>
+          </div>
+          <button class="requests-not-create">Создать заявку</button>
         </div>
-        <button class="requests-not-create">Создать заявку</button>
       </div>
     </div>
   </div>
@@ -136,24 +136,28 @@ export default {
       heightDevice: inject('devicePlatform'),
       appStore: useAppStore(),
       status: 1,
-      loading: true,
+      loading: true
     }
   },
   computed: {
     getMyFees() {
+      this.loading = false
       return this.appStore?.myFees
     },
   },
-  mounted() {
-    apiClient.get('/myFees').then((res) => {
-      this.appStore.myFees = res.data.data
-      this.loading = false
-    })
+  created() {
+    this.fetchMyFees()
   },
   methods: {
     goMore(id) {
       this.$router.push({ path: `/main/${id}` })
     },
+    fetchMyFees(){
+      apiClient.get('/myFees').then((res) => {
+        this.appStore.myFees = res.data.data
+        this.loading = false
+      })
+    }
   },
 }
 </script>

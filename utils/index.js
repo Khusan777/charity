@@ -86,6 +86,19 @@ const formatMonthDate = (date) => {
   return parsedDate.value?.replace(/['"]+/g, '')
 }
 
+const formatMonthDateTime = (date) => {
+  const { locale } = useI18n()
+  const parsedDate = useDateFormat(date, 'DD MMMM YYYY, HH:mm', {
+    locales:
+      locale.value === 'en'
+        ? 'en-En'
+        : locale.value === 'uz'
+          ? 'uz-Uz'
+          : 'ru-Ru',
+  })
+  return parsedDate.value?.replace(/['"]+/g, '')
+}
+
 export {
   parseErrorsFromResponse,
   objCheckType,
@@ -95,4 +108,5 @@ export {
   getAuthorizationHeader,
   formattedDate,
   formatMonthDate,
+  formatMonthDateTime
 }

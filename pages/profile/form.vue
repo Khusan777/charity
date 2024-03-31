@@ -57,7 +57,7 @@
               >Мин.кол-во символов: 3</span
             >
             <span v-if="v$.surname.maxLength.$invalid"
-              >Мин.кол-во символов: 20</span
+              >Макс.кол-во символов: 20</span
             >
           </div>
         </div>
@@ -76,7 +76,7 @@
               >Мин.кол-во символов: 3</span
             >
             <span v-if="v$.name.maxLength.$invalid"
-              >Мин.кол-во символов: 20</span
+              >Макс.кол-во символов: 20</span
             >
           </div>
         </div>
@@ -347,7 +347,7 @@ export default {
   }
   &-fond {
     border-radius: 10px;
-    background: var(--bg1);
+    background: var(--bg4);
     margin-bottom: 20px;
     padding: 10px;
     &-top {
