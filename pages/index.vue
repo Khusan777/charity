@@ -62,76 +62,32 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useToast } from 'vue-toast-notification'
+import { useI18n } from 'vue-i18n'
 import { useAppStore } from '~/stores/AppStore'
 import { getMe } from '~/services/app.api'
 import { parseErrorsFromResponse, setToken } from '~/utils'
 import { apiClient } from '~/services/apiClient'
 
 const appStore = useAppStore()
+const { locale } = useI18n()
 const heightDevice = inject('devicePlatform')
 const { user, webSession } = storeToRefs(appStore)
 const $toast = useToast()
-// const colorMode = useColorMode()
 const loading = ref(true)
 const acceptBtn = ref(false)
 const isNotAcceptCode = ref(null)
 const router = useRouter()
 
-// const oldTheme = computed(() => getCookie('click-theme'))
-// const currentTheme = computed(() => getCookie('theme'))
-// const theme = getCookie('theme')
-// const lang = computed(() =>
-//   getCookie('lang') ? getCookie('lang') : getCookie('click-lang'),
-// )
-//
-// if (theme && theme == 'dark') {
-//   colorMode.preference = 'dark'
-//   appStore.setLang(theme.value)
-// } else {
-//   colorMode.preference = 'light'
-// }
-//
-// if (currentTheme.value && currentTheme.value == 'dark') {
-//   colorMode.preference = 'dark'
-//   appStore.setLang(currentTheme.value)
-// } else {
-//   colorMode.preference = 'light'
-// }
-//
-// if (oldTheme.value && oldTheme.value == 'dark') {
-//   colorMode.preference = 'dark'
-//   appStore.setLang(oldTheme.value)
-// } else {
-//   colorMode.preference = 'light'
-// }
-//
-// if (lang.value && lang.value === 'uz') {
-//   locale.value = 'uz'
-// }
-// if (lang.value && lang.value === 'en') {
-//   locale.value = 'en'
-// }
-//
-// if (!appStore.theme) {
-//   appStore.setTheme(currentTheme.value)
-//   colorMode.preference = appStore.theme || currentTheme.value
-// }
-//
+const lang = computed(() =>
+  getCookie('lang') ? getCookie('lang') : getCookie('click-lang'),
+)
+if (lang.value && lang.value === 'uz') {
+  locale.value = 'uz'
+}
+if (lang.value && lang.value === 'en') {
+  locale.value = 'en'
+}
 
-// const themeCookie = computed(() =>
-//   getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
-// )
-// if (!appStore.theme) {
-//   appStore.setTheme(themeCookie.value)
-// }
-// const storedThemeData = ref(appStore.theme)
-// definePageMeta({
-//   colorMode: themeCookie.value,
-// })
-// colorMode.value = themeCookie.value ? themeCookie.value : appStore.theme
-// colorMode.preference = themeCookie.value ? themeCookie.value : appStore.theme
-// colorMode.preference = theme.value ? theme.value : themeCookie.value
-// colorMode.value = theme.value ? theme.value : themeCookie.value
 const getUserData = () => {
   getMe({
     web_session: appStore.webSession ? appStore.webSession : webSession.value,

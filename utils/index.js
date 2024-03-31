@@ -15,7 +15,9 @@ const parseErrorsFromResponse = (error) => {
     }
   } else {
     responseErrors.push(
-      error.response?.data?.error || '[FE] Ошибка при получении данных',
+      error.response?.data?.error?.message ||
+        error?.response?.data?.message ||
+        '[FE] Ошибка при получении данных',
     )
   }
   return responseErrors

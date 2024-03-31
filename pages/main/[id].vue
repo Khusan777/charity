@@ -2,7 +2,7 @@
   <div class="detail-page">
     <UiHeaderComponent
       center
-      :center-text="idPage"
+      center-text="Личная карточка"
       :left-route="appStore.fromMainPage ? '/main' : '/completed'"
     ></UiHeaderComponent>
     <template v-if="loading">
@@ -38,6 +38,13 @@
         </div>
       </div>
     </template>
+    <div v-if="loading && route.query.completed" class="btn-help">
+      <UiAnimatedSkeleton
+        height="40px"
+        width="100%"
+        border-radius="10px"
+      ></UiAnimatedSkeleton>
+    </div>
     <div
       v-if="
         patientData?.status?.id !== 4 &&
