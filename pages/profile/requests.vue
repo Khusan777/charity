@@ -6,90 +6,116 @@
       left-route="/profile"
     ></UiHeaderComponent>
     <div class="requests-wrapper">
-      <div class="requests-top">
-        <div class="requests-top-icon">
-          <NuxtImg src="/images/info.svg"></NuxtImg>
+      <div v-if="getMyFees" class="requests-box">
+        <div v-if="loading" class="loading">
+          <MainSkeleton></MainSkeleton>
+          <MainSkeleton></MainSkeleton>
         </div>
-        <div class="requests-top-text">
-          После отправки Заявления и получения полного пакета документов, в
-          рабочие дни с вами может связаться сотрудник фонда для уточнения
-          деталей, и в течение 10 рабочих дней вам придет ответ с решением
-          экспертной комиссии.
+        <div v-else class="not-loading">
+          <div class="requests-top">
+            <div class="requests-top-icon">
+              <NuxtImg src="/images/info.svg"></NuxtImg>
+            </div>
+            <div class="requests-top-text">
+              После отправки Заявления и получения полного пакета документов, в
+              рабочие дни с вами может связаться сотрудник фонда для уточнения
+              деталей, и в течение 10 рабочих дней вам придет ответ с решением
+              экспертной комиссии.
+            </div>
+          </div>
+          <div class="requests-list">
+            <div v-for="fee in getMyFees" :key="fee?.id" class="requests-item">
+              <div class="requests-item-top">
+                <div class="requests-item-box">
+                  <div class="requests-item-top-left">
+                    <div class="requests-item-top-left-date">
+                      {{ formatDateTime(fee?.created_at) }}
+                    </div>
+                    <div class="requests-item-top-left-title">
+                      Номер заявки: <span>{{ fee?.id }}</span>
+                    </div>
+                  </div>
+                  <div class="requests-item-top-right">
+                    <div
+                      v-if="fee?.status_id == 2"
+                      class="requests-item-top-right-status pending"
+                    >
+                      Заявка на рассмотрении
+                    </div>
+                    <div
+                      v-if="fee?.status_id != 2 && fee?.status_id != 9"
+                      class="requests-item-top-right-status success"
+                    >
+                      Заявка одобрена
+                    </div>
+                    <div
+                      v-if="fee?.status_id == 9"
+                      class="requests-item-top-right-status error"
+                    >
+                      Заявка отлонена
+                    </div>
+                  </div>
+                </div>
+                <div v-if="fee?.status_id == 9" class="requests-item-top-error">
+                  К сожалению, мы не можем принять к рассмотрению вашу заявку,
+                  так как приоритетное направление работы фонда «Mehrli qo'llar»
+                  помощь детям, нуждающимся в операции на сердце.
+                </div>
+              </div>
+              <div class="requests-item-body">
+                <div class="requests-item-body-item">
+                  <div class="requests-item-body-label">ФИО ребенка</div>
+                  <div class="requests-item-body-val">
+                    {{ fee?.patient_surname }} {{ fee?.patient_name }}
+                  </div>
+                </div>
+                <div class="requests-item-body-item">
+                  <div class="requests-item-body-label">Дата рождения</div>
+                  <div class="requests-item-body-val">
+                    {{ formatMonthDate(fee?.patient_birth_date) }}
+                  </div>
+                </div>
+                <div class="requests-item-body-item">
+                  <div class="requests-item-body-label">Область проживания</div>
+                  <div class="requests-item-body-val">
+                    {{ fee?.region?.name_ru }}
+                  </div>
+                </div>
+                <div class="requests-item-body-item">
+                  <div class="requests-item-body-label">Тип нуждаемости</div>
+                  <div class="requests-item-body-val">
+                    {{ fee?.type_help?.name_ru }}
+                  </div>
+                </div>
+              </div>
+              <button
+                v-if="fee?.status_id != 2 && fee?.status_id != 9"
+                class="requests-item-more"
+                @click="goMore(fee?.id)"
+              >
+                Подробнее
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="requests-list">
-        <div v-for="fee in getMyFees" :key="fee?.id" class="requests-item">
-          <div class="requests-item-top">
-            <div class="requests-item-box">
-              <div class="requests-item-top-left">
-                <div class="requests-item-top-left-date">
-                  {{ formattedDate(fee?.created_at) }}
-                </div>
-                <div class="requests-item-top-left-title">
-                  Номер заявки: <span>{{ fee?.id }}</span>
-                </div>
-              </div>
-              <div class="requests-item-top-right">
-                <div
-                  v-if="fee?.status_id == 2"
-                  class="requests-item-top-right-status pending"
-                >
-                  Заявка на рассмотрении
-                </div>
-                <div
-                  v-if="fee?.status_id != 2 && fee?.status_id != 9"
-                  class="requests-item-top-right-status success"
-                >
-                  Заявка одобрена
-                </div>
-                <div
-                  v-if="fee?.status_id == 9"
-                  class="requests-item-top-right-status error"
-                >
-                  Заявка отлонена
-                </div>
-              </div>
-            </div>
-            <div v-if="fee?.status_id == 9" class="requests-item-top-error">
-              К сожалению, мы не можем принять к рассмотрению вашу заявку, так
-              как приоритетное направление работы фонда «Mehrli qo'llar» помощь
-              детям, нуждающимся в операции на сердце.
-            </div>
-          </div>
-          <div class="requests-item-body">
-            <div class="requests-item-body-item">
-              <div class="requests-item-body-label">ФИО ребенка</div>
-              <div class="requests-item-body-val">
-                {{ fee?.patient_surname }} {{ fee?.patient_name }}
-              </div>
-            </div>
-            <div class="requests-item-body-item">
-              <div class="requests-item-body-label">Дата рождения</div>
-              <div class="requests-item-body-val">
-                {{ formattedDate(fee?.patient_birth_date) }}
-              </div>
-            </div>
-            <div class="requests-item-body-item">
-              <div class="requests-item-body-label">Область проживания</div>
-              <div class="requests-item-body-val">
-                {{ fee?.region?.name_ru }}
-              </div>
-            </div>
-            <div class="requests-item-body-item">
-              <div class="requests-item-body-label">Тип нуждаемости</div>
-              <div class="requests-item-body-val">
-                {{ fee?.type_help?.name_ru }}
-              </div>
-            </div>
-          </div>
-          <button
-            v-if="fee?.status_id != 2 && fee?.status_id != 9"
-            class="requests-item-more"
-            @click="$router.push({ path: `/main/${fee?.id}` })"
-          >
-            Подробнее
-          </button>
+      <div v-else class="requests-not">
+        <div class="requests-not-top"></div>
+        <div class="requests-not-content">
+          <NuxtImg
+            v-if="appStore.theme === 'dark'"
+            src="/images/myfees-not.png"
+          ></NuxtImg>
+          <NuxtImg
+            v-if="appStore.theme === 'light'"
+            src="/images/myfees-not-light.png"
+          ></NuxtImg>
+          <p>
+            Тут будут уведомления о том, как вы меняете мир к лучшему. Следи за
+            новостями о своих благотворительных делах здесь!
+          </p>
         </div>
+        <button class="requests-not-create">Создать заявку</button>
       </div>
     </div>
   </div>
@@ -98,14 +124,19 @@
 <script>
 import { apiClient } from '~/services/apiClient'
 import { useAppStore } from '~/stores/AppStore'
+import MainSkeleton from '~/components/skeleton/MainSkeleton.vue'
 
 export default {
   name: 'Faq',
+  components: {
+    MainSkeleton,
+  },
   data() {
     return {
       heightDevice: inject('devicePlatform'),
       appStore: useAppStore(),
       status: 1,
+      loading: true,
     }
   },
   computed: {
@@ -116,7 +147,13 @@ export default {
   mounted() {
     apiClient.get('/myFees').then((res) => {
       this.appStore.myFees = res.data.data
+      this.loading = false
     })
+  },
+  methods: {
+    goMore(id) {
+      this.$router.push({ path: `/main/${id}` })
+    },
   },
 }
 </script>
@@ -249,5 +286,43 @@ export default {
       font-weight: 600;
     }
   }
+  &-not {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    &-content {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      img {
+        width: 80%;
+      }
+      p {
+        font-size: 14px;
+        line-height: 16.8px;
+        color: var(--text2);
+      }
+    }
+    &-create {
+      width: 100%;
+      background: linear-gradient(
+        0deg,
+        rgb(0, 115, 255) -1.25%,
+        rgb(0, 194, 255) 100%
+      );
+      border-radius: 10px;
+      height: 40px;
+      line-height: 40px;
+      color: #fff;
+      border: 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+}
+.loading {
+  margin: 0 -20px;
 }
 </style>

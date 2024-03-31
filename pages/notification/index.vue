@@ -58,7 +58,14 @@
       </router-link>
     </div> -->
     <div class="notification-none">
-      <NuxtImg src="/images/not-n.png"></NuxtImg>
+      <NuxtImg
+        v-if="appStore.theme === 'dark'"
+        src="/images/push-not.png"
+      ></NuxtImg>
+      <NuxtImg
+        v-if="appStore.theme === 'light'"
+        src="/images/push-not-light.png"
+      ></NuxtImg>
       <p>
         Тут будут уведомления о том, как вы меняете мир к лучшему. Следи за
         новостями о своих благотворительных делах здесь!
@@ -68,10 +75,12 @@
 </template>
 
 <script setup>
+import { useAppStore } from '~/stores/AppStore'
 definePageMeta({
   layout: 'single',
 })
 const heightDevice = inject('devicePlatform')
+const appStore = useAppStore()
 </script>
 
 <style scoped lang="scss">
