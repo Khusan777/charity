@@ -42,7 +42,8 @@
       v-if="
         patientData?.status?.id !== 4 &&
         patientData?.status?.id !== 5 &&
-        patientData?.status?.id !== 7
+        patientData?.status?.id !== 7 &&
+        !loading
       "
       class="btn-help"
       @click="$router.push(`/paid/${patientData?.id}`)"

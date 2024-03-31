@@ -12,6 +12,18 @@ const appStore = useAppStore()
 const { locale } = useI18n()
 
 onMounted(() => {
+  const lang = computed(() =>
+    getCookie('lang') ? getCookie('lang') : getCookie('click-lang'),
+  )
+  if (lang.value && lang.value === 'uz') {
+    locale.value = 'uz'
+    appStore.setLang('uz')
+  }
+  if (lang.value && lang.value === 'en') {
+    locale.value = 'en'
+    appStore.setLang('en')
+  }
+
   const themeCookie = computed(() =>
     getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
   )
@@ -31,18 +43,6 @@ onMounted(() => {
     // catches browser/OS level preference changes while the page is already loaded
   } catch (err) {}
 })
-
-const lang = computed(() =>
-  getCookie('lang') ? getCookie('lang') : getCookie('click-lang'),
-)
-if (lang.value && lang.value === 'uz') {
-  appStore.setLang('uz')
-  locale.value = 'uz'
-}
-if (lang.value && lang.value === 'en') {
-  appStore.setLang('en')
-  locale.value = 'en'
-}
 
 const cookieWebSession = computed(() =>
   getCookie('click-web-session')

@@ -5,7 +5,7 @@ export const useAppStore = defineStore('AppStore', () => {
   const user = ref(null)
   const webSession = ref(null)
   const info = ref(null)
-  const lang = ref('ru')
+  const lang = ref(null)
   const theme = ref(null)
   const fromMainPage = ref(false)
   const patientNews = reactive({

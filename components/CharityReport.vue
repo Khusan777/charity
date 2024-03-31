@@ -74,7 +74,7 @@ defineProps({
       font-size: 10px;
       color: var(--reports-card-desc);
       padding: 10px 10px 5px;
-      height: 65px;
+      height: 70px;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 4;
