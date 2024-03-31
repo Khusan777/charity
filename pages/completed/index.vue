@@ -189,15 +189,16 @@
           style="
             padding: 0 20px;
             display: flex;
-            width: 100%;
+            gap: 10px;
             flex-wrap: wrap;
-            overflow-x: hidden;
+            overflow: hidden;
           "
         >
           <template v-if="appStore.patientNews.index?.length">
             <div
               v-for="patientData in appStore.patientNews.index"
               :key="patientData?.id"
+              style="width: 48%"
             >
               <CharityReport :patient-new="patientData"></CharityReport>
             </div>
@@ -277,16 +278,18 @@ getFeeCompletedIndex()
 
 const getNews = () => {
   appStore.patientNews.activeTabs = true
-  appStore.patientNews.loading = true
-  getPatientNews()
-    .then((response) => {
-      appStore.patientNews.index = response.data?.data
-      appStore.patientNews.paginationData = response.data?.pagination
-      appStore.patientNews.loading = false
-    })
-    .catch(() => {
-      appStore.patientNews.loading = false
-    })
+  if (!appStore.patientNews.index?.length) {
+    appStore.patientNews.loading = true
+    getPatientNews()
+      .then((response) => {
+        appStore.patientNews.index = response.data?.data
+        appStore.patientNews.paginationData = response.data?.pagination
+        appStore.patientNews.loading = false
+      })
+      .catch(() => {
+        appStore.patientNews.loading = false
+      })
+  }
 }
 
 const getFeePagination = () => {

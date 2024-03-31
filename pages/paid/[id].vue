@@ -215,6 +215,7 @@ const filterNonNumeric = () => {
         height: 45px;
         background: var(--chart-card-bg);
         width: 100%;
+        color: #b3b7ce;
         display: flex;
         align-items: center;
         padding: 13px 10px 14px 10px;

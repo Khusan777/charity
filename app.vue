@@ -6,28 +6,43 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
+
 const appStore = useAppStore()
+const { locale } = useI18n()
+
 onMounted(() => {
   const themeCookie = computed(() =>
     getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
   )
-  const themeData = computed(() => getCookie('theme'))
   const theme = getCookie('theme')
   // Check what the system color scheme preferences are
   try {
     // See references for more context for why "not all" is used here
     const rootElem = document.documentElement
-    if (themeCookie.value === 'light' || themeData.value === 'light') {
+    if (themeCookie.value === 'light') {
       rootElem.setAttribute('data-theme', 'light')
-      appStore.setTheme(themeCookie.value || themeData.value)
+      appStore.setTheme(themeCookie.value)
     }
     if (theme === 'light') {
       rootElem.setAttribute('data-theme', 'light')
-      appStore.setTheme(themeCookie.value || themeData.value)
+      appStore.setTheme(themeCookie.value)
     }
     // catches browser/OS level preference changes while the page is already loaded
   } catch (err) {}
 })
+
+const lang = computed(() =>
+  getCookie('lang') ? getCookie('lang') : getCookie('click-lang'),
+)
+if (lang.value && lang.value === 'uz') {
+  appStore.setLang('uz')
+  locale.value = 'uz'
+}
+if (lang.value && lang.value === 'en') {
+  appStore.setLang('en')
+  locale.value = 'en'
+}
 
 const cookieWebSession = computed(() =>
   getCookie('click-web-session')
