@@ -27,28 +27,19 @@ onMounted(() => {
     //   appStore.setTheme(themeCookie.value)
     // }
   } catch (err) {}
-})
 
-const langCookie = computed(() =>
-  getCookie('lang') ? getCookie('lang') : getCookie('click-lang'),
-)
-const lang = getCookie('lang')
-if (langCookie.value && langCookie.value === 'uz') {
-  locale.value = 'uz'
-  appStore.setLang('uz')
-}
-if (langCookie.value && langCookie.value === 'en') {
-  locale.value = 'en'
-  appStore.setLang('en')
-}
-if (lang && lang === 'uz') {
-  locale.value = 'uz'
-  appStore.setLang('uz')
-}
-if (lang && lang === 'en') {
-  locale.value = 'en'
-  appStore.setLang('en')
-}
+  const langCookie = computed(() =>
+    getCookie('lang') ? getCookie('lang') : getCookie('click-lang'),
+  )
+  if (langCookie.value && langCookie.value === 'uz') {
+    locale.value = 'uz'
+    appStore.setLang('uz')
+  }
+  if (langCookie.value && langCookie.value === 'en') {
+    locale.value = 'en'
+    appStore.setLang('en')
+  }
+})
 
 const cookieWebSession = computed(() =>
   getCookie('click-web-session')
@@ -59,44 +50,6 @@ if (!appStore.webSession) {
   appStore.setWebSession(cookieWebSession.value)
 }
 </script>
-
-<!--<script>-->
-<!--import { useColorMode } from '@vueuse/core'-->
-<!--export default {-->
-<!--  data() {-->
-<!--    return {-->
-<!--      colorState: useColorMode(),-->
-<!--    }-->
-<!--  },-->
-<!--  computed: {-->
-<!--    cookie() {-->
-<!--      return getCookie('web-session')-->
-<!--    },-->
-<!--    theme() {-->
-<!--      return getCookie('theme')-->
-<!--    },-->
-<!--  },-->
-<!--  created() {-->
-<!--    if (this.theme && this.theme == 'light') {-->
-<!--      this.colorState.preference = 'light'-->
-<!--      this.$colorMode.preference = 'light'-->
-<!--    } else {-->
-<!--      this.$colorMode.preference = 'dark'-->
-<!--    }-->
-<!--    const lang = getCookie('lang')-->
-<!--    if (lang && lang == 'uz') {-->
-<!--      this.$i18n.locale = 'uz'-->
-<!--    }-->
-<!--    if (lang && lang == 'en') {-->
-<!--      this.$i18n.locale = 'en'-->
-<!--    }-->
-<!--    const currentTheme = getCookie('theme')-->
-<!--    if (currentTheme && currentTheme == 'light') {-->
-<!--      this.$colorMode.preference = 'light'-->
-<!--    }-->
-<!--  },-->
-<!--}-->
-<!--</script>-->
 
 <style lang="scss">
 @forward 'assets/styles/theme-style';

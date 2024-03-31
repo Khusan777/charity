@@ -1,291 +1,57 @@
 {
-    "coming": {
-        "text1": "SOON",
-        "text2": "HERE WILL BE",
-        "text3": "PROMO",
-        "desc": "Do not miss!"
-    },
-    "error": {
-        "text": "Something went wrong",
-        "desc": "A technical error has occurred. Try again later",
-        "btn": "Try again"
-    },
-    "header": {
-        "text": "Promo"
-    },
-    "billion": {
-        "title": "The promotion runs from January 25 at 00:00 to February 7 23:59",
-        "text1Block": "Condition of participation: transfer from card to card from 100,000 soums, and get a chance to win cash prizes!",
-        "text2Block": "Every full 100,000 soums = 1 chance (For example, a transfer of 782,000 UZS = 7 chances) The promotion only includes transfers from an Uzcard or Humo card to an Uzcard or Humo card.",
-        "text5Block": {
-            "text0":  "The prize fund of the promotion is 1,000,000,000 soums:",
-            "text1": "The prize fund includes daily drawings and large cash prizes every two weeks. The minimum amount for large draws is 50 million soums."
-        },
-        "video_instruct": "👇 video instructions",
-        "text6Block": {
-            "text0":  "At each stage you have a chance to win a big cash prize",
-            "text1": "Stage 1 of the drawing – December, 14",
-            "text2": "Stage 2 of the drawing – December, 28",
-            "text3": "Stage 3 of the drawing – January, 11",
-            "text4": "Stage 4 of the drawing – January, 25",
-            "text5": "Stage 5 of the drawing – February, 10"
-        },
-        "btn": {
-            "text": "To main page"
-        }
-    },
-    "loading": {
-        "title": "Loading data...",
-        "description": "Everything will be ready soon!"
+    "valyuta": "сумов",
+    "collected-success": "Сбор завершён",
+    "year": "года | лет",
+    "error-message": "[FE] Ошибка при получении данных",
+    "error-page": {
+        "title": "Упс что-то пошло не так",
+        "description": "Произошла техническая ошибка. Попробуйте ещё раз.",
+        "btn": "Повторить попытку"
     },
     "start": {
-        "condition": "promotional terms",
-        "title": "Click is giving away",
-        "valyuta": "soums",
-        "description": "Participate and win cash prizes for transfers!",
-        "leftTab": "I have a promocode",
-        "rightTab": "I found out about the promotion on my own",
-        "leftTabContent": {
-            "title": "Enter a promo code from a friend to increase your chances of winning!",
-            "desc1": "Opportunity to play the game 2 times",
-            "desc2": "To accumulate chances for the drawing"
-        },
-        "placeholder":  "Enter invitation code",
-        "promoErrorMsg": "Promo code not found",
-        "rightTabContent": {
-            "title": "After clicking you will receive:",
-            "desc1": "Opportunity to play a game",
-            "desc2": "To accumulate chances for the drawing"
-        },
-        "offerta": {
-            "text": "By clicking the Participate button, you agree to"
-        },
-        "btn": {
-            "text": "Participate"
-        }
+        "greeting": "Добро пожаловать!",
+        "title": "Мы соединяем тех, кто может помочь с теми, кто нуждается в помощи." ,
+        "subtitle": "На этой площадке пользователи Click могут регулярно оказывать помощь благотворительным организациям.",
+        "btn": "Продолжить"
     },
-    "guest": {
-        "profile": {
-            "text": "Profile",
-            "aksiya": "About the promo",
-            "prize": "My prizes",
-            "chance": "My chances",
-            "invent": "Invite a friend",
-            "task": "Tasks",
-            "completed": "Done"
-        },
-        "banner": {
-            "title": "Click is giving away",
-            "valyuta": "soums",
-            "desc": "Transfer from 100,000 soums or more to take part in the promotion",
-            "btn": "Details"
-        },
-        "attention": {
-            "text": "Attention!",
-            "desc": "To take part in the promotion, you need to make a transfer from an Uzcard/Humo card to an Uzcard/Humo card of 100,000 soums or more",
-            "btn": "Transfer",
-            "play": "Play"
-        },
-        "infoModal": {
-            "desc": "Full access to all functions of the promotion will open after you make a transfer of 100,000 soums or more"
-        }
+    "main": {
+        "page": "Главный",
+        "search": "Фамилия, имя",
+        "title": "Нуждаются в помощи",
+        "subtitle": "Сейчас им крайне необходима ваша помощь.",
+        "amount-text": "Необходимо собрать:",
+        "collected-text": "Собрано:",
+        "remains-text": "Осталось собрать:",
+        "btn": "Хочу помочь"
     },
-    "home": {
-        "profile": {
-            "text": "Profile",
-            "aksiya": "How to participate?",
-            "prize": "My prizes",
-            "chance": "My chances",
-            "invent": "Invite a friend",
-            "task": "Tasks",
-            "completed": "Done"
-        },
-        "banner": {
-            "title": "Click is giving away",
-            "valyuta": "soums",
-            "desc": "Transfer from 100,000 soums or more to take part in the promotion",
-            "btn": "Details"
-        },
-        "vote": {
-            "sprint_curr": "Stage 4",
-            "sprint": "Stage 1",
-            "sprint3": "Stage 3",
-            "sprint1": "Stage 2",
-            "sprint2": "is completed",
-            "sprint-prize": "Stage Prize",
-            "sprint-condition": "If participants are more than 500 000",
-            "valyuta": "soums",
-            "val": "soums each",
-            "current-user": "Now participants:",
-            "goal": "Goal:"
-        },
-        "btn": {
-            "text": "Play"
-        },
-        "infoModal" : {
-            "text": "Do you want to play more?",
-            "description": "Invite friends or transfer money at least once a day",
-            "btn": "To invite a friend"
-        },
-        "survey": {
-            "answers": "answers",
-            "result_survey": "The result of the vote",
-            "vote": "Voting",
-            "voting": "Vote"
-        },
-        "result": {
-            "the_end": "The promotion is over",
-            "congratulate": "Congratulations to the winners of the final stage of the campaign",
-            "title": "The drawing for cash prizes took place on February 10th. You can watch the recording of the broadcast.",
-            "final_datetime": "Application acceptance for participation have been finished. The final drawing will take place on 02/10/2024 at 18:00",
-            "subscribe": "Subscribe to our official pages so you don't miss the final draw",
-            "subtitle": "1 step prizes | 2 step prizes | 3 step prizes",
-            "text-soon": "Subscribe to our official pages to learn about new promotions and events",
-            "btn": "The winners of the final stage",
-            "end": "4 step prizes",
-            "sum": "soums",
-            "text": "The drawing for cash prizes took place on December 14. You can watch the recording of the broadcast. | The drawing for cash prizes took place on December 28. You can watch the recording of the broadcast. | The drawing for cash prizes took place on January 11. You can watch the recording of the broadcast.",
-            "text4": "The drawing for cash prizes took place on January 25. You can watch the recording of the broadcast.",
-            "text2": "The drawing for cash prizes took place on December 14. Based on voting results, number of winners: 10 | The drawing for cash prizes took place on December 28. Based on voting results, number of winners: 10 | The drawing for cash prizes took place on January 11. Based on voting results, number of winners: 11",
-            "text5": "The drawing for cash prizes took place on January 25. Based on voting results, number of winners: 10.",
-            "text3": "Congratulations to the winners of the first stage of the campaign. Each winner won 5,000,000 soums. | Congratulations to the winners of the second stage of the campaign. Each winner won 10,000,000 soums. | Congratulations to the winners of the third stage of the campaign. Each winner won 10,000,000 soums.",
-            "text6": "Congratulations to the winners of the four stage of the campaign. Each winner won 10,000,000 soums.",
-            "text7": "The drawing for cash prizes took place on February 10",
-            "fond": "The prize fund is",
-            "header": "Information",
-            "name": "Winner",
-            "win_num": "The winning number",
-            "win_chances": "Chance Number"
-        },
-        "5etap": {
-            "main": "The main prize",
-            "final": "The final stage",
-            "prizes-title": "The prizes of the drawing:",
-            "main-prize": "The main prize – 1 winner",
-            "2-place": "2nd place – 1 winner",
-            "3-place": "3rd place – 10 winners"
-        }
+    "completed": {
+        "page-name": "Завершенные",
+        "collected-text":"Сумма собрана"
     },
-    "game": {
-        "header": {
-            "text": "Find a pair"
-        },
-        "btn": {
-            "leftText": "About prizes",
-            "rightText": "Game rules",
-            "text": "Start game",
-            "continue": "Continue"
-        },
-        "title": {
-            "text": "Find a pair and win a prize"
-        },
-        "card": {
-            "opened-text": "Cards open"
-        },
-        "loseModal": {
-            "text": "Attention! Your time is up You have not won anything",
-            "btn": "Home"
-        }
+    "helped": {
+        "tab-name": "Вы помогли",
+        "write-history": "Читать историю"
     },
-    "tasks": {
-        "header": "Task",
-        "title": "Complete the task",
-        "title2": "Task completed",
-        "subscribe": "Subscribe",
-        "check": "Get an award",
-        "completed-text": "Task completed successfully",
-        "completed-desc": "Congratulations, you have successfully completed the task. You are given chances and attempts to play the game “Find a pair”",
-        "modalSuccessTitle": "Task completed successfully",
-        "modalSuccessDesc": "You received 2 chances to play the \"Find the match\" game and 5 chances to win the main cash prizes",
-        "modalInvalidDesc": "You are not subscribed to our Telegram channel, subscribe to get +5 chances and 2 attempts to play the game",
-        "win-present": "Reward for completion",
-        "win1-prize": "attempts to play the game “Find a couple”",
-        "win2-prize": "chances in the main cash prize draw",
-        "identNotSuccess": "You have not been identified. Complete identification, to get +5 chances and 2 attempts to play the game",
-        "btnIdent": "Complete identification",
-        "toIdentBtn": "Complete identification"
+    "patient-detail": {
+        "header-text": "Личная карточка",
+        "city": "Город",
+        "date-published": "Дата публикации",
+        "help": "Помогли",
+        "type-help": "Вид помощи",
+        "sick-category": "Диагноз",
+        "fond": "Фонд (ННО)",
+        "clinic": "Медицинское учреждение",
+        "history": "История о подопечном"
     },
-    "win": {
-        "header": "Your prize",
-        "title": "Congratulations, you've won!!",
-        "description": ".+1 chance to participate in the cash prize drawing!",
-        "btn": "Get the prize"
+    "history-page": {
+        "header-text": "История"
     },
-    "lose": {
-        "header": "Result",
-        "title": "Unfortunately the cards didn't match!",
-        "description": "Try again, you'll definitely have better luck!",
-        "btn": "To main page"
-    },
-    "infoPrize": {
-        "title": "About prizes",
-        "prize1": "Get a +1 chance to win major cash prizes",
-        "prize2": "Get a +5 chances in the main cash prize draw",
-        "prize3": "Receive a prize of 5,000 soums to your Click-Wallet",
-        "prize4": "Receive a prize of 100,000 soums to your Click-Wallet",
-        "prize5": "Receive a promotional code/discount on goods or services of promotion partners",
-        "prize6": "Premium subscription from Click for 30 days"
-    },
-    "myPrizes": {
-        "header": "My prizes",
-        "leftTab": "Prizes",
-        "rightTab": "Сhances",
-        "prizeNotFound": {
-            "desc": "Play the game to get chances, cash prizes or gifts from partners. Invite friends to play more"
-        },
-        "chanceNotFound": {
-            "desc": "Play the game to get chances, cash prizes or gifts from partners. Invite friends to play more"
-        }
-    },
-    "myChances": {
-        "header": "My chances",
-        "total": "Total quantity:",
-        "desc": "To get more chances, transfer from card to card 100,000 soums or more. The higher the transfer amount, the greater the chances.",
-        "input-placeholder": "Enter chance number",
-        "not-found": "You don't have chances yet",
-        "not-found-desc": "You don't have a chance yet, but you can do it now!",
-        "btn": "Load more",
-        "next": "Next",
-        "prev": "Previous",
-        "chance": "chance | chances",
-        "sum": "soums",
-        "search": "Search",
-        "example": "For example:"
-    },
-    "detailPrize": {
-        "header": "Prize details",
-        "found": {
-            "title": "Congratulations, you won 10,000 soums to a wallet",
-            "desc": "The money will be sent after clicking on the “Receive to Click-Wallet” button.",
-            "desc1": "*In order to receive money to your wallet, you need to be identified",
-            "desc2": "*Cash prizes are credited to the Click-wallet within 3 banking days",
-            "text": "You won",
-            "name": "UZS",
-            "btnPrize": "Receive to Click-Wallet",
-            "btn": "To main page",
-            "promo": "Promo code",
-            "prizeStatus": "The money has been transferred to your Click wallet"
-        },
-        "modalBtn": "Start identification",
-        "notFound": {
-            "title": "You don't have any prizes yet",
-            "desc": "Play the game to receive cash prizes, gifts from partners, and also accumulate chances to receive one of the big cash prizes!"
-        }
-    },
-    "profileUser": {
-        "header": "Profile",
-        "notIdent": "You are not identified",
-        "isIdent": "You are identified",
-        "settings": "Settings",
-        "notification": "Notification of invitations",
-        "ref": "Referral system",
-        "soc-seti-text": "Subscribe and follow the proma on the official Click pages"
-    },
-    "referral": {
-        "header": "I invited",
-        "banner": "Select and copy the promo code to send to a friend",
-        "history": "Invitation history",
-        "not-found-text": "You haven't invited anyone yet",
-        "text": "Invite your friends to increase your chances of winning."
+    "paid-page": {
+        "header-text": "Нужна помощь",
+        "warning-text": "При нажатии на кнопку \"Пожертвовать\" вы будете перенаправлены на страницу оплаты фонда Mehrli qo’llar. Сумма, которую вы укажете, будет переведена на счет этого фонда.",
+        "summa-label": "Сумма помощи",
+        "placeholder": "Введите сумму помощи",
+        "closed-collection": "Закрыть весь сбор",
+        "btn": "Пожертвовать"
     }
 }

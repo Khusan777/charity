@@ -1,291 +1,57 @@
 {
-    "coming": {
-        "text1": "TEZ ORADA",
-        "text2": "BU YERDA",
-        "text3": "AKSIYA BO'LADI",
-        "desc": "O'tkazib yubormang!"
-    },
-    "error": {
-        "text": "Xato yuz berdi",
-        "desc": "Iltimos, birozdan keyin yana urinib ko'ring",
-        "btn": "Qayta urinib ko'rish"
-    },
-    "header": {
-        "text": "Aksiya"
-    },
-    "billion": {
-        "title": "Aksiya 25-yanvar soat 00:00 dan 7-fevral 23:59 gacha",
-        "text1Block": "Ishtirok etish shartlari: kartadan kartaga 100 000 so’mdan ortiq mablag’ o’tkazing va pul mukofoti yutib olish imkoniyatiga ega bo’ling!",
-        "text2Block": "Har bir to’liq 100 000 so’m = 1 imkoniyat (Masalan, 782 000 so’m miqdordagi o’tkazma = 7 imkoniyat) Aksiyad faqat Uzcard/Humo kartasidan Uzcard/Humo kartasiga pul o’tkazmalari ishtirok etadi.",
-        "text5Block": {
-            "text0":  "Aksiya sovrin fondi 1 000 000 000 so’mni tashkil qiladi:",
-            "text1": "Sovrin fondiga har kunlik o'yinlar va har ikki haftada yirik pul mukofotlari kiradi. Yirik o‘yinlar uchun minimal miqdor 50 million so‘mni tashkil qiladi."
-        },
-        "video_instruct": "👇 video ko'rsatma",
-        "text6Block": {
-            "text0":  "Har bir bosqichda sizda katta pul mukofotini yutib olish imkoniyati mavjud",
-            "text1": "1-bosqich – 14-dekabr;",
-            "text2": "2-bosqich – 28-dekabr;",
-            "text3": "3-bosqich – 11-yanvar;",
-            "text4": "4-bosqich – 25-yanvar;",
-            "text5": "5-bosqich – 10-fevral;"
-        },
-        "btn": {
-            "text": "Bosh sahifaga qaytish"
-        }
-    },
-    "loading": {
-        "title": "Ma'lumotlar yuklanmoqda…",
-        "description": "Yaqinda tayyor bo'ladi!"
+    "valyuta": "сумов",
+    "collected-success": "Сбор завершён",
+    "year": "года | лет",
+    "error-message": "[FE] Ошибка при получении данных",
+    "error-page": {
+        "title": "Упс что-то пошло не так",
+        "description": "Произошла техническая ошибка. Попробуйте ещё раз.",
+        "btn": "Повторить попытку"
     },
     "start": {
-        "title": "Click",
-        "condition": "aksiya shartlari bilan",
-        "valyuta": "so'mlik yutuqli o'yin o'tkazmoqda",
-        "description": "Ishtirok eting va o'tkazmalar uchun pul mukofotlarini yutib oling!",
-        "leftTab": "Menda promokod bor",
-        "rightTab": "Aksiya haqida o'zim bildim",
-        "leftTabContent": {
-            "title": "G'alaba qozonish ehtimolini oshirish uchun, do'stingiz",
-            "desc1": "2 marta o'yin o'ynash imkoniyati",
-            "desc2": "Yutuqli o'yin uchun imkoniyat to'plash"
-        },
-        "placeholder":  "Taklif kodini kiriting",
-        "promoErrorMsg": "Promo-kod topilmadi",
-        "rightTabContent": {
-            "title": "Bosgandan keyin quyidagilarni qo'lga kiritasiz:",
-            "desc1": "O'yin o'ynash imkoniyati",
-            "desc2": "Yutuqli o'yin uchun imkoniyat to'plash"
-        },
-        "offerta": {
-            "text": "Aksiyada ishtirok etish tugmasini bosgandan keyin, aksiya shartlariga rozilik bildirasiz"
-        },
-        "btn": {
-            "text": "Ishtirok etish"
-        }
+        "greeting": "Добро пожаловать!",
+        "title": "Мы соединяем тех, кто может помочь с теми, кто нуждается в помощи." ,
+        "subtitle": "На этой площадке пользователи Click могут регулярно оказывать помощь благотворительным организациям.",
+        "btn": "Продолжить"
     },
-    "guest": {
-        "profile": {
-            "text": "Profil",
-            "aksiya": "Aksiya haqida",
-            "prize": "Sovrinlarim",
-            "chance": "Mening imkoniyatlarim",
-            "invent": "Do'stni chaqiring",
-            "task": "Vazifalar",
-            "completed": "Bajarildi"
-        },
-        "banner": {
-            "title": "Click",
-            "valyuta": "so'mlik yutuqli o'yin o'tkazmoqda",
-            "desc": "Aksiyada ishtirok etish uchun 100 000 so'm yoki ko'proq mablag' o'tkazing",
-            "btn": "Batafsil"
-        },
-        "attention": {
-            "text": "Diqqat!",
-            "desc": "Aksiyada ishtirok etish uchun siz Uzcard/Humo kartasidan Uzcard/Humo kartasiga 100 000 so'm yoki ko'proq miqdorda mablag' o'tkazishingiz lozim",
-            "btn": "Pul o'tkazish",
-            "play": "O'ynash"
-        },
-        "infoModal": {
-            "desc": "100 000 so‘m yoki undan ko‘proq pul o‘tkazmasi amalga oshirilgandan so‘ng aksiyaning barcha funksiyalaridan to‘liq foydalanish imkoniyati ochiladi."
-        }
+    "main": {
+        "page": "Главный",
+        "search": "Фамилия, имя",
+        "title": "Нуждаются в помощи",
+        "subtitle": "Сейчас им крайне необходима ваша помощь.",
+        "amount-text": "Необходимо собрать:",
+        "collected-text": "Собрано:",
+        "remains-text": "Осталось собрать:",
+        "btn": "Хочу помочь"
     },
-    "home": {
-        "profile": {
-            "text": "Profil",
-            "aksiya": "Aksiya haqida",
-            "prize": "Sovrinlarim",
-            "chance": "Mening imkoniyatlarim",
-            "invent": "Do'stni chaqiring",
-            "task": "Vazifalar",
-            "completed": "Bajarildi"
-        },
-        "banner": {
-            "title": "Click",
-            "valyuta": "so'mlik yutuqli o'yin o'tkazmoqda",
-            "desc": "Aksiyada ishtirok etish uchun 100 000 so'm yoki ko'proq mablag' o'tkazing",
-            "btn": "Batafsil"
-        },
-        "vote": {
-            "sprint_curr": "4-bosqich",
-            "sprint": "1-bosqich",
-            "sprint3": "3-bosqich",
-            "sprint1": "2-bosqich",
-            "sprint2": "yakunlandi",
-            "sprint-prize": "Bosqich sovrini",
-            "sprint-condition": "Ishtirokchilar 500 000 dan ko'p bo'lsa",
-            "valyuta": "so'm",
-            "val": "so'mdan",
-            "current-user": "Hozirda ishtirokchilar:",
-            "goal": "Maqsad:"
-        },
-        "btn": {
-            "text": "O'ynash"
-        },
-        "infoModal" : {
-            "text": "Ko'proq o'ynashni xohlaysizmi?",
-            "description": "Do'stlaringizni taklif qiling yoki kuniga kamida bir marta pul o'tkazing",
-            "btn": "Do'stni taklif qilish"
-        },
-        "survey": {
-            "answers": "javoblar soni",
-            "result_survey": "Ovoz berish natijasi",
-            "vote": "Ovoz berish",
-            "voting": "Ovoz berish"
-        },
-        "result": {
-            "the_end": "Aksiya yakunlandi",
-            "congratulate": "Aksiyaning final bosqichi g'oliblarini tabriklaymiz!",
-            "title": "Pul mukofotlarri yutuqli o'yini 10-fevral kuni bo'lib o'tdi. Siz translyatsiya yozuvini tomosha qilishingiz mumkin.",
-            "final_datetime": "Ishtirok etishga arizalar qabuli yakunlandi. Yakuniy yutuqli o’yin 10.02.2024 kuni soat 18:00 da bo’lib o’tadi",
-            "subscribe": "Yakuniy yutuqli o’yinni o’tkazib yubormaslik uchun rasmiy sahifalarimizga obuna bo’ling",
-            "text-soon": "Yangi aksiyalar va tadbirlar haqida bilish uchun rasmiy sahifalarimizga obuna bo’ling",
-            "btn": "Yakuniy bosqich g’oliblari",
-            "subtitle": "1 bosqich so'vrinlari | 2 bosqich so'vrinlari | 3 bosqich so'vrinlari",
-            "end": "4 bosqich so'vrinlari",
-            "sum": "so'm",
-            "text": "Pul mukofotlarri yutuqli o'yini 14-dekabr kuni bo'lib o'tdi. Siz translyatsiya yozuvini tomosha qilishingiz mumkin. | Pul mukofotlarri yutuqli o'yini 28-dekabr kuni bo'lib o'tdi. Siz translyatsiya yozuvini tomosha qilishingiz mumkin. | Pul mukofotlarri yutuqli o'yini 11-yanvar kuni bo'lib o'tdi. Siz translyatsiya yozuvini tomosha qilishingiz mumkin.",
-            "text4": "Pul mukofotlarri yutuqli o'yini 25-yanvar kuni bo'lib o'tdi. Siz translyatsiya yozuvini tomosha qilishingiz mumkin.",
-            "text2": "Pul mukofotlarri yutuqli o'yini 14-dekabr kuni bo'lib o'tdi. Ovoz berish natijalariga ko'ra, g'oliblar soni: 10ta | Pul mukofotlarri yutuqli o'yini 28-dekabr kuni bo'lib o'tdi. Ovoz berish natijalariga ko'ra, g'oliblar soni: 10ta | Pul mukofotlarri yutuqli o'yini 11-yanvar kuni bo'lib o'tdi. Ovoz berish natijalariga ko'ra, g'oliblar soni: 11ta",
-            "text5": "Pul mukofotlarri yutuqli o'yini 25-yanvar kuni bo'lib o'tdi. Siz translyatsiya yozuvini tomosha qilishingiz mumkin.",
-            "text3": "Aksiyaning 1-bosqichi g'oliblarini tabriklaymiz. Har bir sovrindor 5 000 000 so'mdan yutib oldi. | Aksiyaning 2-bosqichi g'oliblarini tabriklaymiz. Har bir sovrindor 10 000 000 so'mdan yutib oldi. | Aksiyaning 3-bosqichi g'oliblarini tabriklaymiz. Har bir sovrindor 10 000 000 so'mdan yutib oldi. ",
-            "text6": "Aksiyaning 4-bosqichi g'oliblarini tabriklaymiz. Har bir sovrindor 10 000 000 so'mdan yutib oldi.",
-            "text7": "Pul mukofotlarri yutuqli o'yini 10-fevral kuni bo'lib o'tdi",
-            "header": "Ma'lumot",
-            "fond": "Sovrin fondi",
-            "name": "G'olib",
-            "win_num": "Yutuq raqami",
-            "win_chances": "Imkoniyat raqami"
-        },
-        "5etap": {
-            "main": "Bosh sovrin",
-            "final": "Yakuniy bosqich",
-            "prizes-title": "Yutuqli o'yin sovrinlari:",
-            "main-prize": "Bosh sovrin - 1 g'olib",
-            "2-place": "2-o'rin - 1 g'olib",
-            "3-place": "3-o'rin - 10 g'olib"
-        }
+    "completed": {
+        "pag-name": "Завершенные",
+        "collected-text":"Сумма собрана"
     },
-    "game": {
-        "header": {
-            "text": "Juftni toping"
-        },
-        "btn": {
-            "leftText": "Sovrinlar haqida",
-            "rightText": "O'yin qoidalari",
-            "text": "O'yinni boshlash",
-            "continue": "Davom etish"
-        },
-        "title": {
-            "text": "Juftni toping va sovrinni qo'lga kiriting"
-        },
-        "card": {
-            "opened-text": "Ochiq kartalar"
-        },
-        "loseModal": {
-            "text": "Diqqat! Vaqtingiz yakunlandi Siz hech narsa yutmadingiz",
-            "btn": "Bosh sahifaga"
-        }
+    "helped": {
+        "tab-name": "Вы помогли",
+        "write-history": "Читать историю"
     },
-    "tasks": {
-        "header": "Vazifa",
-        "title": "Vazifani bajaring",
-        "title2": "Vazifa bajarildi",
-        "subscribe": "Obuna bo'lish",
-        "check": "Mukofotni olish",
-        "completed-text": "Vazifa muvaffaqiyatli bajarildi",
-        "completed-desc": "Tabriklaymiz, siz vazifani muvaffaqiyatli bajardingiz. Sizga imkoniyat va o'yin o'ynashga urinish taqdim etildi.",
-        "modalSuccessTitle": "Vazifa muvaffaqiyatli bajarildi",
-        "modalSuccessDesc": "Siz \"Juftini toping\" o'yinida 2 marta o'ynash imkoniyatini va asosiy pul mukofoti yutuqli o'yinida 5 dona imkoniyatni qo'lga kiritdingiz",
-        "modalInvalidDesc": "Siz hali Telegram-kanalimizga obuna bo'lmadingiz. +5 imkoniyat va o'yin o'ynashga 2 urinishni qo'lga kiritish uchun obuna bo'ling",
-        "win-present": "Vazifa bajarilgani uchun mukofot",
-        "win1-prize": "\"Juftini toping o'yinini o'ynashga\" +2 imkoniyat",
-        "win2-prize": "Asosiy pul mukofotlarining yutuqli o'yinida +5 imkoniyat",
-        "identNotSuccess": "Siz identifikatsiyadan o'tmadingiz. +5 imkoniyat va o'yin o'ynashga 2 urinishni qo'lga kiritish uchun identifikatsiyadan o'ting",
-        "btnIdent": "Identifikatsiyadan o'tish",
-        "toIdentBtn": "Identifikatsiyadan o'tish"
+    "patient-detail": {
+        "header-text": "Личная карточка",
+        "city": "Город",
+        "date-published": "Дата публикации",
+        "help": "Помогли",
+        "type-help": "Вид помощи",
+        "sick-category": "Диагноз",
+        "fond": "Фонд (ННО)",
+        "clinic": "Медицинское учреждение",
+        "history": "История о подопечном"
     },
-    "win": {
-        "header": "Sizning mukofotingiz",
-        "title": "Tabriklaymiz, siz yutdingiz!",
-        "description": "Ishtirok etishga +1 imkoniyat!",
-        "btn": "Mukofotni olish"
+    "history-page": {
+        "header-text": "История"
     },
-    "lose": {
-        "header": "Sizning mukofotingiz",
-        "title": "Afsuski, kartalar mos kelmadi!",
-        "description": "Qayta urinib ko'ring, albatta omadingiz keladi",
-        "btn": "Bosh sahifaga"
-    },
-    "infoPrize": {
-        "title": "Sovrinlar haqida",
-        "prize1": "Asosiy pul mukofotlari yutuqli o’yiniga +1 imkoniyat",
-        "prize2": "Asosiy pul mukofotlari yutuqli o’yiniga +5 imkoniyat",
-        "prize3": "Click-hamyoningizga 5 000 so’m miqdorda sovrin oling",
-        "prize4": "Click-hamyoningizga 100 000 so’m miqdorda sovrin oling",
-        "prize5": "Aksiya hamkorlarining mahsulotlari yoki xizmatlariga promokod/chegirma oling",
-        "prize6": "“Click”dan 30 kunga Premium-obuna."
-    },
-    "myPrizes": {
-        "header": "Sovrinlarim",
-        "leftTab": "Sovrinlarim",
-        "rightTab": "Imkoniyatlarim",
-        "prizeNotFound": {
-            "desc": "Imkoniyat, pul mukofotlar yoki hamkorlardan sovg'alarni olish uchun o'yinni o'ynang. Ko'proq o'ynash uchun do'stlaringizni taklif qiling"
-        },
-        "chanceNotFound": {
-            "desc": "Imkoniyat, pul mukofotlar yoki hamkorlardan sovg'alarni olish uchun o'yinni o'ynang. Ko'proq o'ynash uchun do'stlaringizni taklif qiling"
-        }
-    },
-    "myChances": {
-        "header": "Mening imkoniyatlarim",
-        "total": "Umumiy soni:",
-        "desc": "Ko’proq imkoniyatlarni qo’lga kiritish uchun, kartadan kartaga 100 000 so’mdan ortiq mablag’ o’tkazing. O’tkazma miqdori qancha yuqori bo’lsa, shunchalik ko’p imkoniyatlar taqdim etiladi.",
-        "input-placeholder": "Imkoniyat raqamini kiriting",
-        "not-found": "Bu erda hozircha hech narsa yo'q",
-        "not-found-desc": "Sizda hali imkoniyat yo'q",
-        "btn": "Yana yuklash",
-        "next": "Keyingi",
-        "prev": "Oldingi",
-        "chance": "imkoniyat | imkoniyat",
-        "sum": "so’m",
-        "search": "Izlash",
-        "example": "Masalan:"
-    },
-    "detailPrize": {
-        "header": "Sovrin tafsilotlari",
-        "found": {
-            "title": "Tabriklaymiz, siz hamyoningizga 10 000 so'm yutib oldingiz",
-            "desc": "Pul mukofoti «Click-hamyonga qabul qilish» tugmasi bosilgandan so'ng yuboriladi",
-            "desc1": "*Pul mukofotini hamyonga qabul qilish uchun identifikatsiyadan o'tgan bo'lishingiz lozim",
-            "desc2": "*Pul mukofoti Click-hamyonga 3 bank kuni ichida yuboriladi",
-            "text": "Sizning yutuqlaringiz",
-            "name": "so'm",
-            "btnPrize": "Click-hamyonga qabul qilish",
-            "btn": "Bosh sahifaga qaytish",
-            "promo":"Promokod",
-            "prizeStatus": "Pul sizning Click hamyoningizga o'tkazildi"
-        },
-        "modalBtn": "Identifikatsiyani boshlang",
-        "notFound": {
-            "title": "Sizda hali sovrinlar yo'q",
-            "desc": "Bir zumda sovrinlarni qo'lga kiritish uchun o'yin o'ynang, shuningdek, katta pul mukofotlaridan birini olish uchun imkoniyatlarni tejang!"
-        }
-    },
-    "profileUser": {
-        "header": "Profil",
-        "notIdent": "Siz identifikatsiyadan o'tmadingiz",
-        "isIdent": "Siz identifikatsiyalangansiz",
-        "settings": "Sozlamalar",
-        "notification": "Takliflar haqida xabarnomalar",
-        "ref": "Referal tizim",
-        "soc-seti-text": "Click rasmiy sahifalariga obuna bo'ling va aksiyani kuzatib boring"
-    },
-    "referral": {
-        "header": "Men taklif qildim",
-        "banner": "Do’stingizga yuborish uchun, promokodni ajrating va nusxalang",
-        "history": "Takliflar tarixi",
-        "not-found-text": "Siz hali hech kimni taklif qilmadingiz",
-        "text": "G'alaba qozonishga imkoniyatlarni oshirish uchun do'stlaringizni taklif qiling"
+    "paid-page": {
+        "header-text": "Нужна помощь",
+        "warning-text": "При нажатии на кнопку \"Пожертвовать\" вы будете перенаправлены на страницу оплаты фонда Mehrli qo’llar. Сумма, которую вы укажете, будет переведена на счет этого фонда.",
+        "summa-label": "Сумма помощи",
+        "placeholder": "Введите сумму помощи",
+        "closed-collection": "Закрыть весь сбор",
+        "btn": "Пожертвовать"
     }
 }

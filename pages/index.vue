@@ -78,13 +78,11 @@ const acceptBtn = ref(false)
 const isNotAcceptCode = ref(null)
 const router = useRouter()
 
-const lang = computed(() =>
-  getCookie('lang') ? getCookie('lang') : getCookie('click-lang'),
-)
-if (lang.value && lang.value === 'uz') {
+const lang = getCookie('lang') ? getCookie('lang') : getCookie('click-lang')
+if (lang && lang === 'uz') {
   locale.value = 'uz'
 }
-if (lang.value && lang.value === 'en') {
+if (lang && lang === 'en') {
   locale.value = 'en'
 }
 
