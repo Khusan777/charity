@@ -12,37 +12,43 @@ const appStore = useAppStore()
 const { locale } = useI18n()
 
 onMounted(() => {
-  const lang = computed(() =>
-    getCookie('lang') ? getCookie('lang') : getCookie('click-lang'),
-  )
-  if (lang.value && lang.value === 'uz') {
-    locale.value = 'uz'
-    appStore.setLang('uz')
-  }
-  if (lang.value && lang.value === 'en') {
-    locale.value = 'en'
-    appStore.setLang('en')
-  }
-
   const themeCookie = computed(() =>
     getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
   )
-  const theme = getCookie('theme')
-  // Check what the system color scheme preferences are
+  // const theme = getCookie('theme')
   try {
-    // See references for more context for why "not all" is used here
     const rootElem = document.documentElement
     if (themeCookie.value === 'light') {
       rootElem.setAttribute('data-theme', 'light')
       appStore.setTheme(themeCookie.value)
     }
-    if (theme === 'light') {
-      rootElem.setAttribute('data-theme', 'light')
-      appStore.setTheme(themeCookie.value)
-    }
-    // catches browser/OS level preference changes while the page is already loaded
+    // if (theme === 'light') {
+    //   rootElem.setAttribute('data-theme', 'light')
+    //   appStore.setTheme(themeCookie.value)
+    // }
   } catch (err) {}
 })
+
+const langCookie = computed(() =>
+  getCookie('lang') ? getCookie('lang') : getCookie('click-lang'),
+)
+const lang = getCookie('lang')
+if (langCookie.value && langCookie.value === 'uz') {
+  locale.value = 'uz'
+  appStore.setLang('uz')
+}
+if (langCookie.value && langCookie.value === 'en') {
+  locale.value = 'en'
+  appStore.setLang('en')
+}
+if (lang && lang === 'uz') {
+  locale.value = 'uz'
+  appStore.setLang('uz')
+}
+if (lang && lang === 'en') {
+  locale.value = 'en'
+  appStore.setLang('en')
+}
 
 const cookieWebSession = computed(() =>
   getCookie('click-web-session')
