@@ -89,9 +89,16 @@
                 </div>
               </div>
               <button
-                v-if="fee?.status_id != 2 && fee?.status_id != 9"
+                v-if="fee?.status_id != 2 && fee?.status_id != 9 && fee?.status_id != 7"
                 class="requests-item-more"
                 @click="goMore(fee?.id)"
+              >
+                Подробнее
+              </button>
+              <button
+                v-if="fee?.status_id == 7"
+                class="requests-item-more"
+                @click="goMore2(fee?.id)"
               >
                 Подробнее
               </button>
@@ -150,7 +157,10 @@ export default {
   },
   methods: {
     goMore(id) {
-      this.$router.push({ path: `/main/${id}` })
+      this.$router.push({ path: `/main/${id}`, query: { completed: false } })
+    },
+    goMore2(id) {
+      this.$router.push({ path: `/main/${id}`, query: { completed: true } })
     },
     fetchMyFees(){
       apiClient.get('/myFees').then((res) => {
