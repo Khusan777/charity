@@ -41,6 +41,6 @@ export const useAppStore = defineStore('AppStore', () => {
     theme,
     fromMainPage,
     myFees,
-    navMyFees
+    navMyFees,
   }
 })

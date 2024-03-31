@@ -108,5 +108,5 @@ export {
   getAuthorizationHeader,
   formattedDate,
   formatMonthDate,
-  formatMonthDateTime
+  formatMonthDateTime,
 }

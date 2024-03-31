@@ -8,7 +8,7 @@ export default defineNuxtPlugin(() => {
       }
       if (from.name === 'profile-requests' && to.name === 'main-id') {
         appStore.navMyFees = true
-      } else{
+      } else {
         appStore.navMyFees = false
       }
     },

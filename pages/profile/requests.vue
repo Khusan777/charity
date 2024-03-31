@@ -6,11 +6,11 @@
       left-route="/profile"
     ></UiHeaderComponent>
     <div class="requests-wrapper">
-      <div class="loading" v-if="loading">
+      <div v-if="loading" class="loading">
         <MainSkeleton></MainSkeleton>
         <MainSkeleton></MainSkeleton>
       </div>
-      <div class="not-loading" v-else>
+      <div v-else class="not-loading">
         <div v-if="getMyFees" class="requests-box">
           <div class="requests-top">
             <div class="requests-top-icon">
@@ -89,7 +89,11 @@
                 </div>
               </div>
               <button
-                v-if="fee?.status_id != 2 && fee?.status_id != 9 && fee?.status_id != 7"
+                v-if="
+                  fee?.status_id != 2 &&
+                  fee?.status_id != 9 &&
+                  fee?.status_id != 7
+                "
                 class="requests-item-more"
                 @click="goMore(fee?.id)"
               >
@@ -117,8 +121,8 @@
               src="/images/myfees-not-light.png"
             ></NuxtImg>
             <p>
-              Тут будут уведомления о том, как вы меняете мир к лучшему. Следи за
-              новостями о своих благотворительных делах здесь!
+              Тут будут уведомления о том, как вы меняете мир к лучшему. Следи
+              за новостями о своих благотворительных делах здесь!
             </p>
           </div>
           <button class="requests-not-create">Создать заявку</button>
@@ -143,12 +147,11 @@ export default {
       heightDevice: inject('devicePlatform'),
       appStore: useAppStore(),
       status: 1,
-      loading: true
+      loading: true,
     }
   },
   computed: {
     getMyFees() {
-      this.loading = false
       return this.appStore?.myFees
     },
   },
@@ -162,12 +165,12 @@ export default {
     goMore2(id) {
       this.$router.push({ path: `/main/${id}`, query: { completed: true } })
     },
-    fetchMyFees(){
+    fetchMyFees() {
       apiClient.get('/myFees').then((res) => {
         this.appStore.myFees = res.data.data
         this.loading = false
       })
-    }
+    },
   },
 }
 </script>
