@@ -111,11 +111,17 @@
         <div v-else class="close-paid">
           <div class="text" @click="addSpaceRemainsSumma(patientData?.remains)">
             Закрыть весь сбор ({{
-              String(
-                patientData?.remains
-                  ?.toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ' '),
-              )
+              String(patientData?.remains)?.length > 4
+                ? String(
+                    patientData?.remains
+                      ?.toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ' '),
+                  )
+                : String(
+                    patientData?.remains
+                      ?.toString()
+                      .replace(/\B(?=(\d{4})+(?!\d))/g, ' '),
+                  )
             }}
             сумов)
           </div>
@@ -169,14 +175,20 @@ const PatientData = (patientId) => {
 PatientData(id.value)
 
 const filterNonNumeric = () => {
-  let inputValue = summa.value.replace(/[^0-9]/g, '')
-  inputValue = inputValue.replace(/(.{3})/g, '$1 ')
-  summa.value = inputValue.trim()
+  if (summa.value?.length === 4) {
+    let inputValue = summa.value.replace(/[^0-9]/g, '')
+    inputValue = inputValue.replace(/(.{4})/g, '$1 ')
+    summa.value = inputValue.trim()
+  } else {
+    let inputValue = summa.value.replace(/[^0-9]/g, '')
+    inputValue = inputValue.replace(/(.{3})/g, '$1 ')
+    summa.value = inputValue.trim()
+  }
 }
 
 const addSpaceRemainsSumma = (remainsSumma) => {
   summa.value = remainsSumma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
-  return remainsSumma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+  return summa.value
 }
 </script>
 
@@ -224,7 +236,7 @@ const addSpaceRemainsSumma = (remainsSumma) => {
         height: 45px;
         background: var(--chart-card-bg);
         width: 100%;
-        color: #b3b7ce;
+        color: var(--help-summ);
         display: flex;
         align-items: center;
         padding: 13px 10px 14px 10px;
@@ -239,7 +251,7 @@ const addSpaceRemainsSumma = (remainsSumma) => {
           line-height: 129%;
           letter-spacing: 0;
           text-align: left;
-          color: var(--placeholder-input);
+          color: var(--help-summ);
         }
         &:focus {
           border: 1px solid #0073ff;

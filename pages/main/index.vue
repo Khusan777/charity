@@ -64,9 +64,6 @@
     </template>
     <template v-if="indexFee.data?.length">
       <div ref="el" class="help-block">
-        <p style="color: #ffffff; padding: 0 20px">
-          {{ appStore.lang }} {{ appStore.theme }} {{ $i18n.locale }}
-        </p>
         <div class="text">Нуждаются в помощи</div>
         <div class="description">
           Сейчас им крайне необходима<br />

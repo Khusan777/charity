@@ -1,6 +1,9 @@
 <template>
   <div class="chart-card">
     <div @click.stop="goToDetailPage(feeItem?.id)">
+      <p style="color: #ffffff">
+        {{ config.public?.apiBase + '/storage/' + feeItem?.fond?.icon }}
+      </p>
       <div class="fond-container">
         <div class="data">
           <NuxtImg
@@ -98,6 +101,7 @@
 </template>
 
 <script setup>
+const config = useRuntimeConfig()
 const appStore = useAppStore()
 const router = useRouter()
 const props = defineProps({
