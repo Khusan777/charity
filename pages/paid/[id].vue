@@ -109,12 +109,13 @@
           ></UiAnimatedSkeleton>
         </div>
         <div v-else class="close-paid">
-          <div
-            class="text"
-            @click="summa = String(patientData?.remains?.toLocaleString())"
-          >
+          <div class="text" @click="addSpaceRemainsSumma(patientData?.remains)">
             Закрыть весь сбор ({{
-              String(patientData?.remains?.toLocaleString())
+              String(
+                patientData?.remains
+                  ?.toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ' '),
+              )
             }}
             сумов)
           </div>
@@ -148,7 +149,7 @@ const summa = ref('')
 const heightDevice = inject('devicePlatform')
 const $toast = useToast()
 const route = useRoute()
-const router = useRouter
+const router = useRouter()
 const id = computed(() => route.params.id)
 const patientData = ref(null)
 const loading = ref(false)
@@ -171,6 +172,11 @@ const filterNonNumeric = () => {
   let inputValue = summa.value.replace(/[^0-9]/g, '')
   inputValue = inputValue.replace(/(.{3})/g, '$1 ')
   summa.value = inputValue.trim()
+}
+
+const addSpaceRemainsSumma = (remainsSumma) => {
+  summa.value = remainsSumma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+  return remainsSumma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
 }
 </script>
 

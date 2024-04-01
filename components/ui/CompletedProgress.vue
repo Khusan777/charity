@@ -16,7 +16,13 @@
     </div>
     <div class="completed-summa">
       <div class="summa">
-        Сумма собрана: <span>{{ amount?.toLocaleString() }} сумов</span>
+        Сумма собрана:
+        <span
+          >{{
+            amount?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+          }}
+          сумов</span
+        >
       </div>
     </div>
   </div>

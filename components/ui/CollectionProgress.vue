@@ -2,7 +2,10 @@
   <div class="collection-progress">
     <div class="goal">
       <div class="title">Необходимо собрать:</div>
-      <div class="price">{{ amount?.amount?.toLocaleString() }} сумов</div>
+      <div class="price">
+        {{ amount?.amount?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ' ') }}
+        сумов
+      </div>
     </div>
     <div
       style="height: 6px; background-color: var(--progress-bg)"
@@ -21,13 +24,23 @@
       <div>
         <div class="text">Собрано</div>
         <div class="price">
-          {{ amount?.collectedAmount?.toLocaleString() }} сумов
+          {{
+            amount?.collectedAmount
+              ?.toString()
+              ?.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+          }}
+          сумов
         </div>
       </div>
       <div>
         <div style="text-align: right" class="text">Осталось собрать</div>
         <div class="price">
-          {{ amount?.remainsAmount?.toLocaleString() }} сумов
+          {{
+            amount?.remainsAmount
+              ?.toString()
+              ?.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+          }}
+          сумов
         </div>
       </div>
     </div>
