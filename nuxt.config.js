@@ -1,5 +1,8 @@
 export default defineNuxtConfig({
   components: true,
+  features: {
+    transitions: false,
+  },
   server: {
     mockServiceWorker: false,
   },

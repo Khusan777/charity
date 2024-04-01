@@ -19,7 +19,7 @@
         <div>
           <div class="badge-ui">
             <UiBadge
-              :status-text="'ID ' + patientData?.id"
+              :status-text="'ID ' + patientData?.external_id"
               back-color="var(--badge-back-color)"
               colour="var(--badge-color)"
             ></UiBadge>

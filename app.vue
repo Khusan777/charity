@@ -6,39 +6,19 @@
 </template>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
-
 const appStore = useAppStore()
-const { locale } = useI18n()
 
 onMounted(() => {
   const themeCookie = computed(() =>
     getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
   )
-  // const theme = getCookie('theme')
   try {
     const rootElem = document.documentElement
     if (themeCookie.value === 'light') {
       rootElem.setAttribute('data-theme', 'light')
       appStore.setTheme(themeCookie.value)
     }
-    // if (theme === 'light') {
-    //   rootElem.setAttribute('data-theme', 'light')
-    //   appStore.setTheme(themeCookie.value)
-    // }
   } catch (err) {}
-
-  const langCookie = computed(() =>
-    getCookie('lang') ? getCookie('lang') : getCookie('click-lang'),
-  )
-  if (langCookie.value && langCookie.value === 'uz') {
-    locale.value = 'uz'
-    appStore.setLang('uz')
-  }
-  if (langCookie.value && langCookie.value === 'en') {
-    locale.value = 'en'
-    appStore.setLang('en')
-  }
 })
 
 const cookieWebSession = computed(() =>

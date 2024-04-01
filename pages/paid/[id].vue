@@ -124,7 +124,10 @@
         <a
           v-if="summa?.length >= 4"
           v-ripple.500="'rgba(255, 255, 255, 0.35)'"
-          :href="`https://my.click.uz/services/pay/?service_id=2&amount=${summa?.trim()}&transaction_param=977543210&user_phone=977543210&return_url=https%3A%2F%2Fmy.click.uz%2Fapp%2FwebView%3Fauth%3Dtrue%26url%3Dhttps%253A%252F%252Fcredits.click.uz`"
+          :href="`https://my.click.uz/services/pay/?service_id=2&amount=${summa?.replace(
+            / /g,
+            '',
+          )}&transaction_param=977543210&user_phone=977543210&return_url=https%3A%2F%2Fmy.click.uz%2Fapp%2FwebView%3Fauth%3Dtrue%26url%3Dhttps%253A%252F%252Fcredits.click.uz`"
           class="paid-active"
           >Пожертвовать</a
         >

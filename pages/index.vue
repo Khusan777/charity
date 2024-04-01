@@ -78,12 +78,16 @@ const acceptBtn = ref(false)
 const isNotAcceptCode = ref(null)
 const router = useRouter()
 
-const lang = getCookie('lang') ? getCookie('lang') : getCookie('click-lang')
-if (lang && lang === 'uz') {
+const langCookie = computed(() =>
+  getCookie('lang') ? getCookie('lang') : getCookie('click-lang'),
+)
+if (langCookie.value && langCookie.value === 'uz') {
   locale.value = 'uz'
+  appStore.setLang('uz')
 }
-if (lang && lang === 'en') {
+if (langCookie.value && langCookie.value === 'en') {
   locale.value = 'en'
+  appStore.setLang('en')
 }
 
 const getUserData = () => {
