@@ -1,4 +1,4 @@
-@servers(['sandbox' => 'deployer@172.16.17.3','prod' => 'deployer@172.16.13.32'])
+@servers(['sandbox' => 'deployer@172.16.17.3','prod' => 'deployer@172.16.13.35'])
 
 @setup
 $repository = 'git@git.click.uz:click_help/front-end-help.git';
