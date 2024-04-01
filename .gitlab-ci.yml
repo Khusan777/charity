@@ -63,7 +63,7 @@ deploy_prod:
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\t StrictHostKeyChecking no \n\n" > ~/.ssh/config' 
-    - ssh-keyscan 172.16.13.32 >> ~/.ssh/known_hosts
+    - ssh-keyscan 172.16.13.35 >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
     - ~/.composer/vendor/bin/envoy run deploy --commit="$CI_COMMIT_SHA" --env=prod --branch=release
   environment:
