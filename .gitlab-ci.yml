@@ -68,7 +68,7 @@ deploy_prod:
     - ~/.composer/vendor/bin/envoy run deploy --commit="$CI_COMMIT_SHA" --env=prod --branch=release
   environment:
     name: prod
-    url: https://promov2.click.uz
+    url: https://help.click.uz
   only:
     - release
   when: manual
