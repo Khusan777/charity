@@ -7,14 +7,16 @@
 ###    DOCKER_TLS_CERTDIR: "/certs"
 ###    DOCKER_TLS_VERIFY: 1
 ###    DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
+default:
+  image:
+    name: harbor.dev.k8s.local/build/envoy:latest
+    pull_policy: if-not-present
 
-stages:
-  - build
 
-before_script:
-  - export VAULT_ROLE_ID=${VAULT_ROLE_ID}
-  - export VAULT_SECRET_ID=${VAULT_SECRET_ID}
-
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
 
 stages:
   - deploy
@@ -22,15 +24,6 @@ stages:
 
 deploy_sandbox:
   stage: deploy
-  variables:
-    DOCKER_HOST: tcp://docker:2376
-    CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA 
-    DOCKER_TLS_CERTDIR: "/certs"
-    DOCKER_TLS_VERIFY: 1
-    DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
-  image:
-    name: git.click.uz:8443/click_promo/promov2/laravel:latest
-    pull_policy: if-not-present
   script:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
@@ -48,15 +41,6 @@ deploy_sandbox:
 
 deploy_prod:
   stage: deploy
-  variables:
-    DOCKER_HOST: tcp://docker:2376
-    CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA 
-    DOCKER_TLS_CERTDIR: "/certs"
-    DOCKER_TLS_VERIFY: 1
-    DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
-  image:
-    name: git.click.uz:8443/click_promo/promov2/laravel:latest
-    pull_policy: if-not-present
   script:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
