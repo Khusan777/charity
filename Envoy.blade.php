@@ -26,7 +26,7 @@ git reset --hard {{ $commit }}
 echo "Starting deployment ({{ $release }})"
 cd {{ $new_release_dir }}
 yarn install --frozen-lockfile
-yarn build
+NUXT_PUBLIC_API_BASE={{ $URL }} yarn build
 @endtask
 
 @task('go_live')
