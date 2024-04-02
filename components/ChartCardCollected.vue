@@ -41,7 +41,10 @@
         <div class="name">
           <div>
             {{ feeItem?.patient_surname + ' ' + feeItem?.patient_name || '' }}
-            <span>({{ feeItem?.patient_age }} года)</span>
+            <span
+              >({{ feeItem?.patient_age }}
+              {{ feeItem?.patient_age <= 4 ? 'года' : 'лет' }})</span
+            >
           </div>
           <div
             @click.stop="
@@ -60,6 +63,7 @@
           </div>
         </div>
         <div class="city">
+          Город
           {{
             $i18n.locale === 'uz'
               ? feeItem?.region?.name_uz
