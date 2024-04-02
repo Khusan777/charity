@@ -64,10 +64,11 @@ import { storeToRefs } from 'pinia'
 import { useToast } from 'vue-toast-notification'
 import { useI18n } from 'vue-i18n'
 import { useAppStore } from '~/stores/AppStore'
-import { getMe } from '~/services/app.api'
+// import { useAllService } from '~/services/app.api'
 import { parseErrorsFromResponse, setToken } from '~/utils'
-import { apiClient } from '~/services/apiClient'
+// import { apiClient } from '~/services/apiClient'
 
+const { getMe } = useAllService()
 const appStore = useAppStore()
 const { locale } = useI18n()
 const heightDevice = inject('devicePlatform')

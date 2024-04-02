@@ -15,6 +15,7 @@ export const useAllService = () => {
   const getPatientNews = () => apiClient.get(`/news`)
 
   const getMyFee = () => apiClient.get(`/myFees`)
+
   return {
     getMe,
     getFee,

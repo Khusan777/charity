@@ -1,9 +1,18 @@
 import { useToast } from 'vue-toast-notification'
-import { refreshAuthToken } from '~/services/app.api'
+import axios from 'axios'
+// import { useAllService } from '~/services/app.api'
 import { objCheckType, parseErrorsFromResponse } from '~/utils'
-import { apiClient } from '~/services/apiClient'
 
 export default defineNuxtPlugin(() => {
+  const config = useRuntimeConfig()
+  const { refreshAuthToken } = useAllService()
+  const apiClient = axios.create({
+    baseURL: `${config.public.apiBase}/api`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  })
   const $toast = useToast()
   const router = useRouter()
   const unAuthenticate = async () => {
@@ -88,4 +97,10 @@ export default defineNuxtPlugin(() => {
   const responseInterceptor = (response) => response
   apiClient.interceptors.response.use(responseInterceptor, errorInterceptor)
   apiClient.interceptors.request.use(authInterceptor)
+
+  return {
+    provide: {
+      apiClient,
+    },
+  }
 })

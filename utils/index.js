@@ -1,5 +1,5 @@
 import { useI18n } from 'vue-i18n'
-import { apiClient } from '~/services/apiClient'
+// import { apiClient } from '~/services/apiClient'
 
 const getToken = () =>
   localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null
@@ -30,6 +30,7 @@ const objCheckType = (obj, type) =>
     : false
 
 const setToken = function (token) {
+  const { apiClient } = useNuxtApp()
   if (apiClient?.defaults?.headers?.common) {
     apiClient.defaults.headers.common.Authorization = token
   } else throw new Error('Ошибка во время установки токена')
