@@ -255,7 +255,7 @@ export default {
       type: '',
       heightDevice: inject('devicePlatform'),
       appStore: useAppStore(),
-      loading: false
+      loading: false,
     }
   },
   methods: {
@@ -284,12 +284,14 @@ export default {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
-          }).then(res => {
+          })
+          .then((res) => {
             this.loading = false
             modal.show()
             console.log(res)
-          }).catch(err => {
-            if(err){
+          })
+          .catch((err) => {
+            if (err) {
               this.loading = false
               this.$toast.error('Неверный формат даты рождения')
               this.birthday = null1
@@ -308,9 +310,9 @@ export default {
     },
     assertMaxChars: function () {
       if (this.des.length >= 500) {
-          this.des = this.des.substring(0,500);
+        this.des = this.des.substring(0, 500)
       }
-    }
+    },
   },
   validations() {
     return {
@@ -565,8 +567,8 @@ export default {
       line-height: 14.4px;
       margin-bottom: 10px;
       color: var(--text4);
-      a{
-        color: #0073FF;
+      a {
+        color: #0073ff;
         text-decoration: underline !important;
       }
     }

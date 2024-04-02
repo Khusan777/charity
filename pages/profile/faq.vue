@@ -10,7 +10,7 @@
         <MainSkeleton></MainSkeleton>
         <MainSkeleton></MainSkeleton>
       </div>
-      <div class="faq-list" v-else>
+      <div v-else class="faq-list">
         <div v-for="faq in getFaqs" :key="faq.id" class="faq-item">
           <button
             class="faq-item-top collapsed"
@@ -43,15 +43,15 @@ import MainSkeleton from '~/components/skeleton/MainSkeleton.vue'
 
 export default {
   name: 'Faq',
+  components: {
+    MainSkeleton,
+  },
   data() {
     return {
       appStore: useAppStore(),
       heightDevice: inject('devicePlatform'),
       loading: true,
     }
-  },
-  components: {
-    MainSkeleton
   },
   computed: {
     getFaqs() {

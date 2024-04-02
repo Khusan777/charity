@@ -231,7 +231,7 @@ const goModal = () => {
       }
     }
   }
-  &-menu2{
+  &-menu2 {
     margin-bottom: 5px;
   }
 }

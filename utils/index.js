@@ -122,5 +122,5 @@ export {
   formattedDate,
   formatMonthDate,
   formatMonthDateTime,
-  formatMonthNumber
+  formatMonthNumber,
 }
