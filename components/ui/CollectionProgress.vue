@@ -22,7 +22,7 @@
     </div>
     <div class="current-money">
       <div>
-        <div class="text">Собрано</div>
+        <div class="text">Собрано:</div>
         <div class="price">
           {{
             amount?.collectedAmount
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div>
-        <div style="text-align: right" class="text">Осталось собрать</div>
+        <div style="text-align: right" class="text">Осталось собрать:</div>
         <div class="price">
           {{
             amount?.remainsAmount

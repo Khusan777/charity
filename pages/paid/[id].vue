@@ -94,11 +94,19 @@
           <input
             id="help-summa"
             v-model="summa"
+            v-maska="
+              summa?.length <= 4
+                ? '####'
+                : summa?.length === 5
+                  ? '# ####'
+                  : summa?.length === 6
+                    ? '# ### ###'
+                    : '# ### ### ### ### ### ### ###'
+            "
             type="text"
             minlength="4"
             inputmode="decimal"
             placeholder="Введите сумму помощи"
-            @input="filterNonNumeric"
           />
         </div>
         <div v-if="loading" style="border-radius: 6px; padding: 12px 15px">
@@ -109,7 +117,7 @@
           ></UiAnimatedSkeleton>
         </div>
         <div v-else class="close-paid">
-          <div class="text" @click="addSpaceRemainsSumma(patientData?.remains)">
+          <div class="text" @click="summa = String(patientData?.remains)">
             Закрыть весь сбор ({{
               String(patientData?.remains)?.length > 4
                 ? String(
@@ -173,23 +181,6 @@ const PatientData = (patientId) => {
     })
 }
 PatientData(id.value)
-
-const filterNonNumeric = () => {
-  if (summa.value?.length === 4) {
-    let inputValue = summa.value.replace(/[^0-9]/g, '')
-    inputValue = inputValue.replace(/(.{4})/g, '$1 ')
-    summa.value = inputValue.trim()
-  } else {
-    let inputValue = summa.value.replace(/[^0-9]/g, '')
-    inputValue = inputValue.replace(/(.{3})/g, '$1 ')
-    summa.value = inputValue.trim()
-  }
-}
-
-const addSpaceRemainsSumma = (remainsSumma) => {
-  summa.value = remainsSumma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
-  return summa.value
-}
 </script>
 
 <style lang="scss" scoped>
@@ -236,7 +227,7 @@ const addSpaceRemainsSumma = (remainsSumma) => {
         height: 45px;
         background: var(--chart-card-bg);
         width: 100%;
-        color: var(--help-summ);
+        color: var(--input-summ);
         display: flex;
         align-items: center;
         padding: 13px 10px 14px 10px;

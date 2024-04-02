@@ -1,7 +1,14 @@
 <template>
   <div class="index-container">
     <div class="search-container">
-      <input v-model="queryFee.search" type="text" placeholder="Фамилия, имя" />
+      <form>
+        <input
+          v-model="queryFee.search"
+          type="text"
+          maxlength="40"
+          placeholder="Введите ФИО"
+        />
+      </form>
       <template v-if="!indexFee.data?.length && !indexFee.loading">
         <div style="width: 100%">
           <div
@@ -127,7 +134,7 @@ const getFeeIndex = () => {
   getFee(queryFee)
     .then((response) => {
       indexFee.data = response.data?.data
-      paginationData.value = response.data?.pagination
+      paginationData.value = response.data
       indexFee.loading = false
     })
     .catch(() => {
@@ -156,8 +163,8 @@ useInfiniteScroll(
   el,
   async () => {
     if (
-      paginationData.value.currentPage < paginationData.value.totalPages &&
-      queryFee.page < paginationData.value.totalPages
+      paginationData.value?.current_page < paginationData.value?.last_page &&
+      paginationData.value?.next_page_url
     ) {
       queryFee.page += 1
       await getFeePagination()
@@ -247,8 +254,8 @@ watch(
 }
 
 .help-block {
-  height: calc(v-bind(heightDevice) - 225px);
-  max-height: calc(v-bind(heightDevice) - 225px);
+  height: calc(v-bind(heightDevice) - 220px);
+  max-height: calc(v-bind(heightDevice) - 220px);
   overflow-y: auto;
   & .text {
     padding: 0 20px 5px;

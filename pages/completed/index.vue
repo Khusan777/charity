@@ -21,7 +21,7 @@
               aria-selected="true"
               @click="appStore.patientNews.activeTabs = false"
             >
-              Завершённые
+              Закрытые сборы
             </button>
           </li>
           <li class="nav-item">
@@ -96,7 +96,7 @@
               aria-selected="true"
               @click="appStore.patientNews.activeTabs = false"
             >
-              Завершённые
+              Закрытые сборы
             </button>
           </li>
           <li class="nav-item">
@@ -131,7 +131,11 @@
             aria-labelledby="complete-tab"
             tabindex="0"
           >
-            <template v-if="completedFee.index?.length">
+            <template
+              v-if="
+                completedFee.index?.length && !appStore.patientNews.activeTabs
+              "
+            >
               <div v-for="feeItem in completedFee.index" :key="feeItem.id">
                 <ChartCardCollected
                   :key="feeItem.id"
@@ -194,7 +198,12 @@
             overflow: hidden;
           "
         >
-          <template v-if="appStore.patientNews.index?.length">
+          <template
+            v-if="
+              appStore.patientNews.index?.length &&
+              appStore.patientNews.activeTabs
+            "
+          >
             <div
               v-for="patientData in appStore.patientNews.index"
               :key="patientData?.id"

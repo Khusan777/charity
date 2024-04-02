@@ -33,6 +33,10 @@ defineProps({
   font-size: 12px;
   line-height: 133%;
   color: var(--history-text-color);
+  & .description {
+    font-size: 16px;
+    line-height: 16px;
+  }
   & .title {
     font-weight: 600;
     font-size: 16px;
