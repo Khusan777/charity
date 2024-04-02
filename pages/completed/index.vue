@@ -21,7 +21,7 @@
               aria-selected="true"
               @click="appStore.patientNews.activeTabs = false"
             >
-              Завершённые
+              Закрытые сборы
             </button>
           </li>
           <li class="nav-item">
@@ -96,7 +96,7 @@
               aria-selected="true"
               @click="appStore.patientNews.activeTabs = false"
             >
-              Завершённые
+              Закрытые сборы
             </button>
           </li>
           <li class="nav-item">

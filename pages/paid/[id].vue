@@ -96,10 +96,12 @@
             v-model="summa"
             v-maska="
               summa?.length <= 4
-                ? '######'
-                : summa?.length === 6
-                  ? '## ####'
-                  : '## ### ### ### ### ### ### ### ###'
+                ? '####'
+                : summa?.length === 5
+                  ? '# ####'
+                  : summa?.length === 6
+                    ? '# ### ###'
+                    : '# ### ### ### ### ### ### ###'
             "
             type="text"
             minlength="4"
@@ -115,7 +117,7 @@
           ></UiAnimatedSkeleton>
         </div>
         <div v-else class="close-paid">
-          <div class="text" @click="summa = String(150000)">
+          <div class="text" @click="summa = String(patientData?.remains)">
             Закрыть весь сбор ({{
               String(patientData?.remains)?.length > 4
                 ? String(
@@ -179,10 +181,6 @@ const PatientData = (patientId) => {
     })
 }
 PatientData(id.value)
-
-// const addSpaceRemainsSumma = (remainsSumma) => {
-//   summa.value = String(remainsSumma)
-// }
 </script>
 
 <style lang="scss" scoped>
@@ -229,7 +227,7 @@ PatientData(id.value)
         height: 45px;
         background: var(--chart-card-bg);
         width: 100%;
-        color: var(--help-summ);
+        color: var(--input-summ);
         display: flex;
         align-items: center;
         padding: 13px 10px 14px 10px;
