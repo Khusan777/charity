@@ -26,6 +26,11 @@
       ></NuxtImg>
       <div style="width: calc(100% - 100px)">
         <UiBadge
+          v-if="
+            feeItem?.status?.id !== 7 ||
+            feeItem?.status?.id !== 4 ||
+            feeItem?.status?.id !== 3
+          "
           with-image
           :img-ref="feeItem?.status?.icon"
           :status-text="

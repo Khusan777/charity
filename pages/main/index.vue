@@ -149,7 +149,7 @@ const getFeePagination = () => {
   })
     .then((response) => {
       indexFee.data = [...indexFee.data, ...response.data?.data]
-      paginationData.value = response.data?.pagination
+      paginationData.value = response.data
       indexFee.loader = false
     })
     .catch(() => {
@@ -160,15 +160,12 @@ const getFeePagination = () => {
 useInfiniteScroll(
   el,
   async () => {
-    if (
-      paginationData.value?.current_page < paginationData.value?.last_page &&
-      paginationData.value?.next_page_url
-    ) {
-      queryFee.page += 1
+    if (paginationData.value?.next_page_url) {
       await getFeePagination()
     }
+    queryFee.page += 1
   },
-  { distance: 10 },
+  { distance: 100 },
 )
 
 watch(
@@ -252,8 +249,8 @@ watch(
 }
 
 .help-block {
-  height: calc(v-bind(heightDevice) - 220px);
-  max-height: calc(v-bind(heightDevice) - 220px);
+  height: calc(v-bind(heightDevice) - 225px);
+  max-height: calc(v-bind(heightDevice) - 225px);
   overflow-y: auto;
   & .text {
     padding: 0 20px 5px;
