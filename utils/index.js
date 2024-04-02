@@ -57,7 +57,6 @@ const getCookie = function (name) {
   } else {
     return null
   }
-  // return '783852c6-31ce-424d-809d-7de8ecaeae0b'
 }
 
 const formattedDate = (date) => {

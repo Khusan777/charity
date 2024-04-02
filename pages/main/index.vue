@@ -1,7 +1,14 @@
 <template>
   <div class="index-container">
     <div class="search-container">
-      <input v-model="queryFee.search" type="text" placeholder="Фамилия, имя" />
+      <form>
+        <input
+          v-model="queryFee.search"
+          type="text"
+          maxlength="40"
+          placeholder="Фамилия, имя"
+        />
+      </form>
       <template v-if="!indexFee.data?.length && !indexFee.loading">
         <div style="width: 100%">
           <div
