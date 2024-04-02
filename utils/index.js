@@ -88,7 +88,20 @@ const formatMonthDate = (date) => {
 
 const formatMonthDateTime = (date) => {
   const { locale } = useI18n()
-  const parsedDate = useDateFormat(date, 'DD MMMM YYYY, HH:mm', {
+  const parsedDate = useDateFormat(date, 'DD MMM HH:mm', {
+    locales:
+      locale.value === 'en'
+        ? 'en-En'
+        : locale.value === 'uz'
+          ? 'uz-Uz'
+          : 'ru-Ru',
+  })
+  return parsedDate.value?.replace(/['"]+/g, '')
+}
+
+const formatMonthNumber = (date) => {
+  const { locale } = useI18n()
+  const parsedDate = useDateFormat(date, 'DD.MM.YYYY', {
     locales:
       locale.value === 'en'
         ? 'en-En'
@@ -109,4 +122,5 @@ export {
   formattedDate,
   formatMonthDate,
   formatMonthDateTime,
+  formatMonthNumber
 }

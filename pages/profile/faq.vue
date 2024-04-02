@@ -6,7 +6,11 @@
       left-route="/profile"
     ></UiHeaderComponent>
     <div class="faq-wrapper">
-      <div class="faq-list">
+      <div v-if="loading" class="loading">
+        <MainSkeleton></MainSkeleton>
+        <MainSkeleton></MainSkeleton>
+      </div>
+      <div class="faq-list" v-else>
         <div v-for="faq in getFaqs" :key="faq.id" class="faq-item">
           <button
             class="faq-item-top collapsed"
@@ -35,13 +39,19 @@
 <script>
 import { apiClient } from '~/services/apiClient'
 import { useAppStore } from '~/stores/AppStore'
+import MainSkeleton from '~/components/skeleton/MainSkeleton.vue'
+
 export default {
   name: 'Faq',
   data() {
     return {
       appStore: useAppStore(),
       heightDevice: inject('devicePlatform'),
+      loading: true,
     }
+  },
+  components: {
+    MainSkeleton
   },
   computed: {
     getFaqs() {
@@ -58,6 +68,7 @@ export default {
     if (!this.appStore.info) {
       apiClient.get('/info').then((res) => {
         this.appStore.info = res.data
+        this.loading = false
       })
     }
   },
@@ -127,5 +138,8 @@ export default {
       border-top: 1px solid var(--border);
     }
   }
+}
+.loading {
+  margin: 0 -20px;
 }
 </style>
