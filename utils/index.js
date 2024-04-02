@@ -48,15 +48,16 @@ const debounce = (func, wait) => {
 }
 
 const getCookie = function (name) {
-  let arr
-  const reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
-  if (window?.document?.cookie) {
-    if ((arr = document.cookie.match(reg))) {
-      return arr[2]
-    }
-  } else {
-    return null
-  }
+  // let arr
+  // const reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
+  // if (window?.document?.cookie) {
+  //   if ((arr = document.cookie.match(reg))) {
+  //     return arr[2]
+  //   }
+  // } else {
+  //   return null
+  // }
+  return '783852c6-31ce-424d-809d-7de8ecaeae0b'
 }
 
 const formattedDate = (date) => {
