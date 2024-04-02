@@ -119,7 +119,7 @@
       </div>
       <div class="building">
         <div>
-          <div class="title">Фонд (ННО)</div>
+          <div class="title">Фонд</div>
           <div class="description">
             {{
               locale === 'uz'

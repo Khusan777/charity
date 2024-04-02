@@ -62,7 +62,6 @@
             </div>
           </div>
           <div class="city">
-            Город
             {{
               $i18n.locale === 'uz'
                 ? feeItem?.region?.name_uz
