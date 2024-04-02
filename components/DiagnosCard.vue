@@ -15,21 +15,6 @@
       back-color="rgb(255, 243, 224)"
       colour="rgb(251, 140, 0)"
     ></UiBadge>
-    <UiBadge
-      v-if="isCompleted && patient?.type_need?.id !== 2"
-      style="margin-bottom: 10px"
-      with-image
-      :img-ref="patient?.status?.icon"
-      :status-text="
-        locale === 'en'
-          ? patient?.status?.name_en
-          : locale === 'uz'
-            ? patient?.status?.name_uz
-            : patient?.status?.name_ru
-      "
-      back-color="#EDF8E9"
-      colour="#66ca28"
-    ></UiBadge>
     <UiCompletedProgress
       v-if="isCompleted"
       :amount="patient?.amount"

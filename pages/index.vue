@@ -55,7 +55,7 @@
             v-else
             class="btn-accept"
             :with-disabled="false"
-            text-btn="Готово"
+            text-btn="Продолжить"
             @click="acceptOfferta"
           ></UiButton>
         </div>
@@ -158,7 +158,7 @@ const acceptOfferta = () => {
   overflow: hidden;
   & .start-image {
     width: 100%;
-    max-height: 365px;
+    min-height: 200px;
     background-size: cover;
   }
   & .title {
@@ -172,10 +172,10 @@ const acceptOfferta = () => {
     padding: 16px 20px 0;
     text-align: left;
     font-weight: 400;
-    font-size: 12px;
     line-height: 133%;
     color: var(--start-description);
     & div {
+      font-size: 14px;
       margin-bottom: 10px;
     }
   }
@@ -184,7 +184,36 @@ const acceptOfferta = () => {
 @media (max-width: 320px) {
   .start-container {
     & .start-image {
-      height: 280px;
+      width: 100%;
+      height: 200px;
+      background-size: cover;
+    }
+  }
+}
+@media (max-width: 320px) {
+  .start-container {
+    & .start-image {
+      width: 100%;
+      height: 200px;
+      background-size: cover;
+    }
+  }
+}
+@media (min-width: 805px) {
+  .start-container {
+    & .start-image {
+      width: 100%;
+      height: auto;
+      background-size: cover;
+    }
+  }
+}
+@media (max-width: 280px) {
+  .start-container {
+    & .start-image {
+      width: 100%;
+      height: 250px;
+      background-size: cover;
     }
   }
 }
