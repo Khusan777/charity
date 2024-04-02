@@ -55,11 +55,7 @@
     </div>
     <template v-if="indexFee.loading">
       <div class="loading-container">
-        <div class="text">Нуждаются в помощи</div>
-        <div class="description">
-          Сейчас им крайне необходима<br />
-          ваша помощь.
-        </div>
+        <div class="description">Сейчас им крайне необходима ваша помощь</div>
         <div>
           <MainSkeleton></MainSkeleton>
           <MainSkeleton></MainSkeleton>
@@ -69,11 +65,7 @@
     </template>
     <template v-if="indexFee.data?.length">
       <div ref="el" class="help-block">
-        <div class="text">Нуждаются в помощи</div>
-        <div class="description">
-          Сейчас им крайне необходима<br />
-          ваша помощь.
-        </div>
+        <div class="description">Сейчас им крайне необходима ваша помощь</div>
         <div v-for="feeItem in indexFee?.data" :key="feeItem">
           <ChartCardNotCollected
             :key="feeItem.id"
@@ -191,15 +183,15 @@ watch(
   height: calc(v-bind(heightDevice) - 155px);
   max-height: calc(v-bind(heightDevice) - 155px);
   overflow-y: scroll;
-  & .text {
-    padding: 0 20px 5px;
-    color: var(--need-help);
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 19px;
-    letter-spacing: 0;
-    text-align: left;
-  }
+  //& .text {
+  //  padding: 0 20px 5px;
+  //  color: var(--need-help);
+  //  font-size: 16px;
+  //  font-weight: 600;
+  //  line-height: 19px;
+  //  letter-spacing: 0;
+  //  text-align: left;
+  //}
   & .description {
     padding: 0 20px 10px;
     color: var(--need-help-desc);
@@ -255,23 +247,23 @@ watch(
   height: calc(v-bind(heightDevice) - 220px);
   max-height: calc(v-bind(heightDevice) - 220px);
   overflow-y: auto;
-  & .text {
-    padding: 0 20px 5px;
-    color: var(--need-help);
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 19px;
-    letter-spacing: 0;
-    text-align: left;
-  }
+  //& .text {
+  //  padding: 0 20px 5px;
+  //  color: var(--need-help);
+  //  font-size: 16px;
+  //  font-weight: 600;
+  //  line-height: 19px;
+  //  letter-spacing: 0;
+  //  text-align: left;
+  //}
   & .description {
     padding: 0 20px 10px;
     color: var(--need-help-desc);
     font-size: 12px;
-    font-weight: 400;
     line-height: 14px;
     letter-spacing: 0;
     text-align: left;
+    font-weight: 500;
   }
 }
 
