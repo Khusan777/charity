@@ -14,8 +14,8 @@
         alt="error"
       ></NuxtImg>
       <div class="title">Упс что-то пошло не так</div>
-      <div class="description">
-        Произошла техническая ошибка. Попробуйте ещё раз.
+      <div style="user-select: all" class="description">
+        Произошла техническая ошибка. Попробуйте ещё раз. Cookie data
         {{ cookieData }}
       </div>
     </div>
