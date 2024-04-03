@@ -7,7 +7,6 @@
         maxlength="40"
         placeholder="Введите ФИО"
       />
-      <p style="color: #ffffff">{{ cookieData }} - {{ appStore.lang }}</p>
       <template v-if="!indexFee.data?.length && !indexFee.loading">
         <div style="width: 100%">
           <div
@@ -107,7 +106,6 @@ definePageMeta({
 })
 const el = shallowRef(null)
 const heightDevice = inject('devicePlatform')
-const cookieData = computed(() => document?.cookie)
 const indexFee = reactive({
   loading: false,
   loader: false,
@@ -125,7 +123,7 @@ const getFeeIndex = () => {
   getFee(queryFee)
     .then((response) => {
       indexFee.data = response.data?.data
-      paginationData.value = response.data
+      paginationData.value = response.data?.pagination
       indexFee.loading = false
     })
     .catch(() => {
@@ -139,7 +137,7 @@ const getFeePagination = () => {
   getFee(queryFee)
     .then((response) => {
       indexFee.data = [...indexFee.data, ...response.data?.data]
-      paginationData.value = response.data
+      paginationData.value = response.data?.pagination
       indexFee.loader = false
     })
     .catch(() => {
@@ -148,10 +146,7 @@ const getFeePagination = () => {
 }
 
 useInfiniteScroll(el, async () => {
-  if (
-    paginationData.value?.next_page_url &&
-    paginationData.value?.current_page <= paginationData.value?.last_page
-  ) {
+  if (paginationData.value?.currentPage <= paginationData.value?.totalPages) {
     queryFee.page += 1
     await getFeePagination()
   }

@@ -318,6 +318,7 @@ const getFeePagination = () => {
 useInfiniteScroll(
   el,
   async () => {
+    console.log('here')
     if (
       completedFee.paginationData.currentPage <
         completedFee.paginationData.totalPages &&
