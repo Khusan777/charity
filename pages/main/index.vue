@@ -7,7 +7,7 @@
         maxlength="40"
         placeholder="Введите ФИО"
       />
-      <p style="color: #ffffff">{{ cookieData }}</p>
+      <p style="color: #ffffff">{{ cookieData }} - {{ appStore.lang }}</p>
       <template v-if="!indexFee.data?.length && !indexFee.loading">
         <div style="width: 100%">
           <div

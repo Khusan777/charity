@@ -67,14 +67,12 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useToast } from 'vue-toast-notification'
-import { useI18n } from 'vue-i18n'
 import { useAppStore } from '~/stores/AppStore'
 import { getMe } from '~/services/app.api'
 import { parseErrorsFromResponse, setToken } from '~/utils'
 import { apiClient } from '~/services/apiClient'
 
 const appStore = useAppStore()
-const { locale } = useI18n()
 const heightDevice = inject('devicePlatform')
 const { user, webSession } = storeToRefs(appStore)
 const $toast = useToast()
@@ -82,18 +80,6 @@ const loading = ref(true)
 const acceptBtn = ref(false)
 const isNotAcceptCode = ref(null)
 const router = useRouter()
-
-const langCookie = computed(() =>
-  getCookie('lang') ? getCookie('lang') : getCookie('click-lang'),
-)
-if (langCookie.value && langCookie.value === 'uz') {
-  locale.value = 'uz'
-  appStore.setLang('uz')
-}
-if (langCookie.value && langCookie.value === 'en') {
-  locale.value = 'en'
-  appStore.setLang('en')
-}
 
 const getUserData = () => {
   getMe({
