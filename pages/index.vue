@@ -95,9 +95,15 @@ if (langCookie.value && langCookie.value === 'en') {
   appStore.setLang('en')
 }
 
+const cookieWebSession = computed(() =>
+  getCookie('click-web-session')
+    ? getCookie('click-web-session')
+    : getCookie('web-session'),
+)
+
 const getUserData = () => {
   getMe({
-    web_session: appStore.webSession ? appStore.webSession : webSession.value,
+    web_session: webSession.value ? webSession.value : cookieWebSession.value,
   })
     .then((response) => {
       loading.value = false
@@ -121,7 +127,7 @@ const acceptOfferta = () => {
   apiClient.defaults.headers.common['Accept-Language'] = appStore.lang
   acceptBtn.value = true
   getMe({
-    web_session: appStore.webSession ? appStore.webSession : webSession.value,
+    web_session: webSession.value ? webSession.value : cookieWebSession.value,
     activate: 1,
   })
     .then((response) => {
