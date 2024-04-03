@@ -146,7 +146,7 @@ const getFeePagination = () => {
 }
 
 useInfiniteScroll(el, async () => {
-  if (paginationData.value?.currentPage <= paginationData.value?.totalPages) {
+  if (paginationData.value?.currentPage < paginationData.value?.totalPages) {
     queryFee.page += 1
     await getFeePagination()
   }

@@ -315,21 +315,15 @@ const getFeePagination = () => {
     })
 }
 
-useInfiniteScroll(
-  el,
-  async () => {
-    console.log('here')
-    if (
-      completedFee.paginationData.currentPage <
-        completedFee.paginationData.totalPages &&
-      queryFee.page < completedFee.paginationData.totalPages
-    ) {
-      queryFee.page += 1
-      await getFeePagination()
-    }
-  },
-  { distance: 100 },
-)
+useInfiniteScroll(el, async () => {
+  if (
+    completedFee.paginationData.currentPage <
+    completedFee.paginationData.totalPages
+  ) {
+    queryFee.page += 1
+    await getFeePagination()
+  }
+})
 </script>
 
 <style lang="scss" scoped>
