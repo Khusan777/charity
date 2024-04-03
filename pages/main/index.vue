@@ -135,13 +135,10 @@ getFeeIndex()
 
 const getFeePagination = () => {
   indexFee.loader = true
-  getFee({
-    search: queryFee.search === '' ? null : queryFee.search,
-    ...queryFee,
-  })
+  getFee(queryFee)
     .then((response) => {
       indexFee.data = [...indexFee.data, ...response.data?.data]
-      paginationData.value = response.data?.pagination
+      paginationData.value = response.data
       indexFee.loader = false
     })
     .catch(() => {
@@ -149,19 +146,15 @@ const getFeePagination = () => {
     })
 }
 
-useInfiniteScroll(
-  el,
-  async () => {
-    if (
-      paginationData.value?.current_page < paginationData.value?.last_page &&
-      paginationData.value?.next_page_url
-    ) {
-      queryFee.page += 1
-      await getFeePagination()
-    }
-  },
-  { distance: 10 },
-)
+useInfiniteScroll(el, async () => {
+  if (
+    paginationData.value?.next_page_url &&
+    paginationData.value?.current_page <= paginationData.value?.last_page
+  ) {
+    queryFee.page += 1
+    await getFeePagination()
+  }
+})
 
 watch(
   () => queryFee.search,
@@ -180,8 +173,8 @@ watch(
   max-height: calc(v-bind(heightDevice) - 155px);
 }
 .loading-container {
-  height: calc(v-bind(heightDevice) - 155px);
-  max-height: calc(v-bind(heightDevice) - 155px);
+  height: calc(v-bind(heightDevice) - 220px);
+  max-height: calc(v-bind(heightDevice) - 220px);
   overflow-y: scroll;
   //& .text {
   //  padding: 0 20px 5px;

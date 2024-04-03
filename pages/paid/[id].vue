@@ -47,7 +47,6 @@
                   <div></div>
                 </div>
                 <div class="city">
-                  Город
                   {{
                     $i18n.locale === 'uz'
                       ? patientData?.region?.name_uz

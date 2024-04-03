@@ -49,7 +49,7 @@
             v-if="acceptBtn"
             class="btn-accept"
             :with-disabled="true"
-            text-btn="Готово"
+            text-btn="Продолжить"
           ></UiButton>
           <UiButton
             v-else

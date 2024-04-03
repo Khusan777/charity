@@ -26,6 +26,7 @@
       ></NuxtImg>
       <div style="width: calc(100% - 100px)">
         <UiBadge
+          v-if="feeItem?.status?.id === 4 || feeItem?.status?.id === 5"
           with-image
           :img-ref="feeItem?.status?.icon"
           :status-text="
@@ -42,7 +43,7 @@
           <div>
             {{ feeItem?.patient_surname + ' ' + feeItem?.patient_name || '' }}
             <span
-              >({{ feeItem?.patient_age }}
+              >({{ feeItem?.patient_age === 0 ? 1 : feeItem?.patient_age }}
               {{ feeItem?.patient_age <= 4 ? 'года' : 'лет' }})</span
             >
           </div>
@@ -63,7 +64,6 @@
           </div>
         </div>
         <div class="city">
-          Город
           {{
             $i18n.locale === 'uz'
               ? feeItem?.region?.name_uz
