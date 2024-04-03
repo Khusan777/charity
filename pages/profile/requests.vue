@@ -11,7 +11,7 @@
         <MainSkeleton></MainSkeleton>
       </div>
       <div v-else class="not-loading">
-        <div v-if="getMyFees" class="requests-box">
+        <div v-if="getMyFees?.length > 0" class="requests-box">
           <div class="requests-top">
             <div class="requests-top-icon">
               <NuxtImg src="/images/info.svg"></NuxtImg>
@@ -119,12 +119,12 @@
           <div class="requests-not-top"></div>
           <div class="requests-not-content">
             <NuxtImg
-              v-if="appStore.theme === 'dark'"
-              src="/images/myfees-not.png"
-            ></NuxtImg>
-            <NuxtImg
               v-if="appStore.theme === 'light'"
               src="/images/myfees-not-light.png"
+            ></NuxtImg>
+            <NuxtImg
+              v-else
+              src="/images/myfees-not.png"
             ></NuxtImg>
             <p>
               Тут будут уведомления о том, как вы меняете мир к лучшему. Следи
@@ -347,5 +347,8 @@ export default {
 }
 .loading {
   margin: 0 -20px;
+}
+.not-loading{
+  height: 100%;
 }
 </style>
