@@ -16,6 +16,7 @@
       <div class="title">Упс что-то пошло не так</div>
       <div class="description">
         Произошла техническая ошибка. Попробуйте ещё раз.
+        {{ cookieData }}
       </div>
     </div>
     <div
@@ -33,6 +34,7 @@
 </template>
 
 <script setup>
+const cookieData = computed(() => document?.cookie)
 const appStore = useAppStore()
 const heightDevice = inject('devicePlatform')
 </script>
