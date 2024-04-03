@@ -4,7 +4,7 @@
       <div class="data">
         <NuxtImg
           class="fond-img"
-          :src="`https://dev-promo23.click.uz/storage/${feeItem?.fond?.icon}`"
+          :src="`${config.public.apiBase}/storage/${feeItem?.fond?.icon}`"
           alt="fond"
         ></NuxtImg>
         <div>
@@ -21,7 +21,7 @@
     <div class="user-disease">
       <NuxtImg
         class="image-user"
-        :src="`https://dev-promo23.click.uz/storage/${feeItem?.patient_photo}`"
+        :src="`${config.public.apiBase}/storage/${feeItem?.patient_photo}`"
         alt="user"
       ></NuxtImg>
       <div style="width: calc(100% - 100px)">
@@ -91,6 +91,7 @@
 <script setup>
 import { useAppStore } from '~/stores/AppStore'
 
+const config = useRuntimeConfig()
 const router = useRouter()
 const appStore = useAppStore()
 const props = defineProps({

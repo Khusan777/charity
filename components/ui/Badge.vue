@@ -4,13 +4,14 @@
     <NuxtImg
       v-if="withImage"
       class="image"
-      :src="`https://dev-promo23.click.uz/storage/${imgRef}`"
+      :src="`${config.public.apiBase}/storage/${imgRef}`"
       alt="urgent"
     ></NuxtImg>
   </div>
 </template>
 
 <script setup>
+const config = useRuntimeConfig()
 defineProps({
   statusText: {
     type: String,

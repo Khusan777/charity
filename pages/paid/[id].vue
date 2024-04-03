@@ -28,7 +28,7 @@
             <div class="user-disease">
               <NuxtImg
                 class="image-user"
-                :src="`https://dev-promo23.click.uz/storage/${patientData?.patient_photo}`"
+                :src="`${config.public.apiBase}/storage/${patientData?.patient_photo}`"
                 alt="user"
               ></NuxtImg>
               <div style="width: calc(100% - 100px)">
@@ -157,6 +157,7 @@ import { parseErrorsFromResponse } from '~/utils'
 import HeaderComponent from '~/components/ui/HeaderComponent.vue'
 import PaidPageSkeleton from '~/components/skeleton/PaidPageSkeleton.vue'
 
+const config = useRuntimeConfig()
 const summa = ref('')
 const heightDevice = inject('devicePlatform')
 const $toast = useToast()
