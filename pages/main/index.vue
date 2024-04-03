@@ -181,8 +181,8 @@ watch(
   max-height: calc(v-bind(heightDevice) - 155px);
 }
 .loading-container {
-  height: calc(v-bind(heightDevice) - 225px);
-  max-height: calc(v-bind(heightDevice) - 225px);
+  height: calc(v-bind(heightDevice) - 220px);
+  max-height: calc(v-bind(heightDevice) - 220px);
   overflow-y: scroll;
   & .text {
     padding: 0 20px 5px;
