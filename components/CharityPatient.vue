@@ -4,7 +4,6 @@
     <span>({{ patient?.age }} года)</span>
   </div>
   <div v-if="withCity" class="city">
-    Город
     {{
       $i18n.locale === 'en'
         ? patient?.region?.name_en
@@ -15,7 +14,7 @@
   </div>
   <div class="charity-swiper">
     <NuxtImg
-      :src="`https://dev-promo23.click.uz/storage/${patient?.photo}`"
+      :src="`${config.public.apiBase}/storage/${patient?.photo}`"
       class="help-images"
       alt="patient_photo"
     ></NuxtImg>
@@ -23,6 +22,7 @@
 </template>
 
 <script setup>
+const config = useRuntimeConfig()
 defineProps({
   withCity: {
     type: Boolean,

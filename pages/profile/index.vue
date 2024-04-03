@@ -7,7 +7,7 @@
           <NuxtImg src="/images/profile.png" alt="profile"></NuxtImg>
         </div>
         <div class="profile-user-name">
-          {{ appStore?.user?.name }} {{ appStore?.user?.surname }}
+          {{ appStore?.user?.name }}
         </div>
         <div class="profile-user-phone">{{ appStore?.user?.phone_number }}</div>
         <div v-if="appStore?.user?.is_identified" class="profile-user-ident">
@@ -27,7 +27,7 @@
         >
           <div class="profile-menu-left">
             <NuxtImg src="/images/edit.svg"></NuxtImg>
-            <span>Мне нужна помощь</span>
+            <span>Заявка в фонд Mehrli qo'llar</span>
           </div>
           <div class="profile-menu-right">
             <NuxtImg src="/images/arrow.svg"></NuxtImg>
@@ -36,7 +36,7 @@
         <div v-else class="profile-menu-item" @click="goModal">
           <div class="profile-menu-left">
             <NuxtImg src="/images/edit.svg"></NuxtImg>
-            <span>Мне нужна помощь</span>
+            <span>Заявка в фонд Mehrli qo'llar</span>
           </div>
           <div class="profile-menu-right">
             <NuxtImg src="/images/arrow.svg"></NuxtImg>
@@ -70,7 +70,7 @@
           </div>
         </router-link>
       </div>
-      <div class="profile-menu">
+      <div class="profile-menu profile-menu2">
         <router-link class="profile-menu-item" to="/profile/faq">
           <div class="profile-menu-left">
             <NuxtImg src="/images/faq.svg"></NuxtImg>
@@ -80,6 +80,8 @@
             <NuxtImg src="/images/arrow.svg"></NuxtImg>
           </div>
         </router-link>
+      </div>
+      <div class="profile-menu">
         <router-link class="profile-menu-item" to="/profile/about">
           <div class="profile-menu-left">
             <NuxtImg src="/images/like2.svg"></NuxtImg>
@@ -228,6 +230,9 @@ const goModal = () => {
         width: 10px;
       }
     }
+  }
+  &-menu2 {
+    margin-bottom: 5px;
   }
 }
 .ident-modal {

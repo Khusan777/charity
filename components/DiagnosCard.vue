@@ -119,7 +119,7 @@
       </div>
       <div class="building">
         <div>
-          <div class="title">Фонд</div>
+          <div class="title">Фонд (ННО)</div>
           <div class="description">
             {{
               locale === 'uz'
@@ -133,7 +133,7 @@
         <NuxtImg
           width="20"
           height="20"
-          :src="`https://dev-promo23.click.uz/storage/${patient?.fond?.icon}`"
+          :src="`${config.public.apiBase}/storage/${patient?.fond?.icon}`"
           alt="fond"
         ></NuxtImg>
       </div>
@@ -152,7 +152,7 @@
         </div>
         <NuxtImg
           height="20"
-          :src="`https://dev-promo23.click.uz/storage/${patient?.clinic?.icon}`"
+          :src="`${config.public.apiBase}/storage/${patient?.clinic?.icon}`"
           alt="med"
         ></NuxtImg>
       </div>
@@ -167,6 +167,7 @@
 import { useI18n } from 'vue-i18n'
 import BottomSheetDisease from '~/components/ui/BottomSheetDisease.vue'
 
+const config = useRuntimeConfig()
 const appStore = useAppStore()
 const { locale } = useI18n()
 defineProps({

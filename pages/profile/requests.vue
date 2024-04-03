@@ -72,13 +72,19 @@
                 <div class="requests-item-body-item">
                   <div class="requests-item-body-label">Дата рождения</div>
                   <div class="requests-item-body-val">
-                    {{ formatMonthDate(fee?.patient_birth_date) }}
+                    {{ formatMonthNumber(fee?.patient_birth_date) }}
                   </div>
                 </div>
                 <div class="requests-item-body-item">
                   <div class="requests-item-body-label">Область проживания</div>
                   <div class="requests-item-body-val">
                     {{ fee?.region?.name_ru }}
+                  </div>
+                </div>
+                <div class="requests-item-body-item">
+                  <div class="requests-item-body-label">Номер телефона</div>
+                  <div class="requests-item-body-val">
+                    {{ fee?.patient_phone }}
                   </div>
                 </div>
                 <div class="requests-item-body-item">

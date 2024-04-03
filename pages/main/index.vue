@@ -1,7 +1,12 @@
 <template>
   <div class="index-container">
     <div class="search-container">
-      <input v-model="queryFee.search" type="text" placeholder="Фамилия, имя" />
+      <input
+        v-model="queryFee.search"
+        type="text"
+        maxlength="40"
+        placeholder="Введите ФИО"
+      />
       <template v-if="!indexFee.data?.length && !indexFee.loading">
         <div style="width: 100%">
           <div
@@ -50,11 +55,7 @@
     </div>
     <template v-if="indexFee.loading">
       <div class="loading-container">
-        <div class="text">Нуждаются в помощи</div>
-        <div class="description">
-          Сейчас им крайне необходима<br />
-          ваша помощь.
-        </div>
+        <div class="description">Сейчас им крайне необходима ваша помощь</div>
         <div>
           <MainSkeleton></MainSkeleton>
           <MainSkeleton></MainSkeleton>
@@ -64,14 +65,7 @@
     </template>
     <template v-if="indexFee.data?.length">
       <div ref="el" class="help-block">
-        <p style="color: #ffffff; padding: 0 20px">
-          {{ appStore.lang }} {{ appStore.theme }} {{ $i18n.locale }}
-        </p>
-        <div class="text">Нуждаются в помощи</div>
-        <div class="description">
-          Сейчас им крайне необходима<br />
-          ваша помощь.
-        </div>
+        <div class="description">Сейчас им крайне необходима ваша помощь</div>
         <div v-for="feeItem in indexFee?.data" :key="feeItem">
           <ChartCardNotCollected
             :key="feeItem.id"
@@ -130,7 +124,7 @@ const getFeeIndex = () => {
   getFee(queryFee)
     .then((response) => {
       indexFee.data = response.data?.data
-      paginationData.value = response.data?.pagination
+      paginationData.value = response.data
       indexFee.loading = false
     })
     .catch(() => {
@@ -141,13 +135,10 @@ getFeeIndex()
 
 const getFeePagination = () => {
   indexFee.loader = true
-  getFee({
-    search: queryFee.search === '' ? null : queryFee.search,
-    ...queryFee,
-  })
+  getFee(queryFee)
     .then((response) => {
       indexFee.data = [...indexFee.data, ...response.data?.data]
-      paginationData.value = response.data?.pagination
+      paginationData.value = response.data
       indexFee.loader = false
     })
     .catch(() => {
@@ -155,19 +146,15 @@ const getFeePagination = () => {
     })
 }
 
-useInfiniteScroll(
-  el,
-  async () => {
-    if (
-      paginationData.value.currentPage < paginationData.value.totalPages &&
-      queryFee.page < paginationData.value.totalPages
-    ) {
-      queryFee.page += 1
-      await getFeePagination()
-    }
-  },
-  { distance: 10 },
-)
+useInfiniteScroll(el, async () => {
+  if (
+    paginationData.value?.next_page_url &&
+    paginationData.value?.current_page <= paginationData.value?.last_page
+  ) {
+    queryFee.page += 1
+    await getFeePagination()
+  }
+})
 
 watch(
   () => queryFee.search,
@@ -186,18 +173,18 @@ watch(
   max-height: calc(v-bind(heightDevice) - 155px);
 }
 .loading-container {
-  height: calc(v-bind(heightDevice) - 155px);
-  max-height: calc(v-bind(heightDevice) - 155px);
+  height: calc(v-bind(heightDevice) - 220px);
+  max-height: calc(v-bind(heightDevice) - 220px);
   overflow-y: scroll;
-  & .text {
-    padding: 0 20px 5px;
-    color: var(--need-help);
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 19px;
-    letter-spacing: 0;
-    text-align: left;
-  }
+  //& .text {
+  //  padding: 0 20px 5px;
+  //  color: var(--need-help);
+  //  font-size: 16px;
+  //  font-weight: 600;
+  //  line-height: 19px;
+  //  letter-spacing: 0;
+  //  text-align: left;
+  //}
   & .description {
     padding: 0 20px 10px;
     color: var(--need-help-desc);
@@ -250,26 +237,26 @@ watch(
 }
 
 .help-block {
-  height: calc(v-bind(heightDevice) - 225px);
-  max-height: calc(v-bind(heightDevice) - 225px);
+  height: calc(v-bind(heightDevice) - 220px);
+  max-height: calc(v-bind(heightDevice) - 220px);
   overflow-y: auto;
-  & .text {
-    padding: 0 20px 5px;
-    color: var(--need-help);
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 19px;
-    letter-spacing: 0;
-    text-align: left;
-  }
+  //& .text {
+  //  padding: 0 20px 5px;
+  //  color: var(--need-help);
+  //  font-size: 16px;
+  //  font-weight: 600;
+  //  line-height: 19px;
+  //  letter-spacing: 0;
+  //  text-align: left;
+  //}
   & .description {
     padding: 0 20px 10px;
     color: var(--need-help-desc);
     font-size: 12px;
-    font-weight: 400;
     line-height: 14px;
     letter-spacing: 0;
     text-align: left;
+    font-weight: 500;
   }
 }
 

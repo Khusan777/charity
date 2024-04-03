@@ -9,7 +9,7 @@
       <NuxtImg
         style="width: 100%"
         class="user-image"
-        :src="`https://dev-promo23.click.uz/storage/${patientNew?.image}`"
+        :src="`${config.public.apiBase}/storage/${patientNew?.image}`"
         alt="user"
       ></NuxtImg>
       <div class="info-panel">
@@ -68,6 +68,7 @@
 </template>
 
 <script setup>
+const config = useRuntimeConfig()
 const heightDevice = inject('devicePlatform')
 const route = useRoute()
 const appStore = useAppStore()

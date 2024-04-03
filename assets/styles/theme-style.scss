@@ -1,6 +1,6 @@
 :root[data-theme="light"] {
   --bg-color: #e2e4f0;
-  --fond-color: #6a6a6a;
+  --fond-color: #2C2D35;
   --chart-card-bg:  #fff;
   --user-name: #363845;
   --user-age: #2c2d35;
@@ -29,7 +29,7 @@
   --search-icon-color: #9395A5;
   --search-placeholder: #6a6a6a;
   --need-help: #363845;
-  --need-help-desc: #6a6a6a;
+  --need-help-desc: #2c2d35;
   --goal-title: #6a6a6a;
   --goal-price: #363845;
   --progress-bg:  #e2e4f0;
@@ -72,7 +72,8 @@
   --modal: #fff;
   --skeleton-bg: linear-gradient(to right, #d8d8d8 0%, #bdbdbd 20%, #d8d8d8 40%, #d8d8d8 100%);
   --warning-bg: rgba(255, 255, 255, 0.6);
-  --placeholder-input: #b3b7ce;
+  --input-summ: #363845;
+  --help-summ: #B3B7CE;
 }
 
 :root {
@@ -149,7 +150,8 @@
   --modal: #1a1b25;
   --skeleton-bg: linear-gradient(to right, #50535a 0%, #656871 20%, #50535a 40%, #50535a 100%);
   --warning-bg:  rgba(52, 53, 63, 0.6);
-  --placeholder-input: #b3b7ce;
+  --input-summ: #b3b7ce;
+  --help-summ: #b3b7ce;
 }
 
 .modal-backdrop{

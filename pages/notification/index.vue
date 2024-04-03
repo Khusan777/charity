@@ -59,13 +59,10 @@
     </div> -->
     <div class="notification-none">
       <NuxtImg
-        v-if="appStore.theme === 'dark'"
-        src="/images/push-not.png"
-      ></NuxtImg>
-      <NuxtImg
         v-if="appStore.theme === 'light'"
         src="/images/push-not-light.png"
       ></NuxtImg>
+      <NuxtImg v-else src="/images/push-not.png"></NuxtImg>
       <p>
         Тут будут уведомления о том, как вы меняете мир к лучшему. Следи за
         новостями о своих благотворительных делах здесь!

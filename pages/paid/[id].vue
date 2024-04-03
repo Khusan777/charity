@@ -28,7 +28,7 @@
             <div class="user-disease">
               <NuxtImg
                 class="image-user"
-                :src="`https://dev-promo23.click.uz/storage/${patientData?.patient_photo}`"
+                :src="`${config.public.apiBase}/storage/${patientData?.patient_photo}`"
                 alt="user"
               ></NuxtImg>
               <div style="width: calc(100% - 100px)">
@@ -39,7 +39,10 @@
                         ' ' +
                         patientData?.patient_name || ''
                     }}
-                    <span>({{ patientData?.patient_age }} года)</span>
+                    <span
+                      >({{ patientData?.patient_age }}
+                      {{ feeItem?.patient_age <= 4 ? 'года' : 'лет' }})</span
+                    >
                   </div>
                   <div></div>
                 </div>
@@ -109,13 +112,22 @@
           ></UiAnimatedSkeleton>
         </div>
         <div v-else class="close-paid">
-          <div class="text" @click="addSpaceRemainsSumma(patientData?.remains)">
+          <div
+            class="text"
+            @click="addSpaceRemainsSumma(String(patientData?.remains))"
+          >
             Закрыть весь сбор ({{
-              String(
-                patientData?.remains
-                  ?.toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ' '),
-              )
+              String(patientData?.remains)?.length > 4
+                ? String(
+                    patientData?.remains
+                      ?.toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ' '),
+                  )
+                : String(
+                    patientData?.remains
+                      ?.toString()
+                      .replace(/\B(?=(\d{4})+(?!\d))/g, ' '),
+                  )
             }}
             сумов)
           </div>
@@ -145,6 +157,7 @@ import { parseErrorsFromResponse } from '~/utils'
 import HeaderComponent from '~/components/ui/HeaderComponent.vue'
 import PaidPageSkeleton from '~/components/skeleton/PaidPageSkeleton.vue'
 
+const config = useRuntimeConfig()
 const summa = ref('')
 const heightDevice = inject('devicePlatform')
 const $toast = useToast()
@@ -168,15 +181,27 @@ const PatientData = (patientId) => {
 }
 PatientData(id.value)
 
-const filterNonNumeric = () => {
-  let inputValue = summa.value.replace(/[^0-9]/g, '')
-  inputValue = inputValue.replace(/(.{3})/g, '$1 ')
-  summa.value = inputValue.trim()
-}
-
 const addSpaceRemainsSumma = (remainsSumma) => {
   summa.value = remainsSumma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
-  return remainsSumma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+}
+
+const filterNonNumeric = () => {
+  if (summa.value?.length === 5) {
+    const inputValue = summa.value.replace(/[^0-9]/g, '')
+    summa.value = inputValue
+      .split('')
+      .reverse()
+      .join('')
+      .replace(/([0-9]{3})/g, '$1 ')
+      .split('')
+      .reverse()
+      .join('')
+  }
+  if (summa.value?.length > 6) {
+    let inputValue = summa.value.replace(/[^0-9]/g, '')
+    inputValue = inputValue.replace(/(.{3})/g, '$1 ')
+    summa.value = inputValue.trim()
+  }
 }
 </script>
 
@@ -224,7 +249,7 @@ const addSpaceRemainsSumma = (remainsSumma) => {
         height: 45px;
         background: var(--chart-card-bg);
         width: 100%;
-        color: #b3b7ce;
+        color: var(--input-summ);
         display: flex;
         align-items: center;
         padding: 13px 10px 14px 10px;
@@ -239,7 +264,7 @@ const addSpaceRemainsSumma = (remainsSumma) => {
           line-height: 129%;
           letter-spacing: 0;
           text-align: left;
-          color: var(--placeholder-input);
+          color: var(--help-summ);
         }
         &:focus {
           border: 1px solid #0073ff;

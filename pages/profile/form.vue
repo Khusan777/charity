@@ -165,6 +165,7 @@
             id="des"
             v-model="des"
             placeholder="Ваше сообщение"
+            @input="assertMaxChars()"
           ></textarea>
         </div>
       </div>
@@ -176,7 +177,7 @@
       <div class="sendform-button">
         <p>
           Нажимая кнопку «Отправить», я даю свое согласие на обработку моих
-          персональных данных
+          <a href="https://click.uz/ru/policypersonal">персональных данных</a>
         </p>
         <button :disabled="loading" @click.prevent="send">
           <span v-if="!loading">Отправить запрос</span>
@@ -284,9 +285,17 @@ export default {
               'Content-Type': 'multipart/form-data',
             },
           })
-          .then(() => {
+          .then((res) => {
             this.loading = false
             modal.show()
+            console.log(res)
+          })
+          .catch((err) => {
+            if (err) {
+              this.loading = false
+              this.$toast.error('Неверный формат даты рождения')
+              this.birthday = null1
+            }
           })
       }
     },
@@ -298,6 +307,11 @@ export default {
     },
     filterName() {
       this.name = this.name.replace(/[^a-zа-яё\s]/gi, '')
+    },
+    assertMaxChars: function () {
+      if (this.des.length >= 500) {
+        this.des = this.des.substring(0, 500)
+      }
     },
   },
   validations() {
@@ -553,6 +567,10 @@ export default {
       line-height: 14.4px;
       margin-bottom: 10px;
       color: var(--text4);
+      a {
+        color: #0073ff;
+        text-decoration: underline !important;
+      }
     }
     button {
       width: 100%;
