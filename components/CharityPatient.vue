@@ -14,7 +14,7 @@
   </div>
   <div class="charity-swiper">
     <NuxtImg
-      :src="`https://dev-promo23.click.uz/storage/${patient?.photo}`"
+      :src="`${config.public.apiBase}/storage/${patient?.photo}`"
       class="help-images"
       alt="patient_photo"
     ></NuxtImg>
@@ -22,6 +22,7 @@
 </template>
 
 <script setup>
+const config = useRuntimeConfig()
 defineProps({
   withCity: {
     type: Boolean,

@@ -6,7 +6,7 @@
     <div class="data">
       <NuxtImg
         class="image"
-        :src="`https://dev-promo23.click.uz/storage/${patientNew?.image}`"
+        :src="`${config.public.apiBase}/storage/${patientNew?.image}`"
         alt="user"
       ></NuxtImg>
       <div class="title">
@@ -34,6 +34,7 @@
 </template>
 
 <script setup>
+const config = useRuntimeConfig()
 defineProps({
   patientNew: {
     type: Object,

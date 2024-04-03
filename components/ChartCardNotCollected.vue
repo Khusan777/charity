@@ -5,7 +5,7 @@
         <div class="data">
           <NuxtImg
             class="fond-img"
-            :src="`https://dev-promo23.click.uz/storage/${feeItem?.fond?.icon}`"
+            :src="`${config.public.apiBase}/storage/${feeItem?.fond?.icon}`"
             alt="fond"
           ></NuxtImg>
           <div>
@@ -22,7 +22,7 @@
       <div class="user-disease">
         <NuxtImg
           class="image-user"
-          :src="`https://dev-promo23.click.uz/storage/${feeItem?.patient_photo}`"
+          :src="`${config.public.apiBase}/storage/${feeItem?.patient_photo}`"
           alt="user"
         ></NuxtImg>
         <div style="width: calc(100% - 100px)">
@@ -109,6 +109,7 @@ const props = defineProps({
     required: true,
   },
 })
+const config = useRuntimeConfig()
 const amountData = reactive({
   collectedAmount: props.feeItem?.collected || 0,
   amount: props.feeItem?.amount,
