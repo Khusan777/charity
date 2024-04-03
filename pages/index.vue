@@ -87,12 +87,6 @@ const cookieWebSession = computed(() =>
     : getCookie('web-session'),
 )
 
-const cookieWebSession = computed(() =>
-  getCookie('click-web-session')
-    ? getCookie('click-web-session')
-    : getCookie('web-session'),
-)
-
 const getUserData = () => {
   getMe({
     web_session: webSession.value ? webSession.value : cookieWebSession.value,

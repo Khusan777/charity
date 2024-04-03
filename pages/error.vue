@@ -16,7 +16,6 @@
       <div class="title">Упс что-то пошло не так</div>
       <div class="description">
         Произошла техническая ошибка. Попробуйте ещё раз.
-        {{ webSession }} - {{ cookieWebSession }}
       </div>
     </div>
     <div
@@ -34,17 +33,8 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-
 const appStore = useAppStore()
-const { webSession } = storeToRefs(appStore)
 const heightDevice = inject('devicePlatform')
-
-const cookieWebSession = computed(() =>
-  getCookie('click-web-session')
-    ? getCookie('click-web-session')
-    : getCookie('web-session'),
-)
 </script>
 
 <style scoped lang="scss">
