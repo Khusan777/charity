@@ -132,9 +132,9 @@ const getFeeIndex = () => {
 }
 getFeeIndex()
 
-const getFeePagination = () => {
+const getFeePagination = async () => {
   indexFee.loader = true
-  getFee(queryFee)
+  await getFee(queryFee)
     .then((response) => {
       indexFee.data = [...indexFee.data, ...response.data?.data]
       paginationData.value = response.data?.pagination
@@ -145,12 +145,16 @@ const getFeePagination = () => {
     })
 }
 
-useInfiniteScroll(el, async () => {
-  if (paginationData.value?.currentPage < paginationData.value?.totalPages) {
-    queryFee.page += 1
-    await getFeePagination()
-  }
-})
+useInfiniteScroll(
+  el,
+  async () => {
+    if (paginationData.value?.currentPage < paginationData.value?.totalPages) {
+      queryFee.page += 1
+      await getFeePagination()
+    }
+  },
+  { distance: 50 },
+)
 
 watch(
   () => queryFee.search,
