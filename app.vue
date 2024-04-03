@@ -34,7 +34,7 @@ if (!appStore.webSession) {
 }
 
 const langCookie = computed(() =>
-  getCookie('lang') ? getCookie('lang') : getCookie('click-language'),
+  getCookie('click-language') ? getCookie('click-language') : getCookie('lang'),
 )
 if (langCookie.value && langCookie.value === 'uz') {
   locale.value = 'uz'
@@ -43,6 +43,8 @@ if (langCookie.value && langCookie.value === 'uz') {
 if (langCookie.value && langCookie.value === 'en') {
   locale.value = 'en'
   appStore.setLang('en')
+} else {
+  appStore.setLang('ru')
 }
 </script>
 

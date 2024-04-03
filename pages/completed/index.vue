@@ -302,9 +302,9 @@ const getNews = () => {
   }
 }
 
-const getFeePagination = () => {
+const getFeePagination = async () => {
   completedFee.loader = true
-  getCompletedFee({ ...queryFee, status_ids: [4, 5, 7] })
+  await getCompletedFee({ ...queryFee, status_ids: [4, 5, 7] })
     .then((response) => {
       completedFee.index = [...completedFee.index, ...response.data?.data]
       completedFee.paginationData = response.data?.pagination
@@ -320,14 +320,13 @@ useInfiniteScroll(
   async () => {
     if (
       completedFee.paginationData.currentPage <
-        completedFee.paginationData.totalPages &&
-      queryFee.page < completedFee.paginationData.totalPages
+      completedFee.paginationData.totalPages
     ) {
       queryFee.page += 1
       await getFeePagination()
     }
   },
-  { distance: 100 },
+  { distance: 50 },
 )
 </script>
 
