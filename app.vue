@@ -6,6 +6,9 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n()
 const appStore = useAppStore()
 
 onMounted(() => {
@@ -28,6 +31,20 @@ const cookieWebSession = computed(() =>
 )
 if (!appStore.webSession) {
   appStore.setWebSession(cookieWebSession.value)
+}
+
+const langCookie = computed(() =>
+  getCookie('click-language') ? getCookie('click-language') : getCookie('lang'),
+)
+if (langCookie.value && langCookie.value === 'uz') {
+  locale.value = 'uz'
+  appStore.setLang('uz')
+}
+if (langCookie.value && langCookie.value === 'en') {
+  locale.value = 'en'
+  appStore.setLang('en')
+} else {
+  appStore.setLang('ru')
 }
 </script>
 
