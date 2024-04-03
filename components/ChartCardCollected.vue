@@ -43,7 +43,7 @@
           <div>
             {{ feeItem?.patient_surname + ' ' + feeItem?.patient_name || '' }}
             <span
-              >({{ feeItem?.patient_age }}
+              >({{ feeItem?.patient_age === 0 ? 1 : feeItem?.patient_age }}
               {{ feeItem?.patient_age <= 4 ? 'года' : 'лет' }})</span
             >
           </div>
@@ -64,7 +64,6 @@
           </div>
         </div>
         <div class="city">
-          Город
           {{
             $i18n.locale === 'uz'
               ? feeItem?.region?.name_uz
