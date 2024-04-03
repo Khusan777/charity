@@ -7,6 +7,7 @@
         maxlength="40"
         placeholder="Введите ФИО"
       />
+      <p style="color: #ffffff">{{ cookieData }}</p>
       <template v-if="!indexFee.data?.length && !indexFee.loading">
         <div style="width: 100%">
           <div
@@ -106,7 +107,7 @@ definePageMeta({
 })
 const el = shallowRef(null)
 const heightDevice = inject('devicePlatform')
-
+const cookieData = computed(() => document?.cookie)
 const indexFee = reactive({
   loading: false,
   loader: false,

@@ -138,6 +138,7 @@
             >
               <div v-for="feeItem in completedFee.index" :key="feeItem.id">
                 <ChartCardCollected
+                  v-if="feeItem?.status?.id === 4 || feeItem?.status?.id === 5"
                   :key="feeItem.id"
                   :fee-item="feeItem"
                 ></ChartCardCollected>
