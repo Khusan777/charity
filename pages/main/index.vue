@@ -2,12 +2,17 @@
   <div class="index-container">
     <div class="search-container">
       <input
+        ref="inputRef"
         v-model="queryFee.search"
         type="text"
         maxlength="40"
         placeholder="Введите ФИО"
       />
-      <template v-if="!indexFee.data?.length && !indexFee.loading">
+      <template
+        v-if="
+          !indexFee.data?.length && !indexFee.loading && indexFee.isSearched
+        "
+      >
         <div style="width: 100%">
           <div
             style="
@@ -37,22 +42,54 @@
           </div>
         </div>
       </template>
-      <!--      <div-->
-      <!--        ref="offCanvas"-->
-      <!--        data-bs-toggle="offcanvas"-->
-      <!--        data-bs-target="#offcanvasBottom"-->
-      <!--        aria-controls="offcanvasBottom"-->
-      <!--        class="placeholder"-->
-      <!--      >-->
-      <!--        <NuxtImg-->
-      <!--          width="20"-->
-      <!--          height="20"-->
-      <!--          style="color: var(&#45;&#45;search-icon-color)"-->
-      <!--          src="/images/settings.svg"-->
-      <!--          alt="settings"-->
-      <!--        />-->
-      <!--      </div>-->
+      <div
+        v-if="queryFee.search?.length && appStore.theme === 'light'"
+        class="x-icon"
+        @click="clearInputValue"
+      >
+        <NuxtImg
+          width="20"
+          height="20"
+          style="color: var(--search-icon-color)"
+          src="/images/x-search-icon-light.svg"
+          alt="settings"
+        />
+      </div>
+      <div
+        v-if="queryFee.search?.length && appStore.theme === 'dark'"
+        class="x-icon"
+        @click="clearInputValue"
+      >
+        <NuxtImg
+          width="20"
+          height="20"
+          style="color: var(--search-icon-color)"
+          src="/images/x-search-icon-dark.svg"
+          alt="settings"
+        />
+      </div>
     </div>
+    <template
+      v-if="!indexFee.data?.length && !indexFee.loading && !indexFee.isSearched"
+    >
+      <div
+        class="text-without-content"
+        style="
+          padding: 0 20px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <div class="text-message">
+          В настоящее время у нас нет активных благотворительных мероприятий.
+          Однако мы постоянно работаем над новыми инициативами для помощи тем,
+          кто в ней нуждается. Следите за нашими новостями!
+        </div>
+      </div>
+    </template>
     <template v-if="indexFee.loading">
       <div class="loading-container">
         <div class="description">Сейчас им крайне необходима ваша помощь</div>
@@ -104,12 +141,14 @@ const appStore = useAppStore()
 definePageMeta({
   layout: 'main',
 })
+const inputRef = ref()
 const el = shallowRef(null)
 const heightDevice = inject('devicePlatform')
 const indexFee = reactive({
   loading: false,
   loader: false,
   data: null,
+  isSearched: false,
 })
 const paginationData = ref(null)
 const queryFee = reactive({
@@ -117,6 +156,11 @@ const queryFee = reactive({
   status_id: 3,
   search: null,
 })
+
+const clearInputValue = () => {
+  queryFee.search = null
+  inputRef.value?.focus()
+}
 
 const getFeeIndex = () => {
   indexFee.loading = true
@@ -159,6 +203,7 @@ useInfiniteScroll(
 watch(
   () => queryFee.search,
   debounce(() => {
+    indexFee.isSearched = true
     if (queryFee.page > 1) {
       queryFee.page = 1
     }
@@ -228,12 +273,18 @@ watch(
       outline: 0;
     }
   }
-  //& .placeholder {
-  //  background: var(--search-bg);
-  //  right: 40px;
-  //  top: 6px;
-  //  position: absolute;
-  //}
+  & .x-icon {
+    background: var(--search-bg);
+    right: 30px;
+    top: 5px;
+    position: absolute;
+  }
+}
+
+.text-without-content {
+  overflow: hidden;
+  max-height: calc(v-bind(heightDevice) - 220px);
+  height: calc(v-bind(heightDevice) - 220px);
 }
 
 .help-block {

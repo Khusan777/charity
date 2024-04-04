@@ -34,8 +34,9 @@ defineProps({
   line-height: 133%;
   color: var(--history-text-color);
   & .description {
-    font-size: 16px;
-    line-height: 16px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
   }
   & .title {
     font-weight: 600;

@@ -20,6 +20,8 @@ onMounted(() => {
     if (themeCookie.value === 'light') {
       rootElem.setAttribute('data-theme', 'light')
       appStore.setTheme(themeCookie.value)
+    } else {
+      appStore.setTheme(themeCookie.value)
     }
   } catch (err) {}
 })

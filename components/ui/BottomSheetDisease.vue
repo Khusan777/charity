@@ -61,6 +61,7 @@ defineProps({
 <style scoped lang="scss">
 .offcanvas {
   & .offcanvas-title {
+    margin-bottom: 10px;
     margin-right: 4px;
     color: var(--bottom-sheet-title);
     line-height: normal;

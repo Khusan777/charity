@@ -147,35 +147,27 @@
                 <span class="loader-anim"></span>
               </div>
             </template>
-            <template v-else>
-              <div style="width: 100%">
-                <div
-                  style="
-                    padding: 30px 0 0;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                  "
-                >
-                  <NuxtImg
-                    v-if="appStore.theme === 'light'"
-                    style="margin: auto; display: block"
-                    width="35"
-                    height="35"
-                    src="/images/icon-search-light.svg"
-                    alt="search-icon"
-                  ></NuxtImg>
-                  <NuxtImg
-                    v-else
-                    style="margin: auto; display: block"
-                    width="35"
-                    height="35"
-                    src="/images/icon-search-light.svg"
-                    alt="search-icon"
-                  ></NuxtImg>
-                  <div class="text-message">
-                    По вашему запросу ничего не найдено
-                  </div>
+            <template
+              v-if="
+                !appStore.patientNews.activeTabs && !completedFee.index?.length
+              "
+            >
+              <div
+                class="text-without-content"
+                style="
+                  padding: 0 20px;
+                  width: 100%;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                <div class="text-message">
+                  В настоящее время у нас нет активных благотворительных
+                  мероприятий. Однако мы постоянно работаем над новыми
+                  инициативами для помощи тем, кто в ней нуждается. Следите за
+                  нашими новостями!
                 </div>
               </div>
             </template>
@@ -213,35 +205,28 @@
               <CharityReport :patient-new="patientData"></CharityReport>
             </div>
           </template>
-          <template v-else>
-            <div style="width: 100%">
-              <div
-                style="
-                  padding: 30px 0 0;
-                  display: flex;
-                  flex-direction: column;
-                  justify-content: center;
-                "
-              >
-                <NuxtImg
-                  v-if="appStore.theme === 'light'"
-                  style="margin: auto; display: block"
-                  width="35"
-                  height="35"
-                  src="/images/icon-search-light.svg"
-                  alt="search-icon"
-                ></NuxtImg>
-                <NuxtImg
-                  v-else
-                  style="margin: auto; display: block"
-                  width="35"
-                  height="35"
-                  src="/images/icon-search-light.svg"
-                  alt="search-icon"
-                ></NuxtImg>
-                <div class="text-message">
-                  По вашему запросу ничего не найдено
-                </div>
+          <template
+            v-if="
+              appStore.patientNews.activeTabs &&
+              !appStore.patientNews.index?.length
+            "
+          >
+            <div
+              class="text-without-content"
+              style="
+                padding: 0 20px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <div class="text-message">
+                В настоящее время у нас нет активных благотворительных
+                мероприятий. Однако мы постоянно работаем над новыми
+                инициативами для помощи тем, кто в ней нуждается. Следите за
+                нашими новостями!
               </div>
             </div>
           </template>
@@ -385,6 +370,11 @@ useInfiniteScroll(
       }
     }
   }
+}
+.text-without-content {
+  overflow: hidden;
+  max-height: calc(v-bind(heightDevice) - 205px);
+  height: calc(v-bind(heightDevice) - 205px);
 }
 [class*='nav-tabs'] {
   width: 100%;
