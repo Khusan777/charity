@@ -1,6 +1,9 @@
 <template>
   <div class="notification">
-    <UiHeaderComponent center :center-text="$t('push.title')"></UiHeaderComponent>
+    <UiHeaderComponent
+      center
+      :center-text="$t('push.title')"
+    ></UiHeaderComponent>
     <!-- <div class="notification-list">
       <router-link to="/notification/1" class="notification-item">
         <div class="notification-icon">

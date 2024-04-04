@@ -406,7 +406,7 @@ export default {
         font-size: 16px;
         color: var(--text);
       }
-      &-city{
+      &-city {
         line-height: 14.4px;
         font-size: 12px;
         color: var(--text2);

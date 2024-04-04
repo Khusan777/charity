@@ -121,15 +121,15 @@ export default {
   data() {
     return {
       heightDevice: inject('devicePlatform'),
-      appStore: useAppStore()
+      appStore: useAppStore(),
     }
   },
   methods: {
-    goModal(){
+    goModal() {
       const modal = new bootstrap.Modal('#identModal')
       modal.show()
-    }
-  }
+    },
+  },
 }
 </script>
 
