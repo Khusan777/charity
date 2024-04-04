@@ -60,15 +60,6 @@
             <NuxtImg src="/images/arrow.svg"></NuxtImg>
           </div>
         </router-link>
-        <router-link class="profile-menu-item" to="/profile/offer">
-          <div class="profile-menu-left">
-            <NuxtImg src="/images/info.svg"></NuxtImg>
-            <span>Пользовательское соглашение</span>
-          </div>
-          <div class="profile-menu-right">
-            <NuxtImg src="/images/arrow.svg"></NuxtImg>
-          </div>
-        </router-link>
       </div>
       <div class="profile-menu profile-menu2">
         <router-link class="profile-menu-item" to="/profile/faq">
@@ -120,16 +111,25 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import { useAppStore } from '@/stores/AppStore'
 definePageMeta({
   layout: 'single',
 })
-const heightDevice = inject('devicePlatform')
-const appStore = useAppStore()
-const goModal = () => {
-  const modal = new bootstrap.Modal('#identModal')
-  modal.show()
+export default {
+  name: 'Profile',
+  data() {
+    return {
+      heightDevice: inject('devicePlatform'),
+      appStore: useAppStore(),
+    }
+  },
+  methods: {
+    goModal() {
+      const modal = new bootstrap.Modal('#identModal')
+      modal.show()
+    },
+  },
 }
 </script>
 

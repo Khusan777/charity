@@ -1,6 +1,9 @@
 <template>
   <div class="notification">
-    <UiHeaderComponent center center-text="Уведомления"></UiHeaderComponent>
+    <UiHeaderComponent
+      center
+      :center-text="$t('push.title')"
+    ></UiHeaderComponent>
     <!-- <div class="notification-list">
       <router-link to="/notification/1" class="notification-item">
         <div class="notification-icon">
@@ -63,10 +66,7 @@
         src="/images/push-not-light.png"
       ></NuxtImg>
       <NuxtImg v-else src="/images/push-not.png"></NuxtImg>
-      <p>
-        Тут будут уведомления о том, как вы меняете мир к лучшему. Следи за
-        новостями о своих благотворительных делах здесь!
-      </p>
+      <p>{{ $t('push.des') }}</p>
     </div>
   </div>
 </template>

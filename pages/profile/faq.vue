@@ -2,7 +2,7 @@
   <div class="faq">
     <UiHeaderComponent
       center
-      center-text="Вопросы и ответы"
+      :center-text="$t('faq.title')"
       left-route="/profile"
     ></UiHeaderComponent>
     <div class="faq-wrapper">
