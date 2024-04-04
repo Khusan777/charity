@@ -1,10 +1,10 @@
 <template>
   <div class="collection-progress">
     <div class="goal">
-      <div class="title">Необходимо собрать:</div>
+      <div class="title">{{ $t('main.amount-text') }}</div>
       <div class="price">
         {{ amount?.amount?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ' ') }}
-        сумов
+        {{ $t('valyuta') }}
       </div>
     </div>
     <div
@@ -22,25 +22,27 @@
     </div>
     <div class="current-money">
       <div>
-        <div class="text">Собрано:</div>
+        <div class="text">{{ $t('main.collected-text') }}</div>
         <div class="price">
           {{
             amount?.collectedAmount
               ?.toString()
               ?.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
           }}
-          сумов
+          {{ $t('valyuta') }}
         </div>
       </div>
       <div>
-        <div style="text-align: right" class="text">Осталось собрать:</div>
+        <div style="text-align: right" class="text">
+          {{ $t('main.remains-text') }}
+        </div>
         <div class="price">
           {{
             amount?.remainsAmount
               ?.toString()
               ?.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
           }}
-          сумов
+          {{ $t('valyuta') }}
         </div>
       </div>
     </div>

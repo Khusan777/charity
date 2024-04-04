@@ -1,6 +1,6 @@
 <template>
   <div class="history">
-    <div class="title">История о подопечном</div>
+    <div class="title">{{ $t('patient-detail.history') }}</div>
     <div
       class="description"
       v-html="
@@ -8,7 +8,7 @@
           ? historyPatient?.description_en
           : $i18n.locale === 'uz'
             ? historyPatient?.description_uz
-            : historyPatient?.description_uz
+            : historyPatient?.description_ru
       "
     ></div>
   </div>
@@ -36,7 +36,7 @@ defineProps({
   & .description {
     font-weight: 400;
     font-size: 14px;
-    line-height: normal;
+    line-height: 133%;
   }
   & .title {
     font-weight: 600;

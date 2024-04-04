@@ -1,7 +1,16 @@
 <template>
   <div class="name">
     {{ patient?.surname }} {{ patient?.name }}
-    <span>({{ patient?.age }} года)</span>
+    <span
+      >({{ patient?.age === 0 ? 1 : patient?.age }}
+      {{
+        patient?.age > 1 && patient?.age <= 4
+          ? $t('year', 1)
+          : patient?.age === 0 || patient?.age === 1
+            ? $t('year', 0)
+            : $t('year', 2)
+      }})</span
+    >
   </div>
   <div v-if="withCity" class="city">
     {{

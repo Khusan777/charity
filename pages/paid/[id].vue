@@ -3,7 +3,7 @@
     <HeaderComponent
       left-route="/main"
       center
-      center-text="Нужна помощь"
+      :center-text="$t('paid-page.header-text')"
     ></HeaderComponent>
     <div class="paid-container">
       <template v-if="loading">
@@ -40,8 +40,20 @@
                         patientData?.patient_name || ''
                     }}
                     <span
-                      >({{ patientData?.patient_age }}
-                      {{ feeItem?.patient_age <= 4 ? 'года' : 'лет' }})</span
+                      >({{
+                        patientData?.patient_age === 0
+                          ? 1
+                          : patientData?.patient_age
+                      }}
+                      {{
+                        patientData?.patient_age > 1 &&
+                        patientData?.patient_age <= 4
+                          ? $t('year', 1)
+                          : patientData?.patient_age === 0 ||
+                              patientData?.patient_age === 1
+                            ? $t('year', 0)
+                            : $t('year', 2)
+                      }})</span
                     >
                   </div>
                   <div></div>
@@ -84,23 +96,23 @@
               alt="info"
             ></NuxtImg>
             <div class="text">
-              При нажатии на кнопку "Пожертвовать" вы будете перенаправлены на
-              страницу оплаты в фонд Mehrli qo’llar. Сумма, которую вы укажете,
-              будет переведена на счет этого фонда.
+              {{ $t('paid-page.warning-text') }}
             </div>
           </div>
         </div>
       </template>
       <div>
         <div class="search-container">
-          <label class="label-text" for="help-summa">Сумма помощи</label>
+          <label class="label-text" for="help-summa">
+            {{ $t('paid-page.summa-label') }}
+          </label>
           <input
             id="help-summa"
             v-model="summa"
             type="text"
             minlength="4"
             inputmode="decimal"
-            placeholder="Введите сумму помощи"
+            :placeholder="$t('paid-page.placeholder')"
             @input="filterNonNumeric"
           />
         </div>
@@ -116,7 +128,7 @@
             class="text"
             @click="addSpaceRemainsSumma(String(patientData?.remains || 0))"
           >
-            Закрыть весь сбор ({{
+            {{ $t('paid-page.closed-collection') }} ({{
               patientData?.remains === null
                 ? 0
                 : String(patientData?.remains)?.length > 4
@@ -131,11 +143,11 @@
                         .replace(/\B(?=(\d{4})+(?!\d))/g, ' '),
                     )
             }}
-            сумов)
+            {{ $t('valyuta') }})
           </div>
         </div>
       </div>
-      <div style="padding: 20px 0; margin: 0 20px">
+      <div style="margin: 0 20px">
         <a
           v-if="summa?.length >= 4"
           v-ripple.500="'rgba(255, 255, 255, 0.35)'"
@@ -144,9 +156,10 @@
             '',
           )}&transaction_param=${patientData?.external_id}&return_url=https%3A%2F%2Fmy.click.uz%2Fapp%2FwebView%3Fauth%3Dtrue%26url%3Dhttps%253A%252F%252Fcharity.click.uz`"
           class="paid-active"
-          >Пожертвовать</a
         >
-        <button v-else class="paid-disabled">Пожертвовать</button>
+          {{ $t('paid-page.btn') }}</a
+        >
+        <button v-else class="paid-disabled">{{ $t('paid-page.btn') }}</button>
       </div>
     </div>
   </div>
@@ -213,8 +226,8 @@ const filterNonNumeric = () => {
   height: v-bind(heightDevice);
   overflow: hidden;
   & .paid-container {
-    height: calc(v-bind(heightDevice) - 80px);
-    max-height: calc(v-bind(heightDevice) - 80px);
+    height: calc(v-bind(heightDevice) - 100px);
+    max-height: calc(v-bind(heightDevice) - 100px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;

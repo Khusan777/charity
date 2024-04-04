@@ -2,7 +2,7 @@
   <div class="detail-page">
     <UiHeaderComponent
       center
-      center-text="Личная карточка"
+      :center-text="$t('patient-detail.header-text')"
       :left-route="
         appStore.fromMainPage
           ? '/main'
@@ -61,7 +61,7 @@
       class="btn-help"
       @click="$router.push(`/paid/${patientData?.id}`)"
     >
-      <UiButton :with-disabled="false"></UiButton>
+      <UiButton :text-btn="$t('main.btn')" :with-disabled="false"></UiButton>
     </div>
   </div>
 </template>

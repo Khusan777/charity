@@ -3,7 +3,7 @@
     <ui-header-component
       left-route="/completed"
       center
-      center-text="История"
+      :center-text="$t('history-page.header-text')"
     ></ui-header-component>
     <div class="history-container">
       <NuxtImg
