@@ -226,8 +226,8 @@ const filterNonNumeric = () => {
   height: v-bind(heightDevice);
   overflow: hidden;
   & .paid-container {
-    height: calc(v-bind(heightDevice) - 80px);
-    max-height: calc(v-bind(heightDevice) - 80px);
+    height: calc(v-bind(heightDevice) - 74.5px);
+    max-height: calc(v-bind(heightDevice) - 74.5px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
