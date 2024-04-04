@@ -63,11 +63,11 @@ defineProps({
       color: var(--reports-card-title);
       line-height: normal;
       padding: 15px 10px 5px;
-      height: 60px;
+      height: 48px;
       overflow: hidden;
       display: -webkit-box;
-      -webkit-line-clamp: 3;
-      line-clamp: 3;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
       -webkit-box-orient: vertical;
     }
     & .description {
@@ -75,11 +75,11 @@ defineProps({
       font-size: 10px;
       color: var(--reports-card-desc);
       padding: 10px 10px 5px;
-      height: 70px;
+      height: 55px;
       overflow: hidden;
       display: -webkit-box;
-      -webkit-line-clamp: 4;
-      line-clamp: 4;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
       -webkit-box-orient: vertical;
     }
     & .detail {
