@@ -301,9 +301,9 @@ export default {
           })
           .catch((err) => {
             if (err) {
-              if(err?.response?.data?.status == 400){
+              if (err?.response?.data?.status === 400) {
                 this.loading = false
-              } else{
+              } else {
                 this.loading = false
                 this.$toast.error('Неверный формат даты рождения')
                 this.birthday = null1
