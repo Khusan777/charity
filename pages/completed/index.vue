@@ -223,7 +223,7 @@
               "
             >
               <div class="text-message">
-                {{ $t('completed.without-report-content') }}
+                {{ $t('helped.without-content') }}
               </div>
             </div>
           </template>
