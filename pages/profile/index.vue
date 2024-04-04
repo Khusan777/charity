@@ -159,7 +159,7 @@ const getUserData = () => {
       $toast.error(parseErrorsFromResponse(err))
     })
 }
-if (!user.value) {
+if (!Object.keys(user.value)?.length) {
   getUserData()
 }
 </script>
