@@ -14,9 +14,9 @@
         alt="error"
       ></NuxtImg>
       <div class="title">Упс что-то пошло не так</div>
-      <div style="user-select: all" class="description">
-        Произошла техническая ошибка. Попробуйте ещё раз. Cookie data
-        {{ cookieData }}
+      <div class="description">
+        Произошла техническая ошибка. Попробуйте ещё раз. Runtime config
+        {{ config.public?.apiBase }}
       </div>
     </div>
     <div
@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-const cookieData = computed(() => document?.cookie)
+const config = useRuntimeConfig()
 const appStore = useAppStore()
 const heightDevice = inject('devicePlatform')
 </script>
