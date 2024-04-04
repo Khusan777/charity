@@ -43,7 +43,13 @@
             {{ feeItem?.patient_surname + ' ' + feeItem?.patient_name || '' }}
             <span
               >({{ feeItem?.patient_age === 0 ? 1 : feeItem?.patient_age }}
-              {{ feeItem?.patient_age <= 4 ? 'года' : 'лет' }})</span
+              {{
+                feeItem?.patient_age > 1 && feeItem?.patient_age <= 4
+                  ? $t('year', 1)
+                  : feeItem?.patient_age === 0 || feeItem?.patient_age === 1
+                    ? $t('year', 0)
+                    : $t('year', 2)
+              }})</span
             >
           </div>
           <div
@@ -100,7 +106,7 @@ const props = defineProps({
   },
 })
 const amountData = reactive({
-  amount: props.feeItem?.amount,
+  amount: props.feeItem?.collected || 0,
 })
 
 const goToDetailPage = (feeId) => {

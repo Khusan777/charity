@@ -30,7 +30,7 @@
             stroke-width="2"
           />
         </svg>
-        <div class="text-page">Главный</div>
+        <div class="text-page">{{ $t('main.page') }}</div>
       </NuxtLink>
     </div>
     <div class="done-nav">
@@ -57,7 +57,7 @@
             stroke-linejoin="round"
           />
         </svg>
-        <div class="text-page">Завершённые</div>
+        <div class="text-page">{{ $t('completed.tab-name') }}</div>
       </NuxtLink>
     </div>
     <div class="notification-nav">
@@ -92,7 +92,7 @@
             stroke-linecap="round"
           />
         </svg>
-        <div class="text-page">Уведомления</div>
+        <div class="text-page">{{ $t('push.title') }}</div>
       </NuxtLink>
     </div>
     <div class="profile-nav">
@@ -126,7 +126,7 @@
             stroke-linejoin="round"
           />
         </svg>
-        <div class="text-page">Профиль</div>
+        <div class="text-page">{{ $t('profile.title') }}</div>
       </NuxtLink>
     </div>
   </div>

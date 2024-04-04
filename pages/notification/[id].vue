@@ -2,7 +2,7 @@
   <div>
     <UiHeaderComponent
       center
-      center-text="Уведомления"
+      :center-text="$t('push.title')"
       left-route="/notification"
     ></UiHeaderComponent>
     <div class="notification-detail">

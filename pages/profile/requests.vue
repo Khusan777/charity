@@ -7,11 +7,10 @@
     ></UiHeaderComponent>
     <div class="requests-wrapper">
       <div v-if="loading" class="loading">
-        <MainSkeleton></MainSkeleton>
-        <MainSkeleton></MainSkeleton>
+        <RequestsSkeleton></RequestsSkeleton>
       </div>
       <div v-else class="not-loading">
-        <div v-if="getMyFees" class="requests-box">
+        <div v-if="getMyFees?.length > 0" class="requests-box">
           <div class="requests-top">
             <div class="requests-top-icon">
               <NuxtImg src="/images/info.svg"></NuxtImg>
@@ -119,19 +118,18 @@
           <div class="requests-not-top"></div>
           <div class="requests-not-content">
             <NuxtImg
-              v-if="appStore.theme === 'dark'"
-              src="/images/myfees-not.png"
-            ></NuxtImg>
-            <NuxtImg
               v-if="appStore.theme === 'light'"
               src="/images/myfees-not-light.png"
             ></NuxtImg>
+            <NuxtImg v-else src="/images/myfees-not.png"></NuxtImg>
             <p>
               Тут будут уведомления о том, как вы меняете мир к лучшему. Следи
               за новостями о своих благотворительных делах здесь!
             </p>
           </div>
-          <button class="requests-not-create">Создать заявку</button>
+          <router-link to="/profile/form" class="requests-not-create"
+            >Создать заявку</router-link
+          >
         </div>
       </div>
     </div>
@@ -141,12 +139,12 @@
 <script>
 import { apiClient } from '~/services/apiClient'
 import { useAppStore } from '~/stores/AppStore'
-import MainSkeleton from '~/components/skeleton/MainSkeleton.vue'
+import RequestsSkeleton from '~/components/skeleton/RequestsSkeleton.vue'
 
 export default {
   name: 'Faq',
   components: {
-    MainSkeleton,
+    RequestsSkeleton,
   },
   data() {
     return {
@@ -213,6 +211,7 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding-bottom: 20px;
   }
   &-item {
     background: var(--bg3);
@@ -342,10 +341,16 @@ export default {
       border: 0;
       font-size: 14px;
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }
 .loading {
   margin: 0 -20px;
+}
+.not-loading {
+  height: 100%;
 }
 </style>

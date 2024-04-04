@@ -7,16 +7,13 @@
     ></UiHeaderComponent>
     <div class="sendform-wrapper">
       <div class="sendform-fond">
-        <div class="sendform-fond-des">
-          Является негосударственной некоммерческой организацией в форме
-          учреждения созданного при учредительстве Союза молодежи Узбекистана
-        </div>
         <div class="sendform-fond-top">
           <div class="sendform-fond-top-icon">
             <NuxtImg src="/images/fonds/01.png"></NuxtImg>
           </div>
           <div class="sendform-fond-top-text">
             <div class="sendform-fond-top-title">Mehrli qo'llar</div>
+            <div class="sendform-fond-top-city">Ташкент</div>
             <div class="sendform-fond-top-line"></div>
             <a
               href="tel:998712000083"
@@ -28,7 +25,32 @@
               </div>
               <div class="sendform-fond-top-phone-val">+998 71 200-00-83</div>
             </a>
+            <a
+              href="https://t.me/Mehrliqollar"
+              target="_blank"
+              class="sendform-fond-top-phone"
+            >
+              <div class="sendform-fond-top-phone-icon">
+                <NuxtImg src="/images/tg.svg"></NuxtImg>
+              </div>
+              <div class="sendform-fond-top-phone-val">t.me/Mehriqollar</div>
+            </a>
+            <a
+              href="https://mehrli.uz/"
+              target="_blank"
+              class="sendform-fond-top-phone"
+            >
+              <div class="sendform-fond-top-phone-icon">
+                <NuxtImg src="/images/web.svg"></NuxtImg>
+              </div>
+              <div class="sendform-fond-top-phone-val">www.mehrli.uz</div>
+            </a>
+            <div class="sendform-fond-top-line"></div>
           </div>
+        </div>
+        <div class="sendform-fond-des">
+          Является негосударственной некоммерческой организацией в форме
+          учреждения созданного при учредительстве Союза молодежи Узбекистана
         </div>
       </div>
       <div class="sendform-top">
@@ -144,20 +166,9 @@
             <span v-if="v$.phone.maxLength.$invalid">Неверный формат</span>
           </div>
         </div>
-        <div class="sendform-pac-select">
+        <div class="sendform-pac-input">
           <label for="type">Тип нуждаемости<span>*</span></label>
-          <select
-            id="type"
-            v-model="v$.type.$model"
-            class="form-select"
-            :class="v$.type.$error ? 'error' : ''"
-          >
-            <option value="1" selected>Хирургическое лечение</option>
-            <option value="2">Медикаменты</option>
-          </select>
-          <div v-if="v$.type.$error" class="sendform-pac-error">
-            Выберите тип нуждаемости
-          </div>
+          <input type="text" value="Хирургическое лечение" readonly />
         </div>
         <div class="sendform-pac-input">
           <label for="des">Кратко опишите вашу ситуацию</label>
@@ -252,7 +263,7 @@ export default {
       birthday: '',
       region: '',
       des: '',
-      type: '',
+      type: 1,
       heightDevice: inject('devicePlatform'),
       appStore: useAppStore(),
       loading: false,
@@ -292,9 +303,13 @@ export default {
           })
           .catch((err) => {
             if (err) {
-              this.loading = false
-              this.$toast.error('Неверный формат даты рождения')
-              this.birthday = null1
+              if (err?.response?.data?.status === 400) {
+                this.loading = false
+              } else {
+                this.loading = false
+                this.$toast.error('Неверный формат даты рождения')
+                this.birthday = null1
+              }
             }
           })
       }
@@ -366,7 +381,6 @@ export default {
     padding: 10px;
     &-top {
       display: flex;
-      align-items: center;
       gap: 10px;
       &-icon {
         width: 60px;
@@ -385,6 +399,11 @@ export default {
         font-size: 16px;
         color: var(--text);
       }
+      &-city {
+        line-height: 14.4px;
+        font-size: 12px;
+        color: var(--text2);
+      }
       &-line {
         margin: 10px 0;
         background: var(--border);
@@ -395,7 +414,7 @@ export default {
         display: flex;
         align-items: center;
         gap: 6px;
-        margin-bottom: 10px;
+        margin-bottom: 6px;
         &:last-child {
           margin-bottom: 0;
         }
@@ -421,7 +440,6 @@ export default {
       font-size: 12px;
       line-height: 16px;
       color: var(--text2);
-      margin-bottom: 10px;
     }
   }
   &-info {

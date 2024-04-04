@@ -1,6 +1,9 @@
 <template>
   <div class="completed-pages">
-    <UiHeaderComponent center center-text="Завершенные"></UiHeaderComponent>
+    <UiHeaderComponent
+      center
+      :center-text="$t('completed.tab-name')"
+    ></UiHeaderComponent>
     <div
       v-if="completedFee.loading || appStore.patientNews.loading"
       class="content-data"
@@ -21,7 +24,7 @@
               aria-selected="true"
               @click="appStore.patientNews.activeTabs = false"
             >
-              Закрытые сборы
+              {{ $t('completed.pag-name') }}
             </button>
           </li>
           <li class="nav-item">
@@ -38,7 +41,7 @@
               aria-selected="false"
               @click="getNews"
             >
-              Вы помогли
+              {{ $t('helped.tab-name') }}
             </button>
           </li>
         </ul>
@@ -96,7 +99,7 @@
               aria-selected="true"
               @click="appStore.patientNews.activeTabs = false"
             >
-              Закрытые сборы
+              {{ $t('completed.pag-name') }}
             </button>
           </li>
           <li class="nav-item">
@@ -113,7 +116,7 @@
               aria-selected="false"
               @click="getNews"
             >
-              Вы помогли
+              {{ $t('helped.tab-name') }}
             </button>
           </li>
         </ul>
@@ -164,10 +167,7 @@
                 "
               >
                 <div class="text-message">
-                  В настоящее время у нас нет активных благотворительных
-                  мероприятий. Однако мы постоянно работаем над новыми
-                  инициативами для помощи тем, кто в ней нуждается. Следите за
-                  нашими новостями!
+                  {{ $t('completed.without-content') }}
                 </div>
               </div>
             </template>
@@ -223,10 +223,7 @@
               "
             >
               <div class="text-message">
-                В настоящее время у нас нет активных благотворительных
-                мероприятий. Однако мы постоянно работаем над новыми
-                инициативами для помощи тем, кто в ней нуждается. Следите за
-                нашими новостями!
+                {{ $t('helped.without-content') }}
               </div>
             </div>
           </template>
@@ -259,7 +256,7 @@ const completedFee = reactive({
 const el = shallowRef(null)
 const getFeeCompletedIndex = () => {
   completedFee.loading = true
-  getCompletedFee({ ...queryFee, status_ids: [4, 5, 7] })
+  getCompletedFee({ ...queryFee, status_ids: [4, 5] })
     .then((response) => {
       completedFee.index = response.data?.data
       completedFee.paginationData = response.data?.pagination
@@ -289,7 +286,7 @@ const getNews = () => {
 
 const getFeePagination = async () => {
   completedFee.loader = true
-  await getCompletedFee({ ...queryFee, status_ids: [4, 5, 7] })
+  await getCompletedFee({ ...queryFee, status_ids: [4, 5] })
     .then((response) => {
       completedFee.index = [...completedFee.index, ...response.data?.data]
       completedFee.paginationData = response.data?.pagination

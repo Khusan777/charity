@@ -32,7 +32,7 @@
     ></UiBadge>
     <UiCompletedProgress
       v-if="isCompleted"
-      :amount="patient?.amount"
+      :amount="patient?.collected"
     ></UiCompletedProgress>
     <UiCollectionProgress
       v-else
@@ -52,7 +52,7 @@
             alt="calendar"
           ></NuxtImg>
           <div>
-            <div class="text">Дата публикации</div>
+            <div class="text">{{ $t('patient-detail.date-published') }}</div>
             <div class="date">{{ formattedDate(patient?.created_at) }}</div>
           </div>
         </div>
@@ -63,7 +63,13 @@
             alt="calendar"
           ></NuxtImg>
           <div>
-            <div class="text">Уже помогают</div>
+            <div class="text">
+              {{
+                isCompleted
+                  ? $t('patient-detail.help-completed')
+                  : $t('patient-detail.help-collected')
+              }}
+            </div>
             <div class="date">{{ patient?.transactions_count }}</div>
           </div>
         </div>
@@ -73,7 +79,7 @@
     <div class="diagnos-data">
       <div class="info">
         <div>
-          <div class="title">Диагноз</div>
+          <div class="title">{{ $t('patient-detail.sick-category') }}</div>
           <div class="description">
             {{
               locale === 'uz'
@@ -105,7 +111,7 @@
       </div>
       <div class="info">
         <div>
-          <div class="title">Вид помощи</div>
+          <div class="title">{{ $t('patient-detail.type-help') }}</div>
           <div class="description">
             {{
               locale === 'uz'
@@ -119,7 +125,7 @@
       </div>
       <div class="building">
         <div>
-          <div class="title">Фонд (ННО)</div>
+          <div class="title">{{ $t('patient-detail.fond') }}</div>
           <div class="description">
             {{
               locale === 'uz'
@@ -139,7 +145,7 @@
       </div>
       <div class="building">
         <div>
-          <div class="title">Медицинское учреждение</div>
+          <div class="title">{{ $t('patient-detail.clinic') }}</div>
           <div class="description">
             {{
               locale === 'uz'

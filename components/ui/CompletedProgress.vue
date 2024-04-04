@@ -2,7 +2,7 @@
   <div class="collection-progress">
     <div class="completed">
       <NuxtImg class="icon" src="/images/check.svg"></NuxtImg>
-      <div class="text">Сбор завершён</div>
+      <div class="text">{{ $t('collected-success') }}</div>
     </div>
     <div style="height: 6px" class="progress">
       <div
@@ -16,12 +16,10 @@
     </div>
     <div class="completed-summa">
       <div class="summa">
-        Сумма собрана:
+        {{ $t('completed.collected-text') }}
         <span
-          >{{
-            amount?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
-          }}
-          сумов</span
+          >{{ amount?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ' ') }}
+          {{ $t('valyuta') }}</span
         >
       </div>
     </div>

@@ -23,17 +23,13 @@
         alt="background"
       ></NuxtImg>
       <div>
-        <div class="title">Добро пожаловать!</div>
+        <div class="title">{{ $t('start.text') }}</div>
         <div class="description">
+          <div v-html="$t('start.greeting')"></div>
           <div>
-            Это единая площадка помощи благотворительным фондам,
-            <strong>созданная Click.</strong>
+            {{ $t('start.title') }}
           </div>
-          <div>
-            В этом разделе вы можете оказывать адресное пожертвование: видеть
-            кому нужна помощь, какой фонд ведет сбор и прогресс по сбору денег.
-          </div>
-          <div>Мы объединяем не только фонды, мы объединяем сердца!</div>
+          <div>{{ $t('start.subtitle') }}</div>
         </div>
       </div>
       <div style="padding: 0 20px 20px">
@@ -49,13 +45,13 @@
             v-if="acceptBtn"
             class="btn-accept"
             :with-disabled="true"
-            text-btn="Продолжить"
+            :text-btn="$t('start.btn')"
           ></UiButton>
           <UiButton
             v-else
             class="btn-accept"
             :with-disabled="false"
-            text-btn="Продолжить"
+            :text-btn="$t('start.btn')"
             @click="acceptOfferta"
           ></UiButton>
         </div>
