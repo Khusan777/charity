@@ -12,7 +12,7 @@
 defineProps({
   textBtn: {
     type: String,
-    default: 'Хочу помочь',
+    default: '',
   },
   withDisabled: {
     type: Boolean,

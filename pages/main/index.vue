@@ -6,7 +6,7 @@
         v-model="queryFee.search"
         type="text"
         maxlength="40"
-        placeholder="Введите ФИО"
+        :placeholder="$t('main.search')"
       />
       <template
         v-if="
@@ -38,7 +38,7 @@
               src="/images/icon-search-light.svg"
               alt="search-icon"
             ></NuxtImg>
-            <div class="text-message">По вашему запросу ничего не найдено</div>
+            <div class="text-message">{{ $t('not-found') }}</div>
           </div>
         </div>
       </template>
@@ -84,15 +84,13 @@
         "
       >
         <div class="text-message">
-          В настоящее время у нас нет активных благотворительных мероприятий.
-          Однако мы постоянно работаем над новыми инициативами для помощи тем,
-          кто в ней нуждается. Следите за нашими новостями!
+          {{ $t('main.without-content') }}
         </div>
       </div>
     </template>
     <template v-if="indexFee.loading">
       <div class="loading-container">
-        <div class="description">Сейчас им крайне необходима ваша помощь</div>
+        <div class="description">{{ $t('main.subtitle') }}</div>
         <div>
           <MainSkeleton></MainSkeleton>
           <MainSkeleton></MainSkeleton>
@@ -102,7 +100,7 @@
     </template>
     <template v-if="indexFee.data?.length">
       <div ref="el" class="help-block">
-        <div class="description">Сейчас им крайне необходима ваша помощь</div>
+        <div class="description">{{ $t('main.subtitle') }}</div>
         <div v-for="feeItem in indexFee?.data" :key="feeItem">
           <ChartCardNotCollected
             :key="feeItem.id"
@@ -276,7 +274,7 @@ watch(
   & .x-icon {
     background: var(--search-bg);
     right: 30px;
-    top: 5px;
+    top: 6.5px;
     position: absolute;
   }
 }

@@ -61,7 +61,7 @@ const getCookie = function (name) {
 
 const formattedDate = (date) => {
   const { locale } = useI18n()
-  const parsedDate = useDateFormat(date, 'DD MMM. YYYY', {
+  const parsedDate = useDateFormat(date, 'DD MMM YYYY', {
     locales:
       locale.value === 'en'
         ? // eslint-disable-next-line no-constant-condition

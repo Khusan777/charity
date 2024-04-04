@@ -28,7 +28,7 @@
               : patientNew?.description_ru
         "
       ></div>
-      <div class="detail">Читать историю</div>
+      <div class="detail">{{ $t('helped.write-history') }}</div>
     </div>
   </div>
 </template>

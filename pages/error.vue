@@ -13,9 +13,9 @@
         src="/images/error_dark.svg"
         alt="error"
       ></NuxtImg>
-      <div class="title">Упс что-то пошло не так</div>
+      <div class="title">{{ $t('error-page.title') }}</div>
       <div class="description">
-        Произошла техническая ошибка. Попробуйте ещё раз.
+        {{ $t('error-page.description') }}
       </div>
     </div>
     <div
@@ -24,7 +24,7 @@
     >
       <UiButton
         class="btn"
-        text-btn="Повторить попытку"
+        :text-btn="$t('error-page.btn')"
         :with-disabled="false"
         @click="$router.push('/')"
       ></UiButton>
