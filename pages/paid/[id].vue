@@ -147,7 +147,7 @@
           </div>
         </div>
       </div>
-      <div style="margin: 0 20px">
+      <div style="padding: 20px 0; margin: 0 20px">
         <a
           v-if="summa?.length >= 4"
           v-ripple.500="'rgba(255, 255, 255, 0.35)'"
@@ -226,8 +226,8 @@ const filterNonNumeric = () => {
   height: v-bind(heightDevice);
   overflow: hidden;
   & .paid-container {
-    height: calc(v-bind(heightDevice) - 100px);
-    max-height: calc(v-bind(heightDevice) - 100px);
+    height: calc(v-bind(heightDevice) - 80px);
+    max-height: calc(v-bind(heightDevice) - 80px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
