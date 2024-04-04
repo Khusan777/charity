@@ -122,10 +122,7 @@
               v-if="appStore.theme === 'light'"
               src="/images/myfees-not-light.png"
             ></NuxtImg>
-            <NuxtImg
-              v-else
-              src="/images/myfees-not.png"
-            ></NuxtImg>
+            <NuxtImg v-else src="/images/myfees-not.png"></NuxtImg>
             <p>
               Тут будут уведомления о том, как вы меняете мир к лучшему. Следи
               за новостями о своих благотворительных делах здесь!
@@ -348,7 +345,7 @@ export default {
 .loading {
   margin: 0 -20px;
 }
-.not-loading{
+.not-loading {
   height: 100%;
 }
 </style>

@@ -69,7 +69,7 @@ export default {
         this.appStore.info = res.data
         this.loading = false
       })
-    } else{
+    } else {
       this.loading = false
     }
   },
