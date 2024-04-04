@@ -128,7 +128,7 @@
               за новостями о своих благотворительных делах здесь!
             </p>
           </div>
-          <button class="requests-not-create">Создать заявку</button>
+          <router-link to="/profile/form" class="requests-not-create">Создать заявку</router-link>
         </div>
       </div>
     </div>

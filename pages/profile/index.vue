@@ -120,16 +120,25 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import { useAppStore } from '@/stores/AppStore'
 definePageMeta({
   layout: 'single',
 })
-const heightDevice = inject('devicePlatform')
-const appStore = useAppStore()
-const goModal = () => {
-  const modal = new bootstrap.Modal('#identModal')
-  modal.show()
+export default {
+  name: 'Profile',
+  data() {
+    return {
+      heightDevice: inject('devicePlatform'),
+      appStore: useAppStore()
+    }
+  },
+  methods: {
+    goModal(){
+      const modal = new bootstrap.Modal('#identModal')
+      modal.show()
+    }
+  }
 }
 </script>
 
