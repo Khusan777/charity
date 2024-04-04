@@ -121,7 +121,10 @@
 </template>
 
 <script setup>
-import { useAppStore } from '@/stores/AppStore'
+import { storeToRefs } from 'pinia'
+import { useAppStore } from '~/stores/AppStore'
+import { getMe } from '~/services/app.api'
+import { setToken } from '~/utils'
 definePageMeta({
   layout: 'single',
 })
@@ -131,6 +134,34 @@ const goModal = () => {
   const modal = new bootstrap.Modal('#identModal')
   modal.show()
 }
+const { user, webSession } = storeToRefs(appStore)
+
+const cookieWebSession = computed(() =>
+  getCookie('click-web-session')
+    ? getCookie('click-web-session')
+    : getCookie('web-session'),
+)
+
+const getUserData = () => {
+  getMe({
+    web_session: webSession.value ? webSession.value : cookieWebSession.value,
+  })
+    .then((response) => {
+      loading.value = false
+      if (response.data?.user) {
+        user.value = response.data?.user
+        setToken(response.data?.token)
+      }
+    })
+    .catch((err) => {
+      loading.value = false
+      isNotAcceptCode.value = err.response?.data?.error?.code
+      if (isNotAcceptCode.value !== 1001) {
+        router.push('error')
+      }
+    })
+}
+getUserData()
 </script>
 
 <style scoped lang="scss">
