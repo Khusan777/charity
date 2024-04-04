@@ -7,16 +7,13 @@
     ></UiHeaderComponent>
     <div class="sendform-wrapper">
       <div class="sendform-fond">
-        <div class="sendform-fond-des">
-          Является негосударственной некоммерческой организацией в форме
-          учреждения созданного при учредительстве Союза молодежи Узбекистана
-        </div>
         <div class="sendform-fond-top">
           <div class="sendform-fond-top-icon">
             <NuxtImg src="/images/fonds/01.png"></NuxtImg>
           </div>
           <div class="sendform-fond-top-text">
             <div class="sendform-fond-top-title">Mehrli qo'llar</div>
+            <div class="sendform-fond-top-city">Ташкент</div>
             <div class="sendform-fond-top-line"></div>
             <a
               href="tel:998712000083"
@@ -48,7 +45,12 @@
               </div>
               <div class="sendform-fond-top-phone-val">www.mehrli.uz</div>
             </a>
+            <div class="sendform-fond-top-line"></div>
           </div>
+        </div>
+        <div class="sendform-fond-des">
+          Является негосударственной некоммерческой организацией в форме
+          учреждения созданного при учредительстве Союза молодежи Узбекистана
         </div>
       </div>
       <div class="sendform-top">
@@ -386,7 +388,6 @@ export default {
     padding: 10px;
     &-top {
       display: flex;
-      align-items: center;
       gap: 10px;
       &-icon {
         width: 60px;
@@ -405,6 +406,11 @@ export default {
         font-size: 16px;
         color: var(--text);
       }
+      &-city{
+        line-height: 14.4px;
+        font-size: 12px;
+        color: var(--text2);
+      }
       &-line {
         margin: 10px 0;
         background: var(--border);
@@ -415,7 +421,7 @@ export default {
         display: flex;
         align-items: center;
         gap: 6px;
-        margin-bottom: 10px;
+        margin-bottom: 6px;
         &:last-child {
           margin-bottom: 0;
         }
@@ -441,7 +447,6 @@ export default {
       font-size: 12px;
       line-height: 16px;
       color: var(--text2);
-      margin-bottom: 10px;
     }
   }
   &-info {
