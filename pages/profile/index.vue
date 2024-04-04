@@ -122,12 +122,15 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { useToast } from 'vue-toast-notification'
 import { useAppStore } from '~/stores/AppStore'
 import { getMe } from '~/services/app.api'
-import { setToken } from '~/utils'
+import { parseErrorsFromResponse, setToken } from '~/utils'
+
 definePageMeta({
   layout: 'single',
 })
+const $toast = useToast()
 const heightDevice = inject('devicePlatform')
 const appStore = useAppStore()
 const goModal = () => {
@@ -147,21 +150,18 @@ const getUserData = () => {
     web_session: webSession.value ? webSession.value : cookieWebSession.value,
   })
     .then((response) => {
-      loading.value = false
       if (response.data?.user) {
         user.value = response.data?.user
         setToken(response.data?.token)
       }
     })
     .catch((err) => {
-      loading.value = false
-      isNotAcceptCode.value = err.response?.data?.error?.code
-      if (isNotAcceptCode.value !== 1001) {
-        router.push('error')
-      }
+      $toast.error(parseErrorsFromResponse(err))
     })
 }
-getUserData()
+if (!user.value) {
+  getUserData()
+}
 </script>
 
 <style scoped lang="scss">
