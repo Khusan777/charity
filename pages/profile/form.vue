@@ -164,20 +164,9 @@
             <span v-if="v$.phone.maxLength.$invalid">Неверный формат</span>
           </div>
         </div>
-        <div class="sendform-pac-select">
+        <div class="sendform-pac-input">
           <label for="type">Тип нуждаемости<span>*</span></label>
-          <select
-            id="type"
-            v-model="v$.type.$model"
-            class="form-select"
-            :class="v$.type.$error ? 'error' : ''"
-          >
-            <option value="1" selected>Хирургическое лечение</option>
-            <option value="2">Медикаменты</option>
-          </select>
-          <div v-if="v$.type.$error" class="sendform-pac-error">
-            Выберите тип нуждаемости
-          </div>
+          <input type="text" value="Хирургическое лечение" readonly />
         </div>
         <div class="sendform-pac-input">
           <label for="des">Кратко опишите вашу ситуацию</label>
@@ -272,7 +261,7 @@ export default {
       birthday: '',
       region: '',
       des: '',
-      type: '',
+      type: 1,
       heightDevice: inject('devicePlatform'),
       appStore: useAppStore(),
       loading: false,
@@ -312,9 +301,13 @@ export default {
           })
           .catch((err) => {
             if (err) {
-              this.loading = false
-              this.$toast.error('Неверный формат даты рождения')
-              this.birthday = null1
+              if(err?.response?.data?.status == 400){
+                this.loading = false
+              } else{
+                this.loading = false
+                this.$toast.error('Неверный формат даты рождения')
+                this.birthday = null1
+              }
             }
           })
       }
