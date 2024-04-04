@@ -7,8 +7,7 @@
     ></UiHeaderComponent>
     <div class="requests-wrapper">
       <div v-if="loading" class="loading">
-        <MainSkeleton></MainSkeleton>
-        <MainSkeleton></MainSkeleton>
+        <RequestsSkeleton></RequestsSkeleton>
       </div>
       <div v-else class="not-loading">
         <div v-if="getMyFees?.length > 0" class="requests-box">
@@ -140,12 +139,12 @@
 <script>
 import { apiClient } from '~/services/apiClient'
 import { useAppStore } from '~/stores/AppStore'
-import MainSkeleton from '~/components/skeleton/MainSkeleton.vue'
+import RequestsSkeleton from '~/components/skeleton/RequestsSkeleton.vue'
 
 export default {
   name: 'Faq',
   components: {
-    MainSkeleton,
+    RequestsSkeleton,
   },
   data() {
     return {
@@ -212,6 +211,7 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding-bottom: 20px;
   }
   &-item {
     background: var(--bg3);
@@ -341,6 +341,9 @@ export default {
       border: 0;
       font-size: 14px;
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }
