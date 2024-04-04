@@ -114,20 +114,22 @@
         <div v-else class="close-paid">
           <div
             class="text"
-            @click="addSpaceRemainsSumma(String(patientData?.remains))"
+            @click="addSpaceRemainsSumma(String(patientData?.remains || 0))"
           >
             Закрыть весь сбор ({{
-              String(patientData?.remains)?.length > 4
-                ? String(
-                    patientData?.remains
-                      ?.toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ' '),
-                  )
-                : String(
-                    patientData?.remains
-                      ?.toString()
-                      .replace(/\B(?=(\d{4})+(?!\d))/g, ' '),
-                  )
+              patientData?.remains === null
+                ? 0
+                : String(patientData?.remains)?.length > 4
+                  ? String(
+                      patientData?.remains
+                        ?.toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ' '),
+                    )
+                  : String(
+                      patientData?.remains
+                        ?.toString()
+                        .replace(/\B(?=(\d{4})+(?!\d))/g, ' '),
+                    )
             }}
             сумов)
           </div>
@@ -137,10 +139,10 @@
         <a
           v-if="summa?.length >= 4"
           v-ripple.500="'rgba(255, 255, 255, 0.35)'"
-          :href="`https://my.click.uz/services/pay/?service_id=2&amount=${summa?.replace(
+          :href="`https://my.click.uz/services/pay/?service_id=32840&amount=${summa?.replace(
             / /g,
             '',
-          )}&transaction_param=977543210&user_phone=977543210&return_url=https%3A%2F%2Fmy.click.uz%2Fapp%2FwebView%3Fauth%3Dtrue%26url%3Dhttps%253A%252F%252Fcredits.click.uz`"
+          )}&transaction_param=${patientData?.external_id}&return_url=https%3A%2F%2Fmy.click.uz%2Fapp%2FwebView%3Fauth%3Dtrue%26url%3Dhttps%253A%252F%252Fcharity.click.uz`"
           class="paid-active"
           >Пожертвовать</a
         >

@@ -13,12 +13,14 @@ const appStore = useAppStore()
 
 onMounted(() => {
   const themeCookie = computed(() =>
-    getCookie('theme') ? getCookie('theme') : getCookie('click-theme'),
+    getCookie('click-theme') ? getCookie('click-theme') : getCookie('theme'),
   )
   try {
     const rootElem = document.documentElement
     if (themeCookie.value === 'light') {
       rootElem.setAttribute('data-theme', 'light')
+      appStore.setTheme(themeCookie.value)
+    } else {
       appStore.setTheme(themeCookie.value)
     }
   } catch (err) {}
