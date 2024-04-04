@@ -7,8 +7,7 @@
     ></UiHeaderComponent>
     <div class="faq-wrapper">
       <div v-if="loading" class="loading">
-        <MainSkeleton></MainSkeleton>
-        <MainSkeleton></MainSkeleton>
+        <FaqSkeleton></FaqSkeleton>
       </div>
       <div v-else class="faq-list">
         <div v-for="faq in getFaqs" :key="faq.id" class="faq-item">
@@ -39,12 +38,12 @@
 <script>
 import { apiClient } from '~/services/apiClient'
 import { useAppStore } from '~/stores/AppStore'
-import MainSkeleton from '~/components/skeleton/MainSkeleton.vue'
+import FaqSkeleton from '~/components/skeleton/FaqSkeleton.vue'
 
 export default {
   name: 'Faq',
   components: {
-    MainSkeleton,
+    FaqSkeleton,
   },
   data() {
     return {
@@ -70,6 +69,8 @@ export default {
         this.appStore.info = res.data
         this.loading = false
       })
+    } else {
+      this.loading = false
     }
   },
 }

@@ -28,6 +28,26 @@
               </div>
               <div class="sendform-fond-top-phone-val">+998 71 200-00-83</div>
             </a>
+            <a
+              href="https://t.me/Mehrliqollar"
+              target="_blank"
+              class="sendform-fond-top-phone"
+            >
+              <div class="sendform-fond-top-phone-icon">
+                <NuxtImg src="/images/tg.svg"></NuxtImg>
+              </div>
+              <div class="sendform-fond-top-phone-val">t.me/Mehriqollar</div>
+            </a>
+            <a
+              href="https://mehrli.uz/"
+              target="_blank"
+              class="sendform-fond-top-phone"
+            >
+              <div class="sendform-fond-top-phone-icon">
+                <NuxtImg src="/images/web.svg"></NuxtImg>
+              </div>
+              <div class="sendform-fond-top-phone-val">www.mehrli.uz</div>
+            </a>
           </div>
         </div>
       </div>

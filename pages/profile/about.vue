@@ -32,23 +32,6 @@
           </p>
         </div>
       </div>
-      <div class="about-soc">
-        <a href="https://t.me/click_uz" target="_blank" class="about-soc-item"
-          ><NuxtImg src="/images/telegram.svg"></NuxtImg
-        ></a>
-        <a
-          href="https://www.instagram.com/clickuz/"
-          target="_blank"
-          class="about-soc-item"
-          ><NuxtImg src="/images/instagram.svg"></NuxtImg
-        ></a>
-        <a
-          href="https://www.youtube.com/channel/UCC9YNXA4HSbk34fhXpFMyLw"
-          target="_blank"
-          class="about-soc-item"
-          ><NuxtImg src="/images/youtube.svg"></NuxtImg
-        ></a>
-      </div>
     </div>
   </div>
 </template>
@@ -71,26 +54,6 @@ const heightDevice = inject('devicePlatform')
     justify-content: space-between;
     gap: 30px;
     overflow-y: scroll;
-  }
-  &-soc {
-    padding-bottom: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 9px;
-    &-item {
-      width: 40px;
-      height: 40px;
-      background: var(--bg3);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      img {
-        width: 24px;
-        height: 24px;
-      }
-    }
   }
   &-logo {
     margin-bottom: 20px;

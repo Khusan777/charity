@@ -22,12 +22,22 @@
               <div class="fonds-item-phone-val">+998 71 200-00-83</div>
             </a>
             <a
-              href="https://www.mehrli.uz"
+              href="https://t.me/Mehrliqollar"
               target="_blank"
               class="fonds-item-phone"
             >
               <div class="fonds-item-phone-icon">
-                <NuxtImg src="/images/global.svg"></NuxtImg>
+                <NuxtImg src="/images/tg.svg"></NuxtImg>
+              </div>
+              <div class="fonds-item-phone-val">t.me/Mehriqollar</div>
+            </a>
+            <a
+              href="https://mehrli.uz/"
+              target="_blank"
+              class="fonds-item-phone"
+            >
+              <div class="fonds-item-phone-icon">
+                <NuxtImg src="/images/web.svg"></NuxtImg>
               </div>
               <div class="fonds-item-phone-val">www.mehrli.uz</div>
             </a>
