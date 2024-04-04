@@ -131,19 +131,6 @@ const goModal = () => {
   const modal = new bootstrap.Modal('#identModal')
   modal.show()
 }
-
-const getTodayFees = () => {
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-  const itemsToday = appStore.myFees.filter((item) => {
-    const itemDate = new Date(item.created_at)
-    itemDate.setHours(0, 0, 0, 0)
-    return itemDate.getTime() === today.getTime()
-  })
-  console.log(itemsToday)
-}
-
-getTodayFees()
 </script>
 
 <style scoped lang="scss">
