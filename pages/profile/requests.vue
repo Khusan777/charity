@@ -94,18 +94,14 @@
                 </div>
               </div>
               <button
-                v-if="
-                  fee?.status_id != 2 &&
-                  fee?.status_id != 9 &&
-                  fee?.status_id != 7
-                "
+                v-if="fee?.status_id == 2 || fee?.status_id == 9"
                 class="requests-item-more"
                 @click="goMore(fee?.id)"
               >
                 Подробнее
               </button>
               <button
-                v-if="fee?.status_id == 7"
+                v-else
                 class="requests-item-more"
                 @click="goMore2(fee?.id)"
               >
@@ -127,9 +123,9 @@
               за новостями о своих благотворительных делах здесь!
             </p>
           </div>
-          <router-link to="/profile/form" class="requests-not-create"
-            >Создать заявку</router-link
-          >
+          <router-link to="/profile/form" class="requests-not-create">{{
+            t('profile.menu1')
+          }}</router-link>
         </div>
       </div>
     </div>

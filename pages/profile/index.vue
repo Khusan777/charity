@@ -60,15 +60,6 @@
             <NuxtImg src="/images/arrow.svg"></NuxtImg>
           </div>
         </router-link>
-        <router-link class="profile-menu-item" to="/profile/offer">
-          <div class="profile-menu-left">
-            <NuxtImg src="/images/info.svg"></NuxtImg>
-            <span>Пользовательское соглашение</span>
-          </div>
-          <div class="profile-menu-right">
-            <NuxtImg src="/images/arrow.svg"></NuxtImg>
-          </div>
-        </router-link>
       </div>
       <div class="profile-menu profile-menu2">
         <router-link class="profile-menu-item" to="/profile/faq">
