@@ -19,14 +19,24 @@
             aria-expanded="false"
             :aria-controls="'faq' + faq.id"
           >
-            <div class="faq-item-title">{{ faq.name_ru }}</div>
+            <div class="faq-item-title">{{
+              $i18n.locale === 'uz'
+                ? faq?.name_uz
+                : $i18n.locale === 'en'
+                  ? faq?.name_en
+                  : faq?.name_ru
+            }}</div>
             <div class="faq-item-icon">
               <NuxtImg src="/images/tick.svg"></NuxtImg>
             </div>
           </button>
           <div :id="'faq' + faq.id" class="collapse faq-item-body">
             <div class="faq-item-content">
-              <div class="faq-item-body" v-html="faq.description_ru"></div>
+              <div class="faq-item-body" v-html="$i18n.locale === 'uz'
+              ? faq?.description_uz
+              : $i18n.locale === 'en'
+                ? faq?.description_en
+                : faq?.description_ru"></div>
             </div>
           </div>
         </div>
