@@ -1,7 +1,7 @@
 <template>
   <div class="paid-page">
     <HeaderComponent
-      left-route="/main"
+      :left-route="`/main/${patientData?.id}`"
       center
       :center-text="$t('paid-page.header-text')"
     ></HeaderComponent>
@@ -182,9 +182,9 @@ const id = computed(() => route.params.id)
 const patientData = ref(null)
 const loading = ref(false)
 
-const PatientData = (patientId) => {
+const PatientData = () => {
   loading.value = true
-  getDetailPatient(+patientId)
+  getDetailPatient(id.value)
     .then((response) => {
       patientData.value = response.data?.data
       loading.value = false
@@ -194,7 +194,12 @@ const PatientData = (patientId) => {
       router.push('/error')
     })
 }
-PatientData(id.value)
+
+PatientData()
+
+onMounted(() => {
+  summa.value = null
+})
 
 const addSpaceRemainsSumma = (remainsSumma) => {
   summa.value = remainsSumma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
