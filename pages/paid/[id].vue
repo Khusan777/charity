@@ -35,6 +35,11 @@
                 alt="user"
               ></NuxtImg>
               <div style="width: calc(100% - 100px)">
+                <UiBadge
+                  :status-text="'ID ' + patientData?.external_id"
+                  back-color="var(--badge-back-color)"
+                  colour="var(--badge-color)"
+                ></UiBadge>
                 <div class="name">
                   <div>
                     {{
