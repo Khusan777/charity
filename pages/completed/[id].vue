@@ -14,7 +14,7 @@
       ></NuxtImg>
       <div class="info-panel">
         <div class="date">
-          {{ formatMonthDate(patientNew?.publication_date) }}
+          {{ formattedDate(patientNew?.publication_date) }}
         </div>
         <div class="name">
           {{
