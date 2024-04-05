@@ -2,7 +2,7 @@
   <div class="requests">
     <UiHeaderComponent
       center
-      center-text="Мои заявки"
+      :center-text="$t('requests.title')"
       left-route="/profile"
     ></UiHeaderComponent>
     <div class="requests-wrapper">
@@ -15,12 +15,7 @@
             <div class="requests-top-icon">
               <NuxtImg src="/images/info.svg"></NuxtImg>
             </div>
-            <div class="requests-top-text">
-              После отправки Заявления и получения полного пакета документов, в
-              рабочие дни с вами может связаться сотрудник фонда для уточнения
-              деталей, и в течение 10 рабочих дней вам придет ответ с решением
-              экспертной комиссии.
-            </div>
+            <div class="requests-top-text">{{ $t('requests.des') }}</div>
           </div>
           <div class="requests-list">
             <div v-for="fee in getMyFees" :key="fee?.id" class="requests-item">
@@ -31,7 +26,7 @@
                       {{ formatMonthDateTime(fee?.created_at) }}
                     </div>
                     <div class="requests-item-top-left-title">
-                      Номер заявки: <span>{{ fee?.id }}</span>
+                      {{ $t('requests.num') }}: <span>{{ fee?.id }}</span>
                     </div>
                   </div>
                   <div class="requests-item-top-right">
@@ -39,77 +34,93 @@
                       v-if="fee?.status_id == 2"
                       class="requests-item-top-right-status pending"
                     >
-                      Заявка на рассмотрении
+                      {{ $t('requests.status1') }}
                     </div>
                     <div
                       v-if="fee?.status_id != 2 && fee?.status_id != 9"
                       class="requests-item-top-right-status success"
                     >
-                      Заявка одобрена
+                      {{ $t('requests.status2') }}
                     </div>
                     <div
                       v-if="fee?.status_id == 9"
                       class="requests-item-top-right-status error"
                     >
-                      Заявка отлонена
+                      {{ $t('requests.status3') }}
                     </div>
                   </div>
                 </div>
                 <div v-if="fee?.status_id == 9" class="requests-item-top-error">
-                  К сожалению, мы не можем принять к рассмотрению вашу заявку,
-                  так как приоритетное направление работы фонда «Mehrli qo'llar»
-                  помощь детям, нуждающимся в операции на сердце.
+                  {{ $t('requests.status_des') }}
                 </div>
               </div>
               <div class="requests-item-body">
                 <div class="requests-item-body-item">
-                  <div class="requests-item-body-label">ФИО ребенка</div>
+                  <div class="requests-item-body-label">
+                    {{ $t('requests.fio') }}
+                  </div>
                   <div class="requests-item-body-val">
                     {{ fee?.patient_surname }} {{ fee?.patient_name }}
                   </div>
                 </div>
                 <div class="requests-item-body-item">
-                  <div class="requests-item-body-label">Дата рождения</div>
+                  <div class="requests-item-body-label">
+                    {{ $t('requests.date') }}
+                  </div>
                   <div class="requests-item-body-val">
                     {{ formatMonthNumber(fee?.patient_birth_date) }}
                   </div>
                 </div>
                 <div class="requests-item-body-item">
-                  <div class="requests-item-body-label">Область проживания</div>
+                  <div class="requests-item-body-label">
+                    {{ $t('requests.region') }}
+                  </div>
                   <div class="requests-item-body-val">
-                    {{ fee?.region?.name_ru }}
+                    {{
+                      $i18n.locale === 'uz'
+                        ? fee?.region?.name_uz
+                        : $i18n.locale === 'en'
+                          ? fee?.region?.name_en
+                          : fee?.region?.name_ru
+                    }}
                   </div>
                 </div>
                 <div class="requests-item-body-item">
-                  <div class="requests-item-body-label">Номер телефона</div>
+                  <div class="requests-item-body-label">
+                    {{ $t('requests.phone') }}
+                  </div>
                   <div class="requests-item-body-val">
                     {{ fee?.patient_phone }}
                   </div>
                 </div>
                 <div class="requests-item-body-item">
-                  <div class="requests-item-body-label">Тип нуждаемости</div>
+                  <div class="requests-item-body-label">
+                    {{ $t('requests.type') }}
+                  </div>
                   <div class="requests-item-body-val">
-                    {{ fee?.type_help?.name_ru }}
+                    {{
+                      $i18n.locale === 'uz'
+                        ? fee?.type_help?.name_uz
+                        : $i18n.locale === 'en'
+                          ? fee?.type_help?.name_en
+                          : fee?.type_help?.name_ru
+                    }}
                   </div>
                 </div>
               </div>
               <button
-                v-if="
-                  fee?.status_id != 2 &&
-                  fee?.status_id != 9 &&
-                  fee?.status_id != 7
-                "
+                v-if="fee?.status_id == 3"
                 class="requests-item-more"
                 @click="goMore(fee?.id)"
               >
-                Подробнее
+                {{ $t('requests.more') }}
               </button>
               <button
-                v-if="fee?.status_id == 7"
+                v-if="fee?.status_id == 4 || fee?.status_id == 5"
                 class="requests-item-more"
                 @click="goMore2(fee?.id)"
               >
-                Подробнее
+                {{ $t('requests.more') }}
               </button>
             </div>
           </div>
@@ -122,14 +133,11 @@
               src="/images/myfees-not-light.png"
             ></NuxtImg>
             <NuxtImg v-else src="/images/myfees-not.png"></NuxtImg>
-            <p>
-              Тут будут уведомления о том, как вы меняете мир к лучшему. Следи
-              за новостями о своих благотворительных делах здесь!
-            </p>
+            <p>{{ $t('requests.bottom') }}</p>
           </div>
-          <router-link to="/profile/form" class="requests-not-create"
-            >Создать заявку</router-link
-          >
+          <router-link to="/profile/form" class="requests-not-create">{{
+            $t('profile.menu1')
+          }}</router-link>
         </div>
       </div>
     </div>

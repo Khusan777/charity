@@ -79,7 +79,7 @@ const percentMuch = computed(
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-end;
     gap: 4px;
     & .title {
       color: var(--goal-title);
@@ -93,7 +93,7 @@ const percentMuch = computed(
       color: var(--goal-price);
       font-size: 14px;
       font-weight: 700;
-      line-height: 17px;
+      line-height: 14px;
       letter-spacing: 0;
       text-align: left;
     }

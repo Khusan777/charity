@@ -59,7 +59,7 @@
         !loading
       "
       class="btn-help"
-      @click="$router.push(`/paid/${patientData?.id}`)"
+      @click="goToPaidPage(patientData?.id)"
     >
       <UiButton :text-btn="$t('main.btn')" :with-disabled="false"></UiButton>
     </div>
@@ -91,6 +91,10 @@ const calculate = computed(() =>
 )
 
 const idPage = computed(() => route.params.id)
+
+const goToPaidPage = (feeId) => {
+  router.push(`/paid/${feeId}`)
+}
 
 const detailPatientData = () => {
   loading.value = true

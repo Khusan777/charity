@@ -64,11 +64,10 @@ const formattedDate = (date) => {
   const parsedDate = useDateFormat(date, 'DD MMM YYYY', {
     locales:
       locale.value === 'en'
-        ? // eslint-disable-next-line no-constant-condition
-          'en-En'
-          ? locale.value === 'uz'
-          : 'uz-Uz'
-        : 'ru-Ru',
+        ? 'en-En'
+        : locale.value === 'uz'
+          ? 'uz-Uz'
+          : 'ru-Ru',
   })
   return parsedDate.value?.replace(/['"]+/g, '')
 }

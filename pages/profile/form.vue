@@ -2,7 +2,7 @@
   <div class="sendform">
     <UiHeaderComponent
       center
-      center-text="Анкета-обращение"
+      :center-text="$t('form.title')"
       left-route="/profile"
     ></UiHeaderComponent>
     <div class="sendform-wrapper">
@@ -13,7 +13,7 @@
           </div>
           <div class="sendform-fond-top-text">
             <div class="sendform-fond-top-title">Mehrli qo'llar</div>
-            <div class="sendform-fond-top-city">Ташкент</div>
+            <div class="sendform-fond-top-city">{{ $t('fonds.city') }}</div>
             <div class="sendform-fond-top-line"></div>
             <a
               href="tel:998712000083"
@@ -48,62 +48,56 @@
             <div class="sendform-fond-top-line"></div>
           </div>
         </div>
-        <div class="sendform-fond-des">
-          Является негосударственной некоммерческой организацией в форме
-          учреждения созданного при учредительстве Союза молодежи Узбекистана
-        </div>
+        <div class="sendform-fond-des">{{ $t('fonds.des') }}</div>
       </div>
-      <div class="sendform-top">
-        Если вам нужна помощь, пожалуйста, заполните и отправьте
-        анкету-обращение. Рассмотрение заявки осуществляется в течение 14 дней с
-        момента подачи заявки. Помощь будет оказана в клиниках партнерах.
-      </div>
+      <div class="sendform-top">{{ $t('form.imp') }}</div>
       <div class="sendform-pac">
-        <div class="sendform-pac-title">Данные пациента</div>
-        <div class="sendform-pac-des">
-          Для оформления Анкеты-обращения вам необходимо заполнить контактные
-          данные
-        </div>
+        <div class="sendform-pac-title">{{ $t('form.subtitle') }}</div>
+        <div class="sendform-pac-des">{{ $t('form.des') }}</div>
         <div class="sendform-pac-input">
-          <label for="fio">Фамилия ребенка<span>*</span></label>
+          <label for="fio">{{ $t('form.surname_child') }}<span>*</span></label>
           <input
             id="fio"
             v-model="v$.surname.$model"
-            placeholder="Фамилия"
+            :placeholder="$t('form.surname')"
             :class="v$.surname.$error ? 'error' : ''"
             @input="filterSurname"
           />
           <div v-if="v$.surname.$error" class="sendform-pac-error">
-            <span v-if="v$.surname.required.$invalid">Введите фамилию</span>
+            <span v-if="v$.surname.required.$invalid">{{
+              $t('form.surname_word')
+            }}</span>
             <span v-if="v$.surname.minLength.$invalid"
-              >Мин.кол-во символов: 3</span
+              >{{ $t('form.min') }} 3</span
             >
             <span v-if="v$.surname.maxLength.$invalid"
-              >Макс.кол-во символов: 20</span
+              >{{ $t('form.max') }} 20</span
             >
           </div>
         </div>
         <div class="sendform-pac-input">
-          <label for="name">Имя ребенка<span>*</span></label>
+          <label for="name">{{ $t('form.name_child') }}<span>*</span></label>
           <input
             id="name"
             v-model="v$.name.$model"
-            placeholder="Имя"
+            :placeholder="$t('form.name')"
             :class="v$.name.$error ? 'error' : ''"
             @input="filterName"
           />
           <div v-if="v$.name.$error" class="sendform-pac-error">
-            <span v-if="v$.name.required.$invalid">Введите имя</span>
+            <span v-if="v$.name.required.$invalid">{{
+              $t('form.name_word')
+            }}</span>
             <span v-if="v$.name.minLength.$invalid"
-              >Мин.кол-во символов: 3</span
+              >{{ $t('form.min') }} 3</span
             >
             <span v-if="v$.name.maxLength.$invalid"
-              >Макс.кол-во символов: 20</span
+              >{{ $t('form.max') }} 20</span
             >
           </div>
         </div>
         <div class="sendform-pac-input">
-          <label for="birthday">Дата рождения<span>*</span></label>
+          <label for="birthday">{{ $t('form.date') }}<span>*</span></label>
           <input
             v-model="v$.birthday.$model"
             v-mask="'##-##-####'"
@@ -113,42 +107,46 @@
             :class="v$.birthday.$error ? 'error' : ''"
           />
           <div v-if="v$.birthday.$error" class="sendform-pac-error">
-            <span v-if="v$.birthday.required.$invalid"
-              >Введите дату рождения</span
-            >
-            <span v-if="v$.birthday.minLength.$invalid">Неверный формат</span>
-            <span v-if="v$.birthday.maxLength.$invalid">Неверный формат</span>
+            <span v-if="v$.birthday.required.$invalid">{{
+              $t('form.date_word')
+            }}</span>
+            <span v-if="v$.birthday.minLength.$invalid">{{
+              $t('form.format')
+            }}</span>
+            <span v-if="v$.birthday.maxLength.$invalid">{{
+              $t('form.format')
+            }}</span>
           </div>
         </div>
         <div class="sendform-pac-select">
-          <label for="region">Область проживания<span>*</span></label>
+          <label for="region">{{ $t('form.region') }}<span>*</span></label>
           <select
             id="region"
             v-model="v$.region.$model"
             class="form-select"
             :class="v$.region.$error ? 'error' : ''"
           >
-            <option value="10" selected>г. Ташкент</option>
-            <option value="11">Ташкентская область</option>
-            <option value="1">Андижанская область</option>
-            <option value="2">Бухарская область</option>
-            <option value="3">Джизакская область</option>
-            <option value="4">Кашкадарьинская область</option>
-            <option value="5">Навоиская область</option>
-            <option value="6">Наманганская область</option>
-            <option value="7">Самаркандская область</option>
-            <option value="8">Сурхандарьинская область</option>
-            <option value="9">Сырдарьинская область</option>
-            <option value="12">Ферганская область</option>
-            <option value="13">Хорезмская область</option>
-            <option value="14">Республика Каракалпакстан</option>
+            <option value="10" selected>{{ $t('form.region1') }}</option>
+            <option value="11">{{ $t('form.region2') }}</option>
+            <option value="1">{{ $t('form.region3') }}</option>
+            <option value="2">{{ $t('form.region4') }}</option>
+            <option value="3">{{ $t('form.region5') }}</option>
+            <option value="4">{{ $t('form.region6') }}</option>
+            <option value="5">{{ $t('form.region7') }}</option>
+            <option value="6">{{ $t('form.region8') }}</option>
+            <option value="7">{{ $t('form.region9') }}</option>
+            <option value="8">{{ $t('form.region10') }}</option>
+            <option value="9">{{ $t('form.region11') }}</option>
+            <option value="12">{{ $t('form.region12') }}</option>
+            <option value="13">{{ $t('form.region13') }}</option>
+            <option value="14">{{ $t('form.region14') }}</option>
           </select>
           <div v-if="v$.region.$error" class="sendform-pac-error">
-            Выберите область проживания
+            {{ $t('form.region_word') }}
           </div>
         </div>
         <div class="sendform-pac-input">
-          <label for="phone">Ваш телефон<span>*</span></label>
+          <label for="phone">{{ $t('form.phone') }}<span>*</span></label>
           <div class="sendform-pac-input-box">
             <span>+998</span>
             <input
@@ -161,43 +159,48 @@
             />
           </div>
           <div v-if="v$.phone.$error" class="sendform-pac-error">
-            <span v-if="v$.phone.required.$invalid">Введите телефон</span>
-            <span v-if="v$.phone.minLength.$invalid">Неверный формат</span>
-            <span v-if="v$.phone.maxLength.$invalid">Неверный формат</span>
+            <span v-if="v$.phone.required.$invalid">{{
+              $t('form.phone_word')
+            }}</span>
+            <span v-if="v$.phone.minLength.$invalid">{{
+              $t('form.format')
+            }}</span>
+            <span v-if="v$.phone.maxLength.$invalid">{{
+              $t('form.format')
+            }}</span>
           </div>
         </div>
         <div class="sendform-pac-input">
-          <label for="type">Тип нуждаемости<span>*</span></label>
-          <input type="text" value="Хирургическое лечение" readonly />
+          <label for="type">{{ $t('form.type') }}<span>*</span></label>
+          <input type="text" :value="$t('form.type1')" readonly />
         </div>
         <div class="sendform-pac-input">
-          <label for="des">Кратко опишите вашу ситуацию</label>
+          <label for="des">{{ $t('form.comment') }}</label>
           <textarea
             id="des"
             v-model="des"
-            placeholder="Ваше сообщение"
+            :placeholder="$t('form.comment_your')"
+            :class="v$.des.$error ? 'error' : ''"
             @input="assertMaxChars()"
           ></textarea>
+          <div v-if="v$.des.$error" class="sendform-pac-error">
+            <span v-if="v$.des.maxLength.$invalid"
+              >{{ $t('form.max') }} 500</span
+            >
+          </div>
         </div>
       </div>
-      <div class="sendform-bottom">
-        Направляя нам просьбу о помощи, пожалуйста, помните, что она может быть
-        проверена Национальным агентством социальной защиты и внесена в
-        государственную базу данных малоимущих.
-      </div>
+      <div class="sendform-bottom">{{ $t('form.rule') }}</div>
       <div class="sendform-button">
-        <p>
-          Нажимая кнопку «Отправить», я даю свое согласие на обработку моих
-          <a href="https://click.uz/ru/policypersonal">персональных данных</a>
-        </p>
+        <p v-html="$t('form.policy')"></p>
         <button :disabled="loading" @click.prevent="send">
-          <span v-if="!loading">Отправить запрос</span>
+          <span v-if="!loading">{{ $t('form.send') }}</span>
           <span
             v-if="loading"
             class="spinner-border spinner-border-sm"
             aria-hidden="true"
           ></span>
-          <span v-if="loading" role="status">Загрузка...</span>
+          <span v-if="loading" role="status">{{ $t('form.loading') }}...</span>
         </button>
       </div>
       <div
@@ -215,20 +218,14 @@
               <div class="success-modal-icon">
                 <NuxtImg src="/images/success.svg"></NuxtImg>
               </div>
-              <div class="success-modal-title">
-                Ваша заявка успешно отправлена
-              </div>
-              <div class="success-modal-des">
-                В рабочие дни с вами свяжется сотрудник фонда для уточнения
-                деталей. В течение 10 рабочих дней вы получите ответ с решением
-                экспертной комиссии.
-              </div>
+              <div class="success-modal-title">{{ $t('form.success') }}</div>
+              <div class="success-modal-des">{{ $t('form.success_des') }}</div>
               <button
                 class="success-modal-btn"
                 data-bs-dismiss="modal"
                 @click="goHome"
               >
-                Готово
+                {{ $t('form.success_nice') }}
               </button>
             </div>
           </div>
@@ -353,6 +350,9 @@ export default {
         maxLength: maxLength(14),
       },
       type: { required },
+      des: {
+        maxLength: maxLength(500),
+      },
     }
   },
 }
@@ -530,6 +530,9 @@ export default {
           transition: 0.5s;
           outline: 0;
         }
+      }
+      textarea.error {
+        border: 1px solid #fd7172;
       }
       &-box {
         display: flex;

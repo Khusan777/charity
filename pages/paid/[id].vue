@@ -1,7 +1,10 @@
 <template>
   <div class="paid-page">
     <HeaderComponent
-      left-route="/main"
+      :left-route="{
+        path: `/main/${patientData?.id}`,
+        query: { completed: false },
+      }"
       center
       :center-text="$t('paid-page.header-text')"
     ></HeaderComponent>
@@ -32,6 +35,11 @@
                 alt="user"
               ></NuxtImg>
               <div style="width: calc(100% - 100px)">
+                <UiBadge
+                  :status-text="'ID ' + patientData?.external_id"
+                  back-color="var(--badge-back-color)"
+                  colour="var(--badge-color)"
+                ></UiBadge>
                 <div class="name">
                   <div>
                     {{
@@ -182,9 +190,9 @@ const id = computed(() => route.params.id)
 const patientData = ref(null)
 const loading = ref(false)
 
-const PatientData = (patientId) => {
+const PatientData = () => {
   loading.value = true
-  getDetailPatient(+patientId)
+  getDetailPatient(id.value)
     .then((response) => {
       patientData.value = response.data?.data
       loading.value = false
@@ -194,7 +202,12 @@ const PatientData = (patientId) => {
       router.push('/error')
     })
 }
-PatientData(id.value)
+
+PatientData()
+
+onMounted(() => {
+  summa.value = ''
+})
 
 const addSpaceRemainsSumma = (remainsSumma) => {
   summa.value = remainsSumma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
