@@ -94,14 +94,14 @@
                 </div>
               </div>
               <button
-                v-if="fee?.status_id == 2 || fee?.status_id == 9"
+                v-if="fee?.status_id == 3"
                 class="requests-item-more"
                 @click="goMore(fee?.id)"
               >
                 Подробнее
               </button>
               <button
-                v-else
+                v-if="fee?.status_id == 4 || fee?.status_id == 5"
                 class="requests-item-more"
                 @click="goMore2(fee?.id)"
               >
