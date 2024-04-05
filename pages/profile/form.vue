@@ -64,7 +64,9 @@
             @input="filterSurname"
           />
           <div v-if="v$.surname.$error" class="sendform-pac-error">
-            <span v-if="v$.surname.required.$invalid">{{ $t('form.surname_word') }}</span>
+            <span v-if="v$.surname.required.$invalid">{{
+              $t('form.surname_word')
+            }}</span>
             <span v-if="v$.surname.minLength.$invalid"
               >{{ $t('form.min') }} 3</span
             >
@@ -83,7 +85,9 @@
             @input="filterName"
           />
           <div v-if="v$.name.$error" class="sendform-pac-error">
-            <span v-if="v$.name.required.$invalid">{{ $t('form.name_word') }}</span>
+            <span v-if="v$.name.required.$invalid">{{
+              $t('form.name_word')
+            }}</span>
             <span v-if="v$.name.minLength.$invalid"
               >{{ $t('form.min') }} 3</span
             >
@@ -103,11 +107,15 @@
             :class="v$.birthday.$error ? 'error' : ''"
           />
           <div v-if="v$.birthday.$error" class="sendform-pac-error">
-            <span v-if="v$.birthday.required.$invalid"
-              >{{ $t('form.date_word') }}</span
-            >
-            <span v-if="v$.birthday.minLength.$invalid">{{ $t('form.format') }}</span>
-            <span v-if="v$.birthday.maxLength.$invalid">{{ $t('form.format') }}</span>
+            <span v-if="v$.birthday.required.$invalid">{{
+              $t('form.date_word')
+            }}</span>
+            <span v-if="v$.birthday.minLength.$invalid">{{
+              $t('form.format')
+            }}</span>
+            <span v-if="v$.birthday.maxLength.$invalid">{{
+              $t('form.format')
+            }}</span>
           </div>
         </div>
         <div class="sendform-pac-select">
@@ -133,7 +141,9 @@
             <option value="13">{{ $t('form.region13') }}</option>
             <option value="14">{{ $t('form.region14') }}</option>
           </select>
-          <div v-if="v$.region.$error" class="sendform-pac-error">{{ $t('form.region_word') }}</div>
+          <div v-if="v$.region.$error" class="sendform-pac-error">
+            {{ $t('form.region_word') }}
+          </div>
         </div>
         <div class="sendform-pac-input">
           <label for="phone">{{ $t('form.phone') }}<span>*</span></label>
@@ -149,9 +159,15 @@
             />
           </div>
           <div v-if="v$.phone.$error" class="sendform-pac-error">
-            <span v-if="v$.phone.required.$invalid">{{ $t('form.phone_word') }}</span>
-            <span v-if="v$.phone.minLength.$invalid">{{ $t('form.format') }}</span>
-            <span v-if="v$.phone.maxLength.$invalid">{{ $t('form.format') }}</span>
+            <span v-if="v$.phone.required.$invalid">{{
+              $t('form.phone_word')
+            }}</span>
+            <span v-if="v$.phone.minLength.$invalid">{{
+              $t('form.format')
+            }}</span>
+            <span v-if="v$.phone.maxLength.$invalid">{{
+              $t('form.format')
+            }}</span>
           </div>
         </div>
         <div class="sendform-pac-input">
@@ -164,11 +180,13 @@
             id="des"
             v-model="des"
             :placeholder="$t('form.comment_your')"
-            @input="assertMaxChars()"
             :class="v$.des.$error ? 'error' : ''"
+            @input="assertMaxChars()"
           ></textarea>
           <div v-if="v$.des.$error" class="sendform-pac-error">
-            <span v-if="v$.des.maxLength.$invalid">{{ $t('form.max') }} 500</span>
+            <span v-if="v$.des.maxLength.$invalid"
+              >{{ $t('form.max') }} 500</span
+            >
           </div>
         </div>
       </div>
@@ -206,7 +224,9 @@
                 class="success-modal-btn"
                 data-bs-dismiss="modal"
                 @click="goHome"
-              >{{ $t('form.success_nice') }}</button>
+              >
+                {{ $t('form.success_nice') }}
+              </button>
             </div>
           </div>
         </div>
@@ -331,8 +351,8 @@ export default {
       },
       type: { required },
       des: {
-        maxLength: maxLength(500)
-      }
+        maxLength: maxLength(500),
+      },
     }
   },
 }

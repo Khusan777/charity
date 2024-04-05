@@ -1,6 +1,9 @@
 <template>
   <div class="profile">
-    <UiHeaderComponent center :center-text="$t('profile.title')"></UiHeaderComponent>
+    <UiHeaderComponent
+      center
+      :center-text="$t('profile.title')"
+    ></UiHeaderComponent>
     <div class="profile-wrapper">
       <div class="profile-user">
         <div class="profile-user-img">
@@ -97,7 +100,8 @@
               <a
                 href="https://my.click.uz/app/identification"
                 class="ident-modal-btn"
-              >{{ $t('profile.ident_start') }}</a>
+                >{{ $t('profile.ident_start') }}</a
+              >
             </div>
           </div>
         </div>

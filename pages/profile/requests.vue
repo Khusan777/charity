@@ -50,45 +50,61 @@
                     </div>
                   </div>
                 </div>
-                <div v-if="fee?.status_id == 9" class="requests-item-top-error">{{ $t('requests.status_des') }}</div>
+                <div v-if="fee?.status_id == 9" class="requests-item-top-error">
+                  {{ $t('requests.status_des') }}
+                </div>
               </div>
               <div class="requests-item-body">
                 <div class="requests-item-body-item">
-                  <div class="requests-item-body-label">{{ $t('requests.fio') }}</div>
+                  <div class="requests-item-body-label">
+                    {{ $t('requests.fio') }}
+                  </div>
                   <div class="requests-item-body-val">
                     {{ fee?.patient_surname }} {{ fee?.patient_name }}
                   </div>
                 </div>
                 <div class="requests-item-body-item">
-                  <div class="requests-item-body-label">{{ $t('requests.date') }}</div>
+                  <div class="requests-item-body-label">
+                    {{ $t('requests.date') }}
+                  </div>
                   <div class="requests-item-body-val">
                     {{ formatMonthNumber(fee?.patient_birth_date) }}
                   </div>
                 </div>
                 <div class="requests-item-body-item">
-                  <div class="requests-item-body-label">{{ $t('requests.region') }}</div>
+                  <div class="requests-item-body-label">
+                    {{ $t('requests.region') }}
+                  </div>
                   <div class="requests-item-body-val">
-                    {{ $i18n.locale === 'uz'
-                    ? fee?.region?.name_uz
-                    : $i18n.locale === 'en'
-                      ? fee?.region?.name_en
-                      : fee?.region?.name_ru }}
+                    {{
+                      $i18n.locale === 'uz'
+                        ? fee?.region?.name_uz
+                        : $i18n.locale === 'en'
+                          ? fee?.region?.name_en
+                          : fee?.region?.name_ru
+                    }}
                   </div>
                 </div>
                 <div class="requests-item-body-item">
-                  <div class="requests-item-body-label">{{ $t('requests.phone') }}</div>
+                  <div class="requests-item-body-label">
+                    {{ $t('requests.phone') }}
+                  </div>
                   <div class="requests-item-body-val">
                     {{ fee?.patient_phone }}
                   </div>
                 </div>
                 <div class="requests-item-body-item">
-                  <div class="requests-item-body-label">{{ $t('requests.type') }}</div>
+                  <div class="requests-item-body-label">
+                    {{ $t('requests.type') }}
+                  </div>
                   <div class="requests-item-body-val">
-                    {{ $i18n.locale === 'uz'
-                    ? fee?.type_help?.name_uz
-                    : $i18n.locale === 'en'
-                      ? fee?.type_help?.name_en
-                      : fee?.type_help?.name_ru }}
+                    {{
+                      $i18n.locale === 'uz'
+                        ? fee?.type_help?.name_uz
+                        : $i18n.locale === 'en'
+                          ? fee?.type_help?.name_en
+                          : fee?.type_help?.name_ru
+                    }}
                   </div>
                 </div>
               </div>
