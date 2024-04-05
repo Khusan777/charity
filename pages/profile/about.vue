@@ -14,7 +14,12 @@
           ></NuxtImg>
           <NuxtImg v-else src="/images/logo_dark.svg"></NuxtImg>
         </div>
-        <div class="about-text" v-html="$t('about.des')"></div>
+        <div class="about-text">
+          <p>{{ $t('about.des1') }}</p>
+          <p>{{ $t('about.des2') }}</p>
+          <p>{{ $t('about.des3') }}</p>
+          <p>{{ $t('about.des4') }}</p>
+        </div>
       </div>
     </div>
   </div>
