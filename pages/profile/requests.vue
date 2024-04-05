@@ -124,7 +124,7 @@
             </p>
           </div>
           <router-link to="/profile/form" class="requests-not-create">{{
-            t('profile.menu1')
+            $t('profile.menu1')
           }}</router-link>
         </div>
       </div>

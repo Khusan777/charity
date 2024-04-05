@@ -66,7 +66,7 @@ export default {
   mounted() {
     if (!this.appStore.info) {
       apiClient.get('/info').then((res) => {
-        this.appStore.info = res.data
+        this.appStore.info = res.data.data
         this.loading = false
       })
     } else {

@@ -22,7 +22,7 @@ const getInfoText = async () => {
   await getInfo()
     .then((response) => {
       if (response.status === 200) {
-        appStore.info = response.data
+        appStore.info = response.data.data
       }
     })
     .catch((err) => {
