@@ -4,7 +4,7 @@ import axios from 'axios'
 // https://dev-promo23.click.uz/api - for dev
 
 const apiClient = axios.create({
-  baseURL: 'https://dev-promo23.click.uz/api',
+  baseURL: 'https://charity.click.uz/api',
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
