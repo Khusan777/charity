@@ -1,6 +1,9 @@
 <template>
   <div class="profile">
-    <UiHeaderComponent center center-text="Профиль"></UiHeaderComponent>
+    <UiHeaderComponent
+      center
+      :center-text="$t('profile.title')"
+    ></UiHeaderComponent>
     <div class="profile-wrapper">
       <div class="profile-user">
         <div class="profile-user-img">
@@ -12,11 +15,11 @@
         <div class="profile-user-phone">{{ appStore?.user?.phone_number }}</div>
         <div v-if="appStore?.user?.is_identified" class="profile-user-ident">
           <NuxtImg src="/images/ident.svg" alt="ident"></NuxtImg>
-          <span>Вы идентифицированы</span>
+          <span>{{ $t('profile.ident') }}</span>
         </div>
         <div v-else class="profile-user-ident">
           <NuxtImg src="/images/not-ident.svg" alt="ident"></NuxtImg>
-          <span>Вы не идентифицированы</span>
+          <span>{{ $t('profile.no-ident') }}</span>
         </div>
       </div>
       <div class="profile-menu">
@@ -27,7 +30,7 @@
         >
           <div class="profile-menu-left">
             <NuxtImg src="/images/edit.svg"></NuxtImg>
-            <span>Заявка в фонд Mehrli qo'llar</span>
+            <span>{{ $t('profile.menu1') }}</span>
           </div>
           <div class="profile-menu-right">
             <NuxtImg src="/images/arrow.svg"></NuxtImg>
@@ -36,7 +39,7 @@
         <div v-else class="profile-menu-item" @click="goModal">
           <div class="profile-menu-left">
             <NuxtImg src="/images/edit.svg"></NuxtImg>
-            <span>Заявка в фонд Mehrli qo'llar</span>
+            <span>{{ $t('profile.menu1') }}</span>
           </div>
           <div class="profile-menu-right">
             <NuxtImg src="/images/arrow.svg"></NuxtImg>
@@ -45,7 +48,7 @@
         <router-link class="profile-menu-item" to="/profile/requests">
           <div class="profile-menu-left">
             <NuxtImg src="/images/doc.svg"></NuxtImg>
-            <span>Мои заявки</span>
+            <span>{{ $t('profile.menu2') }}</span>
           </div>
           <div class="profile-menu-right">
             <NuxtImg src="/images/arrow.svg"></NuxtImg>
@@ -54,7 +57,7 @@
         <router-link class="profile-menu-item" to="/profile/fonds">
           <div class="profile-menu-left">
             <NuxtImg src="/images/like.svg"></NuxtImg>
-            <span>Все фонды</span>
+            <span>{{ $t('profile.menu3') }}</span>
           </div>
           <div class="profile-menu-right">
             <NuxtImg src="/images/arrow.svg"></NuxtImg>
@@ -65,7 +68,7 @@
         <router-link class="profile-menu-item" to="/profile/faq">
           <div class="profile-menu-left">
             <NuxtImg src="/images/faq.svg"></NuxtImg>
-            <span>Вопросы и ответы</span>
+            <span>{{ $t('profile.menu5') }}</span>
           </div>
           <div class="profile-menu-right">
             <NuxtImg src="/images/arrow.svg"></NuxtImg>
@@ -76,7 +79,7 @@
         <router-link class="profile-menu-item" to="/profile/about">
           <div class="profile-menu-left">
             <NuxtImg src="/images/like2.svg"></NuxtImg>
-            <span>О проекте</span>
+            <span>{{ $t('profile.menu6') }}</span>
           </div>
           <div class="profile-menu-right">
             <NuxtImg src="/images/arrow.svg"></NuxtImg>
@@ -93,16 +96,12 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-body">
-              <div class="ident-modal-des">
-                Для того чтобы отправить заявку, необходимо пройти идентификацию
-                в Click
-              </div>
+              <div class="ident-modal-des">{{ $t('profile.ident_title') }}</div>
               <a
                 href="https://my.click.uz/app/identification"
                 class="ident-modal-btn"
+                >{{ $t('profile.ident_start') }}</a
               >
-                Начать индентификацию
-              </a>
             </div>
           </div>
         </div>

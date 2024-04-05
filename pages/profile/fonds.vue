@@ -2,7 +2,7 @@
   <div class="fonds">
     <UiHeaderComponent
       center
-      center-text="Все фонды"
+      :center-text="$t('fonds.title')"
       left-route="/profile"
     ></UiHeaderComponent>
     <div class="fonds-wrapper">
@@ -13,7 +13,7 @@
           </div>
           <div class="fonds-item-text">
             <div class="fonds-item-title">Mehrli qo'llar</div>
-            <div class="fonds-item-city">Ташкент</div>
+            <div class="fonds-item-city">{{ $t('fonds.city') }}</div>
             <div class="fonds-item-hr"></div>
             <a href="tel:998712000083" target="_blank" class="fonds-item-phone">
               <div class="fonds-item-phone-icon">
@@ -44,10 +44,7 @@
             <div class="fonds-item-hr"></div>
           </div>
         </div>
-        <div class="fonds-item-des">
-          Является негосударственной некоммерческой организацией в форме
-          учреждения созданного при учредительстве Союза молодежи Узбекистана
-        </div>
+        <div class="fonds-item-des">{{ $t('fonds.des') }}</div>
       </div>
     </div>
   </div>

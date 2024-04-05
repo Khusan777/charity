@@ -2,11 +2,26 @@
   <div class="offer">
     <UiHeaderComponent
       center
-      :center-text="appStore.info?.[0]?.name_ru"
+      :center-text="
+        $i18n.locale === 'uz'
+          ? appStore.info?.[0]?.name_uz
+          : $i18n.locale === 'en'
+            ? appStore.info?.[0]?.name_en
+            : appStore.info?.[0]?.name_ru
+      "
       left-route="/profile"
     ></UiHeaderComponent>
     <div class="offer-wrapper">
-      <div class="offer-text" v-html="appStore.info?.[0]?.description_ru"></div>
+      <div
+        class="offer-text"
+        v-html="
+          $i18n.locale === 'uz'
+            ? appStore.info?.[0]?.description_uz
+            : $i18n.locale === 'en'
+              ? appStore.info?.[0]?.description_en
+              : appStore.info?.[0]?.description_ru
+        "
+      ></div>
     </div>
   </div>
 </template>
