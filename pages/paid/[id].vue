@@ -1,7 +1,10 @@
 <template>
   <div class="paid-page">
     <HeaderComponent
-      :left-route="`/main/${patientData?.id}`"
+      :left-route="{
+        path: `/main/${patientData?.id}`,
+        query: { completed: false },
+      }"
       center
       :center-text="$t('paid-page.header-text')"
     ></HeaderComponent>
@@ -198,7 +201,7 @@ const PatientData = () => {
 PatientData()
 
 onMounted(() => {
-  summa.value = null
+  summa.value = ''
 })
 
 const addSpaceRemainsSumma = (remainsSumma) => {

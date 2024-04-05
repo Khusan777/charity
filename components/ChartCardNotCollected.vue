@@ -96,12 +96,12 @@
         is-completed="false"
       ></UiCollectionProgress>
     </div>
-    <div
-      v-ripple.500="'rgba(255, 255, 255, 0.35)'"
-      class="help-btn"
-      @click="goToPaidPage(feeItem?.id)"
-    >
-      <UiButton :text-btn="$t('main.btn')" :with-disabled="false"></UiButton>
+    <div v-ripple.500="'rgba(255, 255, 255, 0.35)'" class="help-btn">
+      <UiButton
+        :text-btn="$t('main.btn')"
+        :with-disabled="false"
+        @click="goToPaidPage(feeItem?.id)"
+      ></UiButton>
     </div>
   </div>
 </template>
