@@ -95,9 +95,7 @@
               </div>
               <button
                 v-if="
-                  fee?.status_id != 2 &&
-                  fee?.status_id != 9 &&
-                  fee?.status_id != 7
+                  fee?.status_id == 2 || fee?.status_id == 9
                 "
                 class="requests-item-more"
                 @click="goMore(fee?.id)"
@@ -105,7 +103,7 @@
                 Подробнее
               </button>
               <button
-                v-if="fee?.status_id == 7"
+                v-else
                 class="requests-item-more"
                 @click="goMore2(fee?.id)"
               >
@@ -128,7 +126,7 @@
             </p>
           </div>
           <router-link to="/profile/form" class="requests-not-create"
-            >Создать заявку</router-link
+            >{{ t('profile.menu1') }}</router-link
           >
         </div>
       </div>
