@@ -61,12 +61,12 @@ const getCookie = function (name) {
 
 const formattedDate = (date) => {
   const { locale } = useI18n()
-  const parsedDate = useDateFormat(date, 'DD MMMM YYYY', {
+  const parsedDate = useDateFormat(date, 'DD MMM YYYY', {
     locales:
       locale.value === 'en'
         ? 'en-En'
         : locale.value === 'uz'
-          ? 'uz-Latn-UZ'
+          ? 'uz-Uz'
           : 'ru-Ru',
   })
   return parsedDate.value?.replace(/['"]+/g, '')

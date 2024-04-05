@@ -53,7 +53,7 @@
           ></NuxtImg>
           <div>
             <div class="text">{{ $t('patient-detail.date-published') }}</div>
-            <div class="date">{{ formatMonthDate(patient?.created_at) }}</div>
+            <div class="date">{{ formattedDate(patient?.created_at) }}</div>
           </div>
         </div>
         <div class="data">

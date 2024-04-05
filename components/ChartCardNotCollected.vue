@@ -99,7 +99,7 @@
     <div
       v-ripple.500="'rgba(255, 255, 255, 0.35)'"
       class="help-btn"
-      @click.prevent="$router.push(`/paid/${feeItem?.id}`)"
+      @click="goToPaidPage(feeItem?.id)"
     >
       <UiButton :text-btn="$t('main.btn')" :with-disabled="false"></UiButton>
     </div>
@@ -121,6 +121,10 @@ const amountData = reactive({
   amount: props.feeItem?.amount,
   remainsAmount: props.feeItem?.remains || 0,
 })
+
+const goToPaidPage = (feeId) => {
+  router.push(`paid/${feeId}`)
+}
 
 const goToDetailPage = (feeId) => {
   appStore.fromMainPage = true
