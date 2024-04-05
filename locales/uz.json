@@ -10,14 +10,14 @@
         "btn": "Takroran urinib ko'rish"
     },
     "start": {
-        "text": "Добро пожаловать!",
+        "text": "Xush kelibsiz!",
         "greeting": "Bu Click tomonidan yaratilgan xayriya fondlariga yordam berish yagona platformasi",
         "title": "Mazkur bo'limda aniq manzilli  xayriyani amalga oshirish mumkin: kimga yordam kerakligini, qaysi fond pul to'playotganini va qancha pul to'planganini ko'rsa bo'ladi" ,
         "subtitle": "Biz nafaqat fondlarni, balki qalblarni birlashtiramiz",
         "btn": "Davom ettirish"
     },
     "main": {
-        "without-content": "В настоящее время у нас нет активных благотворительных мероприятий. Однако мы постоянно работаем над новыми инициативами для помощи тем, кто в ней нуждается. Следите за нашими новостями!",
+        "without-content": "Hozirda faol xayriya tadbirlarimiz yo‘q. Biroq, biz yordamga muhtojlarga ko'maklashish uchun yangi tashabbuslar ustida doimiy ravishda ishlamoqdamiz. Yangiliklarimizni kuzatib boring!",
         "page": "Bosh sahifa",
         "search": "FISH kiriting",
         "subtitle": "Ularga yordamingiz juda ham zarur",
@@ -27,13 +27,13 @@
         "btn": "Yordam bermoqchiman"
     },
     "completed": {
-        "tab-name": "Завершённые",
-        "without-content": "На этой странице отображаются завершенные сборы. Это место, где вы можете увидеть результаты вашей помощи - когда сумма была собрана и цель достигнута. Следите за обновлениями, чтобы быть в курсе новых инициатив.",
+        "tab-name": "Tugatilganlar",
+        "without-content": "Ushbu sahifada tugatilgan pul yig'uvlari ko'rsatiladi. Bu sizning yordamingiz natijasini ko'rishingiz mumkin bo'lgan joy - qachon pul yig'ilgani va maqsadga erishilgani. Yangi tashabbuslarni kuzatib boring.",
         "pag-name": "Yopiq yig'uvlar",
         "collected-text":"Mablag' to'plandi:"
     },
     "helped": {
-        "without-content": "На этой странице отображаются завершенные сборы. Это место, где вы можете увидеть результаты вашей помощи - когда сумма была собрана и цель достигнута. Следите за обновлениями, чтобы быть в курсе новых инициатив.",
+        "without-content": "Ushbu sahifada tugatilgan pul yig'uvlari ko'rsatiladi. Bu sizning yordamingiz natijasini ko'rishingiz mumkin bo'lgan joy - qachon pul yig'ilgani va maqsadga erishilgani. Yangi tashabbuslarni kuzatib boring.",
         "tab-name": "Siz yordam berdingiz",
         "write-history": "Batafsil"
     },
@@ -41,12 +41,12 @@
         "header-text": "Shaxsiy kartochka",
         "date-published": "Chop etilish sanasi",
         "help-completed": "Yordam berishdi",
-        "help-collected": "Уже помогают",
+        "help-collected": "Yordam berishyapti",
         "type-help": "Yordam turi",
         "sick-category": "Tashxis",
         "fond": "Fond (NNT)",
         "clinic": "Tibbiy muassasa",
-        "history": "Muhtoj haqida"
+        "history": "Vasiylikdagi shaxs haqida"
     },
     "history-page": {
         "header-text": "Muhtoj haqida batafsil"
@@ -65,10 +65,10 @@
     },
     "about": {
         "title": "Loyiha haqida",
-        "des1": "Миссия проекта – помочь фондам, предоставив им площадку для сбора денежных средств, и это удобный способ для пользователей  регулярно участвовать в благотворительных акция, отслеживая при этом результаты. Проект создан click при участии  Национального агентства социальной защиты при Президенте Республики Узбекистан.",
-        "des2": "Благотворительность всегда была частью жизни граждан. На платформе размещаются только проверенные случаи, которые курируются официальными фондами. Это позволит пользователям быть уверенными в том, куда пойдут средства.",
-        "des3": "За достоверность данных отвечают как сами фонды, так и национальное агентства социальной защиты. Click при этом обеспечивает техническую поддержку в размещении материалов и сборе денег.",
-        "des4": "Платформа помогает тяжелобольным детям и взрослым из разных регионов Узбекистана, чтобы никто не оставался наедине с болезнью."
+        "des1": "Loyihaning vazifasi jamg‘armalarga mablag‘ to‘plash platformasini taqdim etish orqali yordam berishdir va bu foydalanuvchilar uchun natijalarni kuzatib borib, xayriya tadbirlarida muntazam qatnashish uchun qulay usuldir. Loyiha O‘zbekiston Respublikasi Prezidenti huzuridagi Ijtimoiy himoya milliy agentligi birgalikda Click tomonidan yaratilgan.",
+        "des2": "Xayriya har doim fuqarolar hayotining bir qismi bo'lib kelgan. Platformada faqat rasmiy fondlar tomonidan nazorat qilinadigan tasdiqlangan holatlar joylashtiriladi. Bu foydalanuvchilarga mablag'lar qayerga ketayotgani haqida ishonch hosil qilish imkonini beradi.",
+        "des3": "Ma’lumotlarning to‘g‘riligiga jamg‘armalarning o‘zlari hamda Ijtimoiy himoya milliy agentligi ham javobgar. Bunda Click materiallarni joylashtirish va pul yig'ish uchun texnik yordam beradi.",
+        "des4": "Platforma hech kim o'z kasalligi bilan yolg‘iz qolmasligi maqsadida O‘zbekistonning turli viloyatlardagi og‘ir kasal bolalar va kattalarga yordam beradi."
     },
     "faq": {
         "title": "Savollar va javoblar"
@@ -80,9 +80,9 @@
     },
     "form": {
         "title": "Anketa-ariza",
-        "imp": "Если вам нужна помощь, пожалуйста, заполните и отправьте анкету-обращение. Рассмотрение заявки осуществляется в течение 14 дней с момента подачи заявки. Помощь будет оказана в клиниках партнерах.",
+        "imp": "Agar sizga yoki yaqinlaringizga yordam kerak bo'lsa, iltimos, Mehrli qo ' llar jamg'armasiga so'rovnomani to'ldiring va yuboring. Murojaatni ko'rib chiqish ariza topshirilgan kundan boshlab 7 ish kuni ichida amalga oshiriladi.",
         "subtitle": "Bemor haqida ma'lumot",
-        "des": "ДYordam olish uchun quyidagi formada xayriya oluvchi haqidagi ma'lumotni kiriting",
+        "des": "Yordam olish uchun quyidagi formada xayriya oluvchi haqidagi ma'lumotni kiriting",
         "surname": "Familiya",
         "surname_child": "Bemor familiyasi",
         "surname_word": "Familiyani kiriting",
@@ -117,7 +117,7 @@
         "comment": "Vaziyatingizni qisqacha ta'riflab bering",
         "comment_your": "Sizning arizangiz",
         "rule": "Bizga yordam so'rovini yuborayotganda, iltimos, fond birinchi navbatda yuzagaa kelgan vaziyatni mustaqil ravishda hal qilish imkoniga ega bo'magan oilalarrga yordam berishini yodda tuting. Qiyin moliyaviy ahvolni tasdiqlash uchun ariza davlat organlarining ma’lumotlar bazasida normativ hujjatlarga muvofiq tekshiriladi",
-        "policy": "«Yuborish» tugmasini bosar ekanman, shaxsiy ma'lumotlarimni qayta ishlashlariga rozilik beraman",
+        "policy": "«Yuborish» tugmasini bosar ekanman,<a href=\"https://click.uz/uz/policypersonal\">shaxsiy ma'lumotlarimni</a> qayta ishlashlariga rozilik beraman",
         "send": "So'rov yuborish",
         "loading": "Yuklanmoqda",
         "success": "So'rovingiz muvaffaqiyatli yuborildi",
