@@ -6,10 +6,6 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vue-toastification'],
   },
-  image: {
-    dir: 'assets',
-    provider: 'ipx',
-  },
   routeRules: {
     // '/': { prerender: true },
     // '/completed': { prerender: true },

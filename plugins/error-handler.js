@@ -13,18 +13,21 @@ export default defineNuxtPlugin((nuxtApp) => {
         `https://api.telegram.org/bot6410254952:AAGi6kN9EyJD6KkHLLBXQ4snVAoP077uztM/sendMessage?chat_id=-4139852497&parse_mode=html&text=${data}`,
         requestOptions,
       )
+      console.log('here')
     } else if (instance && isProd) {
       const data = `<pre><code class="language-javascript">Vue Instance: ${instance}</code></pre>`
       fetch(
         `https://api.telegram.org/bot6410254952:AAGi6kN9EyJD6KkHLLBXQ4snVAoP077uztM/sendMessage?chat_id=-4139852497&parse_mode=html&text=${data}`,
         requestOptions,
       )
+      console.log('here')
     } else if (isProd && info) {
       const data = `<pre><code class="language-javascript">Vue Info: ${info}</code></pre>`
       fetch(
         `https://api.telegram.org/bot6410254952:AAGi6kN9EyJD6KkHLLBXQ4snVAoP077uztM/sendMessage?chat_id=-4139852497&parse_mode=html&text=${data}`,
         requestOptions,
       )
+      console.log('here')
     }
   }
   nuxtApp.vueApp.config.warnHandler = (error, instance, info) => {
@@ -34,18 +37,21 @@ export default defineNuxtPlugin((nuxtApp) => {
         `https://api.telegram.org/bot6410254952:AAGi6kN9EyJD6KkHLLBXQ4snVAoP077uztM/sendMessage?chat_id=-4139852497&parse_mode=html&text=${data}`,
         requestOptions,
       )
+      console.log('here')
     } else if (instance && isProd) {
       const data = `<pre><code class="language-javascript">Vue Instance: ${instance}</code></pre>`
       fetch(
         `https://api.telegram.org/bot6410254952:AAGi6kN9EyJD6KkHLLBXQ4snVAoP077uztM/sendMessage?chat_id=-4139852497&parse_mode=html&text=${data}`,
         requestOptions,
       )
+      console.log('here')
     } else if (info && isProd) {
       const data = `<pre><code class="language-javascript">Vue Info: ${info}</code></pre>`
       fetch(
         `https://api.telegram.org/bot6410254952:AAGi6kN9EyJD6KkHLLBXQ4snVAoP077uztM/sendMessage?chat_id=-4139852497&parse_mode=html&text=${data}`,
         requestOptions,
       )
+      console.log('here')
     }
   }
   nuxtApp.hook('vue:error', (error, instance, info) => {
@@ -55,18 +61,21 @@ export default defineNuxtPlugin((nuxtApp) => {
         `https://api.telegram.org/bot6410254952:AAGi6kN9EyJD6KkHLLBXQ4snVAoP077uztM/sendMessage?chat_id=-4139852497&parse_mode=html&text=${data}`,
         requestOptions,
       )
+      console.log('here')
     } else if (instance && isProd) {
       const data = `<pre><code class="language-javascript">Nuxt Instance: ${instance}</code></pre>`
       fetch(
         `https://api.telegram.org/bot6410254952:AAGi6kN9EyJD6KkHLLBXQ4snVAoP077uztM/sendMessage?chat_id=-4139852497&parse_mode=html&text=${data}`,
         requestOptions,
       )
+      console.log('here')
     } else if (instance && isProd) {
       const data = `<pre><code class="language-javascript">Nuxt Info: ${info}</code></pre>`
       fetch(
         `https://api.telegram.org/bot6410254952:AAGi6kN9EyJD6KkHLLBXQ4snVAoP077uztM/sendMessage?chat_id=-4139852497&parse_mode=html&text=${data}`,
         requestOptions,
       )
+      console.log('here')
     }
   })
 })

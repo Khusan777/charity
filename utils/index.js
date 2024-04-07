@@ -8,14 +8,14 @@ const getAuthorizationHeader = () => `Bearer ${getToken()}`
 const parseErrorsFromResponse = (error) => {
   const responseErrors = []
   if (error.response && error.response.data.errors) {
-    const errors = error.response && error.response?.data?.errors
-    for (const err of Object?.keys(errors)) {
+    const errors =
+      error.response && error.response.data.errors && error.response.data.error
+    for (const err of Object.keys(errors)) {
       responseErrors.push(errors[err][0])
     }
   } else {
     responseErrors.push(
-      error.response?.message ||
-        error.response?.data?.error?.message ||
+      error.response?.data?.error?.message ||
         error?.response?.data?.message ||
         '[FE] Ошибка при получении данных',
     )
