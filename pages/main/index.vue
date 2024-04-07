@@ -246,7 +246,8 @@ watch(
     border: 1px solid rgb(183, 184, 198);
     border-radius: 10px;
     height: 40px;
-    background: var(--search-bg) url('/images/search.svg') no-repeat 10px center;
+    background: var(--search-bg) url('../../assets/images/search.svg') no-repeat
+      10px center;
     width: 100%;
     display: flex;
     align-items: center;
