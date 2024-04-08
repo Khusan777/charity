@@ -13,9 +13,9 @@ export default defineNuxtConfig({
     transpile: ['vue-toastification'],
   },
   routeRules: {
-    '/': { prerender: true },
-    '/completed': { prerender: true },
-    '/completed/*': { prerender: true },
+    // '/': { prerender: true },
+    // '/completed': { prerender: true },
+    // '/completed/*': { prerender: true },
     // '/profile/about': { prerender: true },
     // '/profile/faq': { prerender: true },
     // '/profile/fonds': { prerender: true },
