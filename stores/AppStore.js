@@ -7,13 +7,13 @@ export const useAppStore = defineStore('AppStore', () => {
   const info = ref(null)
   const lang = ref(null)
   const theme = ref(null)
-  const fromMainPage = ref(false)
   const patientNews = reactive({
     loading: false,
     index: null,
     paginationData: null,
     activeTabs: false,
   })
+  const fromMainPage = ref(false)
   const myFees = ref(null)
   const navMyFees = ref(null)
 

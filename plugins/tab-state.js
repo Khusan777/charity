@@ -6,6 +6,9 @@ export default defineNuxtPlugin(() => {
       if (from.name === 'completed-id') {
         appStore.patientNews.activeTabs = true
       }
+      if (from.name === 'main') {
+        appStore.fromMainPage = true
+      }
       if (from.name === 'profile-requests' && to.name === 'main-id') {
         appStore.navMyFees = true
       } else {

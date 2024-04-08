@@ -80,7 +80,7 @@ export default defineNuxtPlugin(() => {
       }
       errorStatus[error.response.status]()
     }
-    if (error.response.data.error.code !== 1001) {
+    if (error.response?.data?.error?.code !== 1001) {
       generateToaster(errors)
     }
     return Promise.reject(error)
