@@ -1,6 +1,13 @@
 <template>
   <div class="paid-page">
     <HeaderComponent
+      v-if="loading"
+      left-route="/main"
+      center
+      :center-text="$t('paid-page.header-text')"
+    ></HeaderComponent>
+    <HeaderComponent
+      v-else
       :left-route="{
         path: `/main/${patientData?.id}`,
         query: { completed: false },
@@ -214,22 +221,16 @@ const addSpaceRemainsSumma = (remainsSumma) => {
 }
 
 const filterNonNumeric = () => {
-  if (summa.value?.length === 5) {
-    const inputValue = summa.value.replace(/[^0-9]/g, '')
-    summa.value = inputValue
-      .split('')
-      .reverse()
-      .join('')
-      .replace(/([0-9]{3})/g, '$1 ')
-      .split('')
-      .reverse()
-      .join('')
-  }
-  if (summa.value?.length > 6) {
-    let inputValue = summa.value.replace(/[^0-9]/g, '')
-    inputValue = inputValue.replace(/(.{3})/g, '$1 ')
-    summa.value = inputValue.trim()
-  }
+  summa.value = summa.value
+    .replace(/[^0-9]/g, '')
+    .split('')
+    .reverse()
+    .join('')
+    .replace(/([0-9]{3})/g, '$1 ')
+    .split('')
+    .reverse()
+    .join('')
+    .trim()
 }
 </script>
 

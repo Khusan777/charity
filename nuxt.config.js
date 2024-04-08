@@ -3,6 +3,12 @@ export default defineNuxtConfig({
   server: {
     mockServiceWorker: false,
   },
+  image: {
+    provider: 'ipx',
+    ipx: {
+      maxAge: 31536000,
+    },
+  },
   build: {
     transpile: ['vue-toastification'],
   },
@@ -10,6 +16,9 @@ export default defineNuxtConfig({
     // '/': { prerender: true },
     // '/completed': { prerender: true },
     // '/completed/*': { prerender: true },
+    // '/profile/about': { prerender: true },
+    // '/profile/faq': { prerender: true },
+    // '/profile/fonds': { prerender: true },
     // '/error': { prerender: true },
     cors: true,
     // '/game': { ssr: false },

@@ -127,6 +127,7 @@ const goToPaidPage = (feeId) => {
 }
 
 const goToDetailPage = (feeId) => {
+  appStore.fromCompletedPage = false
   appStore.fromMainPage = true
   router.push({
     path: `/main/${feeId}`,
