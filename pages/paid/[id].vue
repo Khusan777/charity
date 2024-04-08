@@ -1,6 +1,13 @@
 <template>
   <div class="paid-page">
     <HeaderComponent
+      v-if="loading"
+      left-route="/main"
+      center
+      :center-text="$t('paid-page.header-text')"
+    ></HeaderComponent>
+    <HeaderComponent
+      v-else
       :left-route="{
         path: `/main/${patientData?.id}`,
         query: { completed: false },

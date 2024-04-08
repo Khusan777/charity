@@ -1,13 +1,22 @@
 import { useToast } from 'vue-toast-notification'
-import { refreshAuthToken } from '~/services/app.api'
-import { objCheckType, parseErrorsFromResponse } from '~/utils'
+import { storeToRefs } from 'pinia'
+import { getMe, refreshAuthToken } from '~/services/app.api'
+import { objCheckType, parseErrorsFromResponse, setToken } from '~/utils'
 import { apiClient } from '~/services/apiClient'
+import { useAppStore } from '~/stores/AppStore'
 
 export default defineNuxtPlugin(() => {
+  const cookieWebSession = computed(() =>
+    getCookie('click-web-session')
+      ? getCookie('click-web-session')
+      : getCookie('web-session'),
+  )
   const $toast = useToast()
   const router = useRouter()
+  const appStore = useAppStore()
+  const { user, webSession } = storeToRefs(appStore)
   const unAuthenticate = async () => {
-    window?.localStorage?.setItem('auth', null)
+    window?.localStorage?.removeItem('auth')
     delete apiClient.defaults.headers.Authorization
     await router.push('/')
   }
@@ -16,6 +25,9 @@ export default defineNuxtPlugin(() => {
     401: async (error) => {
       if (error?.response?.data?.message === 'Token has expired') {
         return refreshToken(error)
+      }
+      if (error?.response?.data?.message === 'Token not provided') {
+        return autoActivateUser(error)
       } else {
         await unAuthenticate()
       }
@@ -53,6 +65,38 @@ export default defineNuxtPlugin(() => {
     }
     return null
   }
+
+  const autoActivateUser = async (error) => {
+    const request = error.config
+    let response = null
+    try {
+      if (requestPromise) {
+        response = await requestPromise
+      } else {
+        requestPromise = getMe({
+          web_session: webSession.value
+            ? webSession.value
+            : cookieWebSession.value,
+          activate: 1,
+        })
+        response = await requestPromise
+      }
+      if (response) {
+        if (response.data?.user) {
+          user.value = response.data?.user
+          setToken(response.data?.token)
+        }
+        return apiClient(request)
+      }
+    } catch (error) {
+      $toast.error(parseErrorsFromResponse(error))
+      await router.push('/error')
+    } finally {
+      requestPromise = null
+    }
+    return null
+  }
+
   const authInterceptor = (config) => {
     const authToken = window?.localStorage?.getItem('auth')
     if (authToken) {
