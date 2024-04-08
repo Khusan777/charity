@@ -13,6 +13,7 @@ export const useAppStore = defineStore('AppStore', () => {
     paginationData: null,
     activeTabs: false,
   })
+  const fromCompletedPage = ref(false)
   const fromMainPage = ref(false)
   const myFees = ref(null)
   const navMyFees = ref(null)
@@ -42,5 +43,6 @@ export const useAppStore = defineStore('AppStore', () => {
     fromMainPage,
     myFees,
     navMyFees,
+    fromCompletedPage,
   }
 })

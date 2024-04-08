@@ -244,6 +244,7 @@ definePageMeta({
   layout: 'single',
 })
 const appStore = useAppStore()
+appStore.fromCompletedPage = true
 const queryFee = reactive({
   page: 1,
 })

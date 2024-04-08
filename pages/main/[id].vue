@@ -8,7 +8,9 @@
           ? '/main'
           : appStore.navMyFees
             ? '/profile/requests'
-            : '/completed'
+            : appStore.fromCompletedPage
+              ? '/completed'
+              : '/main'
       "
     ></UiHeaderComponent>
     <template v-if="loading">
