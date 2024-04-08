@@ -70,7 +70,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxtjs/device',
     'mixpanel-nuxt',
-    ['@nuxt/image'],
+    '@nuxt/image',
     '@vueuse/nuxt',
     // '@nuxtjs/color-mode',
   ],
