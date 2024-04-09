@@ -32,5 +32,5 @@ NUXT_PUBLIC_API_BASE={{ $URL }} yarn build
 @task('go_live')
 echo 'Linking current release'
 ln -nfs {{ $new_release_dir }} {{ $app_dir }}/current
-supervisorctl restart help:*
+pm2 restart all
 @endtask
