@@ -16,7 +16,7 @@
       colour="rgb(251, 140, 0)"
     ></UiBadge>
     <UiBadge
-      v-if="isCompleted && patient?.type_need?.id !== 2"
+      v-if="isCompleted"
       style="margin-bottom: 10px"
       with-image
       :img-ref="patient?.status?.icon"
