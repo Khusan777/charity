@@ -4,6 +4,7 @@
     "year": "yosh | yosh | yosh",
     "error-message": "[FE] Ma'lumotlarni olishda xatolik yuz berdi",
     "not-found": "Sizning so'rovingiz bo'yicha hech narsa topilmadi",
+    "btn-fond": "\"Merhli qollar\" jamg'armasiga yordam bering",
     "error-page": {
         "title": "Ups, qandaydir xatolik yuz berdi",
         "description": "Texnik xatolik yuz berdi. Takroran urinib ko'ring",
@@ -17,7 +18,7 @@
         "btn": "Davom ettirish"
     },
     "main": {
-        "without-content": "Hozirda faol xayriya tadbirlarimiz yo‘q. Biroq, biz yordamga muhtojlarga ko'maklashish uchun yangi tashabbuslar ustida doimiy ravishda ishlamoqdamiz. Yangiliklarimizni kuzatib boring!",
+        "without-content": "Amaldagi to'lovlar yopildi. Xayr-ehsonlar tarixini \"tugallangan\"bo'limida ko'rishingiz mumkin. Biz bilan yordam berganingiz uchun tashakkur.",
         "page": "Bosh sahifa",
         "search": "FISH kiriting",
         "subtitle": "Ularga yordamingiz juda ham zarur",

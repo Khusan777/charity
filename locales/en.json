@@ -4,6 +4,7 @@
     "year": "years old",
     "error-message": "[FE] Error while receiving data",
     "not-found": "Nothing was found for your query",
+    "btn-fond": "To help the \"Mehrli qollar\" foundation",
     "error-page": {
         "title": "Oops, something went wrong",
         "description": "A technical error has occurred. Try again",
@@ -17,7 +18,7 @@
         "btn": "Continue"
     },
     "main": {
-        "without-content": "We currently have no active charity events. However, we are constantly working on new initiatives to help those who need it. Follow our news!",
+        "without-content": "The current fees have been closed. You can view the donation history in the \"Completed\" section. Thank you for helping with us.",
         "page": "Home",
         "search": "Enter Name",
         "subtitle": "Your help is extremely important to them.",
