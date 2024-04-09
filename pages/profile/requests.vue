@@ -135,12 +135,15 @@
             <NuxtImg v-else src="/images/myfees-not.png"></NuxtImg>
             <p>{{ $t('requests.bottom') }}</p>
           </div>
-          <router-link to="/profile/form" class="requests-not-create" v-if="appStore?.user?.is_identified">{{
-            $t('profile.menu1')
-          }}</router-link>
-          <button @click="goModal" class="requests-not-create" v-else>{{
-            $t('profile.menu1')
-          }}</button>
+          <router-link
+            v-if="appStore?.user?.is_identified"
+            to="/profile/form"
+            class="requests-not-create"
+            >{{ $t('profile.menu1') }}</router-link
+          >
+          <button v-else class="requests-not-create" @click="goModal">
+            {{ $t('profile.menu1') }}
+          </button>
         </div>
       </div>
       <div
@@ -206,10 +209,10 @@ export default {
         this.loading = false
       })
     },
-    goModal(){
+    goModal() {
       const modal = new bootstrap.Modal('#identModal')
       modal.show()
-    }
+    },
   },
 }
 </script>
