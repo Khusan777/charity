@@ -4,6 +4,7 @@
     "year": "years old",
     "error-message": "[FE] Error while receiving data",
     "not-found": "Nothing was found for your query",
+    "btn-fond": "To help the \"Mehrli qollar\" foundation",
     "error-page": {
         "title": "Oops, something went wrong",
         "description": "A technical error has occurred. Try again",
