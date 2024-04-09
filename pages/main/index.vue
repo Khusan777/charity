@@ -86,13 +86,7 @@
         <div class="text-message pt-0">
           {{ $t('main.without-content') }}
         </div>
-        <div
-          style="
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-          "
-        >
+        <div style="display: flex; flex-direction: column; gap: 10px">
           <div class="not-item">
             <div class="not-item-top">
               <div class="not-item-top-icon">
@@ -104,7 +98,11 @@
               </div>
             </div>
             <div class="not-item-des">{{ $t('fonds.des') }}</div>
-            <a href="https://my.click.uz/services/pay/?service_id=11854" class="not-item-btn">{{ $t('main.help') }}</a>
+            <a
+              href="https://my.click.uz/services/pay/?service_id=11854"
+              class="not-item-btn"
+              >{{ $t('main.help') }}</a
+            >
           </div>
           <div class="not-item">
             <div class="not-item-top">
@@ -117,7 +115,11 @@
               </div>
             </div>
             <div class="not-item-des">{{ $t('fonds.des2') }}</div>
-            <a href="https://my.click.uz/services/pay/?service_id=31601" class="not-item-btn">{{ $t('main.help') }}</a>
+            <a
+              href="https://my.click.uz/services/pay/?service_id=31601"
+              class="not-item-btn"
+              >{{ $t('main.help') }}</a
+            >
           </div>
         </div>
       </div>
@@ -235,9 +237,9 @@ useInfiniteScroll(
 watch(
   () => queryFee.search,
   debounce((value) => {
-    if(value){
+    if (value) {
       indexFee.isSearched = true
-    } else{
+    } else {
       indexFee.isSearched = false
     }
     if (queryFee.page > 1) {
@@ -403,47 +405,47 @@ watch(
 //    color: #363845;
 //  }
 //}
-.not-item{
+.not-item {
   background: var(--bg3);
   padding: 10px;
   border-radius: 10px;
-  &-top{
+  &-top {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
-    &-icon{
-      img{
+    &-icon {
+      img {
         width: 35px;
         height: 35px;
         border-radius: 35px;
       }
     }
-    &-title{
+    &-title {
       line-height: 19.2px;
       font-size: 16px;
       font-weight: 600;
       color: var(--text);
     }
-    &-toptitle{
+    &-toptitle {
       display: flex;
       flex-direction: column;
       gap: 7px;
       width: calc(100% - 45px);
     }
-    &-hr{
+    &-hr {
       width: 100%;
       height: 1px;
       background: var(--border);
     }
   }
-  &-des{
+  &-des {
     font-size: 12px;
     line-height: 16px;
     margin-bottom: 15px;
     color: var(--text2);
   }
-  &-btn{
+  &-btn {
     width: 100%;
     background: linear-gradient(
       0deg,
