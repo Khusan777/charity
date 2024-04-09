@@ -118,7 +118,7 @@
             <a
               href="https://my.click.uz/services/pay/?service_id=31601"
               class="not-item-btn"
-              >{{ $t('main.btn') }}</a
+              >{{ $t('main.help') }}</a
             >
           </div>
         </div>
