@@ -103,7 +103,7 @@
             v-mask="'##-##-####'"
             type="text"
             inputmode="numeric"
-            placeholder="ДД-ММ-ГГГГ"
+            :placeholder="$t('form.date_place')"
             :class="v$.birthday.$error ? 'error' : ''"
           />
           <div v-if="v$.birthday.$error" class="sendform-pac-error">
