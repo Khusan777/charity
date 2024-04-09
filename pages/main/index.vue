@@ -79,26 +79,46 @@
           width: 100%;
           display: flex;
           flex-direction: column;
-          justify-content: space-around;
+          gap: 20px;
           align-items: center;
         "
       >
-        <NuxtImg
-          v-if="appStore.theme === 'light'"
-          src="/images/main_light.png"
-          alt="main"
-        ></NuxtImg>
-        <NuxtImg v-else src="/images/main_dark.png" alt="main"></NuxtImg>
-        <div class="text-message">
+        <div class="text-message pt-0">
           {{ $t('main.without-content') }}
         </div>
-        <div class="btn-container">
-          <a
-            v-ripple.500="'rgba(47,46,46,0.35)'"
-            class="btn"
-            href="https://my.click.uz/services/pay/?service_id=11854"
-            >{{ $t('btn-fond') }}</a
-          >
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+          "
+        >
+          <div class="not-item">
+            <div class="not-item-top">
+              <div class="not-item-top-icon">
+                <NuxtImg src="/images/not-1.svg"></NuxtImg>
+              </div>
+              <div class="not-item-top-toptitle">
+                <div class="not-item-top-title">Mehrli qollar</div>
+                <div class="not-item-top-hr"></div>
+              </div>
+            </div>
+            <div class="not-item-des">{{ $t('fonds.des') }}</div>
+            <a href="https://my.click.uz/services/pay/?service_id=11854" class="not-item-btn">{{ $t('main.help') }}</a>
+          </div>
+          <div class="not-item">
+            <div class="not-item-top">
+              <div class="not-item-top-icon">
+                <NuxtImg src="/images/not-2.svg"></NuxtImg>
+              </div>
+              <div class="not-item-top-toptitle">
+                <div class="not-item-top-title">Ezgu amal</div>
+                <div class="not-item-top-hr"></div>
+              </div>
+            </div>
+            <div class="not-item-des">{{ $t('fonds.des2') }}</div>
+            <a href="https://my.click.uz/services/pay/?service_id=31601" class="not-item-btn">{{ $t('main.help') }}</a>
+          </div>
         </div>
       </div>
     </template>
@@ -214,8 +234,12 @@ useInfiniteScroll(
 
 watch(
   () => queryFee.search,
-  debounce(() => {
-    indexFee.isSearched = true
+  debounce((value) => {
+    if(value){
+      indexFee.isSearched = true
+    } else{
+      indexFee.isSearched = false
+    }
     if (queryFee.page > 1) {
       queryFee.page = 1
     }
@@ -379,4 +403,62 @@ watch(
 //    color: #363845;
 //  }
 //}
+.not-item{
+  background: var(--bg3);
+  padding: 10px;
+  border-radius: 10px;
+  &-top{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    &-icon{
+      img{
+        width: 35px;
+        height: 35px;
+        border-radius: 35px;
+      }
+    }
+    &-title{
+      line-height: 19.2px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    &-toptitle{
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      width: calc(100% - 45px);
+    }
+    &-hr{
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+    }
+  }
+  &-des{
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 15px;
+    color: var(--text2);
+  }
+  &-btn{
+    width: 100%;
+    background: linear-gradient(
+      0deg,
+      rgb(0, 115, 255) -1.25%,
+      rgb(0, 194, 255) 100%
+    );
+    border-radius: 10px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    border: 0;
+    font-size: 14px;
+    font-weight: 600;
+    display: block;
+    text-align: center;
+  }
+}
 </style>
