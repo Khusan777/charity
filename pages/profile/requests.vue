@@ -135,9 +135,32 @@
             <NuxtImg v-else src="/images/myfees-not.png"></NuxtImg>
             <p>{{ $t('requests.bottom') }}</p>
           </div>
-          <router-link to="/profile/form" class="requests-not-create">{{
+          <router-link to="/profile/form" class="requests-not-create" v-if="appStore?.user?.is_identified">{{
             $t('profile.menu1')
           }}</router-link>
+          <button @click="goModal" class="requests-not-create" v-else>{{
+            $t('profile.menu1')
+          }}</button>
+        </div>
+      </div>
+      <div
+        id="identModal"
+        class="modal fade ident-modal"
+        tabindex="-1"
+        aria-labelledby="identModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="ident-modal-des">{{ $t('profile.ident_title') }}</div>
+              <a
+                href="https://my.click.uz/app/identification"
+                class="ident-modal-btn"
+                >{{ $t('profile.ident_start') }}</a
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -183,6 +206,10 @@ export default {
         this.loading = false
       })
     },
+    goModal(){
+      const modal = new bootstrap.Modal('#identModal')
+      modal.show()
+    }
   },
 }
 </script>
@@ -360,5 +387,42 @@ export default {
 }
 .not-loading {
   height: 100%;
+}
+.ident-modal {
+  &-des {
+    font-size: 14px;
+    line-height: 18px;
+    color: var(--text);
+    margin-bottom: 15px;
+  }
+  &-btn {
+    width: 100%;
+    background: linear-gradient(
+      0deg,
+      rgb(0, 115, 255) -1.25%,
+      rgb(0, 194, 255) 100%
+    );
+    border-radius: 10px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    border: 0;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .modal-dialog {
+    padding: 0 10px;
+    .modal-content {
+      background: var(--bg2);
+      .modal-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        padding: 25px 20px 20px;
+        text-align: center;
+      }
+    }
+  }
 }
 </style>
