@@ -103,7 +103,7 @@
             v-mask="'##-##-####'"
             type="text"
             inputmode="numeric"
-            placeholder="ДД-ММ-ГГГГ"
+            :placeholder="$t('form.date_place')"
             :class="v$.birthday.$error ? 'error' : ''"
           />
           <div v-if="v$.birthday.$error" class="sendform-pac-error">
@@ -184,6 +184,12 @@
             @input="assertMaxChars()"
           ></textarea>
           <div v-if="v$.des.$error" class="sendform-pac-error">
+            <span v-if="v$.des.required.$invalid">{{
+              $t('form.comment_word')
+            }}</span>
+            <span v-if="v$.des.minLength.$invalid"
+              >{{ $t('form.min') }} 60</span
+            >
             <span v-if="v$.des.maxLength.$invalid"
               >{{ $t('form.max') }} 500</span
             >
@@ -302,6 +308,7 @@ export default {
             if (err) {
               if (err?.response?.data?.status === 400) {
                 this.loading = false
+                this.$toast.error(this.$t('form.error'))
               } else {
                 this.loading = false
                 this.$toast.error('Неверный формат даты рождения')
@@ -351,6 +358,8 @@ export default {
       },
       type: { required },
       des: {
+        required,
+        minLength: minLength(60),
         maxLength: maxLength(500),
       },
     }
