@@ -92,6 +92,7 @@
         "name_child": "Bemor ismi",
         "name_word": "Bemor ismini kiriting",
         "date": "Tug'ilgan sanasi",
+        "date_place": "KK-OO-YYYY",
         "date_word": "Tug'ilgan kun sanasini kiriting",
         "format": "Noto'g'ri format",
         "region": "Yashash viloyati",
@@ -118,13 +119,15 @@
         "type_word": "Muhtojlik turini tanlang",
         "comment": "Vaziyatingizni qisqacha ta'riflab bering",
         "comment_your": "Sizning arizangiz",
+        "comment_word": "Arizani kiriting",
         "rule": "Bizga yordam so'rovini yuborayotganda, iltimos, fond birinchi navbatda yuzagaa kelgan vaziyatni mustaqil ravishda hal qilish imkoniga ega bo'magan oilalarrga yordam berishini yodda tuting. Qiyin moliyaviy ahvolni tasdiqlash uchun ariza davlat organlarining ma’lumotlar bazasida normativ hujjatlarga muvofiq tekshiriladi",
         "policy": "«Yuborish» tugmasini bosar ekanman,<a href=\"https://click.uz/uz/policypersonal\">shaxsiy ma'lumotlarimni</a> qayta ishlashlariga rozilik beraman",
         "send": "So'rov yuborish",
         "loading": "Yuklanmoqda",
         "success": "So'rovingiz muvaffaqiyatli yuborildi",
         "success_des": "Ish kunlarida tafsilotlarni aniqlashtirish uchun  Mehrli qo'llar fondi vakili sizga qo'ng'iroq qilishi mumkin. So'ng, 7 ish kuni ichida sizga ekspert komissiya qarori bilan javob yuboriladi.",
-        "success_nice": "Tayyor"
+        "success_nice": "Tayyor",
+        "error": "Siz kuniga 2 tadan ortiq arizani qoldirolmaysiz"
     },
     "profile": {
         "title": "Profil",
