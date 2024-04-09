@@ -75,7 +75,7 @@
       <div
         class="text-without-content"
         style="
-          padding: 0 20px;
+          padding: 0 20px 10px;
           width: 100%;
           display: flex;
           flex-direction: column;
@@ -320,33 +320,33 @@ watch(
 }
 
 .text-without-content {
-  overflow: hidden;
+  overflow-y: auto;
   max-height: calc(v-bind(heightDevice) - 220px);
   height: calc(v-bind(heightDevice) - 220px);
-  & .btn-container {
-    display: flex;
-    justify-content: center;
-    padding: 0 20px;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    margin-bottom: 15px;
-    & .btn {
-      border-radius: 10px;
-      background: linear-gradient(0deg, #0073ff 0%, #00c2ff 100%), #fff;
-      height: 40px;
-      line-height: 40px;
-      border: 0;
-      width: 100%;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-size: 14px;
-      font-weight: 700;
-    }
-  }
+  //& .btn-container {
+  //  display: flex;
+  //  justify-content: center;
+  //  padding: 0 20px;
+  //  left: 0;
+  //  bottom: 0;
+  //  width: 100%;
+  //  margin-bottom: 15px;
+  //  & .btn {
+  //    border-radius: 10px;
+  //    background: linear-gradient(0deg, #0073ff 0%, #00c2ff 100%), #fff;
+  //    height: 40px;
+  //    line-height: 40px;
+  //    border: 0;
+  //    width: 100%;
+  //    color: #ffffff;
+  //    display: flex;
+  //    align-items: center;
+  //    justify-content: center;
+  //    text-align: center;
+  //    font-size: 14px;
+  //    font-weight: 700;
+  //  }
+  //}
 }
 
 .help-block {
