@@ -18,7 +18,7 @@
         "btn": "Davom ettirish"
     },
     "main": {
-        "without-content": "Amaldagi to'lovlar yopildi. Xayr-ehsonlar tarixini \"tugallangan\"bo'limida ko'rishingiz mumkin. Biz bilan yordam berganingiz uchun tashakkur.",
+        "without-content": "Amaldagi yig'uvlar yopildi. Xayr-ehsonlar tarixini «Tugatilganlar» bo'limida ko'rishingiz mumkin, ammo siz fondning umumiy hisobvarag'iga xayriya qilishingiz mumkin. Biz bilan birgalikda yordam berayotganingiz uchun minnatdormiz.",
         "page": "Bosh sahifa",
         "search": "FISH kiriting",
         "subtitle": "Ularga yordamingiz juda ham zarur",
@@ -77,7 +77,8 @@
     "fonds": {
         "title": "Barcha fondlar",
         "city": "Toshkent",
-        "des": "“Mehrli qo‘llar” xayriya jamg‘armasi 0 yoshdan 18 yoshgacha bo‘lgan tug‘ma yurak nuqsonlari bo‘lgan O‘zbekiston fuqarolarining kardiojarrohlik davolash to‘lovlarini to‘lashda ko‘maklashadi."
+        "des": "“Mehrli qo‘llar” xayriya jamg‘armasi 0 yoshdan 18 yoshgacha bo‘lgan tug‘ma yurak nuqsonlari bo‘lgan O‘zbekiston fuqarolarining kardiojarrohlik davolash to‘lovlarini to‘lashda ko‘maklashadi.",
+        "des2": "“Ezgu Amal” xayriya jamg‘armasi saraton va boshqa og‘ir xastaliklarga chalingan bolalarni davolash uchun mablag‘ yig‘ishda ko‘maklashadi. Shuningdek, jamg‘arma kam ta’minlangan va ko‘p bolali oilalarga ham yordam beradi."
     },
     "form": {
         "title": "Anketa-ariza",

@@ -18,7 +18,7 @@
         "btn": "Continue"
     },
     "main": {
-        "without-content": "The current fees have been closed. You can view the donation history in the \"Completed\" section. Thank you for helping with us.",
+        "without-content": "The current fees have been closed. You can view the donation history in the \"Completed\" section, but you can make a donation to the general fund account. Thank you for helping with us.",
         "page": "Home",
         "search": "Enter Name",
         "subtitle": "Your help is extremely important to them.",
@@ -77,7 +77,8 @@
     "fonds": {
         "title": "All foundations",
         "city": "Tashkent",
-        "des": "It is a non-governmental non-profit organization in the form of an institution established by the Youth Union of Uzbekistan"
+        "des": "It is a non-governmental non-profit organization in the form of an institution established by the Youth Union of Uzbekistan",
+        "des2": "The «Ezgu Amal» Charitable Foundation provides assistance in raising funds for the treatment of children suffering from cancer and other serious diseases. The fund also helps low-income and large families."
     },
     "form": {
         "title": "Application form",
