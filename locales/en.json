@@ -18,14 +18,15 @@
         "btn": "Continue"
     },
     "main": {
-        "without-content": "The current fees have been closed. You can view the donation history in the \"Completed\" section, but you can make a donation to the general fund account. Thank you for helping with us.",
+        "without-content": "The current fees have been closed. You can view the donation history in the «Completed» section, but you can make a donation to the general fund account. Thank you for helping with us.",
         "page": "Home",
         "search": "Enter Name",
         "subtitle": "Your help is extremely important to them.",
         "amount-text": "To be collected:",
         "collected-text": "Collected:",
         "remains-text": "Left to collect:",
-        "btn": "I want to help"
+        "btn": "I want to help",
+        "help": "Donate"
     },
     "completed": {
         "tab-name": "Completed",

@@ -25,7 +25,8 @@
         "amount-text": "To'plash kerak: ",
         "collected-text": "To'plandi:",
         "remains-text": "To'plam qoldig'i:",
-        "btn": "Yordam bermoqchiman"
+        "btn": "Yordam bermoqchiman",
+        "help": "Xayriya qilish"
     },
     "completed": {
         "tab-name": "Tugatilganlar",
@@ -77,8 +78,8 @@
     "fonds": {
         "title": "Barcha fondlar",
         "city": "Toshkent",
-        "des": "“Mehrli qo‘llar” xayriya jamg‘armasi 0 yoshdan 18 yoshgacha bo‘lgan tug‘ma yurak nuqsonlari bo‘lgan O‘zbekiston fuqarolarining kardiojarrohlik davolash to‘lovlarini to‘lashda ko‘maklashadi.",
-        "des2": "“Ezgu Amal” xayriya jamg‘armasi saraton va boshqa og‘ir xastaliklarga chalingan bolalarni davolash uchun mablag‘ yig‘ishda ko‘maklashadi. Shuningdek, jamg‘arma kam ta’minlangan va ko‘p bolali oilalarga ham yordam beradi."
+        "des": "«Mehrli qo‘llar» xayriya jamg‘armasi 0 yoshdan 18 yoshgacha bo‘lgan tug‘ma yurak nuqsonlari bo‘lgan O‘zbekiston fuqarolarining kardiojarrohlik davolash to‘lovlarini to‘lashda ko‘maklashadi.",
+        "des2": "«Ezgu Amal» xayriya jamg‘armasi saraton va boshqa og‘ir xastaliklarga chalingan bolalarni davolash uchun mablag‘ yig‘ishda ko‘maklashadi. Shuningdek, jamg‘arma kam ta’minlangan va ko‘p bolali oilalarga ham yordam beradi."
     },
     "form": {
         "title": "Anketa-ariza",
