@@ -9,7 +9,7 @@
       <div class="sendform-fond">
         <div class="sendform-fond-top">
           <div class="sendform-fond-top-icon">
-            <NuxtImg src="/images/fonds/01.png"></NuxtImg>
+            <NuxtImg src="/images/fonds/01.png" alt="fond"></NuxtImg>
           </div>
           <div class="sendform-fond-top-text">
             <div class="sendform-fond-top-title">Mehrli qo'llar</div>
@@ -21,7 +21,7 @@
               class="sendform-fond-top-phone"
             >
               <div class="sendform-fond-top-phone-icon">
-                <NuxtImg src="/images/call.svg"></NuxtImg>
+                <NuxtImg src="/images/call.svg" alt="call"></NuxtImg>
               </div>
               <div class="sendform-fond-top-phone-val">+998 71 200-00-83</div>
             </a>
@@ -31,7 +31,7 @@
               class="sendform-fond-top-phone"
             >
               <div class="sendform-fond-top-phone-icon">
-                <NuxtImg src="/images/tg.svg"></NuxtImg>
+                <NuxtImg src="/images/tg.svg" alt="tg"></NuxtImg>
               </div>
               <div class="sendform-fond-top-phone-val">t.me/Mehriqollar</div>
             </a>
@@ -41,7 +41,7 @@
               class="sendform-fond-top-phone"
             >
               <div class="sendform-fond-top-phone-icon">
-                <NuxtImg src="/images/web.svg"></NuxtImg>
+                <NuxtImg src="/images/web.svg" alt="web"></NuxtImg>
               </div>
               <div class="sendform-fond-top-phone-val">www.mehrli.uz</div>
             </a>
@@ -222,7 +222,7 @@
           <div class="modal-content">
             <div class="modal-body">
               <div class="success-modal-icon">
-                <NuxtImg src="/images/success.svg"></NuxtImg>
+                <NuxtImg src="/images/success.svg" alt="success"></NuxtImg>
               </div>
               <div class="success-modal-title">{{ $t('form.success') }}</div>
               <div class="success-modal-des">{{ $t('form.success_des') }}</div>
