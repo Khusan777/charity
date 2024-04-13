@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     '/profile/about': { prerender: true },
     '/profile/faq': { prerender: true },
     '/notification': { prerender: true },
-    '/profile/': { prerender: true },
+    // '/profile/': { prerender: true },
     cors: true,
     // '/game': { ssr: false },
     // '/result/*': { isg: true },
