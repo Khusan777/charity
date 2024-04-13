@@ -10,10 +10,18 @@ export default defineNuxtConfig({
     },
   },
   build: {
+    extractCSS: true,
     transpile: ['vue-toastification'],
+    terser: {
+      terserOptions: {
+        compress: {
+          drop_console: true,
+        },
+      },
+    },
   },
   routeRules: {
-    // '/': { prerender: true },
+    '/': { prerender: true },
     // '/completed': { prerender: true },
     // '/completed/*': { prerender: true },
     // '/profile/about': { prerender: true },
@@ -69,19 +77,19 @@ export default defineNuxtConfig({
     ],
     '@vueuse/nuxt',
     '@nuxtjs/device',
-    'mixpanel-nuxt',
+    // 'mixpanel-nuxt',
     '@nuxt/image',
     '@vueuse/nuxt',
     // '@nuxtjs/color-mode',
   ],
-  mixpanel: {
-    token: 'f4fa3ffddf7c416ea8c428221abda738',
-    disabled: true,
-    config: {
-      debug: false,
-      persistence: 'localStorage',
-    },
-  },
+  // mixpanel: {
+  //   token: 'f4fa3ffddf7c416ea8c428221abda738',
+  //   disabled: true,
+  //   config: {
+  //     debug: false,
+  //     persistence: 'localStorage',
+  //   },
+  // },
   // colorMode: {
   //   fallback: 'light',
   // },
