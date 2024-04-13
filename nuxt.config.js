@@ -21,9 +21,8 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    ssr: true,
-    target: 'static',
-    '/': { prerender: true },
+    '/main': { prerender: true },
+    // '/': { prerender: true },
     // '/completed': { prerender: true },
     // '/completed/*': { prerender: true },
     // '/profile/about': { prerender: true },
