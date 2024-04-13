@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/main': { prerender: true },
-    '/': { prerender: true },
+    // '/': { prerender: true },
     '/completed': { prerender: true },
     // '/completed/*': { prerender: true },
     '/profile/about': { prerender: true },
