@@ -237,6 +237,7 @@ const filterNonNumeric = () => {
     .reverse()
     .join('')
     .trim()
+  summa.value = summa.value.replace(/^0+/, '')
 }
 </script>
 
