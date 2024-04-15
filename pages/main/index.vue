@@ -1,6 +1,6 @@
 <template>
   <div class="index-container">
-    <div class="search-container">
+    <div v-if="indexFee.data?.length" class="search-container">
       <input
         ref="inputRef"
         v-model="queryFee.search"
@@ -191,6 +191,10 @@ const queryFee = reactive({
   search: null,
 })
 
+const calculateHeightWithoutSearch = computed(() =>
+  !indexFee.data?.length ? '45px' : '0px',
+)
+
 const clearInputValue = () => {
   queryFee.search = null
   inputRef.value?.focus()
@@ -251,13 +255,9 @@ watch(
 </script>
 
 <style lang="scss" scoped>
-.index-container {
-  height: calc(v-bind(heightDevice) - 155px);
-  max-height: calc(v-bind(heightDevice) - 155px);
-}
 .loading-container {
-  height: calc(v-bind(heightDevice) - 220px);
-  max-height: calc(v-bind(heightDevice) - 220px);
+  height: calc(v-bind(heightDevice) - 165px);
+  max-height: calc(v-bind(heightDevice) - 165px);
   overflow-y: scroll;
   //& .text {
   //  padding: 0 20px 5px;
@@ -321,8 +321,12 @@ watch(
 
 .text-without-content {
   overflow-y: auto;
-  max-height: calc(v-bind(heightDevice) - 220px);
-  height: calc(v-bind(heightDevice) - 220px);
+  max-height: calc(
+    v-bind(heightDevice) - 220px + v-bind(calculateHeightWithoutSearch)
+  );
+  height: calc(
+    v-bind(heightDevice) - 220px + v-bind(calculateHeightWithoutSearch)
+  );
   //& .btn-container {
   //  display: flex;
   //  justify-content: center;

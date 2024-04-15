@@ -46,8 +46,7 @@ defineProps({
     align-items: center;
     gap: 5px;
     & .icon {
-      width: 18px;
-      height: 18px;
+      height: 14px;
     }
     & .text {
       font-weight: 400;

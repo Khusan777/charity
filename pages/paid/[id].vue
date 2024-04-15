@@ -165,12 +165,12 @@
     </div>
     <div style="padding: 20px 0; margin: 0 20px">
       <a
-        v-if="summa?.length >= 4"
+        v-if="summa?.length >= 4 && isBtnActive"
         v-ripple.500="'rgba(255, 255, 255, 0.35)'"
         :href="`https://my.click.uz/services/pay/?service_id=32840&amount=${summa?.replace(
           / /g,
           '',
-        )}&transaction_param=${patientData?.external_id}&return_url=https%3A%2F%2Fmy.click.uz%2Fapp%2FwebView%3Fauth%3Dtrue%26url%3Dhttps%253A%252F%252Fcharity.click.uz`"
+        )}&transaction_param=${patientData?.external_id}&return_url=https%3A%2F%2Fmy.click.uz%2Fapp%2FwebView%3Fauth%3Dtrue%26url%3Dhttps%253A%252F%252Fcharity.click.uz%2Fmain%2F${patientData?.id}`"
         class="paid-active"
       >
         {{ $t('paid-page.btn') }}</a
@@ -189,6 +189,7 @@ import PaidPageSkeleton from '~/components/skeleton/PaidPageSkeleton.vue'
 
 const config = useRuntimeConfig()
 const summa = ref('')
+const isBtnActive = ref(false)
 const heightDevice = inject('devicePlatform')
 const $toast = useToast()
 const route = useRoute()
@@ -221,6 +222,11 @@ const addSpaceRemainsSumma = (remainsSumma) => {
 }
 
 const filterNonNumeric = () => {
+  if (+summa.value >= 1000) {
+    isBtnActive.value = true
+  } else if (+summa.value < 1000) {
+    isBtnActive.value = false
+  }
   summa.value = summa.value
     .replace(/[^0-9]/g, '')
     .split('')

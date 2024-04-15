@@ -1,6 +1,6 @@
 <template>
   <div class="footer-navigation">
-    <div class="main-nav">
+    <div style="width: 25%" class="main-nav">
       <NuxtLink class="my-link" to="/main">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +33,7 @@
         <div class="text-page">{{ $t('main.page') }}</div>
       </NuxtLink>
     </div>
-    <div class="done-nav">
+    <div style="width: 25%" class="done-nav">
       <NuxtLink class="my-link" to="/completed" no-prefetch>
         <svg
           width="29"
@@ -60,7 +60,7 @@
         <div class="text-page">{{ $t('completed.tab-name') }}</div>
       </NuxtLink>
     </div>
-    <div class="notification-nav">
+    <div style="width: 25%" class="notification-nav">
       <NuxtLink class="my-link" no-prefetch to="/notification">
         <svg
           width="29"
@@ -95,7 +95,7 @@
         <div class="text-page">{{ $t('push.title') }}</div>
       </NuxtLink>
     </div>
-    <div class="profile-nav">
+    <div style="width: 25%" class="profile-nav">
       <NuxtLink class="my-link" no-prefetch to="/profile">
         <svg
           width="29"
@@ -158,6 +158,7 @@
   }
   & .text-page {
     color: rgb(144, 147, 162);
+    white-space: normal;
     font-size: 12px;
     font-weight: 400;
     line-height: 16px;
