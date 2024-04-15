@@ -239,6 +239,12 @@ const filterNonNumeric = () => {
     .join('')
     .trim()
   summa.value = summa.value.replace(/^0+/, '')
+  const summaValue = summa.value.replace(/\s/g, '')
+  if (Number(summaValue) >= 1000) {
+    isBtnActive.value = true
+  } else if (Number(summaValue) < 1000) {
+    isBtnActive.value = false
+  }
 }
 </script>
 
