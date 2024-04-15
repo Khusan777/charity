@@ -141,7 +141,7 @@
         <div v-else class="close-paid">
           <div
             class="text"
-            @click="addSpaceRemainsSumma(String(patientData?.remains || 0))"
+            @click="addSpaceRemainsSumma(Number(patientData?.remains || 0))"
           >
             {{ $t('paid-page.closed-collection') }} ({{
               patientData?.remains === null
@@ -219,14 +219,15 @@ onMounted(() => {
 
 const addSpaceRemainsSumma = (remainsSumma) => {
   summa.value = remainsSumma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+  const summaValue = summa.value.replace(/\s/g, '')
+  if (Number(summaValue) >= 1000) {
+    isBtnActive.value = true
+  } else if (Number(summaValue) < 1000) {
+    isBtnActive.value = false
+  }
 }
 
 const filterNonNumeric = () => {
-  if (+summa.value >= 1000) {
-    isBtnActive.value = true
-  } else if (+summa.value < 1000) {
-    isBtnActive.value = false
-  }
   summa.value = summa.value
     .replace(/[^0-9]/g, '')
     .split('')

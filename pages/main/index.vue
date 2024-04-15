@@ -1,6 +1,6 @@
 <template>
   <div class="index-container">
-    <div v-if="indexFee.data?.length" class="search-container">
+    <div v-if="searchInputShow" class="search-container">
       <input
         ref="inputRef"
         v-model="queryFee.search"
@@ -176,6 +176,7 @@ definePageMeta({
   layout: 'main',
 })
 const inputRef = ref()
+const searchInputShow = ref(false)
 const el = shallowRef(null)
 const heightDevice = inject('devicePlatform')
 const indexFee = reactive({
@@ -205,6 +206,9 @@ const getFeeIndex = () => {
   getFee(queryFee)
     .then((response) => {
       indexFee.data = response.data?.data
+      if (indexFee.data?.length) {
+        searchInputShow.value = true
+      }
       paginationData.value = response.data?.pagination
       indexFee.loading = false
     })
