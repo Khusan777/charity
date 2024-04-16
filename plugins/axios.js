@@ -1,20 +1,33 @@
 import { useToast } from 'vue-toast-notification'
 import { storeToRefs } from 'pinia'
-import { getMe, refreshAuthToken } from '~/services/app.api'
-import { objCheckType, parseErrorsFromResponse, setToken } from '~/utils'
-import { apiClient } from '~/services/apiClient'
+import axios from 'axios'
+import { objCheckType, parseErrorsFromResponse } from '~/utils'
 import { useAppStore } from '~/stores/AppStore'
+import { useAllServices } from '~/composables/app.api'
 
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin((nuxtApp) => {
+  const { getMe, refreshAuthToken, setToken } = useAllServices()
   const cookieWebSession = computed(() =>
     getCookie('click-web-session')
       ? getCookie('click-web-session')
       : getCookie('web-session'),
   )
+  const config = useRuntimeConfig()
   const $toast = useToast()
   const router = useRouter()
   const appStore = useAppStore()
   const { user, webSession } = storeToRefs(appStore)
+
+  const apiClient = axios.create({
+    baseURL: `${config.public.apiBase}/api`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      mode: 'no-cors',
+    },
+  })
+  nuxtApp.vueApp.provide('apiClient', apiClient)
+
   const unAuthenticate = async () => {
     window?.localStorage?.removeItem('auth')
     delete apiClient.defaults.headers.Authorization

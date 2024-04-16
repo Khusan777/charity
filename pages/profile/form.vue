@@ -246,7 +246,6 @@ import { mask } from 'vue-the-mask'
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, required, maxLength } from '@vuelidate/validators'
 import { useAppStore } from '~/stores/AppStore'
-import { apiClient } from '~/services/apiClient'
 
 export default {
   name: 'Form',
@@ -255,6 +254,7 @@ export default {
   },
   setup() {
     return {
+      apiClient: useAllServices(),
       v$: useVuelidate(),
     }
   },
@@ -293,7 +293,7 @@ export default {
           type_help_id: this.type,
           comment: this.des,
         }
-        apiClient
+        this.apiClient.apiClient
           .post('/fee', data, {
             headers: {
               'Content-Type': 'multipart/form-data',

@@ -27,9 +27,10 @@
 </template>
 
 <script setup>
-import { getInfo } from '~/services/app.api'
 import { useAppStore } from '~/stores/AppStore'
+import { useAllServices } from '~/composables/app.api'
 
+const { getInfo } = useAllServices()
 const appStore = useAppStore()
 const heightDevice = inject('devicePlatform')
 

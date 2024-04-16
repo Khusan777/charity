@@ -53,9 +53,9 @@
 </template>
 
 <script>
-import { apiClient } from '~/services/apiClient'
 import { useAppStore } from '~/stores/AppStore'
 import FaqSkeleton from '~/components/skeleton/FaqSkeleton.vue'
+import { useAllServices } from '~/composables/app.api'
 
 export default {
   name: 'Faq',
@@ -64,6 +64,7 @@ export default {
   },
   data() {
     return {
+      apiClient: useAllServices(),
       appStore: useAppStore(),
       heightDevice: inject('devicePlatform'),
       loading: true,
@@ -82,7 +83,7 @@ export default {
   },
   mounted() {
     if (!this.appStore.info) {
-      apiClient.get('/info').then((res) => {
+      this.apiClient.apiClient.get('/info').then((res) => {
         this.appStore.info = res.data.data
         this.loading = false
       })

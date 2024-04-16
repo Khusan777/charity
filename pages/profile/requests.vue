@@ -171,7 +171,6 @@
 </template>
 
 <script>
-import { apiClient } from '~/services/apiClient'
 import { useAppStore } from '~/stores/AppStore'
 import RequestsSkeleton from '~/components/skeleton/RequestsSkeleton.vue'
 
@@ -182,6 +181,7 @@ export default {
   },
   data() {
     return {
+      apiClient: useAllServices(),
       heightDevice: inject('devicePlatform'),
       appStore: useAppStore(),
       status: 1,
@@ -204,7 +204,7 @@ export default {
       this.$router.push({ path: `/main/${id}`, query: { completed: true } })
     },
     fetchMyFees() {
-      apiClient.get('/myFees').then((res) => {
+      this.apiClient.apiClient.get('/myFees').then((res) => {
         this.appStore.myFees = res.data.data
         this.loading = false
       })

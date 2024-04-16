@@ -113,12 +113,12 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useAppStore } from '~/stores/AppStore'
-import { getMe } from '~/services/app.api'
-import { setToken } from '~/utils'
+import { useAllServices } from '~/composables/app.api'
 
 definePageMeta({
   layout: 'single',
 })
+const { getMe, setToken } = useAllServices()
 const heightDevice = inject('devicePlatform')
 const appStore = useAppStore()
 const goModal = () => {

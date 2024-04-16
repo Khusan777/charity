@@ -168,9 +168,10 @@
 <script setup>
 import MainSkeleton from '~/components/skeleton/MainSkeleton.vue'
 import ChartCardNotCollected from '~/components/ChartCardNotCollected.vue'
-import { getFee } from '~/services/app.api'
 import { debounce } from '~/utils'
+import { useAllServices } from '~/composables/app.api'
 
+const { getFee } = useAllServices()
 const appStore = useAppStore()
 definePageMeta({
   layout: 'main',

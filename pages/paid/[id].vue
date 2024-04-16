@@ -182,11 +182,12 @@
 
 <script setup>
 import { useToast } from 'vue-toast-notification'
-import { getDetailPatient } from '~/services/app.api'
 import { parseErrorsFromResponse } from '~/utils'
 import HeaderComponent from '~/components/ui/HeaderComponent.vue'
 import PaidPageSkeleton from '~/components/skeleton/PaidPageSkeleton.vue'
+import { useAllServices } from '~/composables/app.api'
 
+const { getDetailPatient } = useAllServices()
 const config = useRuntimeConfig()
 const summa = ref('')
 const isBtnActive = ref(false)

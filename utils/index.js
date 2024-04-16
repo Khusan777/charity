@@ -1,5 +1,4 @@
 import { useI18n } from 'vue-i18n'
-import { apiClient } from '~/services/apiClient'
 
 const getToken = () =>
   localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : null
@@ -28,13 +27,6 @@ const objCheckType = (obj, type) =>
     ? Object.prototype.toString.call(obj) ===
       `[object ${type[0].toUpperCase()}${type.slice(1)}]`
     : false
-
-const setToken = function (token) {
-  if (apiClient?.defaults?.headers?.common) {
-    apiClient.defaults.headers.common.Authorization = token
-  } else throw new Error('Ошибка во время установки токена')
-  window?.localStorage?.setItem('auth', JSON.stringify(token))
-}
 
 const debounce = (func, wait) => {
   let timeout
@@ -115,7 +107,6 @@ export {
   parseErrorsFromResponse,
   objCheckType,
   getCookie,
-  setToken,
   debounce,
   getAuthorizationHeader,
   formattedDate,

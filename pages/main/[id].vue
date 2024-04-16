@@ -70,10 +70,11 @@
 
 <script setup>
 import { useToast } from 'vue-toast-notification'
-import { getDetailPatient } from '~/services/app.api'
 import { parseErrorsFromResponse } from '~/utils'
 import DetailPatientSkeleton from '~/components/skeleton/DetailPatientSkeleton.vue'
+import { useAllServices } from '~/composables/app.api'
 
+const { getDetailPatient } = useAllServices()
 const appStore = useAppStore()
 const loading = ref(false)
 const patientData = ref(null)
