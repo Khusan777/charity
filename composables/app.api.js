@@ -1,5 +1,6 @@
 export const useAllServices = () => {
-  const apiClient = inject('apiClient') ? inject('apiClient') : null
+  const apiClient = inject('apiClient')
+
   const getMe = (params) => apiClient.post('/login', params)
 
   const getFee = (params) => apiClient.get('/fee', { params })

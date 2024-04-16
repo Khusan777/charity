@@ -235,7 +235,6 @@
 
 <script setup>
 import CharityReport from '~/components/CharityReport.vue'
-// import { getCompletedFee, getPatientNews } from '~/services/app.api'
 import CompletedSkeleton from '~/components/skeleton/CompletedSkeleton.vue'
 import { useAppStore } from '~/stores/AppStore'
 import ReportSkeleton from '~/components/skeleton/ReportSkeleton.vue'
