@@ -6,7 +6,6 @@
       left-route="/profile"
     ></UiHeaderComponent>
     <div class="requests-wrapper">
-      <Stories :stories="items" />
       <div v-if="loading" class="loading">
         <RequestsSkeleton></RequestsSkeleton>
       </div>
@@ -174,13 +173,11 @@
 <script>
 import { useAppStore } from '~/stores/AppStore'
 import RequestsSkeleton from '~/components/skeleton/RequestsSkeleton.vue'
-import { Stories } from "vue-insta-stories";
 
 export default {
   name: 'Faq',
   components: {
-    RequestsSkeleton,
-    Stories
+    RequestsSkeleton
   },
   data() {
     return {
@@ -188,15 +185,7 @@ export default {
       heightDevice: inject('devicePlatform'),
       appStore: useAppStore(),
       status: 1,
-      loading: true,
-      items: [
-        "https://picsum.photos/350/200/",
-        "https://picsum.photos/400/201/",
-        {
-          url: "https://file-examples-com.github.io/5mb.mp4",
-          type: "video",
-        },
-      ]
+      loading: true
     }
   },
   computed: {
