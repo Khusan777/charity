@@ -214,16 +214,21 @@ const getFeeCompletedIndex = () => {
 getFeeCompletedIndex()
 
 const getNews = () => {
-  appStore.patientNews.loading = true
-  getPatientNews({ type: 1, page: queryFee.newsPage })
-    .then((response) => {
-      appStore.patientNews.index = response.data?.data
-      appStore.patientNews.paginationData = response.data?.pagination
-      appStore.patientNews.loading = false
+  if (!appStore.patientNews.index?.length) {
+    appStore.patientNews.loading = true
+    getPatientNews({
+      type: 1,
+      page: queryFee.newsPage,
     })
-    .catch(() => {
-      appStore.patientNews.loading = false
-    })
+      .then((response) => {
+        appStore.patientNews.index = response.data?.data
+        appStore.patientNews.paginationData = response.data?.pagination
+        appStore.patientNews.loading = false
+      })
+      .catch(() => {
+        appStore.patientNews.loading = false
+      })
+  }
 }
 getNews()
 
