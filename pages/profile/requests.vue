@@ -6,6 +6,7 @@
       left-route="/profile"
     ></UiHeaderComponent>
     <div class="requests-wrapper">
+      <Stories :stories="items" />
       <div v-if="loading" class="loading">
         <RequestsSkeleton></RequestsSkeleton>
       </div>
@@ -31,7 +32,7 @@
                   </div>
                   <div class="requests-item-top-right">
                     <div
-                      v-if="fee?.status_id == 2"
+                      v-if="fee?.status_id == 2 || fee?.status_is == 15"
                       class="requests-item-top-right-status pending"
                     >
                       {{ $t('requests.status1') }}
@@ -173,11 +174,13 @@
 <script>
 import { useAppStore } from '~/stores/AppStore'
 import RequestsSkeleton from '~/components/skeleton/RequestsSkeleton.vue'
+import { Stories } from "vue-insta-stories";
 
 export default {
   name: 'Faq',
   components: {
     RequestsSkeleton,
+    Stories
   },
   data() {
     return {
@@ -186,6 +189,14 @@ export default {
       appStore: useAppStore(),
       status: 1,
       loading: true,
+      items: [
+        "https://picsum.photos/350/200/",
+        "https://picsum.photos/400/201/",
+        {
+          url: "https://file-examples-com.github.io/5mb.mp4",
+          type: "video",
+        },
+      ]
     }
   },
   computed: {
