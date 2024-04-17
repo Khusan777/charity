@@ -69,12 +69,10 @@
 </template>
 
 <script setup>
-import { useToast } from 'vue-toast-notification'
-import { parseErrorsFromResponse } from '~/utils'
 import DetailPatientSkeleton from '~/components/skeleton/DetailPatientSkeleton.vue'
 import { useAllServices } from '~/composables/app.api'
 
-const { getDetailPatient } = useAllServices()
+const { getDetailPatient, setToken, getMe } = useAllServices()
 const appStore = useAppStore()
 const loading = ref(false)
 const patientData = ref(null)
@@ -88,11 +86,15 @@ const patient = reactive({
 const heightDevice = inject('devicePlatform')
 const route = useRoute()
 const router = useRouter()
-const $toast = useToast()
 const calculate = computed(() =>
   route.query.completed === 'true' ? '85px' : '135px',
 )
 
+const cookieWebSession = computed(() =>
+  getCookie('click-web-session')
+    ? getCookie('click-web-session')
+    : getCookie('web-session'),
+)
 const idPage = computed(() => route.params.id)
 
 const goToPaidPage = (feeId) => {
@@ -111,9 +113,30 @@ const detailPatientData = () => {
       patient.region = response.data?.data?.region
       loading.value = false
     })
-    .catch((err) => {
-      $toast.error(parseErrorsFromResponse(err))
-      router.push('/error')
+    .catch(async () => {
+      let requestPromise = null
+      let response = null
+      try {
+        requestPromise = getMe({
+          web_session: appStore.webSession
+            ? appStore.webSession
+            : cookieWebSession.value,
+          activate: 1,
+        })
+        response = await requestPromise
+        if (response) {
+          if (response.data?.user) {
+            appStore.user = response.data?.user
+            setToken(response.data?.token)
+          }
+          return detailPatientData()
+        }
+      } catch (error) {
+        await router.push('/error')
+      } finally {
+        requestPromise = null
+      }
+      return null
     })
 }
 

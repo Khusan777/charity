@@ -83,7 +83,7 @@ export default {
   },
   mounted() {
     if (!this.appStore.info) {
-      this.apiClient.apiClient.get('/info').then((res) => {
+      this.apiClient.$apiClient.get('/info').then((res) => {
         this.appStore.info = res.data.data
         this.loading = false
       })

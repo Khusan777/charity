@@ -204,7 +204,7 @@ export default {
       this.$router.push({ path: `/main/${id}`, query: { completed: true } })
     },
     fetchMyFees() {
-      this.apiClient.apiClient.get('/myFees').then((res) => {
+      this.apiClient.$apiClient.get('/myFees').then((res) => {
         this.appStore.myFees = res.data.data
         this.loading = false
       })

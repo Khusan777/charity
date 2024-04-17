@@ -293,7 +293,7 @@ export default {
           type_help_id: this.type,
           comment: this.des,
         }
-        this.apiClient.apiClient
+        this.apiClient.$apiClient
           .post('/fee', data, {
             headers: {
               'Content-Type': 'multipart/form-data',

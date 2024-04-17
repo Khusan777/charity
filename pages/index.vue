@@ -67,7 +67,7 @@ import { useAppStore } from '~/stores/AppStore'
 import { parseErrorsFromResponse } from '~/utils'
 import { useAllServices } from '~/composables/app.api'
 
-const { getMe, apiClient, setToken } = useAllServices()
+const { getMe, $apiClient, setToken } = useAllServices()
 const appStore = useAppStore()
 const heightDevice = inject('devicePlatform')
 const { user, webSession } = storeToRefs(appStore)
@@ -106,7 +106,7 @@ const getUserData = () => {
 
 getUserData()
 const acceptOfferta = () => {
-  apiClient.defaults.headers.common['Accept-Language'] = appStore.lang
+  $apiClient.defaults.headers.common['Accept-Language'] = appStore.lang
   acceptBtn.value = true
   getMe({
     web_session: webSession.value ? webSession.value : cookieWebSession.value,

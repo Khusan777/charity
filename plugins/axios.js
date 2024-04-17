@@ -1,22 +1,14 @@
 import { useToast } from 'vue-toast-notification'
-import { storeToRefs } from 'pinia'
 import axios from 'axios'
 import { objCheckType, parseErrorsFromResponse } from '~/utils'
-import { useAppStore } from '~/stores/AppStore'
 import { useAllServices } from '~/composables/app.api'
 
-export default defineNuxtPlugin((nuxtApp) => {
-  const { getMe, refreshAuthToken, setToken } = useAllServices()
-  const cookieWebSession = computed(() =>
-    getCookie('click-web-session')
-      ? getCookie('click-web-session')
-      : getCookie('web-session'),
-  )
+export default defineNuxtPlugin(() => {
+  const { refreshAuthToken } = useAllServices()
   const config = useRuntimeConfig()
   const $toast = useToast()
   const router = useRouter()
-  const appStore = useAppStore()
-  const { user, webSession } = storeToRefs(appStore)
+  let errorMessage = null
 
   const apiClient = axios.create({
     baseURL: `${config.public.apiBase}/api`,
@@ -26,7 +18,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       mode: 'no-cors',
     },
   })
-  nuxtApp.vueApp.provide('apiClient', apiClient)
 
   const unAuthenticate = async () => {
     window?.localStorage?.removeItem('auth')
@@ -36,12 +27,13 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   const errorStatus = {
     401: async (error) => {
+      errorMessage = error?.response?.data?.message
       if (error?.response?.data?.message === 'Token has expired') {
         return refreshToken(error)
       }
       if (error?.response?.data?.message === 'Token not provided') {
-        return autoActivateUser(error)
-      } else {
+        return false
+      } else if (errorMessage !== 'Token not provided' && errorMessage) {
         await unAuthenticate()
       }
     },
@@ -73,37 +65,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       window?.localStorage?.setItem('auth', null)
       await router.push('/error')
       delete apiClient.defaults.headers.common.Authorization
-    } finally {
-      requestPromise = null
-    }
-    return null
-  }
-
-  const autoActivateUser = async (error) => {
-    const request = error.config
-    let response = null
-    try {
-      if (requestPromise) {
-        response = await requestPromise
-      } else {
-        requestPromise = getMe({
-          web_session: webSession.value
-            ? webSession.value
-            : cookieWebSession.value,
-          activate: 1,
-        })
-        response = await requestPromise
-      }
-      if (response) {
-        if (response.data?.user) {
-          user.value = response.data?.user
-          setToken(response.data?.token)
-        }
-        return apiClient(request)
-      }
-    } catch (error) {
-      $toast.error(parseErrorsFromResponse(error))
-      await router.push('/error')
     } finally {
       requestPromise = null
     }
@@ -145,4 +106,10 @@ export default defineNuxtPlugin((nuxtApp) => {
   const responseInterceptor = (response) => response
   apiClient.interceptors.response.use(responseInterceptor, errorInterceptor)
   apiClient.interceptors.request.use(authInterceptor)
+
+  return {
+    provide: {
+      apiClient,
+    },
+  }
 })
