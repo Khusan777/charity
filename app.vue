@@ -15,6 +15,21 @@ useHead({
 const { locale } = useI18n()
 const appStore = useAppStore()
 
+window?.addEventListener('message', (event) => {
+  if (
+    event.origin === 'https://new.click.uz' ||
+    event.origin === 'http://localhost:3000' ||
+    event.origin === 'https://my.click.uz'
+  ) {
+    if (event.data?.sessionKey) {
+      appStore.setWebSession(event.data?.sessionKey)
+      appStore.webSession = event.data?.sessionKey
+    }
+  } else {
+    return false
+  }
+})
+
 onMounted(() => {
   const themeCookie = computed(() =>
     getCookie('click-theme') ? getCookie('click-theme') : getCookie('theme'),
