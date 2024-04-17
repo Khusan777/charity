@@ -180,6 +180,7 @@
         </template>
         <div
           id="report-tab-pane"
+          ref="newsEl"
           :class="
             appStore.patientNews.activeTabs
               ? 'tab-pane fade show active'
@@ -192,17 +193,17 @@
             padding: 0 20px;
             display: flex;
             gap: 10px;
+            max-height: calc(v-bind(heightDevice) - 150px);
+            height: calc(v-bind(heightDevice) - 150px);
             flex-wrap: wrap;
-            overflow: hidden;
+            overflow-y: scroll;
           "
         >
-          <div
+          <template
             v-if="
               appStore.patientNews.index?.length &&
               appStore.patientNews.activeTabs
             "
-            ref="newsEl"
-            class="b"
           >
             <div
               v-for="patientData in appStore.patientNews.index"
@@ -211,7 +212,7 @@
             >
               <CharityReport :patient-new="patientData"></CharityReport>
             </div>
-          </div>
+          </template>
           <div v-if="completedFee.newsLoader" class="loader-wrapper">
             <span class="loader-anim"></span>
           </div>
@@ -435,12 +436,6 @@ useInfiniteScroll(
 .a {
   max-height: calc(v-bind(heightDevice) - 150px);
   height: calc(v-bind(heightDevice) - 150px);
-  overflow-y: auto;
-}
-
-.b {
-  max-height: calc(v-bind(heightDevice) - 190px);
-  height: calc(v-bind(heightDevice) - 190px);
   overflow-y: auto;
 }
 </style>
