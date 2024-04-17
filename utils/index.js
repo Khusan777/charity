@@ -47,7 +47,7 @@ const getCookie = function (name) {
       return arr[2]
     }
   } else {
-    return '4204b362-431d-47e1-abae-34715f620a24'
+    return null
   }
 }
 
