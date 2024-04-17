@@ -172,15 +172,15 @@
 </template>
 
 <script>
+import { Stories } from 'vue-insta-stories'
 import { useAppStore } from '~/stores/AppStore'
 import RequestsSkeleton from '~/components/skeleton/RequestsSkeleton.vue'
-import { Stories } from "vue-insta-stories";
 
 export default {
   name: 'Faq',
   components: {
     RequestsSkeleton,
-    Stories
+    Stories,
   },
   data() {
     return {
@@ -190,13 +190,13 @@ export default {
       status: 1,
       loading: true,
       items: [
-        "https://picsum.photos/350/200/",
-        "https://picsum.photos/400/201/",
+        'https://picsum.photos/350/200/',
+        'https://picsum.photos/400/201/',
         {
-          url: "https://file-examples-com.github.io/5mb.mp4",
-          type: "video",
+          url: 'https://file-examples-com.github.io/5mb.mp4',
+          type: 'video',
         },
-      ]
+      ],
     }
   },
   computed: {
