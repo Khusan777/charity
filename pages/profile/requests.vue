@@ -177,7 +177,7 @@ import RequestsSkeleton from '~/components/skeleton/RequestsSkeleton.vue'
 export default {
   name: 'Faq',
   components: {
-    RequestsSkeleton
+    RequestsSkeleton,
   },
   data() {
     return {
@@ -185,7 +185,7 @@ export default {
       heightDevice: inject('devicePlatform'),
       appStore: useAppStore(),
       status: 1,
-      loading: true
+      loading: true,
     }
   },
   computed: {
