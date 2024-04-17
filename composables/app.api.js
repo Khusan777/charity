@@ -13,7 +13,7 @@ export const useAllServices = () => {
 
   const getDetailPatient = (patientId) => $apiClient.get(`/fee/${patientId}`)
 
-  const getPatientNews = () => $apiClient.get(`/news`)
+  const getPatientNews = (params) => $apiClient.get(`/news`, { params })
 
   const getMyFee = () => $apiClient.get(`/myFees`)
 
