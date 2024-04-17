@@ -23,7 +23,6 @@ window?.addEventListener('message', (event) => {
   ) {
     if (event.data?.sessionKey) {
       appStore.setWebSession(event.data?.sessionKey)
-      appStore.webSession = event.data?.sessionKey
     }
   } else {
     return false
