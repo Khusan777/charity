@@ -95,4 +95,5 @@ export default defineNuxtConfig({
   //   fallback: 'light',
   // },
   css: [{ src: '~/assets/css/bootstrap.min.css', lang: 'css' }],
+  link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
 })
