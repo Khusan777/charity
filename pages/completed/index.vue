@@ -82,7 +82,7 @@
         </div>
       </div>
     </div>
-    <div v-else ref="el" class="content-data">
+    <div v-else class="content-data">
       <div class="container">
         <ul id="myTab" class="nav nav-tabs complete-tabs" role="tablist">
           <li class="nav-item">
@@ -139,12 +139,16 @@
                 completedFee.index?.length && !appStore.patientNews.activeTabs
               "
             >
-              <div v-for="feeItem in completedFee.index" :key="feeItem.id">
-                <ChartCardCollected
-                  v-if="feeItem?.status?.id === 4 || feeItem?.status?.id === 5"
-                  :key="feeItem.id"
-                  :fee-item="feeItem"
-                ></ChartCardCollected>
+              <div ref="el" class="a">
+                <div v-for="feeItem in completedFee.index" :key="feeItem.id">
+                  <ChartCardCollected
+                    v-if="
+                      feeItem?.status?.id === 4 || feeItem?.status?.id === 5
+                    "
+                    :key="feeItem.id"
+                    :fee-item="feeItem"
+                  ></ChartCardCollected>
+                </div>
               </div>
               <div v-if="completedFee.loader" class="loader-wrapper">
                 <span class="loader-anim"></span>
@@ -161,6 +165,7 @@
                   padding: 0 20px;
                   width: 100%;
                   display: flex;
+                  overflow: hidden;
                   flex-direction: column;
                   justify-content: center;
                   align-items: center;
@@ -191,11 +196,13 @@
             overflow: hidden;
           "
         >
-          <template
+          <div
             v-if="
               appStore.patientNews.index?.length &&
               appStore.patientNews.activeTabs
             "
+            ref="newsEl"
+            class="b"
           >
             <div
               v-for="patientData in appStore.patientNews.index"
@@ -204,7 +211,10 @@
             >
               <CharityReport :patient-new="patientData"></CharityReport>
             </div>
-          </template>
+          </div>
+          <div v-if="completedFee.newsLoader" class="loader-wrapper">
+            <span class="loader-anim"></span>
+          </div>
           <template
             v-if="
               appStore.patientNews.activeTabs &&
@@ -218,6 +228,7 @@
                 width: 100%;
                 display: flex;
                 flex-direction: column;
+                overflow: hidden;
                 justify-content: center;
                 align-items: center;
               "
@@ -248,17 +259,21 @@ const appStore = useAppStore()
 appStore.fromCompletedPage = true
 const queryFee = reactive({
   page: 1,
+  newsPage: 1,
 })
 const heightDevice = inject('devicePlatform')
 const completedFee = reactive({
   loading: false,
   index: null,
+  newsLoader: false,
   paginationData: null,
 })
 const el = shallowRef(null)
+const newsEl = shallowRef(null)
+
 const getFeeCompletedIndex = () => {
   completedFee.loading = true
-  getCompletedFee({ ...queryFee, status_ids: [4, 5] })
+  getCompletedFee({ page: queryFee.page, status_ids: [4, 5] })
     .then((response) => {
       completedFee.index = response.data?.data
       completedFee.paginationData = response.data?.pagination
@@ -272,23 +287,21 @@ getFeeCompletedIndex()
 
 const getNews = () => {
   appStore.patientNews.activeTabs = true
-  if (!appStore.patientNews.index?.length) {
-    appStore.patientNews.loading = true
-    getPatientNews()
-      .then((response) => {
-        appStore.patientNews.index = response.data?.data
-        appStore.patientNews.paginationData = response.data?.pagination
-        appStore.patientNews.loading = false
-      })
-      .catch(() => {
-        appStore.patientNews.loading = false
-      })
-  }
+  appStore.patientNews.loading = true
+  getPatientNews({ type: 1, page: queryFee.newsPage })
+    .then((response) => {
+      appStore.patientNews.index = response.data?.data
+      appStore.patientNews.paginationData = response.data?.pagination
+      appStore.patientNews.loading = false
+    })
+    .catch(() => {
+      appStore.patientNews.loading = false
+    })
 }
 
 const getFeePagination = async () => {
   completedFee.loader = true
-  await getCompletedFee({ ...queryFee, status_ids: [4, 5] })
+  await getCompletedFee({ page: queryFee.page, status_ids: [4, 5] })
     .then((response) => {
       completedFee.index = [...completedFee.index, ...response.data?.data]
       completedFee.paginationData = response.data?.pagination
@@ -308,6 +321,37 @@ useInfiniteScroll(
     ) {
       queryFee.page += 1
       await getFeePagination()
+    }
+  },
+  { distance: 50 },
+)
+
+const getNewsPagination = () => {
+  completedFee.newsLoader = true
+  getPatientNews({ type: 1, page: queryFee.newsPage })
+    .then((response) => {
+      appStore.patientNews.index = [
+        ...appStore.patientNews.index,
+        ...response.data?.data,
+      ]
+      appStore.patientNews.paginationData = response.data?.pagination
+      completedFee.newsLoader = false
+    })
+    .catch(() => {
+      completedFee.newsLoader = false
+    })
+}
+
+useInfiniteScroll(
+  newsEl,
+  async () => {
+    console.log('here')
+    if (
+      appStore.patientNews.paginationData?.currentPage <
+      appStore.patientNews.paginationData?.totalPages
+    ) {
+      queryFee.newsPage += 1
+      await getNewsPagination()
     }
   },
   { distance: 50 },
@@ -386,5 +430,17 @@ useInfiniteScroll(
 }
 [class*='tab-content'] {
   margin-top: 55px;
+}
+
+.a {
+  max-height: calc(v-bind(heightDevice) - 150px);
+  height: calc(v-bind(heightDevice) - 150px);
+  overflow-y: auto;
+}
+
+.b {
+  max-height: calc(v-bind(heightDevice) - 190px);
+  height: calc(v-bind(heightDevice) - 190px);
+  overflow-y: auto;
 }
 </style>

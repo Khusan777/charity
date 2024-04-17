@@ -31,7 +31,10 @@ export default defineNuxtPlugin(() => {
       if (error?.response?.data?.message === 'Token has expired') {
         return refreshToken(error)
       }
-      if (error?.response?.data?.message === 'Token not provided') {
+      if (
+        error?.response?.data?.message === 'Token not provided' ||
+        error?.response?.data?.message === 'User not found'
+      ) {
         return false
       } else if (errorMessage !== 'Token not provided' && errorMessage) {
         await unAuthenticate()
