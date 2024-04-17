@@ -31,13 +31,17 @@
                   </div>
                   <div class="requests-item-top-right">
                     <div
-                      v-if="fee?.status_id == 2 || fee?.status_is == 15"
+                      v-if="fee?.status_id == 2 || fee?.status_id == 15"
                       class="requests-item-top-right-status pending"
                     >
                       {{ $t('requests.status1') }}
                     </div>
                     <div
-                      v-if="fee?.status_id != 2 && fee?.status_id != 9"
+                      v-if="
+                        fee?.status_id != 2 &&
+                        fee?.status_id != 9 &&
+                        fee?.status_id != 15
+                      "
                       class="requests-item-top-right-status success"
                     >
                       {{ $t('requests.status2') }}
