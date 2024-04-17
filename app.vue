@@ -21,7 +21,9 @@ window?.addEventListener('message', (event) => {
     event.origin === 'http://localhost:3000' ||
     event.origin === 'https://my.click.uz'
   ) {
+    console.log('EVENT DATA', event.data)
     if (event.data?.sessionKey) {
+      console.log('EVENT DATA', event.data)
       appStore.setWebSession(event.data?.sessionKey)
     }
   } else {
