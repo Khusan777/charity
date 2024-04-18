@@ -8,10 +8,6 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
 
-useHead({
-  link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-})
-
 const { locale } = useI18n()
 const appStore = useAppStore()
 
