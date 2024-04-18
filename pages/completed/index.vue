@@ -195,9 +195,8 @@ onMounted(() => {
   if (appStore.resetScrollPosition) {
     newsEl.value.scrollTop = 0
     el.value.scrollTop = 0
-  } else if (appStore.patientNews.activeTabs) {
-    newsEl.value.scrollTop = appStore.scrollPositionNews
   } else {
+    newsEl.value.scrollTop = appStore.scrollPositionNews
     el.value.scrollTop = appStore.scrollPositionCompleted
   }
 })
