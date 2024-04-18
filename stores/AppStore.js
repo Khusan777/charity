@@ -1,6 +1,9 @@
 import { defineStore } from 'pinia'
 
 export const useAppStore = defineStore('AppStore', () => {
+  const scrollPositionNews = ref(0)
+  const scrollPositionCompleted = ref(0)
+  const resetScrollPosition = ref(false)
   const loading = ref(false)
   const user = ref(null)
   const webSession = ref(null)
@@ -13,10 +16,27 @@ export const useAppStore = defineStore('AppStore', () => {
     paginationData: null,
     activeTabs: false,
   })
+  const completedFee = reactive({
+    loading: false,
+    index: null,
+    newsLoader: false,
+    paginationData: null,
+  })
+  const queryFee = reactive({
+    page: 1,
+    newsPage: 1,
+  })
   const fromCompletedPage = ref(false)
   const fromMainPage = ref(false)
   const myFees = ref(null)
   const navMyFees = ref(null)
+
+  const saveScrollPositionNews = (position) => {
+    scrollPositionNews.value = position
+  }
+  const saveScrollPositionCompleted = (position) => {
+    scrollPositionCompleted.value = position
+  }
 
   const setWebSession = (session) => {
     webSession.value = session
@@ -44,5 +64,12 @@ export const useAppStore = defineStore('AppStore', () => {
     myFees,
     navMyFees,
     fromCompletedPage,
+    saveScrollPositionNews,
+    scrollPositionNews,
+    scrollPositionCompleted,
+    saveScrollPositionCompleted,
+    completedFee,
+    queryFee,
+    resetScrollPosition,
   }
 })

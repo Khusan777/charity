@@ -139,7 +139,6 @@ const detailPatientData = () => {
       return null
     })
 }
-
 detailPatientData()
 </script>
 

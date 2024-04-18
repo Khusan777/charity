@@ -101,7 +101,11 @@ export default defineNuxtPlugin(() => {
       }
       errorStatus[error.response.status]()
     }
-    if (error.response?.data?.error?.code !== 1001) {
+    if (
+      error.response?.data?.error?.code !== 1001 &&
+      error.response?.data?.message !== 'User not found' &&
+      error.response?.data?.message !== 'Token not provided'
+    ) {
       generateToaster(errors)
     }
     return Promise.reject(error)

@@ -11,22 +11,6 @@ import { useI18n } from 'vue-i18n'
 const { locale } = useI18n()
 const appStore = useAppStore()
 
-window?.addEventListener('message', (event) => {
-  if (
-    event.origin === 'https://new.click.uz' ||
-    event.origin === 'http://localhost:3000' ||
-    event.origin === 'https://my.click.uz'
-  ) {
-    console.log('EVENT DATA', event.data)
-    if (event.data?.sessionKey) {
-      console.log('EVENT DATA', event.data)
-      appStore.setWebSession(event.data?.sessionKey)
-    }
-  } else {
-    return false
-  }
-})
-
 onMounted(() => {
   const themeCookie = computed(() =>
     getCookie('click-theme') ? getCookie('click-theme') : getCookie('theme'),
