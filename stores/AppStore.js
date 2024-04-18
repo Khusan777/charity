@@ -13,6 +13,12 @@ export const useAppStore = defineStore('AppStore', () => {
     paginationData: null,
     activeTabs: false,
   })
+  const pushNews = reactive({
+    loading: false,
+    index: null,
+    paginationData: null,
+    activeTabs: false,
+  })
   const fromCompletedPage = ref(false)
   const fromMainPage = ref(false)
   const myFees = ref(null)
@@ -38,6 +44,7 @@ export const useAppStore = defineStore('AppStore', () => {
     setLang,
     lang,
     patientNews,
+    pushNews,
     setTheme,
     theme,
     fromMainPage,
