@@ -49,7 +49,11 @@ export default defineNuxtConfig({
           defer: true,
         },
       ],
-      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' },
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', href: '/favicon.ico' },
+      ],
       meta: [
         {
           'http-equiv': 'X-UA-Compatible',
