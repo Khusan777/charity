@@ -175,7 +175,7 @@ useInfiniteScroll(
     color: var(--text2);
     font-size: 10px;
   }
-  &-text{
+  &-text {
     width: calc(100% - 86px);
   }
   &-box {
