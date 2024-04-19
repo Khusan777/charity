@@ -193,11 +193,11 @@ const newsEl = shallowRef(null)
 
 onMounted(() => {
   if (appStore.resetScrollPosition) {
-    newsEl.value.pageYOffset = 0
-    el.value.pageYOffset = 0
+    newsEl.value.scrollTop = 0
+    el.value.scrollTop = 0
   } else {
-    newsEl.value.pageYOffset = appStore.scrollPositionNews
-    el.value.pageYOffset = appStore.scrollPositionCompleted
+    newsEl.value.scrollTop = appStore.scrollPositionNews
+    el.value.scrollTop = appStore.scrollPositionCompleted
   }
 })
 
@@ -208,15 +208,15 @@ onBeforeUnmount(() => {
 
 const saveScrollNews = () => {
   appStore.resetScrollPosition = false
-  if (newsEl.value.pageYOffset !== 0) {
-    appStore.saveScrollPositionNews(newsEl.value.pageYOffset)
+  if (newsEl.value.scrollTop !== 0) {
+    appStore.saveScrollPositionNews(newsEl.value.scrollTop)
   }
 }
 
 const saveScrollCompleted = () => {
   appStore.resetScrollPosition = false
-  if (el.value.pageYOffset !== 0) {
-    appStore.saveScrollPositionCompleted(el.value.pageYOffset)
+  if (el.value.scrollTop !== 0) {
+    appStore.saveScrollPositionCompleted(el.value.scrollTop)
   }
 }
 
@@ -327,7 +327,7 @@ watch(
   () => appStore.patientNews.activeTabs,
   (value) => {
     if (value && !appStore.resetScrollPosition) {
-      newsEl.value.pageYOffset = appStore.scrollPositionNews
+      newsEl.value.scrollTop = appStore.scrollPositionNews
     }
   },
   { flush: 'post' },
@@ -337,7 +337,7 @@ watch(
   () => appStore.patientNews.activeTabs,
   (value) => {
     if (!value && !appStore.resetScrollPosition) {
-      el.value.pageYOffset = appStore.scrollPositionCompleted
+      el.value.scrollTop = appStore.scrollPositionCompleted
     }
   },
   { flush: 'post' },
