@@ -42,7 +42,7 @@
               </div>
             </div>
             <div class="notification-date">
-              {{ formattedDate(patientData?.created_at) }}
+              {{ formatMonthDateTime(patientData?.created_at) }}
             </div>
           </div>
         </router-link>
@@ -175,11 +175,15 @@ useInfiniteScroll(
     color: var(--text2);
     font-size: 10px;
   }
+  &-text {
+    width: calc(100% - 86px);
+  }
   &-box {
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
     gap: 10px;
+    width: 100%;
   }
   &-title {
     font-size: 14px;
