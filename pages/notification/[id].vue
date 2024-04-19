@@ -12,7 +12,7 @@
           class="notification-detail-img"
         ></NuxtImg>
         <div class="notification-detail-date">
-          {{ formattedDate(pushNew?.created_at) }}
+          {{ formatMonthDateTime(pushNew?.created_at) }}
         </div>
         <div class="notification-detail-title">
           {{
@@ -70,6 +70,7 @@ const pushNew = computed(() =>
     color: var(--text);
   }
   &-des {
+    color: var(--text2);
     p {
       font-size: 12px;
       color: var(--text2);
