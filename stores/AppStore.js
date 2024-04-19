@@ -30,7 +30,6 @@ export const useAppStore = defineStore('AppStore', () => {
     loading: false,
     index: null,
     paginationData: null,
-    activeTabs: false,
   })
   const fromCompletedPage = ref(false)
   const fromMainPage = ref(false)
