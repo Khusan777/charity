@@ -11,9 +11,20 @@
           :src="`${config.public.apiBase}/storage/${pushNew?.image}`"
           class="notification-detail-img"
         ></NuxtImg>
-        <div class="notification-detail-date">{{ formattedDate(pushNew?.created_at) }}</div>
-        <div class="notification-detail-title">{{ $i18n.locale === 'en' ? pushNew?.name_en : $i18n.locale === 'uz' ? pushNew?.name_uz : pushNew?.name_ru }}</div>
-        <div class="notification-detail-des"
+        <div class="notification-detail-date">
+          {{ formattedDate(pushNew?.created_at) }}
+        </div>
+        <div class="notification-detail-title">
+          {{
+            $i18n.locale === 'en'
+              ? pushNew?.name_en
+              : $i18n.locale === 'uz'
+                ? pushNew?.name_uz
+                : pushNew?.name_ru
+          }}
+        </div>
+        <div
+          class="notification-detail-des"
           v-html="
             $i18n.locale === 'uz'
               ? pushNew?.description_uz
@@ -66,10 +77,10 @@ const pushNew = computed(() =>
       margin-bottom: 10px;
     }
   }
-  &-img{
+  &-img {
     margin-bottom: 20px;
     width: 100%;
-    img{
+    img {
       width: 100%;
       height: auto;
     }

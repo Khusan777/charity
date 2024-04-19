@@ -4,14 +4,19 @@
       center
       :center-text="$t('push.title')"
     ></UiHeaderComponent>
-    <div class="notification-list" ref="newsEl">
+    <div ref="newsEl" class="notification-list">
       <template v-if="appStore.pushNews.loading">
         <PushSkeleton></PushSkeleton>
         <PushSkeleton></PushSkeleton>
         <PushSkeleton></PushSkeleton>
       </template>
       <template v-if="appStore.pushNews.index">
-        <router-link :to="'/notification/' + patientData?.id" class="notification-item" v-for="patientData in appStore.pushNews.index" :key="patientData?.id">
+        <router-link
+          v-for="patientData in appStore.pushNews.index"
+          :key="patientData?.id"
+          :to="'/notification/' + patientData?.id"
+          class="notification-item"
+        >
           <div class="notification-icon">
             <NuxtImg
               :src="`${config.public.apiBase}/storage/${patientData?.image}`"
@@ -36,16 +41,20 @@
                 ></NuxtImg>
               </div>
             </div>
-            <div class="notification-date">{{ formattedDate(patientData?.created_at) }}</div>
+            <div class="notification-date">
+              {{ formattedDate(patientData?.created_at) }}
+            </div>
           </div>
         </router-link>
-        <div class="loader-wrapper" v-if="completedFee.newsLoader">
+        <div v-if="completedFee.newsLoader" class="loader-wrapper">
           <span class="loader-anim"></span>
         </div>
       </template>
-      
     </div>
-    <div class="notification-none" v-if="!appStore.pushNews.index?.length && !appStore.pushNews.loading">
+    <div
+      v-if="!appStore.pushNews.index?.length && !appStore.pushNews.loading"
+      class="notification-none"
+    >
       <NuxtImg
         v-if="appStore.theme === 'light'"
         src="/images/push-not-light.png"
@@ -150,7 +159,7 @@ useInfiniteScroll(
     gap: 10px;
     color: var(--text);
     margin-bottom: 10px;
-    &:last-child{
+    &:last-child {
       margin-bottom: 0;
     }
   }
