@@ -7,22 +7,32 @@
     ></UiHeaderComponent>
     <div class="notification-detail">
       <div class="notification-detail-wrapper">
-        <div class="notification-detail-date">03 февр. 16:05</div>
+        <NuxtImg
+          :src="`${config.public.apiBase}/storage/${pushNew?.image}`"
+          class="notification-detail-img"
+        ></NuxtImg>
+        <div class="notification-detail-date">
+          {{ formattedDate(pushNew?.created_at) }}
+        </div>
         <div class="notification-detail-title">
-          Поможем вместе пострадавшим от взрыва на Сергели!
+          {{
+            $i18n.locale === 'en'
+              ? pushNew?.name_en
+              : $i18n.locale === 'uz'
+                ? pushNew?.name_uz
+                : pushNew?.name_ru
+          }}
         </div>
-        <div class="notification-detail-des">
-          <p>
-            В результата происшествия пострадало множество людей и сейчас им
-            необходима наша с вами помощь!
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-            quas nihil fugiat aspernatur explicabo maiores tenetur aliquid minus
-            praesentium! Rem itaque ipsum eum molestias facilis provident nobis
-            porro a non.
-          </p>
-        </div>
+        <div
+          class="notification-detail-des"
+          v-html="
+            $i18n.locale === 'uz'
+              ? pushNew?.description_uz
+              : $i18n.locale === 'en'
+                ? pushNew?.description_en
+                : pushNew?.description_ru
+          "
+        ></div>
       </div>
     </div>
   </div>
@@ -30,15 +40,22 @@
 
 <script setup>
 const heightDevice = inject('devicePlatform')
+const config = useRuntimeConfig()
+const route = useRoute()
+const appStore = useAppStore()
+const pushNew = computed(() =>
+  appStore.pushNews.index?.find((item) => item.id === +route.params.id),
+)
 </script>
 
 <style lang="scss" scoped>
 .notification-detail {
   max-height: v-bind(heightDevice);
   height: v-bind(heightDevice);
-  overflow-y: scroll;
   &-wrapper {
-    padding: 0 20px;
+    padding: 0 20px 20px;
+    overflow-y: scroll;
+    height: calc(v-bind(heightDevice) - 74px);
   }
   &-date {
     color: var(--text2);
@@ -58,6 +75,14 @@ const heightDevice = inject('devicePlatform')
       color: var(--text2);
       line-height: 14px;
       margin-bottom: 10px;
+    }
+  }
+  &-img {
+    margin-bottom: 20px;
+    width: 100%;
+    img {
+      width: 100%;
+      height: auto;
     }
   }
 }

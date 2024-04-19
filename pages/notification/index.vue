@@ -4,63 +4,57 @@
       center
       :center-text="$t('push.title')"
     ></UiHeaderComponent>
-    <!-- <div class="notification-list">
-      <router-link to="/notification/1" class="notification-item">
-        <div class="notification-icon">
-          <NuxtImg
-            width="24"
-            height="24"
-            src="/images/push.svg"
-            class="notification-icon__img"
-          ></NuxtImg>
-        </div>
-        <div class="notification-text">
-          <div class="notification-date">03 февр. 16:05</div>
-          <div class="notification-box">
-            <div class="notification-title">
-              Поможем вместе пострадавшим от взрыва на Сергели!
-            </div>
-            <div class="notification-more">
-              <NuxtImg
-                src="/images/arrow.svg"
-                class="notification-more__img"
-              ></NuxtImg>
-            </div>
+    <div ref="newsEl" class="notification-list">
+      <template v-if="appStore.pushNews.loading">
+        <PushSkeleton></PushSkeleton>
+        <PushSkeleton></PushSkeleton>
+        <PushSkeleton></PushSkeleton>
+      </template>
+      <template v-if="appStore.pushNews.index">
+        <router-link
+          v-for="patientData in appStore.pushNews.index"
+          :key="patientData?.id"
+          :to="'/notification/' + patientData?.id"
+          class="notification-item"
+        >
+          <div class="notification-icon">
+            <NuxtImg
+              :src="`${config.public.apiBase}/storage/${patientData?.image}`"
+              class="notification-icon__img"
+            ></NuxtImg>
           </div>
-          <div class="notification-des">
-            В результата происшествия пострадало множество людей и сейчас им
-            необходима наша с вами помощь!
-          </div>
-        </div>
-      </router-link>
-      <router-link to="/notification/1" class="notification-item">
-        <div class="notification-icon">
-          <NuxtImg
-            src="/images/push.svg"
-            class="notification-icon__img"
-          ></NuxtImg>
-        </div>
-        <div class="notification-text">
-          <div class="notification-date">03 февр. 16:05</div>
-          <div class="notification-box">
-            <div class="notification-title">
-              Поможем вместе пострадавшим от взрыва на Сергели!
+          <div class="notification-text">
+            <div class="notification-box">
+              <div class="notification-title">
+                {{
+                  $i18n.locale === 'en'
+                    ? patientData?.name_en
+                    : $i18n.locale === 'uz'
+                      ? patientData?.name_uz
+                      : patientData?.name_ru
+                }}
+              </div>
+              <div class="notification-more">
+                <NuxtImg
+                  src="/images/arrow.svg"
+                  class="notification-more__img"
+                ></NuxtImg>
+              </div>
             </div>
-            <div class="notification-more">
-              <NuxtImg
-                src="/images/arrow.svg"
-                class="notification-more__img"
-              ></NuxtImg>
+            <div class="notification-date">
+              {{ formattedDate(patientData?.created_at) }}
             </div>
           </div>
-          <div class="notification-des">
-            В результата происшествия пострадало множество людей и сейчас им
-            необходима наша с вами помощь!
-          </div>
+        </router-link>
+        <div v-if="completedFee.newsLoader" class="loader-wrapper">
+          <span class="loader-anim"></span>
         </div>
-      </router-link>
-    </div> -->
-    <div class="notification-none">
+      </template>
+    </div>
+    <div
+      v-if="!appStore.pushNews.index?.length && !appStore.pushNews.loading"
+      class="notification-none"
+    >
       <NuxtImg
         v-if="appStore.theme === 'light'"
         src="/images/push-not-light.png"
@@ -73,11 +67,77 @@
 
 <script setup>
 import { useAppStore } from '~/stores/AppStore'
+import PushSkeleton from '~/components/skeleton/PushSkeleton.vue'
+const config = useRuntimeConfig()
+const { getPatientNews } = useAllServices()
 definePageMeta({
   layout: 'single',
 })
 const heightDevice = inject('devicePlatform')
 const appStore = useAppStore()
+const queryFee = reactive({
+  page: 1,
+  newsPage: 1,
+})
+const completedFee = reactive({
+  loading: false,
+  index: null,
+  newsLoader: false,
+  paginationData: null,
+})
+const newsEl = shallowRef(null)
+const getNews = () => {
+  if (!appStore.pushNews.index?.length) {
+    appStore.pushNews.loading = true
+    getPatientNews({
+      type: 0,
+      page: queryFee.newsPage,
+    })
+      .then((response) => {
+        appStore.pushNews.index = response.data?.data
+        appStore.pushNews.paginationData = response.data?.pagination
+        appStore.pushNews.loading = false
+      })
+      .catch(() => {
+        appStore.pushNews.loading = false
+      })
+  }
+}
+getNews()
+const getNewsPagination = async () => {
+  completedFee.newsLoader = true
+  if (queryFee.newsPage <= appStore.pushNews.paginationData?.totalPages) {
+    await getPatientNews({
+      type: 0,
+      page: queryFee.newsPage,
+    })
+      .then((response) => {
+        appStore.pushNews.index = [
+          ...appStore.pushNews.index,
+          ...response.data?.data,
+        ]
+        appStore.pushNews.paginationData = response.data?.pagination
+        completedFee.newsLoader = false
+      })
+      .catch(() => {
+        completedFee.newsLoader = false
+      })
+  }
+}
+useInfiniteScroll(
+  newsEl,
+  async () => {
+    if (
+      appStore.pushNews.paginationData?.currentPage <
+      appStore.pushNews.paginationData?.totalPages
+    ) {
+      console.log('here')
+      queryFee.newsPage += 1
+      await getNewsPagination()
+    }
+  },
+  { distance: 10 },
+)
 </script>
 
 <style scoped lang="scss">
@@ -85,14 +145,11 @@ const appStore = useAppStore()
   max-height: v-bind(heightDevice);
   height: v-bind(heightDevice);
   padding-bottom: 75px;
-  overflow-y: scroll;
   &-list {
     height: calc(100% - 75px);
     max-height: calc(100% - 75px);
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    padding: 0 20px 20px;
+    overflow-y: scroll;
   }
   &-item {
     background: var(--bg3);
@@ -101,11 +158,17 @@ const appStore = useAppStore()
     display: flex;
     gap: 10px;
     color: var(--text);
+    margin-bottom: 10px;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
   &-icon {
     padding: 0 3px;
     img {
-      width: 18px;
+      width: 70px;
+      height: 70px;
+      border-radius: 6px;
     }
   }
   &-date {
@@ -116,6 +179,7 @@ const appStore = useAppStore()
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
+    gap: 10px;
   }
   &-title {
     font-size: 14px;
