@@ -6,7 +6,8 @@
       left-route="/profile"
     ></UiHeaderComponent>
     <div class="about-wrapper">
-      <div class="about-info">
+      <button @click="show = true">Click 1</button>
+      <!-- <div class="about-info">
         <div class="about-logo">
           <NuxtImg
             v-if="appStore.theme === 'light'"
@@ -20,14 +21,37 @@
           <p>{{ $t('about.des3') }}</p>
           <p>{{ $t('about.des4') }}</p>
         </div>
+      </div> -->
+      <div v-if="show" class="about-stories">
+        <Stories :stories="items" />
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
-const appStore = useAppStore()
-const heightDevice = inject('devicePlatform')
+<script>
+import { Stories } from 'vue-insta-stories'
+import { useAppStore } from '~/stores/AppStore'
+
+export default {
+  name: 'About',
+  components: { Stories },
+  data() {
+    return {
+      appStore: useAppStore(),
+      heightDevice: inject('devicePlatform'),
+      items: [
+        'https://picsum.photos/350/200/',
+        'https://picsum.photos/400/201/',
+        {
+          url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+          type: 'video',
+        },
+      ],
+      show: false,
+    }
+  },
+}
 </script>
 
 <style lang="scss">
@@ -40,7 +64,6 @@ const heightDevice = inject('devicePlatform')
     padding: 0 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     gap: 30px;
     overflow-y: scroll;
   }
