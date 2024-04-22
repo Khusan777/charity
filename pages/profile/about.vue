@@ -22,7 +22,7 @@
           <p>{{ $t('about.des4') }}</p>
         </div>
       </div> -->
-      <div class="about-stories" v-if="show">
+      <div v-if="show" class="about-stories">
         <Stories :stories="items" />
       </div>
     </div>
@@ -30,27 +30,27 @@
 </template>
 
 <script>
+import { Stories } from 'vue-insta-stories'
 import { useAppStore } from '~/stores/AppStore'
-import { Stories } from "vue-insta-stories";
 
 export default {
   name: 'About',
+  components: { Stories },
   data() {
     return {
       appStore: useAppStore(),
       heightDevice: inject('devicePlatform'),
       items: [
-        "https://picsum.photos/350/200/",
-        "https://picsum.photos/400/201/",
+        'https://picsum.photos/350/200/',
+        'https://picsum.photos/400/201/',
         {
-          url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-          type: "video",
+          url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+          type: 'video',
         },
       ],
-      show: false
+      show: false,
     }
   },
-  components: { Stories },
 }
 </script>
 
