@@ -4,7 +4,7 @@
       center
       :center-text="$t('push.title')"
     ></UiHeaderComponent>
-    <div ref="newsEl" class="notification-list">
+    <div ref="newsEl" class="notification-list" v-if="appStore.pushNews.index?.length">
       <template v-if="appStore.pushNews.loading">
         <PushSkeleton></PushSkeleton>
         <PushSkeleton></PushSkeleton>
@@ -52,8 +52,8 @@
       </template>
     </div>
     <div
-      v-if="!appStore.pushNews.index?.length && !appStore.pushNews.loading"
       class="notification-none"
+      v-else
     >
       <NuxtImg
         v-if="appStore.theme === 'light'"
