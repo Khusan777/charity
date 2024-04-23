@@ -145,10 +145,12 @@ useInfiniteScroll(
 .notification {
   max-height: v-bind(heightDevice);
   height: v-bind(heightDevice);
+  overflow: hidden;
   padding-bottom: 75px;
   &-list {
     height: calc(100% - 75px);
     max-height: calc(100% - 75px);
+    width: 100%;
     padding: 0 20px 20px;
     overflow-y: scroll;
   }
@@ -177,7 +179,7 @@ useInfiniteScroll(
     font-size: 10px;
   }
   &-text {
-    width: calc(100% - 86px);
+    word-break: break-word;
   }
   &-box {
     display: flex;

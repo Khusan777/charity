@@ -95,7 +95,6 @@ if (langCookie.value && langCookie.value === 'en') {
   margin: 0;
   padding: 0;
   vertical-align: auto;
-  word-break: break-word;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
