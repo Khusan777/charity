@@ -92,6 +92,7 @@ const patientNew = computed(() =>
       border-radius: 12px 12px 0 0;
     }
     & .info-panel {
+      word-break: break-word;
       border-radius: 0 0 12px 12px;
       padding: 20px 10px;
       background: var(--history-bg-card);

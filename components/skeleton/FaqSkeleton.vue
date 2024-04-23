@@ -29,7 +29,7 @@
         height: 50px;
       "
     >
-      <UiAnimatedSkeleton height="36px" width="100%" />
+      <UiAnimatedSkeleton height="36px" border-radius="6px" width="100%" />
       <UiAnimatedSkeleton height="25px" width="25px" border-radius="25px" />
     </div>
     <div
@@ -44,7 +44,7 @@
         height: 50px;
       "
     >
-      <UiAnimatedSkeleton height="36px" width="100%" />
+      <UiAnimatedSkeleton height="36px" border-radius="6px" width="100%" />
       <UiAnimatedSkeleton height="25px" width="25px" border-radius="25px" />
     </div>
     <div
@@ -59,7 +59,7 @@
         height: 50px;
       "
     >
-      <UiAnimatedSkeleton height="36px" width="100%" />
+      <UiAnimatedSkeleton height="36px" border-radius="6px" width="100%" />
       <UiAnimatedSkeleton height="25px" width="25px" border-radius="25px" />
     </div>
   </div>

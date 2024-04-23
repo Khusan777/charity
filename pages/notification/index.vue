@@ -4,13 +4,17 @@
       center
       :center-text="$t('push.title')"
     ></UiHeaderComponent>
-    <div ref="newsEl" class="notification-list">
+    <div
+      v-if="appStore.pushNews.index?.length || appStore.pushNews.loading"
+      ref="newsEl"
+      class="notification-list"
+    >
       <template v-if="appStore.pushNews.loading">
         <PushSkeleton></PushSkeleton>
         <PushSkeleton></PushSkeleton>
         <PushSkeleton></PushSkeleton>
       </template>
-      <template v-if="appStore.pushNews.index">
+      <template v-if="appStore.pushNews.index?.length">
         <router-link
           v-for="patientData in appStore.pushNews.index"
           :key="patientData?.id"
@@ -51,10 +55,7 @@
         </div>
       </template>
     </div>
-    <div
-      v-if="!appStore.pushNews.index?.length && !appStore.pushNews.loading"
-      class="notification-none"
-    >
+    <div v-else class="notification-none">
       <NuxtImg
         v-if="appStore.theme === 'light'"
         src="/images/push-not-light.png"
@@ -144,10 +145,12 @@ useInfiniteScroll(
 .notification {
   max-height: v-bind(heightDevice);
   height: v-bind(heightDevice);
+  overflow: hidden;
   padding-bottom: 75px;
   &-list {
     height: calc(100% - 75px);
     max-height: calc(100% - 75px);
+    width: 100%;
     padding: 0 20px 20px;
     overflow-y: scroll;
   }
@@ -176,7 +179,7 @@ useInfiniteScroll(
     font-size: 10px;
   }
   &-text {
-    width: calc(100% - 86px);
+    word-break: break-word;
   }
   &-box {
     display: flex;
@@ -187,8 +190,9 @@ useInfiniteScroll(
   }
   &-title {
     font-size: 14px;
-    line-height: 17px;
     font-weight: 500;
+    text-align: left;
+    line-height: 17px;
   }
   &-more {
     height: 18px;
