@@ -155,6 +155,8 @@
           <!--          Мне нужна помощь-->
           <!--        </div>-->
           <!--      </div>-->
+          <p style="color: #fff3cd">URl {{ config.public.urlPay }}</p>
+          <p style="color: #fff3cd">URl {{ config.public.urlHost }}</p>
         </div>
         <div v-if="indexFee.loader" class="loader-wrapper">
           <span class="loader-anim"></span>
@@ -171,6 +173,7 @@ import ChartCardNotCollected from '~/components/ChartCardNotCollected.vue'
 import { debounce } from '~/utils'
 import { useAllServices } from '~/composables/app.api'
 
+const config = useRuntimeConfig()
 const { getFee } = useAllServices()
 const appStore = useAppStore()
 definePageMeta({
