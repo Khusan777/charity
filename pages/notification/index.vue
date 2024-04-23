@@ -5,7 +5,7 @@
       :center-text="$t('push.title')"
     ></UiHeaderComponent>
     <div
-      v-if="appStore.pushNews.index?.length"
+      v-if="appStore.pushNews.index?.length || appStore.pushNews.loading"
       ref="newsEl"
       class="notification-list"
     >
