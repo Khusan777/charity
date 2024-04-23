@@ -14,7 +14,7 @@
         <PushSkeleton></PushSkeleton>
         <PushSkeleton></PushSkeleton>
       </template>
-      <template v-if="appStore.pushNews.index">
+      <template v-if="appStore.pushNews.index?.length">
         <router-link
           v-for="patientData in appStore.pushNews.index"
           :key="patientData?.id"
@@ -190,8 +190,9 @@ useInfiniteScroll(
   }
   &-title {
     font-size: 14px;
-    line-height: 17px;
     font-weight: 500;
+    text-align: left;
+    line-height: 17px;
   }
   &-more {
     height: 18px;

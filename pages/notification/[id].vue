@@ -63,13 +63,17 @@ const pushNew = computed(() =>
     margin-bottom: 5px;
   }
   &-title {
-    font-size: 14px;
-    line-height: 17px;
+    font-size: 18px;
+    line-height: 21.6px;
     margin-bottom: 10px;
     font-weight: 500;
     color: var(--text);
   }
   &-des {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: left;
     color: var(--text2);
     p {
       font-size: 12px;
