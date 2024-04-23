@@ -167,10 +167,10 @@
       <a
         v-if="summa?.length >= 4 && isBtnActive"
         v-ripple.500="'rgba(255, 255, 255, 0.35)'"
-        :href="`https://new.click.uz/services/pay/?service_id=32840&amount=${summa?.replace(
+        :href="`https://my.click.uz/services/pay/?service_id=32840&amount=${summa?.replace(
           / /g,
           '',
-        )}&transaction_param=${patientData?.external_id}&return_url=https%3A%2F%2Fnew.click.uz%2Fapp%2FwebView%3Fauth%3Dtrue%26url%3Dhttps%253A%252F%252Fcredits.click.uz%2Fmain%2F${patientData?.id}`"
+        )}&transaction_param=${patientData?.external_id}&return_url=https%3A%2F%2Fmy.click.uz%2Fapp%2FwebView%3Fauth%3Dtrue%26url%3Dhttps%253A%252F%252Fcharity.click.uz%2Fmain%2F${patientData?.id}`"
         class="paid-active"
       >
         {{ $t('paid-page.btn') }}</a
