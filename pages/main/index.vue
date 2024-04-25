@@ -1,8 +1,17 @@
 <template>
   <div class="index-container">
-    <pre style="color: #ffffff; padding: 0 20px">{{
-      cookieData || 'sacascascsacsa'
-    }}</pre>
+    <pre
+      style="
+        color: #ffffff;
+        white-space: break-spaces;
+        word-break: break-word;
+        padding: 0 20px;
+      "
+      >{{
+        cookieData ||
+        'dvdvdvdvd dvdvdvdvd dvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvd'
+      }}</pre
+    >
     <div v-if="searchInputShow" class="search-container">
       <input
         ref="inputRef"
@@ -158,7 +167,6 @@
           <!--          Мне нужна помощь-->
           <!--        </div>-->
           <!--      </div>-->
-          <p style="color: #fff3cd">URlHost {{ config.public.urlHost }}</p>
         </div>
         <div v-if="indexFee.loader" class="loader-wrapper">
           <span class="loader-anim"></span>
@@ -176,7 +184,6 @@ import { debounce } from '~/utils'
 import { useAllServices } from '~/composables/app.api'
 
 const cookieData = computed(() => document?.cookie)
-const config = useRuntimeConfig()
 const { getFee } = useAllServices()
 const appStore = useAppStore()
 definePageMeta({
