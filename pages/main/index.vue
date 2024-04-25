@@ -271,7 +271,9 @@ watch(
 
 <style lang="scss" scoped>
 .index-container {
-  overflow-y: auto;
+  height: v-bind(heightDevice);
+  max-height: v-bind(heightDevice);
+  overflow-y: scroll;
 }
 .loading-container {
   height: calc(v-bind(heightDevice) - 165px);
