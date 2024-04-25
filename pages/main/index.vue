@@ -155,7 +155,6 @@
           <!--          Мне нужна помощь-->
           <!--        </div>-->
           <!--      </div>-->
-          <p style="color: #fff3cd">URl {{ config.public.urlPay }}</p>
           <p style="color: #fff3cd">URl {{ config.public.urlHost }}</p>
         </div>
         <div v-if="indexFee.loader" class="loader-wrapper">

@@ -11,6 +11,12 @@ import { useI18n } from 'vue-i18n'
 const { locale } = useI18n()
 const appStore = useAppStore()
 
+const element = document?.querySelector('body')
+element?.addEventListener('touchstart', (e) => {
+  if (e.pageX > 10 && e.pageX < window.innerWidth - 10) return
+  e.preventDefault()
+})
+
 onMounted(() => {
   const themeCookie = computed(() =>
     getCookie('click-theme') ? getCookie('click-theme') : getCookie('theme'),
@@ -103,6 +109,7 @@ if (langCookie.value && langCookie.value === 'en') {
 html,
 body,
 #__nuxt {
+  overscroll-behavior-x: none;
   font-family: GolosText, sans-serif !important;
   overflow: hidden;
   background: var(--bg-color);
