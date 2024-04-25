@@ -8,14 +8,16 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
 
+const devicePlatform = inject('devicePlatform')
 const { locale } = useI18n()
 const appStore = useAppStore()
 
-const element = document?.querySelector('body')
-element?.addEventListener('touchstart', (e) => {
-  if (e.pageX > 10 && e.pageX < window.innerWidth - 10) return
-  e.preventDefault()
-})
+if (devicePlatform.value === '100dvh') {
+  history?.pushState(null, null, location.href)
+  window.onpopstate = function () {
+    history?.go(1)
+  }
+}
 
 onMounted(() => {
   const themeCookie = computed(() =>

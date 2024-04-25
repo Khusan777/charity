@@ -228,11 +228,6 @@ const getFeeCompletedIndex = () => {
         appStore.completedFee.index = response.data?.data
         appStore.completedFee.paginationData = response.data?.pagination
         appStore.completedFee.loading = false
-        if (appStore.completedFee.index?.length) {
-          nextTick(() => {
-            el.value.scrollTop = appStore.scrollPositionNews
-          })
-        }
       })
       .catch(() => {
         appStore.completedFee.loading = false
@@ -252,11 +247,6 @@ const getNews = () => {
         appStore.patientNews.index = response.data?.data
         appStore.patientNews.paginationData = response.data?.pagination
         appStore.patientNews.loading = false
-        if (appStore.patientNews.index?.length) {
-          nextTick(() => {
-            newsEl.value.scrollTop = appStore.scrollPositionNews
-          })
-        }
       })
       .catch(() => {
         appStore.patientNews.loading = false
