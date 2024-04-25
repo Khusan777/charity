@@ -1,14 +1,5 @@
 <template>
   <div class="index-container">
-    <pre
-      style="
-        color: #ffffff;
-        white-space: break-spaces;
-        word-break: break-word;
-        padding: 0 20px;
-      "
-      >{{ cookieData }}</pre
-    >
     <div v-if="searchInputShow" class="search-container">
       <input
         ref="inputRef"
@@ -180,7 +171,6 @@ import ChartCardNotCollected from '~/components/ChartCardNotCollected.vue'
 import { debounce } from '~/utils'
 import { useAllServices } from '~/composables/app.api'
 
-const cookieData = computed(() => document?.cookie)
 const { getFee } = useAllServices()
 const appStore = useAppStore()
 definePageMeta({
@@ -270,11 +260,6 @@ watch(
 </script>
 
 <style lang="scss" scoped>
-.index-container {
-  height: v-bind(heightDevice);
-  max-height: v-bind(heightDevice);
-  overflow-y: scroll;
-}
 .loading-container {
   height: calc(v-bind(heightDevice) - 165px);
   max-height: calc(v-bind(heightDevice) - 165px);
