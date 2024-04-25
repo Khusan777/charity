@@ -7,10 +7,7 @@
         word-break: break-word;
         padding: 0 20px;
       "
-      >{{
-        cookieData ||
-        'dvdvdvdvd dvdvdvdvd dvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvddvdvdvdvd'
-      }}</pre
+      >{{ cookieData }}</pre
     >
     <div v-if="searchInputShow" class="search-container">
       <input
