@@ -125,6 +125,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
+            height: auto;
           "
           class="report-data-container"
           @scroll="saveScrollNews"
