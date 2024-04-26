@@ -21,7 +21,6 @@ if (devicePlatform.value === '100dvh') {
 
 const element = document?.querySelector('body')
 element?.addEventListener('touchstart', (e) => {
-  window?.location?.reload(true)
   e.preventDefault()
 })
 
