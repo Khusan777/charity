@@ -19,6 +19,11 @@ if (devicePlatform.value === '100dvh') {
   }
 }
 
+const element = document?.querySelector('body')
+element?.addEventListener('touchstart', (e) => {
+  e.preventDefault()
+})
+
 onMounted(() => {
   const themeCookie = computed(() =>
     getCookie('click-theme') ? getCookie('click-theme') : getCookie('theme'),
@@ -98,6 +103,7 @@ if (langCookie.value && langCookie.value === 'en') {
 }
 
 * {
+  touch-action: none;
   user-select: none;
   box-sizing: border-box;
   margin: 0;
