@@ -47,8 +47,7 @@ defineProps({
 .charity-reports {
   & .data {
     width: 100%;
-    border-radius: 12px;
-    margin-bottom: 10px;
+    border-radius: 14px;
     background: var(--reports-card-bg);
     & .image {
       border-top-left-radius: 14px;
@@ -74,8 +73,8 @@ defineProps({
       font-weight: 400;
       font-size: 10px;
       color: var(--reports-card-desc);
-      padding: 10px 10px 5px;
-      height: 55px;
+      padding: 5px 10px 0;
+      height: 50px;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 3;
@@ -83,7 +82,7 @@ defineProps({
       -webkit-box-orient: vertical;
     }
     & .detail {
-      padding: 12px 10px 10px;
+      padding: 5px 10px 10px;
       display: flex;
       align-items: center;
       justify-content: flex-end;

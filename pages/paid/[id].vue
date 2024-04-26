@@ -167,7 +167,7 @@
       <a
         v-if="summa?.length >= 4 && isBtnActive"
         v-ripple.500="'rgba(255, 255, 255, 0.35)'"
-        :href="`https://${config.public.urlPay}/services/pay/?service_id=32840&amount=${summa?.replace(
+        :href="`https://${config.public.urlPay}/services/pay/?service_id=${patientData?.fond_id}&amount=${summa?.replace(
           / /g,
           '',
         )}&transaction_param=${patientData?.external_id}&return_url=https%3A%2F%2F${config.public.urlPay}%2Fapp%2FwebView%3Fauth%3Dtrue%26url%3Dhttps%253A%252F%252F${config.public.urlHost}%2Fmain%2F${patientData?.id}%3Fcompleted%3Dfalse`"

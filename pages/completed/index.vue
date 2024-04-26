@@ -120,7 +120,12 @@
           role="tabpanel"
           aria-labelledby="report-tab"
           tabindex="0"
-          style="padding: 0 20px 0; display: flex; flex-wrap: wrap; gap: 10px"
+          style="
+            padding: 0 20px 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+          "
           class="report-data-container"
           @scroll="saveScrollNews"
         >

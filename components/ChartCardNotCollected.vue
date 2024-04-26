@@ -1,5 +1,8 @@
 <template>
   <div class="chart-card">
+    <p style="color: #0a53be; word-break: break-word">
+      {{ config.public.apiBase + '/storage/' + feeItem?.fond?.icon }}
+    </p>
     <div @click.stop="goToDetailPage(feeItem?.id)">
       <div class="fond-container">
         <div class="data">
